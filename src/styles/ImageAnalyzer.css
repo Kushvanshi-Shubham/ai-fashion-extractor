@@ -1,0 +1,171 @@
+@keyframes fadeInSlideUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.cell-content-animate-in {
+  animation: fadeInSlideUp 0.5s ease-out forwards;
+}
+
+body {
+    background-color: #f0f2f5 !important;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+.analyzer-layout-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.card {
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.09);
+    border: 1px solid #f0f0f0;
+}
+
+.header-card {
+    margin: 24px 24px 0 24px;
+    flex-shrink: 0;
+}
+
+.content-card {
+    margin: 24px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+}
+
+.app-page-header {
+    background-color: transparent !important;
+    padding: 24px !important;
+}
+
+.app-page-header .ant-page-header-heading-title {
+    color: #333 !important;
+}
+
+.app-page-header .ant-btn-primary {
+    background-color: #c8102e !important;
+    border-color: #c8102e !important;
+}
+
+.app-page-header .ant-btn-primary:hover {
+    background-color: #a10d24 !important;
+    border-color: #a10d24 !important;
+}
+
+.ant-table-wrapper { 
+    height: 100%; 
+}
+
+/* SIMPLIFIED: Basic fixed column styling */
+.ant-table-cell-fix-left, 
+.ant-table-cell-fix-right { 
+    background: #ffffff !important;
+}
+
+.custom-dragger {
+    background: #fafafa;
+    border: 2px dashed #d9d9d9;
+    border-radius: 8px;
+    padding: 48px 0;
+    transition: border-color 0.3s;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.custom-dragger:hover { 
+    border-color: #1890ff; 
+}
+
+.custom-dragger .ant-upload-drag-icon .anticon { 
+    color: #1890ff; 
+    font-size: 48px; 
+}
+
+.custom-drag-uploader {
+    height: 100%;
+    padding: 48px 0;
+}
+
+.attribute-table-container {
+    height: 100%;
+}
+
+/* SIMPLIFIED: New discovery cell styling */
+.new-discovery-cell {
+    background-color: #fffbe6 !important;
+    border-left: 4px solid #faad14 !important;
+}
+
+.ant-table-tbody > tr:hover .new-discovery-cell {
+    background-color: #fff8e1 !important;
+}
+
+.image-modal-wrapper .ant-modal-content { 
+    background: none; 
+    box-shadow: none; 
+}
+
+.image-modal-wrapper .ant-modal-close { 
+    color: white; 
+}
+
+.image-modal-wrapper { 
+    backdrop-filter: blur(8px); 
+    -webkit-backdrop-filter: blur(8px); 
+}
+
+/* Basic table styling */
+.ant-table-tbody > tr > td {
+    padding: 8px !important;
+}
+
+.ant-table-tbody > tr:hover > td {
+    background-color: #fafafa !important;
+}
+
+/* Enhanced input styling for discovery cells */
+.new-discovery-cell .ant-input,
+.new-discovery-cell .ant-select-selector,
+.new-discovery-cell .ant-input-number {
+    background-color: transparent !important;
+    border-color: #faad14 !important;
+}
+
+.new-discovery-cell .ant-input:focus,
+.new-discovery-cell .ant-select-focused .ant-select-selector,
+.new-discovery-cell .ant-input-number:focus {
+    border-color: #faad14 !important;
+    box-shadow: 0 0 0 2px rgba(250, 173, 20, 0.2) !important;
+}
+
+/* NUCLEAR OPTION: Force z-index with !important */
+.ant-table .ant-table-cell-fix-left {
+    z-index: 999 !important;
+}
+
+.ant-table .ant-table-cell-fix-right {
+    z-index: 999 !important;
+}
+
+.ant-table .ant-table-selection-col {
+    z-index: 999 !important;
+}
+
+.ant-table .ant-table-tbody > tr > td:not(.ant-table-cell-fix-left):not(.ant-table-cell-fix-right):not(.ant-table-selection-col) {
+    z-index: 1 !important;
+}
+
+.ant-table .ant-table-thead > tr > th.ant-table-cell-fix-left,
+.ant-table .ant-table-thead > tr > th.ant-table-cell-fix-right {
+    z-index: 1000 !important;
+}
