@@ -128,7 +128,7 @@ export const ImageModal: React.FC<ImageModalProps> = ({
     const imageStyle: React.CSSProperties = {
         transform: `scale(${zoom}) rotate(${rotation}deg)`,
         transition: 'transform 0.3s ease',
-        maxWidth: '100%',
+        maxWidth: '100%', 
         maxHeight: isFullscreen ? '100vh' : '80vh',
         objectFit: 'contain',
         cursor: zoom > 1 ? 'move' : 'zoom-in'
