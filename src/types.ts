@@ -30,5 +30,7 @@ export interface ExtractedRow {
     apiTokensUsed?: number;
     modelUsed?: 'gpt-4o' | 'gpt-4o-mini';
     extractionTime?: number;
+    createdAt?: Date; // ADDED: createdAt field
+    updatedAt?: Date;
 }
 
