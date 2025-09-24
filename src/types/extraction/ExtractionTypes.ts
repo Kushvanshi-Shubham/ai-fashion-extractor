@@ -7,6 +7,7 @@ export interface AttributeDetail {
   isNewDiscovery: boolean;
   visualConfidence: number;
   mappingConfidence: number;
+  reasoning?: string; // AI explanation for why this value was chosen
 }
 
 export interface AttributeData {

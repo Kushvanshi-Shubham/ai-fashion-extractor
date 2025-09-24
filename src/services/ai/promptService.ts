@@ -1,71 +1,65 @@
 import type { SchemaItem } from '../../types/extraction/ExtractionTypes';
-import type { CategoryConfig } from '../../types/category/CategoryTypes';
 
 export class PromptService {
   generateGenericPrompt(schema: SchemaItem[]): string {
+    const attributeDescriptions = schema.map(item => {
+      const allowedValues = item.allowedValues?.length 
+        ? ` (allowed values: ${item.allowedValues.join(', ')})` 
+        : '';
+      
+      return `- ${item.key}: ${item.label}${allowedValues}`;
+    }).join('\n');
 
-    const example = {
-      "neck": "Round",
-      "pattern": "Solid", 
-      "color_main": "Blue"
+    return `
+You are an AI fashion attribute extraction specialist. Analyze this clothing image and extract the following attributes with high accuracy.
+
+REQUIRED ATTRIBUTES:
+${attributeDescriptions}
+
+INSTRUCTIONS:
+1. Examine the image carefully for each attribute
+2. For select attributes, ONLY use values from the allowed list
+3. For text/number attributes, provide precise descriptive values
+4. If an attribute is not visible/applicable, use null
+5. Provide confidence scores (0-100) for visual attributes
+
+CRITICAL: Return ONLY valid JSON without markdown formatting or code blocks.
+
+OUTPUT FORMAT (JSON ONLY):
+{
+  "attribute_key": {
+    "rawValue": "extracted_value",
+    "schemaValue": "normalized_value", 
+    "visualConfidence": 85,
+    "reasoning": "brief_explanation"
+  }
+}
+
+Return pure JSON only. No markdown, no explanations, no code blocks.`.trim();
+  }
+
+  generateCategorySpecificPrompt(schema: SchemaItem[], categoryName: string): string {
+    const basePrompt = this.generateGenericPrompt(schema);
+    
+    const categoryContext = this.getCategoryContext(categoryName);
+    
+    return `${basePrompt}
+
+CATEGORY CONTEXT:
+You are analyzing a ${categoryName}. ${categoryContext}
+
+Pay special attention to attributes most relevant to this category type.
+
+CRITICAL: Return pure JSON only, no markdown code blocks.`.trim();
+  }
+
+  private getCategoryContext(categoryName: string): string {
+    const contexts: Record<string, string> = {
+      'Kids Bermuda': 'Focus on casual wear attributes like fit, length, fabric type, and comfort features typical for children\'s shorts.',
+      'Ladies Cig Pant': 'Emphasize formal wear characteristics, fit type, fabric composition, and professional styling details.',
+      'Mens T Shirt': 'Prioritize casual wear elements like neck type, sleeve style, fabric composition, and print details.',
     };
- 
-    return `You are analyzing a clothing item. Extract these attributes with precision:
-
-EXTRACT ONLY these relevant attributes:
-${schema.map(attr => attr.label).join(', ')}
-
-CRITICAL RULES:
-- ONLY extract attributes that actually apply to this specific garment type
-- If an attribute doesn't apply, return null
-- Use simple, direct values - no complex objects
-- Be precise and factual based on what you can see
-
-Return a simple JSON object with ONLY these keys:
-{
-${schema.map(attr => `  "${attr.key}": "simple_value_or_null"`).join(',\n')}
-}
-
-Examples: ${JSON.stringify(example, null, 2)}
-
-Analyze the clothing item and provide simple values for all listed attributes.`;
-  }
-
-  generateCategoryPrompt(categoryConfig: CategoryConfig, schema: SchemaItem[]): string {
-    const categoryContext = this.getCategoryContext(categoryConfig);
-
-    return `You are analyzing a ${categoryConfig.displayName} (${categoryConfig.category}) clothing item.
-
-${categoryContext}
-
-EXTRACT ONLY these ${schema.length} relevant attributes:
-${schema.map(attr => attr.label).join(', ')}
-
-CRITICAL RULES FOR ${categoryConfig.displayName.toUpperCase()}:
-- Use simple, direct values matching the expected format
-- Return null for truly non-applicable attributes
-
-Return a simple JSON object:
-{
-${schema.map(attr => `  "${attr.key}": "detected_value_or_null"`).join(',\n')}
-}
-
-Analyze this ${categoryConfig.displayName} and provide accurate values for all ${schema.length} attributes.`;
-  }
-
-  private getCategoryContext(categoryConfig: CategoryConfig): string {
-    const category = categoryConfig.category.toLowerCase();
     
-    if (category.includes('t_shirt') || category.includes('tee')) {
-      return 'This is a t-shirt. Focus on neck style, sleeve type, fit, print design, and fabric details.';
-    } else if (category.includes('hoodie') || category.includes('sweat')) {
-      return 'This is a hoodie/sweatshirt. Focus on hood style, pocket type, drawstring, fit, and fabric weight.';
-    } else if (category.includes('jeans')) {
-      return 'These are jeans. Focus on fit, wash type, length, pocket style, and denim details.';
-    } else if (category.includes('kurti')) {
-      return 'This is a kurti. Focus on neckline, sleeve style, embroidery, length, and ethnic design elements.';
-    }
-    
-    return `This is a ${categoryConfig.displayName}. Analyze all visible design elements and construction details.`;
+    return contexts[categoryName] || 'Analyze all visible fashion attributes systematically.';
   }
 }

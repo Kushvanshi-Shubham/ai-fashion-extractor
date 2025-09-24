@@ -1,7 +1,9 @@
-import { useState, useCallback, useEffect } from 'react';
-import type { CategoryConfig } from '../../types/category/CategoryTypes';
-import { CategoryHelper } from '../../utils/category/categoryHelpers';
-import { logger } from '../../utils/common/logger';
+import { useState, useCallback, useEffect, useMemo } from "react";
+import type { CategoryConfig } from "../../types/category/CategoryTypes";
+import { CategoryHelper } from "../../utils/category/categoryHelpers";
+import { logger } from "../../utils/common/logger";
+import { deriveSchemaFromCategoryAttributes } from "../../utils/category/schemaUtils";
+import type { SchemaItem } from "../../types/extraction/ExtractionTypes";
 
 // Hook state interface
 interface CategorySelectorState {
@@ -24,12 +26,13 @@ interface UseCategorySelectorReturn {
   isLoading: boolean;
   error: string | null;
   selectionHistory: CategoryConfig[];
-  
+  schema: SchemaItem[];
+
   // Derived data
   departments: string[];
   subDepartments: string[];
   availableCategories: CategoryConfig[];
-  
+
   // Actions
   handleCategorySelect: (category: CategoryConfig | null) => void;
   handleDepartmentChange: (department: string) => void;
@@ -37,7 +40,7 @@ interface UseCategorySelectorReturn {
   resetSelection: () => void;
   goToPreviousCategory: () => void;
   validateCategory: (categoryCode: string) => boolean;
-  
+
   // Utilities
   getCategoryPath: () => string[];
   isValidSelection: () => boolean;
@@ -52,108 +55,133 @@ export const useCategorySelector = (): UseCategorySelectorReturn => {
     isComplete: false,
     isLoading: false,
     error: null,
-    selectionHistory: []
+    selectionHistory: [],
   });
 
-  // ✅ Use your existing CategoryHelper methods
   const departments = CategoryHelper.getDepartments();
 
-  const subDepartments = state.selectedDepartment 
+  const subDepartments = state.selectedDepartment
     ? CategoryHelper.getSubDepartments(state.selectedDepartment)
     : [];
 
-  // ✅ FIX: Use your existing getCategories method
-  const availableCategories = (state.selectedDepartment && state.selectedSubDepartment)
-    ? CategoryHelper.getCategories(state.selectedDepartment, state.selectedSubDepartment)
-    : [];
+  const availableCategories =
+    state.selectedDepartment && state.selectedSubDepartment
+      ? CategoryHelper.getCategories(
+          state.selectedDepartment,
+          state.selectedSubDepartment
+        )
+      : [];
 
-  // ✅ Handle department change
+  // Handle department change
   const handleDepartmentChange = useCallback((department: string): void => {
-    logger.debug('Department changed', { department });
-    
-    setState(prevState => ({
+    logger.debug("Department changed", { department });
+
+    setState((prevState) => ({
       ...prevState,
       selectedDepartment: department,
       selectedSubDepartment: null,
       selectedCategory: null,
       isComplete: false,
-      error: null
+      error: null,
     }));
   }, []);
 
-  // ✅ Handle sub-department change
+  // Handle sub-department change
   const handleSubDepartmentChange = useCallback((subDept: string): void => {
-    logger.debug('Sub-department changed', { subDept });
-    
-    setState(prevState => ({
+    logger.debug("Sub-department changed", { subDept });
+
+    setState((prevState) => ({
       ...prevState,
       selectedSubDepartment: subDept,
       selectedCategory: null,
       isComplete: false,
-      error: null
+      error: null,
     }));
   }, []);
 
-  // ✅ Handle category selection
-  const handleCategorySelect = useCallback((category: CategoryConfig | null): void => {
-    logger.debug('Category selection requested', { 
-      categoryCode: category?.category,
-      displayName: category?.displayName 
-    });
+  
+  // In useCategorySelector or wherever you derive schema
+const schema = useMemo(() => {
+  console.log('Selected category:', state.selectedCategory);
+  if (!state.selectedCategory) {
+    console.log('No category selected');
+    return [];
+  }
+  
+  console.log('Category attributes:', state.selectedCategory.attributes);
+  const derivedSchema = deriveSchemaFromCategoryAttributes(state.selectedCategory.attributes);
+  console.log('Derived schema:', derivedSchema);
+  return derivedSchema;
+}, [state.selectedCategory]);
 
-    setState(prevState => {
-      if (category === null) {
-        logger.info('Category selection reset');
-        return {
-          selectedCategory: null,
-          selectedDepartment: null,
-          selectedSubDepartment: null,
-          isComplete: false,
-          isLoading: false,
-          error: null,
-          selectionHistory: []
-        };
-      }
 
-      // Validate category
-      const isValid = CategoryHelper.getCategoryConfig(category.category);
-      if (!isValid) {
-        logger.error('Invalid category selected', { category: category.category });
-        return {
-          ...prevState,
-          error: `Invalid category: ${category.category}`,
-          isLoading: false
-        };
-      }
-
-      // Update history (keep last 5 selections)
-      const newHistory = [
-        category,
-        ...prevState.selectionHistory.filter(c => c.category !== category.category)
-      ].slice(0, 5);
-
-      logger.info('Category selected successfully', {
-        category: category.category,
-        displayName: category.displayName,
-        department: category.department
+  // Handle category selection
+  const handleCategorySelect = useCallback(
+    (category: CategoryConfig | null): void => {
+      logger.debug("Category selection requested", {
+        categoryCode: category?.category,
+        displayName: category?.displayName,
       });
 
-      return {
-        ...prevState,
-        selectedCategory: category,
-        selectedDepartment: category.department,
-        selectedSubDepartment: category.subDepartment,
-        isComplete: true,
-        isLoading: false,
-        error: null,
-        selectionHistory: newHistory
-      };
-    });
-  }, []);
+      setState((prevState) => {
+        if (category === null) {
+          logger.info("Category selection reset");
+          return {
+            selectedCategory: null,
+            selectedDepartment: null,
+            selectedSubDepartment: null,
+            isComplete: false,
+            isLoading: false,
+            error: null,
+            selectionHistory: [],
+          };
+        }
 
-  // ✅ Reset selection completely
+        // Validate category
+        const isValid = CategoryHelper.getCategoryConfig(category.category);
+        if (!isValid) {
+          logger.error("Invalid category selected", {
+            category: category.category,
+          });
+          return {
+            ...prevState,
+            error: `Invalid category: ${category.category}`,
+            isLoading: false,
+          };
+        }
+
+        // Update history immutably (keep last 5 selections)
+        const newHistory = [
+          category,
+          ...prevState.selectionHistory.filter(
+            (c) => c.category !== category.category
+          ),
+        ].slice(0, 5);
+
+        logger.info("Category selected successfully", {
+          category: category.category,
+          displayName: category.displayName,
+          department: category.department,
+        });
+
+        return {
+          ...prevState,
+          selectedCategory: category,
+          selectedDepartment: category.department,
+          selectedSubDepartment: category.subDepartment,
+          isComplete: true,
+          isLoading: false,
+          error: null,
+          selectionHistory: newHistory,
+        };
+      });
+    },
+    []
+  );
+
+  // Reset selection
   const resetSelection = useCallback((): void => {
-    logger.info('Resetting category selection');
+    logger.info("Resetting category selection");
     setState({
       selectedCategory: null,
       selectedDepartment: null,
@@ -161,23 +189,23 @@ export const useCategorySelector = (): UseCategorySelectorReturn => {
       isComplete: false,
       isLoading: false,
       error: null,
-      selectionHistory: []
+      selectionHistory: [],
     });
   }, []);
 
-  // ✅ Go back to previous category
+  // Go back to previous category
   const goToPreviousCategory = useCallback((): void => {
-    setState(prevState => {
+    setState((prevState) => {
       if (prevState.selectionHistory.length === 0) {
-        logger.warn('No previous category to go back to');
+        logger.warn("No previous category to go back to");
         return prevState;
       }
 
       const [, ...remainingHistory] = prevState.selectionHistory;
       const previousCategory = remainingHistory[0] || null;
 
-      logger.info('Going back to previous category', {
-        previousCategory: previousCategory?.category
+      logger.info("Going back to previous category", {
+        previousCategory: previousCategory?.category,
       });
 
       return {
@@ -187,23 +215,23 @@ export const useCategorySelector = (): UseCategorySelectorReturn => {
         selectedSubDepartment: previousCategory?.subDepartment || null,
         isComplete: !!previousCategory,
         selectionHistory: remainingHistory,
-        error: null
+        error: null,
       };
     });
   }, []);
 
-  // ✅ Validate category code
+  // Validate category code
   const validateCategory = useCallback((categoryCode: string): boolean => {
     try {
       const category = CategoryHelper.getCategoryConfig(categoryCode);
       return !!category;
     } catch (error) {
-      logger.error('Category validation failed', { categoryCode, error });
+      logger.error("Category validation failed", { categoryCode, error });
       return false;
     }
   }, []);
 
-  // ✅ Get category breadcrumb path
+  // Get category breadcrumb path
   const getCategoryPath = useCallback((): string[] => {
     if (!state.selectedCategory) return [];
 
@@ -223,20 +251,20 @@ export const useCategorySelector = (): UseCategorySelectorReturn => {
     return path;
   }, [state.selectedCategory]);
 
-  // ✅ Check if current selection is valid
+  // Check if current selection is valid
   const isValidSelection = useCallback((): boolean => {
     return !!(state.selectedCategory && state.isComplete && !state.error);
   }, [state.selectedCategory, state.isComplete, state.error]);
 
-  // ✅ Handle errors and cleanup
+  // Error cleanup on timeout
   useEffect(() => {
     if (state.error) {
-      logger.error('Category selector error', { error: state.error });
-      
+      logger.error("Category selector error", { error: state.error });
+
       const timer = setTimeout(() => {
-        setState(prevState => ({
+        setState((prevState) => ({
           ...prevState,
-          error: null
+          error: null,
         }));
       }, 5000);
 
@@ -253,12 +281,14 @@ export const useCategorySelector = (): UseCategorySelectorReturn => {
     isLoading: state.isLoading,
     error: state.error,
     selectionHistory: state.selectionHistory,
-    
+
+    schema,
+
     // Derived data
     departments,
     subDepartments,
     availableCategories,
-    
+
     // Actions
     handleCategorySelect,
     handleDepartmentChange,
@@ -266,9 +296,9 @@ export const useCategorySelector = (): UseCategorySelectorReturn => {
     resetSelection,
     goToPreviousCategory,
     validateCategory,
-    
+
     // Utilities
     getCategoryPath,
-    isValidSelection
+    isValidSelection,
   };
 };

@@ -2,7 +2,11 @@
 export type Department = 'KIDS' | 'MENS' | 'LADIES';
 export type AttributeType = 'select' | 'text' | 'number' | 'boolean';
 export type ExtractionStatus = 'Pending' | 'Extracting' | 'Done' | 'Error';
-export type ModelType = 'gpt-4o' | 'gpt-4o-mini';
+export type ModelType = 
+  | 'gpt-4o'              // Latest GPT-4 with vision (most capable)
+  | 'gpt-4-vision-preview' // Backup vision model
+  | 'gpt-4-turbo'         // Fast text-only model for prompts
+  | 'gpt-3.5-turbo';  
 
 export interface BaseEntity {
   id: string;

@@ -1,89 +1,107 @@
-import type { AttributeData, SchemaItem } from '../../types/extraction/ExtractionTypes';
+import type { SchemaItem, AttributeDetail, AttributeData } from '../../types/extraction/ExtractionTypes';
+
+export interface ParsedAIAttribute {
+  rawValue: string | null;
+  schemaValue: string | number | null;
+  visualConfidence: number;
+  reasoning?: string;
+}
 
 export class ResponseParser {
-  async parseResponse(content: string, schema: SchemaItem[]): Promise<AttributeData> {
+  async parseResponse(
+    aiResponse: string,
+    schema: SchemaItem[]
+  ): Promise<AttributeData> {
     try {
-      const rawResponse = JSON.parse(content);
-      return this.convertToAttributeData(rawResponse, schema);
+      const cleanedResponse = this.cleanMarkdownJson(aiResponse);
+      const parsed = JSON.parse(cleanedResponse);
+      const result: AttributeData = {};
+
+      for (const schemaItem of schema) {
+        const aiAttribute: ParsedAIAttribute | undefined = parsed[schemaItem.key];
+
+        if (aiAttribute) {
+          const attributeDetail: AttributeDetail = {
+            rawValue: aiAttribute.rawValue || null,
+            schemaValue: this.normalizeValue(aiAttribute.schemaValue, schemaItem),
+            visualConfidence: aiAttribute.visualConfidence || 0,
+            mappingConfidence: 100,
+            isNewDiscovery: false,
+            reasoning: aiAttribute.reasoning,
+          };
+
+          result[schemaItem.key] = attributeDetail;
+        } else {
+          result[schemaItem.key] = {
+            rawValue: null,
+            schemaValue: null,
+            visualConfidence: 0,
+            mappingConfidence: 0,
+            isNewDiscovery: false,
+            reasoning: undefined,
+          };
+        }
+      }
+
+      return result;
     } catch (error) {
-      console.error('Failed to parse AI response:', content);
-      throw new Error('Invalid JSON response from AI');
+      throw new Error(`Failed to parse AI response: ${error instanceof Error ? error.message : 'Unknown error'}`);
     }
   }
 
-  private convertToAttributeData(simpleAttributes: Record<string, unknown>, schema: SchemaItem[]): AttributeData {
-    const result: AttributeData = {};
+  private cleanMarkdownJson(response: string): string {
+    let cleaned = response.trim();
 
-    for (const schemaItem of schema) {
-      const value = simpleAttributes[schemaItem.key];
-      
-      result[schemaItem.key] = {
-        schemaValue: this.processValue(value, schemaItem),
-        rawValue: value === null || value === undefined ? null : String(value),
-        isNewDiscovery: this.isNewDiscovery(value, schemaItem),
-        visualConfidence: this.calculateVisualConfidence(value),
-        mappingConfidence: this.calculateMappingConfidence(value, schemaItem)
-      };
+    // Correctly handle markdown code blocks like ```json ... ``` or ``` ... ```
+    if (cleaned.startsWith('```json')) {
+      cleaned = cleaned.substring(7);
+    } else if (cleaned.startsWith('```')) {
+      cleaned = cleaned.substring(3);
     }
 
-    return result;
+    if (cleaned.endsWith('```')) {
+      cleaned = cleaned.substring(0, cleaned.length - 3);
+    }
+
+    return cleaned.trim();
   }
 
-  private processValue(value: unknown, schemaItem: SchemaItem): string | number | null {
-    if (value === null || value === undefined || value === '') {
-      return null;
-    }
+  private normalizeValue(value: unknown, schemaItem: SchemaItem): string | number | null {
+    if (value === null || value === undefined) return null;
 
-    if (schemaItem.type === 'number') {
-      const numValue = Number(value);
-      return isNaN(numValue) ? null : numValue;
-    }
+    const stringValue = String(value).trim();
+    if (!stringValue) return null;
 
-    if (typeof value === 'string' || typeof value === 'number') {
-      return value;
-    }
+    switch (schemaItem.type) {
+      case 'number':
+        { const numValue = Number(stringValue);
+        return isNaN(numValue) ? null : numValue; }
 
-    return String(value);
+      case 'select':
+        if (schemaItem.allowedValues && schemaItem.allowedValues.length > 0) {
+          const normalizedValue = this.findBestMatch(stringValue, schemaItem.allowedValues);
+          return normalizedValue;
+        }
+        return stringValue;
+
+      case 'text':
+      default:
+        return stringValue;
+    }
   }
 
-  private isNewDiscovery(value: unknown, schemaItem: SchemaItem): boolean {
-    if (!schemaItem.allowedValues || value === null || value === undefined) {
-      return false;
-    }
+  private findBestMatch(value: string, allowedValues: string[]): string | null {
+    const normalizedValue = value.toLowerCase().trim();
 
-    const stringValue = String(value).toLowerCase();
-    return !schemaItem.allowedValues.some(allowed => 
-      allowed.toLowerCase() === stringValue
+    const exactMatch = allowedValues.find(v => v.toLowerCase() === normalizedValue);
+    if (exactMatch) return exactMatch;
+
+    const partialMatch = allowedValues.find(v =>
+      v.toLowerCase().includes(normalizedValue) ||
+      normalizedValue.includes(v.toLowerCase())
     );
-  }
+    if (partialMatch) return partialMatch;
 
-  private calculateVisualConfidence(value: unknown): number {
-    if (value === null || value === undefined || value === '') {
-      return 0;
-    }
-    
-    const stringValue = String(value).toLowerCase();
-    if (stringValue.includes('unknown') || stringValue.includes('unclear')) {
-      return 30;
-    }
-    
-    return 95;
-  }
-
-  private calculateMappingConfidence(value: unknown, schemaItem: SchemaItem): number {
-    if (value === null || value === undefined) {
-      return 0;
-    }
-
-    if (!schemaItem.allowedValues) {
-      return 90; // Free text fields
-    }
-
-    const stringValue = String(value).toLowerCase();
-    const exactMatch = schemaItem.allowedValues.some(allowed => 
-      allowed.toLowerCase() === stringValue
-    );
-
-    return exactMatch ? 95 : 70;
+    return null;
   }
 }

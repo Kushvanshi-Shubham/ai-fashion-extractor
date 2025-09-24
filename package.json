@@ -1,8 +1,33 @@
 {
-  "name": "cloth-analyzer",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
+  "name": "ai-fashion-extractor",
+  "version": "1.0.0",
+  "description": "🎯 AI-powered fashion attribute extraction system with 283+ categories and advanced computer vision. Built with React, TypeScript, and OpenAI GPT-4 Vision.",
+  "author": {
+    "name": "Shubham Kushvanshi"
+  },
+  "license": "MIT",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Kushvanshi-Shubham/ai-fashion-extractor.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Kushvanshi-Shubham/ai-fashion-extractor/issues"
+  },
+  "homepage": "https://kushvanshi-shubham.github.io/ai-fashion-extractor",
+  "keywords": [
+    "ai",
+    "fashion",
+    "attribute-extraction",
+    "computer-vision",
+    "react",
+    "typescript",
+    "openai",
+    "gpt-4-vision",
+    "fashion-tech",
+    "machine-learning",
+    "antd"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
@@ -17,6 +42,7 @@
     "@tailwindcss/vite": "^4.1.13",
     "antd": "^5.27.4",
     "browser-image-compression": "^2.0.2",
+    "file-saver": "^2.0.5",
     "idb": "^8.0.3",
     "lucide-react": "^0.544.0",
     "react": "^19.1.1",
@@ -26,6 +52,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.35.0",
+    "@types/file-saver": "^2.0.7",
     "@types/node": "^24.5.2",
     "@types/react": "^19.1.13",
     "@types/react-dom": "^19.1.9",

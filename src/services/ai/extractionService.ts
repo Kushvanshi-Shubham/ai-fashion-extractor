@@ -1,116 +1,86 @@
-
-import { BaseApiService } from '../api/baseApi';
-import type { ExtractionResult, SchemaItem, AttributeData } from '../../types/extraction/ExtractionTypes';
-import { ImageProcessor } from '../../utils/extraction/imageProcessing';
+import type { SchemaItem, ExtractionResult, AttributeData, AttributeDetail } from '../../types/extraction/ExtractionTypes';
 import { PromptService } from './promptService';
+import { logger } from '../../utils/common/logger';
+import { ApiService } from '../api/apiServices';
 import { ResponseParser } from './responseParser';
 
-// ✅ ADD: OpenAI API response types
-interface OpenAIMessage {
-  role: string;
-  content: string;
-}
+export class ExtractionService {
+  private promptService = new PromptService();
+  private responseParser = new ResponseParser();
+  private apiService = new ApiService();
+  private compressImage: (file: File) => Promise<string>;
 
-interface OpenAIChoice { 
-  message: OpenAIMessage;
-  finish_reason: string;
-  index: number;
-}
-
-interface OpenAIUsage {
-  prompt_tokens: number;
-  completion_tokens: number;
-  total_tokens: number;
-}
-
-interface OpenAIResponse {
-  id: string;
-  object: string;
-  created: number;
-  model: string;
-  choices: OpenAIChoice[];
-  usage: OpenAIUsage;
-}
-
-export class ExtractionService extends BaseApiService {
-  private promptService: PromptService;
-  private responseParser: ResponseParser;
-  private imageProcessor: ImageProcessor;
-
-  constructor() {
-    super();
-    this.promptService = new PromptService();
-    this.responseParser = new ResponseParser();
-    this.imageProcessor = new ImageProcessor();
+  // Fix: Proper constructor syntax
+  constructor(compressImageFn: (file: File) => Promise<string>) {
+    this.compressImage = compressImageFn;
   }
 
   async extractAttributes(
-    file: File, 
-    schema: SchemaItem[], 
-    customPrompt?: string
+    file: File,
+    schema: SchemaItem[],
+    customPrompt?: string,
+    categoryName?: string
   ): Promise<ExtractionResult> {
-    const startTime = performance.now();
+    const startTime = Date.now();
     
-    // Process image
-    const base64Image = await this.imageProcessor.processImage(file);
-    
-    // Generate prompt
-    const prompt = customPrompt || this.promptService.generateGenericPrompt(schema);
-    
-    // Make API call
-    const payload = {
-      model: 'gpt-4o',
-      messages: [{
-        role: 'user' as const,
-        content: [
-          { type: 'text' as const, text: prompt },
-          { type: 'image_url' as const, image_url: { url: base64Image } }
-        ]
-      }],
-      max_tokens: 2048,
-      temperature: 0.1,
-      response_format: { type: 'json_object' as const }
-    };
+    try {
+      // Compress image
+      const base64Image = await this.compressImage(file);
+      
+      // Generate prompt
+      const prompt = customPrompt || (categoryName 
+        ? this.promptService.generateCategorySpecificPrompt(schema, categoryName)
+        : this.promptService.generateGenericPrompt(schema)
+      );
 
-    const response = await this.retryRequest(async () => {
-      return this.makeRequest<OpenAIResponse>('/chat/completions', {
-        method: 'POST',
-        body: JSON.stringify(payload)
+      logger.info('Starting AI extraction', { 
+        fileName: file.name, 
+        schemaSize: schema.length,
+        promptLength: prompt.length 
       });
-    });
 
-    if (!response.success || !response.data) {
-      throw new Error(response.error || 'Extraction failed');
+      // Call AI API
+      const aiResponse = await this.apiService.callVisionAPI(base64Image, prompt);
+      
+      // Parse response (this returns properly typed AttributeData now)
+      const attributes: AttributeData = await this.responseParser.parseResponse(
+        aiResponse.content, 
+        schema
+      );
+
+      const processingTime = Date.now() - startTime;
+
+      const result: ExtractionResult = {
+        attributes,
+        tokensUsed: aiResponse.tokensUsed,
+        modelUsed: aiResponse.modelUsed,
+        processingTime,
+        confidence: this.calculateOverallConfidence(attributes)
+      };
+
+      logger.info('Extraction completed successfully', {
+        fileName: file.name,
+        processingTime,
+        tokensUsed: result.tokensUsed,
+        confidence: result.confidence
+      });
+
+      return result;
+    } catch (error) {
+      const processingTime = Date.now() - startTime;
+      logger.error('Extraction failed', { fileName: file.name, processingTime, error });
+      throw error;
     }
-
-    // ✅ FIX: Now properly typed
-    const openAIData = response.data;
-    
-    // Parse response
-    const attributes = await this.responseParser.parseResponse(
-      openAIData.choices[0].message.content, 
-      schema
-    );
-
-    const processingTime = performance.now() - startTime;
-
-    return {
-      attributes,
-      tokensUsed: openAIData.usage?.total_tokens || 0,
-      modelUsed: 'gpt-4o',
-      processingTime,
-      confidence: this.calculateConfidence(attributes)
-    };
   }
 
-  // ✅ FIX: Properly typed confidence calculation
-  private calculateConfidence(attributes: AttributeData): number {
-    const confidences = Object.values(attributes)
-      .filter(attr => attr !== null && attr !== undefined)
-      .map(attr => attr!.visualConfidence || 0);
+  private calculateOverallConfidence(attributes: AttributeData): number {
+    const confidenceValues = Object.values(attributes)
+      .filter((attr): attr is AttributeDetail => attr !== null)
+      .map(attr => attr.visualConfidence)
+      .filter(conf => conf > 0);
+
+    if (confidenceValues.length === 0) return 0;
     
-    return confidences.length > 0 
-      ? confidences.reduce((a, b) => a + b, 0) / confidences.length 
-      : 0;
+    return Math.round(confidenceValues.reduce((sum, conf) => sum + conf, 0) / confidenceValues.length);
   }
 }

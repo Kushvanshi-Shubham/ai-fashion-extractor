@@ -1,69 +1,44 @@
-# React + TypeScript + Vite
+# 🎯 AI Fashion Attribute Extractor v1.0
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> **Advanced AI-powered fashion attribute extraction system with 283+ categories and computer vision capabilities**
 
-Currently, two official plugins are available:
+[![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/your-username/ai-fashion-extractor)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-blue.svg)](https://www.typescriptlang.org/)
+[![React](https://img.shields.io/badge/React-18.0+-blue.svg)](https://reactjs.org/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Features
 
-## Expanding the ESLint configuration
+### 🤖 AI-Powered Extraction
+- **GPT-4 Vision Integration** - Advanced computer vision for accurate attribute detection
+- **Real-time Processing** - Concurrent image analysis with progress tracking
+- **Confidence Scoring** - AI confidence metrics for each extracted attribute
+- **Smart Reasoning** - Detailed explanations for AI decisions
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### 📊 Comprehensive Fashion Coverage
+- **283+ Categories** - Complete fashion taxonomy (Kids, Ladies, Mens, etc.)
+- **32+ Attributes per Category** - Comprehensive attribute schemas
+- **Dynamic Schema Generation** - Automatically generates UI based on category selection
+- **Flexible Data Types** - Text, Number, Select with validation
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### 🎨 Professional Interface
+- **Modern React UI** - Built with Ant Design and TypeScript
+- **Responsive Design** - Works perfectly on desktop, tablet, and mobile
+- **Interactive Editing** - Inline attribute editing with validation
+- **Real-time Preview** - Image compression and preview system
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### 🔧 Developer Experience
+- **TypeScript** - Full type safety throughout the application
+- **Component Architecture** - Modular, reusable React components
+- **Error Handling** - Comprehensive error management and logging
+- **Performance Optimized** - Efficient rendering and data processing
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 🚀 Quick Start
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Prerequisites
+- Node.js 18+ 
+- OpenAI API Key
+- Modern web browser
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Installation
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```

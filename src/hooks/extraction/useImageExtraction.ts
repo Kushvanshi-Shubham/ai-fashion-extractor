@@ -1,31 +1,88 @@
 import { useState, useCallback, useMemo } from 'react';
-import type { ExtractedRow, ExtractionResult, SchemaItem } from '../../types/extraction/ExtractionTypes';
+import type { ExtractedRow, ExtractionResult, SchemaItem, AttributeDetail } from '../../types/extraction/ExtractionTypes';
 import { ExtractionService } from '../../services/ai/extractionService';
-import { ImageProcessor } from '../../utils/extraction/imageProcessing';
+import { message } from 'antd';
 import { generateId } from '../../utils/common/helpers';
+import { logger } from '../../utils/common/logger';
 
 export const useImageExtraction = () => {
   const [isExtracting, setIsExtracting] = useState(false);
   const [extractedRows, setExtractedRows] = useState<ExtractedRow[]>([]);
   const [progress, setProgress] = useState(0);
 
-  // ✅ FIX: Memoize services to prevent recreation on every render
-  const extractionService = useMemo(() => new ExtractionService(), []);
-  const imageProcessor = useMemo(() => new ImageProcessor(), []);
- 
+  // ✅ Simple compression function (no Web Worker)
+  const compressImage = useCallback((file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      const img = new Image();
+      
+      if (!ctx) {
+        reject(new Error('Canvas context not available'));
+        return;
+      }
+
+      img.onload = () => {
+        // Calculate dimensions maintaining aspect ratio
+        const maxSize = 800;
+        const ratio = Math.min(maxSize / img.width, maxSize / img.height);
+        const width = Math.round(img.width * ratio);
+        const height = Math.round(img.height * ratio);
+        
+        canvas.width = width;
+        canvas.height = height;
+        
+        // Draw and compress
+        ctx.drawImage(img, 0, 0, width, height);
+        
+        try {
+          const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.8);
+          resolve(compressedDataUrl);
+        } catch (error) {
+          reject(error);
+        }
+      };
+
+      img.onerror = () => reject(new Error('Failed to load image'));
+      img.src = URL.createObjectURL(file);
+    });
+  }, []);
+
+  // Initialize ExtractionService with compressImage function
+  const extractionService = useMemo(() => new ExtractionService(compressImage), [compressImage]);
+
   const createExtractedRow = useCallback(async (file: File): Promise<ExtractedRow> => {
-    const imagePreviewUrl = await imageProcessor.createPreviewUrl(file);
-    
+    let base64Preview = '';
+    try {
+      base64Preview = await compressImage(file);
+    } catch (err) {
+      logger.error('Compression failed, using original file',  err as Error);
+      // Fallback: create a simple preview
+      base64Preview = URL.createObjectURL(file);
+    }
+
     return {
       id: generateId(),
       file,
       originalFileName: file.name,
-      imagePreviewUrl,
+      imagePreviewUrl: base64Preview,
       status: 'Pending',
       attributes: {},
-      createdAt: new Date()
+      createdAt: new Date(),
     };
-  }, [imageProcessor]);
+  }, [compressImage]);
+
+  const addImages = useCallback(async (files: File[]) => {
+    const newRows = await Promise.all(files.map(createExtractedRow));
+
+    setExtractedRows(prev => {
+      const existingFileNames = new Set(prev.map(row => row.originalFileName));
+      const filteredNewRows = newRows.filter(row => !existingFileNames.has(row.originalFileName));
+      return [...prev, ...filteredNewRows];
+    });
+
+    return newRows;
+  }, [createExtractedRow]);
 
   const extractSingleImage = useCallback(async (
     row: ExtractedRow,
@@ -33,18 +90,15 @@ export const useImageExtraction = () => {
     customPrompt?: string
   ): Promise<ExtractedRow> => {
     try {
-      // Update status to extracting
       const updatingRow = { ...row, status: 'Extracting' as const };
       setExtractedRows(prev => prev.map(r => r.id === row.id ? updatingRow : r));
 
-      // Perform extraction
       const result: ExtractionResult = await extractionService.extractAttributes(
-        row.file,
-        schema,
+        row.file, 
+        schema, 
         customPrompt
       );
 
-      // Create successful result
       const successRow: ExtractedRow = {
         ...row,
         status: 'Done',
@@ -52,22 +106,24 @@ export const useImageExtraction = () => {
         apiTokensUsed: result.tokensUsed,
         modelUsed: result.modelUsed,
         extractionTime: result.processingTime,
-        updatedAt: new Date()
+        updatedAt: new Date(),
+        error: undefined,
       };
 
       setExtractedRows(prev => prev.map(r => r.id === row.id ? successRow : r));
       return successRow;
-
     } catch (error) {
-      // Create error result
-      const errorRow: ExtractedRow = {
-        ...row,
-        status: 'Error',
-        error: error instanceof Error ? error.message : 'Unknown error',
-        updatedAt: new Date()
+      const loggableError = error instanceof Error ? error : new Error(String(error));
+      const errorRow = { 
+        ...row, 
+        status: 'Error' as const, 
+        error: loggableError.message, 
+        updatedAt: new Date() 
       };
-
+      
       setExtractedRows(prev => prev.map(r => r.id === row.id ? errorRow : r));
+      message.error(`Extraction failed: ${loggableError.message}`);
+      logger.error('Extraction failed', loggableError);
       return errorRow;
     }
   }, [extractionService]);
@@ -77,31 +133,50 @@ export const useImageExtraction = () => {
     customPrompt?: string
   ) => {
     const pendingRows = extractedRows.filter(row => row.status === 'Pending');
-    if (pendingRows.length === 0) return;
+    if (!pendingRows.length) return;
 
     setIsExtracting(true);
     setProgress(0);
 
-    try {
-      for (let i = 0; i < pendingRows.length; i++) {
-        await extractSingleImage(pendingRows[i], schema, customPrompt);
-        setProgress((i + 1) / pendingRows.length * 100);
-      }
-    } finally {
-      setIsExtracting(false);
-      setProgress(100);
-      setTimeout(() => setProgress(0), 2000); // Reset progress after success
-    }
-  }, [extractedRows, extractSingleImage]);
+    const concurrency = 3;
+    const pool: Promise<void>[] = [];
+    let completed = 0;
 
-  const addImages = useCallback(async (files: File[]) => {
-    const newRows = await Promise.all(
-      files.map(file => createExtractedRow(file))
-    );
-    
-    setExtractedRows(prev => [...prev, ...newRows]);
-    return newRows;
-  }, [createExtractedRow]);
+    const handleProgress = () => {
+      completed++;
+      setProgress((completed / pendingRows.length) * 100);
+    };
+
+    const enqueue = async (p: Promise<void>) => {
+      pool.push(p);
+      try {
+        await p;
+      } finally {
+        const index = pool.indexOf(p);
+        if (index > -1) {
+          pool.splice(index, 1);
+        }
+      }
+    };
+
+    for (const row of pendingRows) {
+      const p = extractSingleImage(row, schema, customPrompt)
+        .then(() => handleProgress())
+        .catch(() => handleProgress());
+      
+      if (pool.length >= concurrency) {
+        await Promise.race(pool);
+      }
+
+      await enqueue(p);
+    }
+
+    await Promise.all(pool);
+
+    setIsExtracting(false);
+    setProgress(100);
+    setTimeout(() => setProgress(0), 3000);
+  }, [extractedRows, extractSingleImage]);
 
   const removeRow = useCallback((rowId: string) => {
     setExtractedRows(prev => prev.filter(row => row.id !== rowId));
@@ -113,54 +188,58 @@ export const useImageExtraction = () => {
   }, []);
 
   const updateRowAttribute = useCallback((
-    rowId: string, 
-    attributeKey: string, 
+    rowId: string,
+    attributeKey: string,
     value: string | number | null
   ) => {
     setExtractedRows(prev => prev.map(row => {
-      if (row.id === rowId && row.attributes[attributeKey]) {
+      if (row.id === rowId) {
+        const existingAttribute = row.attributes[attributeKey];
+        
+        const updatedAttribute: AttributeDetail = {
+          rawValue: value ? String(value) : null,
+          schemaValue: value,
+          visualConfidence: existingAttribute?.visualConfidence ?? 0,
+          mappingConfidence: existingAttribute?.mappingConfidence ?? 100,
+          isNewDiscovery: existingAttribute?.isNewDiscovery ?? false,
+          reasoning: existingAttribute?.reasoning
+        };
+
         return {
           ...row,
           attributes: {
             ...row.attributes,
-            [attributeKey]: {
-              ...row.attributes[attributeKey]!,
-              schemaValue: value,
-              rawValue: value ? String(value) : null
-            }
+            [attributeKey]: updatedAttribute
           },
-          updatedAt: new Date()
-        };
+          updatedAt: new Date(),
+        } as ExtractedRow;
       }
       return row;
     }));
   }, []);
 
-  // ✅ OPTIMIZED: Memoize statistics to prevent unnecessary recalculations
   const stats = useMemo(() => ({
     total: extractedRows.length,
     pending: extractedRows.filter(row => row.status === 'Pending').length,
     extracting: extractedRows.filter(row => row.status === 'Extracting').length,
     done: extractedRows.filter(row => row.status === 'Done').length,
     error: extractedRows.filter(row => row.status === 'Error').length,
-    successRate: extractedRows.length > 0 
-      ? (extractedRows.filter(row => row.status === 'Done').length / extractedRows.length) * 100 
-      : 0
+    successRate: extractedRows.length > 0
+      ? (extractedRows.filter(row => row.status === 'Done').length / extractedRows.length) * 100
+      : 0,
   }), [extractedRows]);
 
   return {
-    // State
     isExtracting,
     extractedRows,
     progress,
     stats,
-    
-    // Actions
     addImages,
     extractSingleImage,
     extractAllPending,
     removeRow,
     clearAll,
-    updateRowAttribute
+    updateRowAttribute,
+    compressImage,
   };
 };

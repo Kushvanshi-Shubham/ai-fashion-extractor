@@ -1,157 +1,91 @@
-import { useState, useMemo } from 'react';
-import type { CategoryConfig } from '../../types/category/CategoryTypes';
-import type { SchemaItem } from '../../types/extraction/ExtractionTypes';
-import { PromptService } from '../../services/ai/promptService';
-import { useImageExtraction } from './useImageExtraction';
-import { message } from 'antd';
-import { SchemaGenerator } from '../../utils/category/schemaGenerator';
+import { useCallback, useState } from "react";
+import { useImageExtraction } from "./useImageExtraction";
+import type { SchemaItem } from "../../types/extraction/ExtractionTypes";
 
-export const useImageUploader = (selectedCategory: CategoryConfig | null) => {
-  const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
-  const [searchTerm, setSearchTerm] = useState('');
-
-  const promptService = new PromptService();
-  
+export const useImageUploader = () => {
   const {
+    extractedRows,
     isExtracting,
-    extractedRows, 
     progress,
-    stats,
     addImages,
-    extractSingleImage,
     extractAllPending,
+    extractSingleImage, // ✅ ADD THIS LINE
     removeRow,
     clearAll,
-    updateRowAttribute
+    updateRowAttribute,
   } = useImageExtraction();
 
-  // Generate dynamic schema based on selected category
-  const schema: SchemaItem[] = useMemo(() => {
-    if (selectedCategory) {
-      const categorySchema = SchemaGenerator.generateSchemaForCategory(selectedCategory);
-      console.log(`🎯 Generated ${categorySchema.length} attributes for ${selectedCategory.displayName}`);
-      return categorySchema;
-    }
-    return [];
-  }, [selectedCategory]);
+  const [selectedRowKeys, setSelectedRowKeys] = useState<string[]>([]);
 
-  // Handle file upload
-  const handleBeforeUpload = async (_file: File, fileList: File[]) => {
-    try {
-      await addImages(fileList);
-      message.success(`Added ${fileList.length} image(s) for processing`);
-      return false; // Prevent default upload
-    } catch (error) {
-      message.error(`Failed to add images: ${error instanceof Error ? error.message : 'Unknown error'}`);
-      return false;
-    }
+  const stats = {
+    total: extractedRows.length,
+    done: extractedRows.filter((r) => r.status === "Done").length,
+    pending: extractedRows.filter((r) => r.status === "Pending").length,
+    extracting: extractedRows.filter((r) => r.status === "Extracting").length,
+    error: extractedRows.filter((r) => r.status === "Error").length,
+    successRate:
+      extractedRows.length > 0
+        ? (extractedRows.filter((r) => r.status === "Done").length / extractedRows.length) * 100
+        : 0,
   };
 
-  // Handle extraction of all pending images
-  const handleExtractAll = async () => {
-    if (!selectedCategory) {
-      message.error('Please select a category first');
-      return;
-    }
+  const handleBeforeUpload = useCallback(
+    async (files: File[]) => {
+      await addImages(files);
+    },
+    [addImages]
+  );
 
-    if (schema.length === 0) {
-      message.error('No attributes defined for selected category');
-      return;
+  // ✅ Fix: Use proper SchemaItem[] type instead of any[]
+  const handleExtractAll = useCallback((schema: SchemaItem[]) => {
+    if (schema.length > 0) {
+      extractAllPending(schema);
     }
+  }, [extractAllPending]);
 
-    try {
-      const customPrompt = promptService.generateCategoryPrompt(selectedCategory, schema);
-      console.log('🤖 Using category-specific prompt for', selectedCategory.category);
-      
-      await extractAllPending(schema, customPrompt);
-      
-      message.success(`Extraction completed for ${selectedCategory.displayName}!`);
-    } catch (error) {
-      message.error(`Extraction failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
-    }
-  };
+  const handleAttributeChange = useCallback(
+    (rowId: string, attributeKey: string, value: string | number | null) => {
+      updateRowAttribute(rowId, attributeKey, value);
+    },
+    [updateRowAttribute]
+  );
 
-  // Handle single image re-extraction
-  const handleReExtract = async (rowId: string) => {
-    if (!selectedCategory) {
-      message.error('Please select a category first');
-      return;
-    }
+  const handleDeleteRow = useCallback(
+    (rowId: string) => {
+      removeRow(rowId);
+    },
+    [removeRow]
+  );
 
+  // ✅ Fix: Remove extractSingleImage from dependencies (it's not a dependency)
+  const handleReExtract = useCallback((rowId: string, schema: SchemaItem[]) => {
     const row = extractedRows.find(r => r.id === rowId);
-    if (!row) return;
-
-    try {
-      const customPrompt = promptService.generateCategoryPrompt(selectedCategory, schema);
-      await extractSingleImage(row, schema, customPrompt);
-      message.success('Re-extraction completed!');
-    } catch (error) {
-      message.error(`Re-extraction failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    if (row && schema.length > 0) {
+      extractSingleImage(row, schema);
     }
-  };
+  }, [extractedRows, extractSingleImage]); // ✅ This is fine since extractSingleImage comes from useImageExtraction
 
-  // Handle attribute changes
-  const handleAttributeChange = (
-    rowId: string,
-    attributeKey: string,
-    value: string | number | null
-  ) => {
-    updateRowAttribute(rowId, attributeKey, value);
-  };
-
-  // Handle row deletion
-  const handleDeleteRow = (rowId: string) => {
-    removeRow(rowId);
-    setSelectedRowKeys(prev => prev.filter(key => key !== rowId));
-  };
-
-  // Handle bulk edits
-  const handleBulkEdit = (attributeKey: string, value: string | number | null) => {
-    selectedRowKeys.forEach(rowId => {
-      updateRowAttribute(String(rowId), attributeKey, value);
-    });
-    message.success(`Updated ${selectedRowKeys.length} rows`);
-  };
-
-  // Handle clear all
-  const handleClearAll = async () => {
-    clearAll();
-    setSelectedRowKeys([]);
-    setSearchTerm('');
-    message.success('All data cleared');
-  };
-
-  // Handle add to schema (placeholder)
-  const handleAddToSchema = (attributeKey: string, value: string) => {
+  const handleAddToSchema = useCallback((attributeKey: string, value: string) => {
+    // Add to schema logic - for future enhancement
     console.log('Add to schema:', attributeKey, value);
-    message.info('Add to schema feature will be implemented in advanced version');
-  };
+  }, []);
 
-  // Filter rows based on search
-  const filteredRows = useMemo(() => {
-    if (!searchTerm) return extractedRows;
-    
-    return extractedRows.filter(row =>
-      row.originalFileName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      Object.values(row.attributes).some(attr =>
-        attr?.schemaValue?.toString().toLowerCase().includes(searchTerm.toLowerCase())
-      )
-    );
-  }, [extractedRows, searchTerm]);
+  // ✅ Fix: Use proper type instead of any
+  const handleBulkEdit = useCallback((selectedKeys: string[], updates: Record<string, string | number | null>) => {
+    selectedKeys.forEach(rowId => {
+      Object.entries(updates).forEach(([key, value]) => {
+        updateRowAttribute(rowId, key, value);
+      });
+    });
+  }, [updateRowAttribute]);
 
   return {
-    // State
-    extractedRows: filteredRows,
+    extractedRows,
     isExtracting,
     progress,
     selectedRowKeys,
     setSelectedRowKeys,
-    searchTerm,
-    setSearchTerm,
-    schema,
     stats,
-
-    // Actions
     handleBeforeUpload,
     handleExtractAll,
     handleAttributeChange,
@@ -159,6 +93,7 @@ export const useImageUploader = (selectedCategory: CategoryConfig | null) => {
     handleReExtract,
     handleAddToSchema,
     handleBulkEdit,
-    handleClearAll
+    handleClearAll: clearAll,
+    // ✅ Don't return extractSingleImage here since it's internal to useImageExtraction
   };
 };

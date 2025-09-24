@@ -1,35 +1,35 @@
 import React from 'react';
-import { Modal, Image } from 'antd';
+import { Modal, Spin } from 'antd';
 
 interface ImageModalProps {
   visible: boolean;
-  onCancel: () => void;
   imageUrl: string;
-  imageName?: string;
+  onClose: () => void;
 }
 
-export const ImageModal: React.FC<ImageModalProps> = ({
-  visible,
-  onCancel,
-  imageUrl,
-  imageName 
-}) => {
+export const ImageModal: React.FC<ImageModalProps> = ({ visible, imageUrl, onClose }) => {
   return (
     <Modal
       open={visible}
-      onCancel={onCancel}
+      onCancel={onClose}
       footer={null}
-      width="auto"
+      className="enhanced-image-modal"
+      destroyOnHidden
       centered
-      title={imageName || 'Image Preview'}
+      aria-modal
+      aria-labelledby="image-modal-title"
+      
     >
-      <div style={{ textAlign: 'center' }}>
-        <Image
+      {imageUrl ? (
+        <img
           src={imageUrl}
-          alt={imageName || 'Preview'}
-          style={{ maxWidth: '100%', maxHeight: '70vh' }}
+          alt="Preview"
+          style={{ width: '100%', height: 'auto', userSelect: 'none' }}
+          tabIndex={0}
         />
-      </div>
+      ) : (
+        <Spin size="large" />
+      )}
     </Modal>
   );
 };
