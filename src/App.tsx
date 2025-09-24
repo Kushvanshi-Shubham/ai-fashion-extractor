@@ -1,275 +1,491 @@
-import { useState } from 'react';
-import {  Upload, Empty, Tabs } from 'antd';
-import { PictureOutlined, DashboardOutlined, BarChartOutlined } from '@ant-design/icons';
-import { AppHeader } from './components/AppHeader';
-import { AttributeTable } from './components/AttributeTable';
-import { Dashboard } from './components/Dashboard';
-import { AnalyticsDashboard } from './components/AnalyticsDashboard';
-import { BulkActions } from './components/BulkActions';
-import { useImageUploader } from './hooks/useImageUploader';
+import React, { useState, useEffect } from "react";
+import {
+  Layout,
+  Typography,
+  Card,
+  Spin,
+  Alert,
+  Button,
+  Space,
+  Modal,
+  Progress,
+  Row,
+  Col,
+  Tag,
+} from "antd";
+import {
+  PlayCircleOutlined,
+  ClearOutlined,
+  DownloadOutlined,
+  CheckCircleOutlined,
+  ArrowRightOutlined,
+  DashboardOutlined,
+  ClockCircleOutlined,
+  TrophyOutlined,
+} from "@ant-design/icons";
+import { CategorySelector } from "./components/category/CategorySelector";
+import { AttributeTable } from "./components/extraction/AttributeTable";
+import { BulkActions } from "./components/extraction/BulkActions";
+import { ImageModal } from "./components/ui/ImageModal";
+import { UploadArea } from "./components/extraction/UploadArea";
+import { ExportManager } from "./components/export/ExportManager";
+import { useImageUploader } from "./hooks/extraction/useImageUploader";
+import { useCategorySelector } from "./hooks/category/useCategorySelector";
+import { useLocalStorage } from "./hooks/ui/useLocalStorage";
+import { CategoryHelper } from "./utils/category/categoryHelpers";
+import { indexedDBService } from "./services/storage/indexedDBService";
+import "./App.css";
 
-import 'antd/dist/reset.css';
-import '@ant-design/v5-patch-for-react-19';
-import './styles/ImageAnalyzer.css';
-import { ImageModal } from './components/ImageModal';
+const { Header, Content } = Layout;
+const { Title, Text } = Typography;
 
-function App() {
-    const [currentView, setCurrentView] = useState<'extractor' | 'dashboard' | 'analytics'>('extractor');
-    const [modalImage, setModalImage] = useState<string | null>(null);
-    const [modalImageName, setModalImageName] = useState<string | undefined>(); // NEW STATE
+const App: React.FC = () => {
+  // Category selection state
+  const { selectedCategory, handleCategorySelect, isComplete } =
+    useCategorySelector();
 
+  // Image uploading and extraction logic
+  const {
+    extractedRows,
+    isExtracting,
+    progress,
+    selectedRowKeys,
+    setSelectedRowKeys,
+    schema,
+    stats,
+    handleBeforeUpload,
+    handleExtractAll,
+    handleAttributeChange,
+    handleDeleteRow,
+    handleReExtract,
+    handleAddToSchema,
+    handleBulkEdit,
+    handleClearAll,
+  } = useImageUploader(selectedCategory);
 
-    const {
-        extractedRows,
-        schema,
-        isExtracting,
-        isLoading,
-        progress,
-        selectedRowKeys,
-        setSelectedRowKeys,
-        searchTerm,
-        setSearchTerm,
-        handleBeforeUpload,
-        handleExtractAll,
-        handleAttributeChange,
-        handleDeleteRow,
-        handleReExtract,
-        handleAddToSchema,
-        handleBulkEdit,
-        handleClearAll,
-    } = useImageUploader();
+  // UI State
+  const [imageModalVisible, setImageModalVisible] = useState(false);
+  const [selectedImage, setSelectedImage] = useState<{
+    url: string;
+    name?: string;
+  } | null>(null);
+  const [exportModalVisible, setExportModalVisible] = useState(false);
+  const [appReady, setAppReady] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [showAnalytics, setShowAnalytics] = useState(false);
 
-    // ENHANCED: Image click handler with name
-    const handleImageClick = (imageUrl: string, imageName?: string) => {
-        setModalImage(imageUrl);
-        setModalImageName(imageName);
+  // Analytics State
+  const [analytics] = useLocalStorage("analytics", {
+    totalExtractions: 0,
+    totalTokens: 0,
+    totalTime: 0,
+    averageAccuracy: 0,
+    sessionsToday: 0,
+    lastUsed: null,
+  });
+
+  // Persist selected category
+  const [persistedCategoryCode, setPersistedCategoryCode] =
+    useLocalStorage<string>("selectedCategory", "");
+
+  // Initialize app
+  useEffect(() => {
+    const initializeApp = async () => {
+      try {
+        await indexedDBService.initialize();
+
+        if (persistedCategoryCode) {
+          const categoryConfig = CategoryHelper.getCategoryConfig(
+            persistedCategoryCode
+          );
+          if (categoryConfig) {
+            handleCategorySelect(categoryConfig);
+          }
+        }
+
+        console.log("🎯 App initialized successfully");
+        console.log("📊 Category stats:", CategoryHelper.getCategoryStats());
+        setAppReady(true);
+      } catch (error) {
+        console.error("Failed to initialize app:", error);
+        setError(error instanceof Error ? error.message : "Unknown error");
+      }
     };
 
-    // ENHANCED: Close modal handler
-    const handleCloseModal = () => {
-        setModalImage(null);
-        setModalImageName(undefined);
-    };
+    initializeApp();
+  }, [persistedCategoryCode, handleCategorySelect]);
 
-    // Show loading screen during initialization
-    if (isLoading) {
-        return (
-            <div className="analyzer-layout-wrapper">
-                <div style={{ 
-                    display: 'flex', 
-                    flexDirection: 'column',
-                    alignItems: 'center', 
-                    justifyContent: 'center', 
-                    height: '100vh',
-                    background: '#f0f2f5'
-                }}>
-                    <div style={{ 
-                        background: '#fff', 
-                        padding: 48, 
-                        borderRadius: 8, 
-                        boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-                        textAlign: 'center' 
-                    }}>
-                        <div style={{ 
-                            width: 64, 
-                            height: 64, 
-                            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                            borderRadius: '50%',
-                            margin: '0 auto 24px',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            color: 'white',
-                            fontSize: 24
-                        }}>
-                            🚀
-                        </div>
-                        <h2 style={{ margin: '0 0 8px 0', color: '#333' }}>
-                            AI Attribute Extractor
-                        </h2>
-                        <p style={{ margin: '0 0 24px 0', color: '#666' }}>
-                            Initializing your workspace...
-                        </p>
-                        <div style={{ 
-                            width: 200, 
-                            height: 4, 
-                            background: '#f0f0f0',
-                            borderRadius: 2,
-                            overflow: 'hidden'
-                        }}>
-                            <div style={{
-                                height: '100%',
-                                background: 'linear-gradient(90deg, #1890ff, #52c41a)',
-                                borderRadius: 2,
-                                animation: 'loading 2s infinite'
-                            }} />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        );
+  useEffect(() => {
+    if (selectedCategory) {
+      setPersistedCategoryCode(selectedCategory.category);
     }
+  }, [selectedCategory, setPersistedCategoryCode]);
 
+  const handleImageClick = (url: string, name?: string) => {
+    setSelectedImage({ url, name });
+    setImageModalVisible(true);
+  };
 
-    const renderTabContent = () => {
-        switch (currentView) {
-            case 'analytics':
-                return <AnalyticsDashboard schema={schema} isVisible={currentView === 'analytics'} />;
-            case 'dashboard':
-                return <Dashboard extractionHistory={extractedRows} />;
-            default:
-                return renderExtractorContent();
-        }
-    };
+  const handleExport = () => {
+    setExportModalVisible(true);
+  };
 
-    const renderExtractorContent = () => {
-        const hasRows = extractedRows.length > 0;
-        
-        if (!hasRows && searchTerm === '') {
-            return (
-                <Upload.Dragger
-                    name="files"
-                    multiple
-                    beforeUpload={handleBeforeUpload}
-                    showUploadList={false}
-                    customRequest={() => {}}
-                    className="custom-drag-uploader"
-                >
-                    <Empty
-                        image={<PictureOutlined style={{ fontSize: 64, color: '#d9d9d9' }} />}
-                        imageStyle={{ height: 80 }}
-                        description={
-                            <div style={{ color: '#8c8c8c' }}>
-                                <h3 style={{ marginBottom: 4, color: '#595959' }}>
-                                    Ready to extract clothing attributes! 👕
-                                </h3>
-                                <p style={{ margin: 0 }}>
-                                    Drag & drop images here or use the upload button to get started
-                                </p>
-                                <p style={{ margin: '8px 0 0 0', fontSize: 12, opacity: 0.8 }}>
-                                    Supports JPG, PNG, WebP • AI-powered attribute detection
-                                </p>
-                            </div>
-                        }
-                    />
-                </Upload.Dragger>
-            );
-        }
-return (
-            <AttributeTable
-                rows={extractedRows}
-                schema={schema}
-                selectedRowKeys={selectedRowKeys}
-                onSelectionChange={setSelectedRowKeys}
-                onAttributeChange={handleAttributeChange}
-                onDeleteRow={handleDeleteRow}
-                onImageClick={handleImageClick} // UPDATED: Now passes both URL and name
-                onReExtract={handleReExtract}
-                onAddToSchema={handleAddToSchema}
-                onUpload={handleBeforeUpload}
-            />
-        );
-    };
+  if (!appReady) {
     return (
-        <div className="analyzer-layout-wrapper">
-            <div className="card header-card">
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px 0' }}>
-                    <div style={{ flex: 1 }}>
-                        <AppHeader
-                            onUpload={handleBeforeUpload}
-                            onExtract={handleExtractAll}
-                            isExtracting={isExtracting}
-                            rows={extractedRows}
-                            progress={progress}
-                            currentView={currentView}
-                            onViewChange={setCurrentView}
-                            searchTerm={searchTerm}
-                            onSearchChange={setSearchTerm}
-                            onClearAll={handleClearAll}
-                        />
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+          flexDirection: "column",
+          gap: 24,
+          background: "var(--gradient-main)",
+        }}
+      >
+        <div
+          className="shimmer"
+          style={{ width: 60, height: 60, borderRadius: "50%" }}
+        ></div>
+        <Spin size="large" />
+        <Title level={3} style={{ textAlign: "center", margin: 0 }}>
+          🎯 Initializing AI Fashion System
+        </Title>
+        <Text type="secondary">Setting up 283 categories...</Text>
+        {error && (
+          <Alert
+            message="Initialization Error"
+            description={error}
+            type="error"
+            showIcon
+            style={{ maxWidth: 500, marginTop: 16 }}
+          />
+        )}
+      </div>
+    );
+  }
+
+  // ✅ FIX: Add proper category change handler
+const handleCategoryChange = (): void => {
+  // Clear current selection and go back to category selection
+  handleCategorySelect(null);  // Reset category
+  setSelectedRowKeys([]);      // Clear selected rows
+  handleClearAll();            // Clear all extraction data
+};
+
+
+  return (
+    <Layout style={{ minHeight: "100vh", background: "transparent" }}>
+      {/* Header */}
+      <Header className="app-header">
+        <Row justify="space-between" align="middle">
+          <Col>
+            <Space size="large">
+              <Title className="app-title">
+                🎯 AI Fashion Attribute Extractor
+              </Title>
+              {selectedCategory && (
+                <Tag className="selection-badge">
+                  <CheckCircleOutlined /> {selectedCategory.displayName}
+                </Tag>
+              )}
+            </Space>
+          </Col>
+          <Col>
+            <Space>
+              <Button
+                icon={<DashboardOutlined />}
+                onClick={() => setShowAnalytics(!showAnalytics)}
+                className="btn-secondary"
+              >
+                Analytics
+              </Button>
+
+              {extractedRows.length > 0 && (
+                <>
+                  <Button
+                    className="btn-primary-red"
+                    icon={<DownloadOutlined />}
+                    onClick={handleExport}
+                    disabled={
+                      extractedRows.filter((r) => r.status === "Done")
+                        .length === 0
+                    }
+                  >
+                    Export (
+                    {extractedRows.filter((r) => r.status === "Done").length})
+                  </Button>
+
+                  <Button
+                    icon={<ClearOutlined />}
+                    onClick={handleClearAll}
+                    className="btn-secondary"
+                  >
+                    Clear All
+                  </Button>
+                </>
+              )}
+            </Space>
+          </Col>
+        </Row>
+      </Header>
+
+      {/* Main Content */}
+      <Content className="app-content">
+        <div className="content-wrapper">
+          {/* Analytics Dashboard */}
+          {showAnalytics && (
+            <div className="stats-dashboard animate-slide-up">
+              <div className="stat-card">
+                <div className="stat-number">{analytics.totalExtractions}</div>
+                <div className="stat-label">
+                  <TrophyOutlined /> Total Extractions
+                </div>
+              </div>
+              <div className="stat-card">
+                <div className="stat-number">
+                  {analytics.totalTokens.toLocaleString()}
+                </div>
+                <div className="stat-label">🎯 Tokens Used</div>
+              </div>
+              <div className="stat-card">
+                <div className="stat-number">
+                  {Math.round(analytics.totalTime / 1000)}s
+                </div>
+                <div className="stat-label">
+                  <ClockCircleOutlined /> Processing Time
+                </div>
+              </div>
+              <div className="stat-card">
+                <div className="stat-number">{analytics.averageAccuracy}%</div>
+                <div className="stat-label">📊 Avg Accuracy</div>
+              </div>
+            </div>
+          )}
+
+          {/* Phase 1: Category Selection */}
+          {!isComplete && (
+            <Card className="selection-card animate-fade-in">
+              <CategorySelector
+                onCategorySelect={handleCategorySelect}
+                selectedCategory={selectedCategory}
+              />
+            </Card>
+          )}
+
+          {/* Phase 2: Full-Width Extraction Interface */}
+          {isComplete && selectedCategory && (
+            <div className="extraction-interface animate-slide-up">
+              {/* Header */}
+<div className="extraction-header">
+  <Row justify="space-between" align="middle">
+    <Col>
+      <Title level={2} style={{ margin: 0, color: 'var(--text-dark)' }}>
+        {selectedCategory.displayName} - AI Extraction
+      </Title>
+      <Text style={{ color: 'var(--text-light)' }}>
+        Ready to analyze {schema.length} attributes with advanced AI
+      </Text>
+    </Col>
+    <Col>
+      <Button 
+        onClick={handleCategoryChange}  // ✅ FIX: Proper handler
+        className="btn-secondary"
+        icon={<ArrowRightOutlined />}
+      >
+        Change Category
+      </Button>
+    </Col>
+  </Row>
+</div>
+
+
+              {/* Body */}
+              <div className="extraction-body">
+                {/* Quick Stats */}
+                {extractedRows.length > 0 && (
+                  <div className="stats-dashboard">
+                    <div className="stat-card">
+                      <div className="stat-number">{stats.total}</div>
+                      <div className="stat-label">Total Images</div>
                     </div>
+                    <div className="stat-card">
+                      <div className="stat-number">{stats.done}</div>
+                      <div className="stat-label">Completed</div>
+                    </div>
+                    <div className="stat-card">
+                      <div className="stat-number">{stats.pending}</div>
+                      <div className="stat-label">Pending</div>
+                    </div>
+                    <div className="stat-card">
+                      <div className="stat-number">
+                        {Math.round(stats.successRate)}%
+                      </div>
+                      <div className="stat-label">Success Rate</div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Upload Area */}
+                <div className="upload-area-enhanced">
+                  <UploadArea
+                    onUpload={handleBeforeUpload}
+                    selectedCategory={selectedCategory}
+                    disabled={isExtracting}
+                  />
                 </div>
 
-                {/* Enhanced Navigation Tabs */}
-                <Tabs 
-                    activeKey={currentView} 
-                    onChange={(key) => setCurrentView(key as any)}
-                    size="large"
-                    style={{ marginTop: 16 }}
-                    items={[
-                        {
-                            key: 'extractor',
-                            label: (
-                                <span>
-                                    <PictureOutlined />
-                                    Extractor {extractedRows.length > 0 && <span style={{ 
-                                        background: '#52c41a', 
-                                        color: 'white', 
-                                        borderRadius: 10, 
-                                        padding: '2px 8px', 
-                                        fontSize: 12,
-                                        marginLeft: 8
-                                    }}>
-                                        {extractedRows.length}
-                                    </span>}
-                                </span>
-                            )
-                        },
-                        {
-                            key: 'analytics',
-                            label: (
-                                <span>
-                                    <BarChartOutlined />
-                                    Analytics
-                                    {extractedRows.filter(r => r.status === 'Done').length > 0 && 
-                                        <span style={{
-                                            background: '#1890ff',
-                                            color: 'white',
-                                            borderRadius: 10,
-                                            padding: '2px 8px',
-                                            fontSize: 12,
-                                            marginLeft: 8
-                                        }}>
-                                            NEW
-                                        </span>
-                                    }
-                                </span>
-                            )
-                        },
-                        {
-                            key: 'dashboard',
-                            label: (
-                                <span>
-                                    <DashboardOutlined />
-                                    Reports
-                                </span>
-                            )
-                        }
-                    ]}
-                />
+                {/* Extraction Controls */}
+                {extractedRows.length > 0 && (
+                  <div className="category-summary">
+                    <Row justify="space-between" align="middle">
+                      <Col>
+                        <Space direction="vertical" size="small">
+                          <Text strong style={{ color: "var(--primary-red)" }}>
+                            Ready to Process
+                          </Text>
+                          <Text>
+                            <strong>
+                              {
+                                extractedRows.filter(
+                                  (r) => r.status === "Pending"
+                                ).length
+                              }
+                            </strong>{" "}
+                            images •<strong> {schema.length}</strong> AI-powered
+                            attributes
+                          </Text>
+                        </Space>
+                      </Col>
+
+                      <Col>
+                        <Button
+                          className="btn-primary-red"
+                          type="primary"
+                          icon={<PlayCircleOutlined />}
+                          onClick={handleExtractAll}
+                          loading={isExtracting}
+                          disabled={
+                            extractedRows.filter((r) => r.status === "Pending")
+                              .length === 0
+                          }
+                          size="large"
+                        >
+                          {isExtracting
+                            ? "AI Processing..."
+                            : `Extract All (${
+                                extractedRows.filter(
+                                  (r) => r.status === "Pending"
+                                ).length
+                              })`}
+                        </Button>
+                      </Col>
+                    </Row>
+
+                    {/* Progress Bar */}
+                    {isExtracting && progress > 0 && (
+                      <div className="progress-enhanced">
+                        <Progress
+                          percent={Math.round(progress)}
+                          status="active"
+                          strokeColor={{
+                            from: "#ff8a80",
+                            to: "#ff5722",
+                          }}
+                        />
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {/* Bulk Actions */}
+                {selectedRowKeys.length > 0 && schema.length > 0 && (
+                  <div style={{ marginBottom: 24 }}>
+                    <BulkActions
+                      selectedRowKeys={selectedRowKeys}
+                      selectedRowCount={selectedRowKeys.length}
+                      onBulkEdit={handleBulkEdit}
+                      schema={schema}
+                    />
+                  </div>
+                )}
+
+                {/* Results Table */}
+                {extractedRows.length > 0 && schema.length > 0 && (
+                  <div className="results-table">
+                    <AttributeTable
+                      rows={extractedRows}
+                      schema={schema}
+                      selectedRowKeys={selectedRowKeys}
+                      onSelectionChange={setSelectedRowKeys}
+                      onAttributeChange={handleAttributeChange}
+                      onDeleteRow={handleDeleteRow}
+                      onImageClick={handleImageClick}
+                      onReExtract={handleReExtract}
+                      onAddToSchema={handleAddToSchema}
+                      onUpload={handleBeforeUpload}
+                    />
+                  </div>
+                )}
+
+                {/* Empty State for Extraction */}
+                {extractedRows.length === 0 && (
+                  <div style={{ textAlign: "center", padding: "60px 0" }}>
+                    <Title level={3} style={{ color: "var(--text-light)" }}>
+                      📸 Ready for {selectedCategory.displayName} Analysis
+                    </Title>
+                    <Text style={{ color: "var(--text-light)" }}>
+                      Upload images above to start AI-powered attribute
+                      extraction
+                    </Text>
+                  </div>
+                )}
+              </div>
             </div>
+          )}
 
-            <main className="content-card">
-                {renderTabContent()}
-            </main>
-
-            {/* Show bulk actions only on extractor tab */}
-            {currentView === 'extractor' && (
-                <BulkActions 
-                    selectedRowCount={selectedRowKeys.length}
-                    schema={schema}
-                    onBulkEdit={handleBulkEdit}
-                />
-            )}
-
-            <ImageModal
-                visible={!!modalImage}
-                imageUrl={modalImage}
-                imageName={modalImageName}
-                onClose={handleCloseModal}
-            />
+          {/* Empty State for Category Selection */}
+          {!selectedCategory && (
+            <Card className="selection-card">
+              <div style={{ textAlign: "center", padding: "80px 0" }}>
+                <Title level={2} style={{ color: "var(--primary-red)" }}>
+                  👕 Select Your Fashion Category
+                </Title>
+                <Text style={{ fontSize: 16, color: "var(--text-light)" }}>
+                  Choose from{" "}
+                  <strong>{CategoryHelper.getCategoryStats().total}</strong>{" "}
+                  AI-powered categories
+                </Text>
+              </div>
+            </Card>
+          )}
         </div>
-    );
-}
+      </Content>
+
+      {/* Modals */}
+      <ImageModal
+        visible={imageModalVisible}
+        onCancel={() => setImageModalVisible(false)}
+        imageUrl={selectedImage?.url || ""}
+        imageName={selectedImage?.name}
+      />
+
+      <Modal
+        title="Export Results"
+        open={exportModalVisible}
+        onCancel={() => setExportModalVisible(false)}
+        footer={null}
+        width={700}
+      >
+        <ExportManager
+          data={extractedRows.filter((row) => row.status === "Done")}
+          schema={schema}
+          categoryName={selectedCategory?.displayName}
+          onClose={() => setExportModalVisible(false)}
+        />
+      </Modal>
+    </Layout>
+  );
+};
 
 export default App;
