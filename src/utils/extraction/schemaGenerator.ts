@@ -14,11 +14,24 @@ export class SchemaGenerator {
     for (const attributeKey of activeAttributes) {
       const masterAttribute = MASTER_ATTRIBUTES[attributeKey];
       if (masterAttribute) {
+        const {
+          key,
+          label,
+          fullForm,
+          type,
+          allowedValues = []
+        } = masterAttribute;
+
         schema.push({
-          ...masterAttribute,
-          required: this.isAttributeRequired(attributeKey, categoryConfig)
+          key,
+          label,
+          fullForm,
+          type,
+          allowedValues,
+          required: this.isAttributeRequired(attributeKey, categoryConfig),
         });
       } else {
+        // Consider using a logger instead of console.warn
         console.warn(`Unknown attribute: ${attributeKey} for category ${categoryConfig.category}`);
       }
     }
@@ -33,7 +46,7 @@ export class SchemaGenerator {
 
   private static isAttributeRequired(attributeKey: string, categoryConfig: CategoryConfig): boolean {
     // Define required attributes based on category type
-    const alwaysRequired = ['macro_mvgr', 'micro_mvgr', 'color_main', 'size'];
+    const alwaysRequired = ['add_acc1', 'micro_mvgr', 'color_main', 'size'];
     const fabricRequired = ['fab_division', 'fab_yarn_01'];
 
     if (alwaysRequired.includes(attributeKey)) return true;

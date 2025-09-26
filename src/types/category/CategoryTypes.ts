@@ -3,10 +3,16 @@ import type { Department, AttributeType, BaseEntity } from '../core/CommonTypes'
 export interface AttributeDefinition {
   key: string;
   label: string;
+  fullForm?: string;         // Added fullForm for AI context clarity
   type: AttributeType;
-  allowedValues?: string[];
+  allowedValues?: AllowedValue[];
   required?: boolean;
   description?: string;
+}
+
+export interface AllowedValue {
+  shortForm: string;
+  fullForm?: string;
 }
 
 export interface AttributeFlags {

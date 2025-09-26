@@ -169,6 +169,7 @@ export interface EnhancedAIResponse {
  * Parsed discovery attribute as returned from enhanced AI response.
  */
 export interface ParsedDiscoveryAttribute {
+  isPromotable: boolean | undefined;
   rawValue?: string;
   normalizedValue?: string;
   confidence?: number;

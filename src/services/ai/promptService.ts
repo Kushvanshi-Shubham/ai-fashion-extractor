@@ -1,14 +1,21 @@
+import type { AllowedValue } from '../../types/category/CategoryTypes';
 import type { SchemaItem } from '../../types/extraction/ExtractionTypes';
 
 export class PromptService {
-  // ✅ Original method for v1.0, unchanged
+  // ✅ Original method for v1.0, enhanced for allowedValues objects and fullForm
   generateGenericPrompt(schema: SchemaItem[]): string {
-    const attributeDescriptions = schema.map(item => {
-      const allowedValues = item.allowedValues?.length
-        ? ` (allowed values: ${item.allowedValues.join(', ')})`
-        : '';
-      return `- ${item.key}: ${item.label}${allowedValues}`;
-    }).join('\n');
+    const attributeDescriptions = schema
+      .map((item) => {
+        const allowedValues =
+          item.allowedValues?.length
+            ? ` (allowed values: ${item.allowedValues
+                .map((av: AllowedValue) => av.fullForm ?? av.shortForm)
+                .join(', ')})`
+            : '';
+        const fullForm = item.fullForm ? ` Full form: ${item.fullForm}.` : '';
+        return `- ${item.key}: ${item.label}${allowedValues}${fullForm}`;
+      })
+      .join('\n');
 
     return `
 You are an AI fashion attribute extraction specialist. Analyze this clothing image and extract the following attributes with high accuracy.
@@ -38,7 +45,7 @@ OUTPUT FORMAT (JSON ONLY):
 Return pure JSON only. No markdown, no explanations, no code blocks.`.trim();
   }
 
-  // ✅ Original category method, unchanged
+  // ✅ Original category method, enhanced for allowedValues objects
   generateCategorySpecificPrompt(schema: SchemaItem[], categoryName: string): string {
     const basePrompt = this.generateGenericPrompt(schema);
     const categoryContext = this.getCategoryContext(categoryName);
@@ -52,11 +59,20 @@ Pay special attention to attributes most relevant to this category type.
 CRITICAL: Return pure JSON only, no markdown code blocks.`.trim();
   }
 
-  // 🆕 Discovery method for v1.1 R&D, unchanged
+  // 🆕 Discovery method for v1.1 R&D, enhanced for allowedValues objects
   generateDiscoveryPrompt(schema: SchemaItem[], categoryName?: string): string {
-    const schemaAttributes = schema.map(item =>
-      `- ${item.key}: ${item.label}${item.allowedValues?.length ? ` (allowed: ${item.allowedValues.join(', ')})` : ''}`
-    ).join('\n');
+    const schemaAttributes = schema
+      .map(
+        (item) =>
+          `- ${item.key}: ${item.label}${
+            item.allowedValues?.length
+              ? ` (allowed: ${item.allowedValues
+                  .map((av: AllowedValue) => av.fullForm ?? av.shortForm)
+                  .join(', ')})`
+              : ''
+          }`
+      )
+      .join('\n');
 
     const categoryContext = categoryName ? this.getCategoryContext(categoryName) : '';
 
@@ -127,34 +143,56 @@ CRITICAL RULES:
 Focus on commercially valuable attributes that fashion professionals would find useful.`.trim();
   }
 
-  // 🆕 Method for discovery hints, now inside the class
   getDiscoveryHints(categoryName: string): string[] {
     const hints: Record<string, string[]> = {
       'Kids Bermuda': [
-        'waistband_type', 'closure_type', 'pocket_count', 'leg_opening_style',
-        'belt_loops', 'fabric_stretch', 'safety_features', 'size_adjustability'
+        'waistband_type',
+        'closure_type',
+        'pocket_count',
+        'leg_opening_style',
+        'belt_loops',
+        'fabric_stretch',
+        'safety_features',
+        'size_adjustability',
       ],
       'Ladies Cig Pant': [
-        'waist_height', 'leg_cut', 'pleat_style', 'hem_style', 'fabric_drape',
-        'closure_quality', 'trouser_style', 'professional_features'
+        'waist_height',
+        'leg_cut',
+        'pleat_style',
+        'hem_style',
+        'fabric_drape',
+        'closure_quality',
+        'trouser_style',
+        'professional_features',
       ],
       'Mens T Shirt': [
-        'collar_style', 'sleeve_hem', 'side_seams', 'shoulder_construction',
-        'neckline_binding', 'fabric_weight', 'print_technique', 'tag_style'
-      ]
+        'collar_style',
+        'sleeve_hem',
+        'side_seams',
+        'shoulder_construction',
+        'neckline_binding',
+        'fabric_weight',
+        'print_technique',
+        'tag_style',
+      ],
     };
 
     return hints[categoryName] || [
-      'fabric_texture', 'construction_quality', 'design_elements', 'functional_features'
+      'fabric_texture',
+      'construction_quality',
+      'design_elements',
+      'functional_features',
     ];
   }
 
-  // ✅ Original context method, now inside the class
   private getCategoryContext(categoryName: string): string {
     const contexts: Record<string, string> = {
-      'Kids Bermuda': 'Focus on casual wear attributes like fit, length, fabric type, and comfort features typical for children\'s shorts.',
-      'Ladies Cig Pant': 'Emphasize formal wear characteristics, fit type, fabric composition, and professional styling details.',
-      'Mens T Shirt': 'Prioritize casual wear elements like neck type, sleeve style, fabric composition, and print details.',
+      'Kids Bermuda':
+        "Focus on casual wear attributes like fit, length, fabric type, and comfort features typical for children's shorts.",
+      'Ladies Cig Pant':
+        'Emphasize formal wear characteristics, fit type, fabric composition, and professional styling details.',
+      'Mens T Shirt':
+        'Prioritize casual wear elements like neck type, sleeve style, fabric composition, and print details.',
     };
 
     return contexts[categoryName] || 'Analyze all visible fashion attributes systematically.';

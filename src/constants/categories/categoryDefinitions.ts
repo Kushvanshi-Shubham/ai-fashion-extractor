@@ -6,13 +6,13 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
     department: "KIDS",
     subDepartment: "IB",
     category: "IB_BERMUDA",
-    displayName: "Kids Bermuda",
-    description: "Kids Bermuda - KIDS IB category",
+    displayName: "IB_BERMUDA",
+    description: "IB_BERMUDA _ KIDS IB category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
       macro_mvgr: true,
-      micro_mvgr: true, 
+      micro_mvgr: true,
       fab_division: true,
       fab_yarn_01: true,
       fab_yarn_02: true,
@@ -23,35 +23,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: true,
       belt_design: true,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: true,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: false,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: true,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: true,
       zip_col: false,
       print_type: true,
@@ -61,21 +59,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: true,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: true,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "IB_DNGR_SUIT",
     department: "KIDS",
     subDepartment: "IB",
     category: "IB_DNGR_SUIT",
-    displayName: "Kids Ib Dngr Suit",
-    description: "Kids Ib Dngr Suit - KIDS IB category",
+    displayName: "IB_DNGR_SUIT",
+    description: "IB_DNGR_SUIT _ KIDS IB category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -91,35 +89,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: true,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -129,21 +125,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "IB_PYJAMA",
     department: "KIDS",
     subDepartment: "IB",
     category: "IB_PYJAMA",
-    displayName: "Kids Pyjama",
-    description: "Kids Pyjama - KIDS IB category",
+    displayName: "IB_PYJAMA",
+    description: "IB_PYJAMA _ KIDS IB category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -159,35 +155,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: true,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: true,
       width_inch: true,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: false,
       pattern: true,
       length: true,
-      length_inch: true,
+
       drawcord: true,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -197,21 +191,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: true,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: true,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "IB_VEST",
     department: "KIDS",
     subDepartment: "IB",
     category: "IB_VEST",
-    displayName: "Kids Ib Vest",
-    description: "Kids Ib Vest - KIDS IB category",
+    displayName: "IB_VEST",
+    description: "IB_VEST _ KIDS IB category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -227,35 +221,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: true,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: true,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -265,21 +257,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "KI_ACC",
     department: "KIDS",
     subDepartment: "IB",
     category: "KI_ACC",
-    displayName: "Kids Ki Acc",
-    description: "Kids Ki Acc - KIDS IB category",
+    displayName: "KI_ACC",
+    description: "KI_ACC _ KIDS IB category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -295,35 +287,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -333,21 +323,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "KI_B_SUIT_SL",
     department: "KIDS",
     subDepartment: "IB",
     category: "KI_B_SUIT_SL",
-    displayName: "Kids Ki B Suit Sl",
-    description: "Kids Ki B Suit Sl - KIDS IB category",
+    displayName: "KI_B_SUIT_SL",
+    description: "KI_B_SUIT_SL _ KIDS IB category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -363,35 +353,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: true,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -401,21 +389,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "KI_B_SUIT_ST_HS",
     department: "KIDS",
     subDepartment: "IB",
     category: "KI_B_SUIT_ST_HS",
-    displayName: "Kids Ki B Suit St Hs",
-    description: "Kids Ki B Suit St Hs - KIDS IB category",
+    displayName: "KI_B_SUIT_ST_HS",
+    description: "KI_B_SUIT_ST_HS _ KIDS IB category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -431,35 +419,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: true,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -469,21 +455,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "KI_GIFT_ST_FS",
     department: "KIDS",
     subDepartment: "IB",
     category: "KI_GIFT_ST_FS",
-    displayName: "Kids Ki Gift St Fs",
-    description: "Kids Ki Gift St Fs - KIDS IB category",
+    displayName: "KI_GIFT_ST_FS",
+    description: "KI_GIFT_ST_FS _ KIDS IB category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -499,35 +485,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: true,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -537,21 +521,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "IG_DNGR_SUIT",
     department: "KIDS",
     subDepartment: "IG",
     category: "IG_DNGR_SUIT",
-    displayName: "Kids Ig Dngr Suit",
-    description: "Kids Ig Dngr Suit - KIDS IG category",
+    displayName: "IG_DNGR_SUIT",
+    description: "IG_DNGR_SUIT _ KIDS IG category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -567,35 +551,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: false,
       width_inch: false,
-      set: true,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -605,21 +587,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: true,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "IG_HOT_PANT_ST",
     department: "KIDS",
     subDepartment: "IG",
     category: "IG_HOT_PANT_ST",
-    displayName: "Kids Ig Hot Pant St",
-    description: "Kids Ig Hot Pant St - KIDS IG category",
+    displayName: "IG_HOT_PANT_ST",
+    description: "IG_HOT_PANT_ST _ KIDS IG category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -635,35 +617,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -673,21 +653,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: true,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "IG_SLIPS",
     department: "KIDS",
     subDepartment: "IG",
     category: "IG_SLIPS",
-    displayName: "Kids Ig Slips",
-    description: "Kids Ig Slips - KIDS IG category",
+    displayName: "IG_SLIPS",
+    description: "IG_SLIPS _ KIDS IG category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -703,35 +683,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: true,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -741,21 +719,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "IG_ST",
     department: "KIDS",
     subDepartment: "IG",
     category: "IG_ST",
-    displayName: "Kids Ig St",
-    description: "Kids Ig St - KIDS IG category",
+    displayName: "IG_ST",
+    description: "IG_ST _ KIDS IG category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -771,35 +749,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -809,21 +785,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: true,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "IG_TOP_HS",
     department: "KIDS",
     subDepartment: "IG",
     category: "IG_TOP_HS",
-    displayName: "Kids Ig Top Hs",
-    description: "Kids Ig Top Hs - KIDS IG category",
+    displayName: "IG_TOP_HS",
+    description: "IG_TOP_HS _ KIDS IG category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -839,35 +815,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: false,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -877,21 +851,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: true,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "KI_SKRT_TOP_ST",
     department: "KIDS",
     subDepartment: "IG",
     category: "KI_SKRT_TOP_ST",
-    displayName: "Kids Ki Skrt Top St",
-    description: "Kids Ki Skrt Top St - KIDS IG category",
+    displayName: "KI_SKRT_TOP_ST",
+    description: "KI_SKRT_TOP_ST _ KIDS IG category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -907,35 +881,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -945,21 +917,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: true,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "IB_HALF_PANT",
     department: "KIDS",
-    subDepartment: "KB-L",
+    subDepartment: "KB_L",
     category: "IB_HALF_PANT",
-    displayName: "Kids Ib Half Pant",
-    description: "Kids Ib Half Pant - KIDS KB-L category",
+    displayName: "IB_HALF_PANT",
+    description: "IB_HALF_PANT _ KIDS KB_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -975,35 +947,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: true,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: true,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: true,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -1013,21 +983,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: true,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "IB_JEANS",
     department: "KIDS",
-    subDepartment: "KB-L",
+    subDepartment: "KB_L",
     category: "IB_JEANS",
-    displayName: "Kids Ib Jeans",
-    description: "Kids Ib Jeans - KIDS KB-L category",
+    displayName: "IB_JEANS",
+    description: "IB_JEANS _ KIDS KB_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -1043,35 +1013,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: true,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: true,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: true,
-      length_inch: true,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: true,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -1081,21 +1049,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: true,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "IB_TRSR",
     department: "KIDS",
-    subDepartment: "KB-L",
+    subDepartment: "KB_L",
     category: "IB_TRSR",
-    displayName: "Kids Ib Trsr",
-    description: "Kids Ib Trsr - KIDS KB-L category",
+    displayName: "IB_TRSR",
+    description: "IB_TRSR _ KIDS KB_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -1111,35 +1079,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: true,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: true,
       width_inch: true,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: true,
-      length_inch: true,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -1149,21 +1115,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "JB_BRIEF",
     department: "KIDS",
-    subDepartment: "KB-L",
+    subDepartment: "KB_L",
     category: "JB_BRIEF",
-    displayName: "Kids Jb Brief",
-    description: "Kids Jb Brief - KIDS KB-L category",
+    displayName: "JB_BRIEF",
+    description: "JB_BRIEF _ KIDS KB_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -1179,35 +1145,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: true,
       belt_design: true,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: true,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: true,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -1217,21 +1181,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "JB_D_JOGGER",
     department: "KIDS",
-    subDepartment: "KB-L",
+    subDepartment: "KB_L",
     category: "JB_D_JOGGER",
-    displayName: "Kids Jb D Jogger",
-    description: "Kids Jb D Jogger - KIDS KB-L category",
+    displayName: "JB_D_JOGGER",
+    description: "JB_D_JOGGER _ KIDS KB_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -1247,35 +1211,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: true,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: true,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: true,
-      length_inch: true,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: true,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -1285,21 +1247,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: true,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "JB_H_BERMUDA",
     department: "KIDS",
-    subDepartment: "KB-L",
+    subDepartment: "KB_L",
     category: "JB_H_BERMUDA",
-    displayName: "Kids Jb H Bermuda",
-    description: "Kids Jb H Bermuda - KIDS KB-L category",
+    displayName: "JB_H_BERMUDA",
+    description: "JB_H_BERMUDA _ KIDS KB_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -1315,35 +1277,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: true,
       belt_design: true,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: true,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: false,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: true,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: true,
       zip_col: false,
       print_type: true,
@@ -1353,21 +1313,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: true,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: true,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "JB_H_PYJAMA",
     department: "KIDS",
-    subDepartment: "KB-L",
+    subDepartment: "KB_L",
     category: "JB_H_PYJAMA",
-    displayName: "Kids Jb H Pyjama",
-    description: "Kids Jb H Pyjama - KIDS KB-L category",
+    displayName: "JB_H_PYJAMA",
+    description: "JB_H_PYJAMA _ KIDS KB_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -1383,35 +1343,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: true,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: true,
       width_inch: true,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: false,
       pattern: true,
       length: true,
-      length_inch: true,
+
       drawcord: true,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -1421,21 +1379,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: true,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: true,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "JB_JEANS",
     department: "KIDS",
-    subDepartment: "KB-L",
+    subDepartment: "KB_L",
     category: "JB_JEANS",
-    displayName: "Kids Jb Jeans",
-    description: "Kids Jb Jeans - KIDS KB-L category",
+    displayName: "JB_JEANS",
+    description: "JB_JEANS _ KIDS KB_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -1451,35 +1409,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: true,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: true,
       width_inch: true,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: true,
-      length_inch: true,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: true,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -1489,21 +1445,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: true,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "JB_T_BERMUDA",
     department: "KIDS",
-    subDepartment: "KB-L",
+    subDepartment: "KB_L",
     category: "JB_T_BERMUDA",
-    displayName: "Kids Jb T Bermuda",
-    description: "Kids Jb T Bermuda - KIDS KB-L category",
+    displayName: "JB_T_BERMUDA",
+    description: "JB_T_BERMUDA _ KIDS KB_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -1519,35 +1475,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: true,
       belt_design: true,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: true,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: false,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: true,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: true,
       zip_col: false,
       print_type: true,
@@ -1557,21 +1511,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: true,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: true,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "JB_T_JAMAICAN",
     department: "KIDS",
-    subDepartment: "KB-L",
+    subDepartment: "KB_L",
     category: "JB_T_JAMAICAN",
-    displayName: "Kids Jb T Jamaican",
-    description: "Kids Jb T Jamaican - KIDS KB-L category",
+    displayName: "JB_T_JAMAICAN",
+    description: "JB_T_JAMAICAN _ KIDS KB_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -1587,35 +1541,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: true,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: true,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: false,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: true,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -1625,21 +1577,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: true,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "JB_T_PYJAMA",
     department: "KIDS",
-    subDepartment: "KB-L",
+    subDepartment: "KB_L",
     category: "JB_T_PYJAMA",
-    displayName: "Kids Jb T Pyjama",
-    description: "Kids Jb T Pyjama - KIDS KB-L category",
+    displayName: "JB_T_PYJAMA",
+    description: "JB_T_PYJAMA _ KIDS KB_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -1655,35 +1607,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: true,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: true,
       width_inch: true,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: false,
       pattern: true,
       length: true,
-      length_inch: true,
+
       drawcord: true,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -1693,21 +1643,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: true,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "JB_TRSR",
     department: "KIDS",
-    subDepartment: "KB-L",
+    subDepartment: "KB_L",
     category: "JB_TRSR",
-    displayName: "Kids Jb Trsr",
-    description: "Kids Jb Trsr - KIDS KB-L category",
+    displayName: "JB_TRSR",
+    description: "JB_TRSR _ KIDS KB_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -1723,35 +1673,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: true,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: true,
       width_inch: true,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: true,
-      length_inch: true,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -1761,21 +1709,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "YB_BRIEF",
     department: "KIDS",
-    subDepartment: "KB-L",
+    subDepartment: "KB_L",
     category: "YB_BRIEF",
-    displayName: "Kids Yb Brief",
-    description: "Kids Yb Brief - KIDS KB-L category",
+    displayName: "YB_BRIEF",
+    description: "YB_BRIEF _ KIDS KB_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -1791,35 +1739,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: true,
       belt_design: true,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: true,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: true,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -1829,21 +1775,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "YB_D_JOGGER",
     department: "KIDS",
-    subDepartment: "KB-L",
+    subDepartment: "KB_L",
     category: "YB_D_JOGGER",
-    displayName: "Kids Yb D Jogger",
-    description: "Kids Yb D Jogger - KIDS KB-L category",
+    displayName: "YB_D_JOGGER",
+    description: "YB_D_JOGGER _ KIDS KB_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -1859,35 +1805,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: true,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: true,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: true,
-      length_inch: true,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: true,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -1897,21 +1841,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: true,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "YB_H_BERMUDA",
     department: "KIDS",
-    subDepartment: "KB-L",
+    subDepartment: "KB_L",
     category: "YB_H_BERMUDA",
-    displayName: "Kids Yb H Bermuda",
-    description: "Kids Yb H Bermuda - KIDS KB-L category",
+    displayName: "YB_H_BERMUDA",
+    description: "YB_H_BERMUDA _ KIDS KB_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -1927,35 +1871,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: true,
       belt_design: true,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: true,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: false,
       pattern: true,
       length: true,
-      length_inch: true,
+
       drawcord: true,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: true,
       zip_col: false,
       print_type: true,
@@ -1965,21 +1907,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: true,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: true,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "YB_H_PYJAMA",
     department: "KIDS",
-    subDepartment: "KB-L",
+    subDepartment: "KB_L",
     category: "YB_H_PYJAMA",
-    displayName: "Kids Yb H Pyjama",
-    description: "Kids Yb H Pyjama - KIDS KB-L category",
+    displayName: "YB_H_PYJAMA",
+    description: "YB_H_PYJAMA _ KIDS KB_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -1995,35 +1937,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: true,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: true,
       width_inch: true,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: false,
       pattern: true,
       length: true,
-      length_inch: true,
+
       drawcord: true,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -2033,21 +1973,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: true,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: true,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "YB_JEANS",
     department: "KIDS",
-    subDepartment: "KB-L",
+    subDepartment: "KB_L",
     category: "YB_JEANS",
-    displayName: "Kids Yb Jeans",
-    description: "Kids Yb Jeans - KIDS KB-L category",
+    displayName: "YB_JEANS",
+    description: "YB_JEANS _ KIDS KB_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -2063,35 +2003,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: true,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: true,
       width_inch: true,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: true,
-      length_inch: true,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: true,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -2101,21 +2039,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: true,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "YB_T_BERMUDA",
     department: "KIDS",
-    subDepartment: "KB-L",
+    subDepartment: "KB_L",
     category: "YB_T_BERMUDA",
-    displayName: "Kids Yb T Bermuda",
-    description: "Kids Yb T Bermuda - KIDS KB-L category",
+    displayName: "YB_T_BERMUDA",
+    description: "YB_T_BERMUDA _ KIDS KB_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -2131,35 +2069,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: true,
       belt_design: true,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: true,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: false,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: true,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: true,
       zip_col: false,
       print_type: true,
@@ -2169,21 +2105,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: true,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: true,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "YB_T_JAMAICAN",
     department: "KIDS",
-    subDepartment: "KB-L",
+    subDepartment: "KB_L",
     category: "YB_T_JAMAICAN",
-    displayName: "Kids Yb T Jamaican",
-    description: "Kids Yb T Jamaican - KIDS KB-L category",
+    displayName: "YB_T_JAMAICAN",
+    description: "YB_T_JAMAICAN _ KIDS KB_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -2199,35 +2135,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: true,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: true,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: false,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: true,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -2237,21 +2171,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: true,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "YB_T_PYJAMA",
     department: "KIDS",
-    subDepartment: "KB-L",
+    subDepartment: "KB_L",
     category: "YB_T_PYJAMA",
-    displayName: "Kids Yb T Pyjama",
-    description: "Kids Yb T Pyjama - KIDS KB-L category",
+    displayName: "YB_T_PYJAMA",
+    description: "YB_T_PYJAMA _ KIDS KB_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -2267,35 +2201,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: true,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: true,
       width_inch: true,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: false,
       pattern: true,
       length: true,
-      length_inch: true,
+
       drawcord: true,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -2305,21 +2237,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: true,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "YB_TRSR",
     department: "KIDS",
-    subDepartment: "KB-L",
+    subDepartment: "KB_L",
     category: "YB_TRSR",
-    displayName: "Kids Yb Trsr",
-    description: "Kids Yb Trsr - KIDS KB-L category",
+    displayName: "YB_TRSR",
+    description: "YB_TRSR _ KIDS KB_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -2335,35 +2267,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: true,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: true,
       width_inch: true,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: true,
-      length_inch: true,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -2373,21 +2303,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "IB_B_SUIT_FS",
     department: "KIDS",
-    subDepartment: "KB-SETS",
+    subDepartment: "KB_SETS",
     category: "IB_B_SUIT_FS",
-    displayName: "Kids Ib B Suit Fs",
-    description: "Kids Ib B Suit Fs - KIDS KB-SETS category",
+    displayName: "IB_B_SUIT_FS",
+    description: "IB_B_SUIT_FS _ KIDS KB_SETS category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -2403,35 +2333,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: true,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -2441,21 +2369,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "IB_DNGR_SUIT_FS",
     department: "KIDS",
-    subDepartment: "KB-SETS",
+    subDepartment: "KB_SETS",
     category: "IB_DNGR_SUIT_FS",
-    displayName: "Kids Ib Dngr Suit Fs",
-    description: "Kids Ib Dngr Suit Fs - KIDS KB-SETS category",
+    displayName: "IB_DNGR_SUIT_FS",
+    description: "IB_DNGR_SUIT_FS _ KIDS KB_SETS category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -2471,35 +2399,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: true,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -2509,21 +2435,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "IB_KRT_PYJ",
     department: "KIDS",
-    subDepartment: "KB-SETS",
+    subDepartment: "KB_SETS",
     category: "IB_KRT_PYJ",
-    displayName: "Kids Ib Krt Pyj",
-    description: "Kids Ib Krt Pyj - KIDS KB-SETS category",
+    displayName: "IB_KRT_PYJ",
+    description: "IB_KRT_PYJ _ KIDS KB_SETS category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -2539,35 +2465,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: true,
+
       front_open_style: true,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: true,
-      length_inch: true,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -2577,21 +2501,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: true,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "JB_B_SUIT_FS",
     department: "KIDS",
-    subDepartment: "KB-SETS",
+    subDepartment: "KB_SETS",
     category: "JB_B_SUIT_FS",
-    displayName: "Kids Jb B Suit Fs",
-    description: "Kids Jb B Suit Fs - KIDS KB-SETS category",
+    displayName: "JB_B_SUIT_FS",
+    description: "JB_B_SUIT_FS _ KIDS KB_SETS category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -2607,35 +2531,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: true,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -2645,21 +2567,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "JB_B_SUIT_SL",
     department: "KIDS",
-    subDepartment: "KB-SETS",
+    subDepartment: "KB_SETS",
     category: "JB_B_SUIT_SL",
-    displayName: "Kids Jb B Suit Sl",
-    description: "Kids Jb B Suit Sl - KIDS KB-SETS category",
+    displayName: "JB_B_SUIT_SL",
+    description: "JB_B_SUIT_SL _ KIDS KB_SETS category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -2675,35 +2597,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: true,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -2713,21 +2633,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "JB_B_SUIT_ST_FS",
     department: "KIDS",
-    subDepartment: "KB-SETS",
+    subDepartment: "KB_SETS",
     category: "JB_B_SUIT_ST_FS",
-    displayName: "Kids Jb B Suit St Fs",
-    description: "Kids Jb B Suit St Fs - KIDS KB-SETS category",
+    displayName: "JB_B_SUIT_ST_FS",
+    description: "JB_B_SUIT_ST_FS _ KIDS KB_SETS category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -2743,35 +2663,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: true,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -2781,21 +2699,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "JB_B_SUIT_ST_HS",
     department: "KIDS",
-    subDepartment: "KB-SETS",
+    subDepartment: "KB_SETS",
     category: "JB_B_SUIT_ST_HS",
-    displayName: "Kids Jb B Suit St Hs",
-    description: "Kids Jb B Suit St Hs - KIDS KB-SETS category",
+    displayName: "JB_B_SUIT_ST_HS",
+    description: "JB_B_SUIT_ST_HS _ KIDS KB_SETS category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -2811,35 +2729,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: true,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -2849,21 +2765,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "JB_H_B_SUIT_HS",
     department: "KIDS",
-    subDepartment: "KB-SETS",
+    subDepartment: "KB_SETS",
     category: "JB_H_B_SUIT_HS",
-    displayName: "Kids Jb H B Suit Hs",
-    description: "Kids Jb H B Suit Hs - KIDS KB-SETS category",
+    displayName: "JB_H_B_SUIT_HS",
+    description: "JB_H_B_SUIT_HS _ KIDS KB_SETS category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -2879,35 +2795,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: true,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -2917,21 +2831,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "JB_T_B_SUIT_HS",
     department: "KIDS",
-    subDepartment: "KB-SETS",
+    subDepartment: "KB_SETS",
     category: "JB_T_B_SUIT_HS",
-    displayName: "Kids Jb T B Suit Hs",
-    description: "Kids Jb T B Suit Hs - KIDS KB-SETS category",
+    displayName: "JB_T_B_SUIT_HS",
+    description: "JB_T_B_SUIT_HS _ KIDS KB_SETS category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -2947,35 +2861,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: true,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -2985,21 +2897,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "KB_KRT_PYJ",
     department: "KIDS",
-    subDepartment: "KB-SETS",
+    subDepartment: "KB_SETS",
     category: "KB_KRT_PYJ",
-    displayName: "Kids Kb Krt Pyj",
-    description: "Kids Kb Krt Pyj - KIDS KB-SETS category",
+    displayName: "KB_KRT_PYJ",
+    description: "KB_KRT_PYJ _ KIDS KB_SETS category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -3015,35 +2927,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: true,
+
       front_open_style: true,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -3053,21 +2963,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: true,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "KB_SUIT",
     department: "KIDS",
-    subDepartment: "KB-SETS",
+    subDepartment: "KB_SETS",
     category: "KB_SUIT",
-    displayName: "Kids Kb Suit",
-    description: "Kids Kb Suit - KIDS KB-SETS category",
+    displayName: "KB_SUIT",
+    description: "KB_SUIT _ KIDS KB_SETS category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -3083,35 +2993,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: true,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -3121,21 +3029,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "KI_H_B_SUIT_HS",
     department: "KIDS",
-    subDepartment: "KB-SETS",
+    subDepartment: "KB_SETS",
     category: "KI_H_B_SUIT_HS",
-    displayName: "Kids Ki H B Suit Hs",
-    description: "Kids Ki H B Suit Hs - KIDS KB-SETS category",
+    displayName: "KI_H_B_SUIT_HS",
+    description: "KI_H_B_SUIT_HS _ KIDS KB_SETS category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -3151,35 +3059,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: true,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -3189,21 +3095,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "KI_T_B_SUIT_HS",
     department: "KIDS",
-    subDepartment: "KB-SETS",
+    subDepartment: "KB_SETS",
     category: "KI_T_B_SUIT_HS",
-    displayName: "Kids Ki T B Suit Hs",
-    description: "Kids Ki T B Suit Hs - KIDS KB-SETS category",
+    displayName: "KI_T_B_SUIT_HS",
+    description: "KI_T_B_SUIT_HS _ KIDS KB_SETS category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -3219,35 +3125,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: true,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -3257,21 +3161,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "YB_B_SUIT_FS",
     department: "KIDS",
-    subDepartment: "KB-SETS",
+    subDepartment: "KB_SETS",
     category: "YB_B_SUIT_FS",
-    displayName: "Kids Yb B Suit Fs",
-    description: "Kids Yb B Suit Fs - KIDS KB-SETS category",
+    displayName: "YB_B_SUIT_FS",
+    description: "YB_B_SUIT_FS _ KIDS KB_SETS category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -3287,35 +3191,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: true,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -3325,21 +3227,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "YB_H_B_SUIT_HS",
     department: "KIDS",
-    subDepartment: "KB-SETS",
+    subDepartment: "KB_SETS",
     category: "YB_H_B_SUIT_HS",
-    displayName: "Kids Yb H B Suit Hs",
-    description: "Kids Yb H B Suit Hs - KIDS KB-SETS category",
+    displayName: "YB_H_B_SUIT_HS",
+    description: "YB_H_B_SUIT_HS _ KIDS KB_SETS category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -3355,35 +3257,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: true,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -3393,21 +3293,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "YB_KURTA_ST",
     department: "KIDS",
-    subDepartment: "KB-SETS",
+    subDepartment: "KB_SETS",
     category: "YB_KURTA_ST",
-    displayName: "Kids Yb Kurta St",
-    description: "Kids Yb Kurta St - KIDS KB-SETS category",
+    displayName: "YB_KURTA_ST",
+    description: "YB_KURTA_ST _ KIDS KB_SETS category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -3423,35 +3323,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: true,
+
       front_open_style: true,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -3461,21 +3359,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: true,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "YB_T_B_SUIT_HS",
     department: "KIDS",
-    subDepartment: "KB-SETS",
+    subDepartment: "KB_SETS",
     category: "YB_T_B_SUIT_HS",
-    displayName: "Kids Yb T B Suit Hs",
-    description: "Kids Yb T B Suit Hs - KIDS KB-SETS category",
+    displayName: "YB_T_B_SUIT_HS",
+    description: "YB_T_B_SUIT_HS _ KIDS KB_SETS category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -3491,35 +3389,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: true,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -3529,21 +3425,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "YB_TEES_PN_HS",
     department: "KIDS",
-    subDepartment: "KB-SETS",
+    subDepartment: "KB_SETS",
     category: "YB_TEES_PN_HS",
-    displayName: "Kids Yb Tees Pn Hs",
-    description: "Kids Yb Tees Pn Hs - KIDS KB-SETS category",
+    displayName: "YB_TEES_PN_HS",
+    description: "YB_TEES_PN_HS _ KIDS KB_SETS category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -3559,35 +3455,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: true,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: true,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -3597,21 +3491,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: true,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "IB_SHIRT_FS",
     department: "KIDS",
-    subDepartment: "KB-U",
+    subDepartment: "KB_U",
     category: "IB_SHIRT_FS",
-    displayName: "Kids Ib Shirt Fs",
-    description: "Kids Ib Shirt Fs - KIDS KB-U category",
+    displayName: "IB_SHIRT_FS",
+    description: "IB_SHIRT_FS _ KIDS KB_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -3627,35 +3521,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: true,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: true,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -3665,21 +3557,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "IB_SHIRT_HS",
     department: "KIDS",
-    subDepartment: "KB-U",
+    subDepartment: "KB_U",
     category: "IB_SHIRT_HS",
-    displayName: "Kids Ib Shirt Hs",
-    description: "Kids Ib Shirt Hs - KIDS KB-U category",
+    displayName: "IB_SHIRT_HS",
+    description: "IB_SHIRT_HS _ KIDS KB_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -3695,35 +3587,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: true,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: true,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -3733,21 +3623,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "IB_T_SHIRT_HS",
     department: "KIDS",
-    subDepartment: "KB-U",
+    subDepartment: "KB_U",
     category: "IB_T_SHIRT_HS",
-    displayName: "Kids Ib T Shirt Hs",
-    description: "Kids Ib T Shirt Hs - KIDS KB-U category",
+    displayName: "IB_T_SHIRT_HS",
+    description: "IB_T_SHIRT_HS _ KIDS KB_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -3763,35 +3653,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: true,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -3801,21 +3689,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: true,
       embroidery: true,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: true,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "IB_TEES_FS",
     department: "KIDS",
-    subDepartment: "KB-U",
+    subDepartment: "KB_U",
     category: "IB_TEES_FS",
-    displayName: "Kids Ib Tees Fs",
-    description: "Kids Ib Tees Fs - KIDS KB-U category",
+    displayName: "IB_TEES_FS",
+    description: "IB_TEES_FS _ KIDS KB_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -3831,35 +3719,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: true,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: true,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -3869,21 +3755,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: true,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "JB_B_SUIT_FS",
     department: "KIDS",
-    subDepartment: "KB-U",
+    subDepartment: "KB_U",
     category: "JB_B_SUIT_FS",
-    displayName: "Kids Jb B Suit Fs",
-    description: "Kids Jb B Suit Fs - KIDS KB-U category",
+    displayName: "JB_B_SUIT_FS",
+    description: "JB_B_SUIT_FS _ KIDS KB_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -3899,35 +3785,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: true,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -3937,21 +3821,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "JB_SHIRT_FS",
     department: "KIDS",
-    subDepartment: "KB-U",
+    subDepartment: "KB_U",
     category: "JB_SHIRT_FS",
-    displayName: "Kids Jb Shirt Fs",
-    description: "Kids Jb Shirt Fs - KIDS KB-U category",
+    displayName: "JB_SHIRT_FS",
+    description: "JB_SHIRT_FS _ KIDS KB_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -3967,35 +3851,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: true,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: true,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -4005,21 +3887,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "JB_SHIRT_HS",
     department: "KIDS",
-    subDepartment: "KB-U",
+    subDepartment: "KB_U",
     category: "JB_SHIRT_HS",
-    displayName: "Kids Jb Shirt Hs",
-    description: "Kids Jb Shirt Hs - KIDS KB-U category",
+    displayName: "JB_SHIRT_HS",
+    description: "JB_SHIRT_HS _ KIDS KB_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -4035,35 +3917,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: true,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -4073,21 +3953,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: true,
       embroidery: true,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: true,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "JB_TEES_FS",
     department: "KIDS",
-    subDepartment: "KB-U",
+    subDepartment: "KB_U",
     category: "JB_TEES_FS",
-    displayName: "Kids Jb Tees Fs",
-    description: "Kids Jb Tees Fs - KIDS KB-U category",
+    displayName: "JB_TEES_FS",
+    description: "JB_TEES_FS _ KIDS KB_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -4103,35 +3983,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: true,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: true,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -4141,21 +4019,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: true,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "JB_TEES_HS",
     department: "KIDS",
-    subDepartment: "KB-U",
+    subDepartment: "KB_U",
     category: "JB_TEES_HS",
-    displayName: "Kids Jb Tees Hs",
-    description: "Kids Jb Tees Hs - KIDS KB-U category",
+    displayName: "JB_TEES_HS",
+    description: "JB_TEES_HS _ KIDS KB_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -4171,35 +4049,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: true,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: true,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -4209,21 +4085,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: true,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "JB_TEES_PN_HS",
     department: "KIDS",
-    subDepartment: "KB-U",
+    subDepartment: "KB_U",
     category: "JB_TEES_PN_HS",
-    displayName: "Kids Jb Tees Pn Hs",
-    description: "Kids Jb Tees Pn Hs - KIDS KB-U category",
+    displayName: "JB_TEES_PN_HS",
+    description: "JB_TEES_PN_HS _ KIDS KB_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -4239,35 +4115,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: true,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: true,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -4277,21 +4151,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: true,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "JB_TEES_SL",
     department: "KIDS",
-    subDepartment: "KB-U",
+    subDepartment: "KB_U",
     category: "JB_TEES_SL",
-    displayName: "Kids Jb Tees Sl",
-    description: "Kids Jb Tees Sl - KIDS KB-U category",
+    displayName: "JB_TEES_SL",
+    description: "JB_TEES_SL _ KIDS KB_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -4307,35 +4181,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: true,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: true,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -4345,21 +4217,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: true,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "JB_VEST",
     department: "KIDS",
-    subDepartment: "KB-U",
+    subDepartment: "KB_U",
     category: "JB_VEST",
-    displayName: "Kids Jb Vest",
-    description: "Kids Jb Vest - KIDS KB-U category",
+    displayName: "JB_VEST",
+    description: "JB_VEST _ KIDS KB_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -4375,35 +4247,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: true,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: true,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -4413,21 +4283,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "YB_K_SHIRT_HS",
     department: "KIDS",
-    subDepartment: "KB-U",
+    subDepartment: "KB_U",
     category: "YB_K_SHIRT_HS",
-    displayName: "Kids Yb K Shirt Hs",
-    description: "Kids Yb K Shirt Hs - KIDS KB-U category",
+    displayName: "YB_K_SHIRT_HS",
+    description: "YB_K_SHIRT_HS _ KIDS KB_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -4443,35 +4313,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: true,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -4481,21 +4349,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: true,
       embroidery: true,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: true,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "YB_SHIRT_FS",
     department: "KIDS",
-    subDepartment: "KB-U",
+    subDepartment: "KB_U",
     category: "YB_SHIRT_FS",
-    displayName: "Kids Yb Shirt Fs",
-    description: "Kids Yb Shirt Fs - KIDS KB-U category",
+    displayName: "YB_SHIRT_FS",
+    description: "YB_SHIRT_FS _ KIDS KB_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -4511,35 +4379,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: true,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: true,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -4549,21 +4415,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "YB_SHIRT_HS",
     department: "KIDS",
-    subDepartment: "KB-U",
+    subDepartment: "KB_U",
     category: "YB_SHIRT_HS",
-    displayName: "Kids Yb Shirt Hs",
-    description: "Kids Yb Shirt Hs - KIDS KB-U category",
+    displayName: "YB_SHIRT_HS",
+    description: "YB_SHIRT_HS _ KIDS KB_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -4579,35 +4445,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: true,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: true,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -4617,21 +4481,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "YB_TEES_FS",
     department: "KIDS",
-    subDepartment: "KB-U",
+    subDepartment: "KB_U",
     category: "YB_TEES_FS",
-    displayName: "Kids Yb Tees Fs",
-    description: "Kids Yb Tees Fs - KIDS KB-U category",
+    displayName: "YB_TEES_FS",
+    description: "YB_TEES_FS _ KIDS KB_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -4647,35 +4511,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: true,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: true,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -4685,21 +4547,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: true,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "YB_TEES_HS",
     department: "KIDS",
-    subDepartment: "KB-U",
+    subDepartment: "KB_U",
     category: "YB_TEES_HS",
-    displayName: "Kids Yb Tees Hs",
-    description: "Kids Yb Tees Hs - KIDS KB-U category",
+    displayName: "YB_TEES_HS",
+    description: "YB_TEES_HS _ KIDS KB_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -4715,35 +4577,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: true,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: true,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -4753,21 +4613,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: true,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "YB_TEES_SL",
     department: "KIDS",
-    subDepartment: "KB-U",
+    subDepartment: "KB_U",
     category: "YB_TEES_SL",
-    displayName: "Kids Yb Tees Sl",
-    description: "Kids Yb Tees Sl - KIDS KB-U category",
+    displayName: "YB_TEES_SL",
+    description: "YB_TEES_SL _ KIDS KB_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -4783,35 +4643,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: true,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: true,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -4821,21 +4679,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: true,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "YB_VEST",
     department: "KIDS",
-    subDepartment: "KB-U",
+    subDepartment: "KB_U",
     category: "YB_VEST",
-    displayName: "Kids Yb Vest",
-    description: "Kids Yb Vest - KIDS KB-U category",
+    displayName: "YB_VEST",
+    description: "YB_VEST _ KIDS KB_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -4851,35 +4709,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: true,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: true,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -4889,21 +4745,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "IBW_PYJAMA",
     department: "KIDS",
-    subDepartment: "KBW-L",
+    subDepartment: "KBW_L",
     category: "IBW_PYJAMA",
-    displayName: "Kids Ibw Pyjama",
-    description: "Kids Ibw Pyjama - KIDS KBW-L category",
+    displayName: "IBW_PYJAMA",
+    description: "IBW_PYJAMA _ KIDS KBW_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -4919,35 +4775,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: false,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: false,
       length: false,
-      length_inch: true,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -4957,21 +4811,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "JBW_PYJAMA",
     department: "KIDS",
-    subDepartment: "KBW-L",
+    subDepartment: "KBW_L",
     category: "JBW_PYJAMA",
-    displayName: "Kids Jbw Pyjama",
-    description: "Kids Jbw Pyjama - KIDS KBW-L category",
+    displayName: "JBW_PYJAMA",
+    description: "JBW_PYJAMA _ KIDS KBW_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -4987,35 +4841,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: false,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: true,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: false,
       length: false,
-      length_inch: true,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -5025,21 +4877,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "KBW_CAP",
     department: "KIDS",
-    subDepartment: "KBW-L",
+    subDepartment: "KBW_L",
     category: "KBW_CAP",
-    displayName: "Kids Kbw Cap",
-    description: "Kids Kbw Cap - KIDS KBW-L category",
+    displayName: "KBW_CAP",
+    description: "KBW_CAP _ KIDS KBW_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -5055,35 +4907,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: true,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -5093,21 +4943,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "KBW_GLOVES",
     department: "KIDS",
-    subDepartment: "KBW-L",
+    subDepartment: "KBW_L",
     category: "KBW_GLOVES",
-    displayName: "Kids Kbw Gloves",
-    description: "Kids Kbw Gloves - KIDS KBW-L category",
+    displayName: "KBW_GLOVES",
+    description: "KBW_GLOVES _ KIDS KBW_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -5123,35 +4973,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: false,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -5161,21 +5009,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "KIW_CAP",
     department: "KIDS",
-    subDepartment: "KBW-L",
+    subDepartment: "KBW_L",
     category: "KIW_CAP",
-    displayName: "Kids Kiw Cap",
-    description: "Kids Kiw Cap - KIDS KBW-L category",
+    displayName: "KIW_CAP",
+    description: "KIW_CAP _ KIDS KBW_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -5191,35 +5039,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: true,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -5229,21 +5075,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "KIW_GLOVES",
     department: "KIDS",
-    subDepartment: "KBW-L",
+    subDepartment: "KBW_L",
     category: "KIW_GLOVES",
-    displayName: "Kids Kiw Gloves",
-    description: "Kids Kiw Gloves - KIDS KBW-L category",
+    displayName: "KIW_GLOVES",
+    description: "KIW_GLOVES _ KIDS KBW_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -5259,35 +5105,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: false,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -5297,21 +5141,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "YBW_PYJAMA",
     department: "KIDS",
-    subDepartment: "KBW-L",
+    subDepartment: "KBW_L",
     category: "YBW_PYJAMA",
-    displayName: "Kids Ybw Pyjama",
-    description: "Kids Ybw Pyjama - KIDS KBW-L category",
+    displayName: "YBW_PYJAMA",
+    description: "YBW_PYJAMA _ KIDS KBW_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -5327,35 +5171,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: false,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: true,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: false,
       length: false,
-      length_inch: true,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -5365,21 +5207,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "IBW_B_SUIT",
     department: "KIDS",
-    subDepartment: "KBW-SETS",
+    subDepartment: "KBW_SETS",
     category: "IBW_B_SUIT",
-    displayName: "Kids Ibw B Suit",
-    description: "Kids Ibw B Suit - KIDS KBW-SETS category",
+    displayName: "IBW_B_SUIT",
+    description: "IBW_B_SUIT _ KIDS KBW_SETS category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -5395,35 +5237,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: true,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -5433,21 +5273,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "JBW_T_SUIT",
     department: "KIDS",
-    subDepartment: "KBW-SETS",
+    subDepartment: "KBW_SETS",
     category: "JBW_T_SUIT",
-    displayName: "Kids Jbw T Suit",
-    description: "Kids Jbw T Suit - KIDS KBW-SETS category",
+    displayName: "JBW_T_SUIT",
+    description: "JBW_T_SUIT _ KIDS KBW_SETS category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -5463,35 +5303,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: true,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: true,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: false,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -5501,21 +5339,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: true,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "KIW_GIFT_ST",
     department: "KIDS",
-    subDepartment: "KBW-SETS",
+    subDepartment: "KBW_SETS",
     category: "KIW_GIFT_ST",
-    displayName: "Kids Kiw Gift St",
-    description: "Kids Kiw Gift St - KIDS KBW-SETS category",
+    displayName: "KIW_GIFT_ST",
+    description: "KIW_GIFT_ST _ KIDS KBW_SETS category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -5531,35 +5369,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: true,
+
       front_open_style: true,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: false,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -5569,21 +5405,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: true,
       embroidery: true,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: true,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "YBW_T_SUIT",
     department: "KIDS",
-    subDepartment: "KBW-SETS",
+    subDepartment: "KBW_SETS",
     category: "YBW_T_SUIT",
-    displayName: "Kids Ybw T Suit",
-    description: "Kids Ybw T Suit - KIDS KBW-SETS category",
+    displayName: "YBW_T_SUIT",
+    description: "YBW_T_SUIT _ KIDS KBW_SETS category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -5599,35 +5435,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: true,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: true,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: false,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -5637,21 +5471,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: true,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "IBW_JKT_FS",
     department: "KIDS",
-    subDepartment: "KBW-U",
+    subDepartment: "KBW_U",
     category: "IBW_JKT_FS",
-    displayName: "Kids Ibw Jkt Fs",
-    description: "Kids Ibw Jkt Fs - KIDS KBW-U category",
+    displayName: "IBW_JKT_FS",
+    description: "IBW_JKT_FS _ KIDS KBW_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -5667,35 +5501,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: true,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: true,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: true,
-      button_color: true,
+
       zip: true,
       zip_col: true,
       print_type: false,
@@ -5705,21 +5537,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: true,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "IBW_SWEATER",
     department: "KIDS",
-    subDepartment: "KBW-U",
+    subDepartment: "KBW_U",
     category: "IBW_SWEATER",
-    displayName: "Kids Ibw Sweater",
-    description: "Kids Ibw Sweater - KIDS KBW-U category",
+    displayName: "IBW_SWEATER",
+    description: "IBW_SWEATER _ KIDS KBW_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -5735,35 +5567,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: true,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: false,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: true,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -5773,21 +5603,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "IBW_T_SHIRT",
     department: "KIDS",
-    subDepartment: "KBW-U",
+    subDepartment: "KBW_U",
     category: "IBW_T_SHIRT",
-    displayName: "Kids Ibw T Shirt",
-    description: "Kids Ibw T Shirt - KIDS KBW-U category",
+    displayName: "IBW_T_SHIRT",
+    description: "IBW_T_SHIRT _ KIDS KBW_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -5803,35 +5633,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: true,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -5841,21 +5669,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: true,
       embroidery: true,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: true,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "IBW_THRM_W",
     department: "KIDS",
-    subDepartment: "KBW-U",
+    subDepartment: "KBW_U",
     category: "IBW_THRM_W",
-    displayName: "Kids Ibw Thrm W",
-    description: "Kids Ibw Thrm W - KIDS KBW-U category",
+    displayName: "IBW_THRM_W",
+    description: "IBW_THRM_W _ KIDS KBW_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -5871,35 +5699,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: true,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: false,
       length: false,
-      length_inch: true,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -5909,21 +5735,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "JBW_JKT_FS",
     department: "KIDS",
-    subDepartment: "KBW-U",
+    subDepartment: "KBW_U",
     category: "JBW_JKT_FS",
-    displayName: "Kids Jbw Jkt Fs",
-    description: "Kids Jbw Jkt Fs - KIDS KBW-U category",
+    displayName: "JBW_JKT_FS",
+    description: "JBW_JKT_FS _ KIDS KBW_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -5939,35 +5765,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: true,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: true,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: true,
-      button_color: true,
+
       zip: true,
       zip_col: true,
       print_type: false,
@@ -5977,21 +5801,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: true,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "JBW_JKT_SL",
     department: "KIDS",
-    subDepartment: "KBW-U",
+    subDepartment: "KBW_U",
     category: "JBW_JKT_SL",
-    displayName: "Kids Jbw Jkt Sl",
-    description: "Kids Jbw Jkt Sl - KIDS KBW-U category",
+    displayName: "JBW_JKT_SL",
+    description: "JBW_JKT_SL _ KIDS KBW_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -6007,35 +5831,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: true,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: true,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: true,
-      button_color: true,
+
       zip: true,
       zip_col: true,
       print_type: false,
@@ -6045,21 +5867,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: true,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "JBW_SWEATER_FS",
     department: "KIDS",
-    subDepartment: "KBW-U",
+    subDepartment: "KBW_U",
     category: "JBW_SWEATER_FS",
-    displayName: "Kids Jbw Sweater Fs",
-    description: "Kids Jbw Sweater Fs - KIDS KBW-U category",
+    displayName: "JBW_SWEATER_FS",
+    description: "JBW_SWEATER_FS _ KIDS KBW_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -6075,35 +5897,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: true,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: false,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: true,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -6113,21 +5933,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "JBW_T_SHIRT_FS",
     department: "KIDS",
-    subDepartment: "KBW-U",
+    subDepartment: "KBW_U",
     category: "JBW_T_SHIRT_FS",
-    displayName: "Kids Jbw T Shirt Fs",
-    description: "Kids Jbw T Shirt Fs - KIDS KBW-U category",
+    displayName: "JBW_T_SHIRT_FS",
+    description: "JBW_T_SHIRT_FS _ KIDS KBW_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -6143,35 +5963,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: true,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -6181,21 +5999,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: true,
       embroidery: true,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: true,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "JBW_THRM_W",
     department: "KIDS",
-    subDepartment: "KBW-U",
+    subDepartment: "KBW_U",
     category: "JBW_THRM_W",
-    displayName: "Kids Jbw Thrm W",
-    description: "Kids Jbw Thrm W - KIDS KBW-U category",
+    displayName: "JBW_THRM_W",
+    description: "JBW_THRM_W _ KIDS KBW_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -6211,35 +6029,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: true,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: false,
       length: false,
-      length_inch: true,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -6249,21 +6065,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "YBW_JKT_FS",
     department: "KIDS",
-    subDepartment: "KBW-U",
+    subDepartment: "KBW_U",
     category: "YBW_JKT_FS",
-    displayName: "Kids Ybw Jkt Fs",
-    description: "Kids Ybw Jkt Fs - KIDS KBW-U category",
+    displayName: "YBW_JKT_FS",
+    description: "YBW_JKT_FS _ KIDS KBW_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -6279,35 +6095,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: true,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: true,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: true,
-      button_color: true,
+
       zip: true,
       zip_col: true,
       print_type: false,
@@ -6317,21 +6131,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: true,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "YBW_JKT_SL",
     department: "KIDS",
-    subDepartment: "KBW-U",
+    subDepartment: "KBW_U",
     category: "YBW_JKT_SL",
-    displayName: "Kids Ybw Jkt Sl",
-    description: "Kids Ybw Jkt Sl - KIDS KBW-U category",
+    displayName: "YBW_JKT_SL",
+    description: "YBW_JKT_SL _ KIDS KBW_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -6347,35 +6161,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: true,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: true,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: true,
-      button_color: true,
+
       zip: true,
       zip_col: true,
       print_type: false,
@@ -6385,21 +6197,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: true,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "YBW_SWEATER_FS",
     department: "KIDS",
-    subDepartment: "KBW-U",
+    subDepartment: "KBW_U",
     category: "YBW_SWEATER_FS",
-    displayName: "Kids Ybw Sweater Fs",
-    description: "Kids Ybw Sweater Fs - KIDS KBW-U category",
+    displayName: "YBW_SWEATER_FS",
+    description: "YBW_SWEATER_FS _ KIDS KBW_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -6415,35 +6227,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: true,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: false,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: true,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -6453,21 +6263,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "YBW_T_SHIRT_FS",
     department: "KIDS",
-    subDepartment: "KBW-U",
+    subDepartment: "KBW_U",
     category: "YBW_T_SHIRT_FS",
-    displayName: "Kids Ybw T Shirt Fs",
-    description: "Kids Ybw T Shirt Fs - KIDS KBW-U category",
+    displayName: "YBW_T_SHIRT_FS",
+    description: "YBW_T_SHIRT_FS _ KIDS KBW_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -6483,35 +6293,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: true,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -6521,21 +6329,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: true,
       embroidery: true,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: true,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "YBW_THRM_W",
     department: "KIDS",
-    subDepartment: "KBW-U",
+    subDepartment: "KBW_U",
     category: "YBW_THRM_W",
-    displayName: "Kids Ybw Thrm W",
-    description: "Kids Ybw Thrm W - KIDS KBW-U category",
+    displayName: "YBW_THRM_W",
+    description: "YBW_THRM_W _ KIDS KBW_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -6551,35 +6359,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: true,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: false,
       length: false,
-      length_inch: true,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -6589,21 +6395,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "IG_HOT_PANT",
     department: "KIDS",
-    subDepartment: "KG-L",
+    subDepartment: "KG_L",
     category: "IG_HOT_PANT",
-    displayName: "Kids Ig Hot Pant",
-    description: "Kids Ig Hot Pant - KIDS KG-L category",
+    displayName: "IG_HOT_PANT",
+    description: "IG_HOT_PANT _ KIDS KG_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -6619,35 +6425,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: true,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -6657,21 +6461,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: true,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "IG_SKRT",
     department: "KIDS",
-    subDepartment: "KG-L",
+    subDepartment: "KG_L",
     category: "IG_SKRT",
-    displayName: "Kids Ig Skrt",
-    description: "Kids Ig Skrt - KIDS KG-L category",
+    displayName: "IG_SKRT",
+    description: "IG_SKRT _ KIDS KG_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -6687,35 +6491,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: true,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -6725,21 +6527,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: true,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "JG_BLOOMER",
     department: "KIDS",
-    subDepartment: "KG-L",
+    subDepartment: "KG_L",
     category: "JG_BLOOMER",
-    displayName: "Kids Jg Bloomer",
-    description: "Kids Jg Bloomer - KIDS KG-L category",
+    displayName: "JG_BLOOMER",
+    description: "JG_BLOOMER _ KIDS KG_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -6755,35 +6557,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -6793,21 +6593,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: true,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "JG_CARGO",
     department: "KIDS",
-    subDepartment: "KG-L",
+    subDepartment: "KG_L",
     category: "JG_CARGO",
-    displayName: "Kids Jg Cargo",
-    description: "Kids Jg Cargo - KIDS KG-L category",
+    displayName: "JG_CARGO",
+    description: "JG_CARGO _ KIDS KG_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -6823,35 +6623,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: true,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: true,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: false,
       length: false,
-      length_inch: true,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -6861,21 +6659,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "JG_CO_ORD_ST",
     department: "KIDS",
-    subDepartment: "KG-L",
+    subDepartment: "KG_L",
     category: "JG_CO_ORD_ST",
-    displayName: "Kids Jg Co Ord St",
-    description: "Kids Jg Co Ord St - KIDS KG-L category",
+    displayName: "JG_CO_ORD_ST",
+    description: "JG_CO_ORD_ST _ KIDS KG_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -6891,35 +6689,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -6929,21 +6725,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: true,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "JG_CO_ORD_ST_FS",
     department: "KIDS",
-    subDepartment: "KG-L",
+    subDepartment: "KG_L",
     category: "JG_CO_ORD_ST_FS",
-    displayName: "Kids Jg Co Ord St Fs",
-    description: "Kids Jg Co Ord St Fs - KIDS KG-L category",
+    displayName: "JG_CO_ORD_ST_FS",
+    description: "JG_CO_ORD_ST_FS _ KIDS KG_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -6959,35 +6755,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -6997,21 +6791,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: true,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "JG_D_HOT_PANT",
     department: "KIDS",
-    subDepartment: "KG-L",
+    subDepartment: "KG_L",
     category: "JG_D_HOT_PANT",
-    displayName: "Kids Jg D Hot Pant",
-    description: "Kids Jg D Hot Pant - KIDS KG-L category",
+    displayName: "JG_D_HOT_PANT",
+    description: "JG_D_HOT_PANT _ KIDS KG_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -7027,35 +6821,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -7065,21 +6857,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: true,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "JG_D_JOGGER",
     department: "KIDS",
-    subDepartment: "KG-L",
+    subDepartment: "KG_L",
     category: "JG_D_JOGGER",
-    displayName: "Kids Jg D Jogger",
-    description: "Kids Jg D Jogger - KIDS KG-L category",
+    displayName: "JG_D_JOGGER",
+    description: "JG_D_JOGGER _ KIDS KG_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -7095,35 +6887,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -7133,21 +6923,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "JG_H_CAPRI",
     department: "KIDS",
-    subDepartment: "KG-L",
+    subDepartment: "KG_L",
     category: "JG_H_CAPRI",
-    displayName: "Kids Jg H Capri",
-    description: "Kids Jg H Capri - KIDS KG-L category",
+    displayName: "JG_H_CAPRI",
+    description: "JG_H_CAPRI _ KIDS KG_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -7163,35 +6953,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -7201,21 +6989,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: true,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "JG_H_HOT_PANT",
     department: "KIDS",
-    subDepartment: "KG-L",
+    subDepartment: "KG_L",
     category: "JG_H_HOT_PANT",
-    displayName: "Kids Jg H Hot Pant",
-    description: "Kids Jg H Hot Pant - KIDS KG-L category",
+    displayName: "JG_H_HOT_PANT",
+    description: "JG_H_HOT_PANT _ KIDS KG_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -7231,35 +7019,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: true,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -7269,21 +7055,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: true,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "JG_H_PYJAMA",
     department: "KIDS",
-    subDepartment: "KG-L",
+    subDepartment: "KG_L",
     category: "JG_H_PYJAMA",
-    displayName: "Kids Jg H Pyjama",
-    description: "Kids Jg H Pyjama - KIDS KG-L category",
+    displayName: "JG_H_PYJAMA",
+    description: "JG_H_PYJAMA _ KIDS KG_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -7299,35 +7085,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: true,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: true,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: true,
-      length_inch: true,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -7337,21 +7121,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: true,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "JG_H_SKRT",
     department: "KIDS",
-    subDepartment: "KG-L",
+    subDepartment: "KG_L",
     category: "JG_H_SKRT",
-    displayName: "Kids Jg H Skrt",
-    description: "Kids Jg H Skrt - KIDS KG-L category",
+    displayName: "JG_H_SKRT",
+    description: "JG_H_SKRT _ KIDS KG_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -7367,35 +7151,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: true,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -7405,21 +7187,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: true,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "JG_HAREMS",
     department: "KIDS",
-    subDepartment: "KG-L",
+    subDepartment: "KG_L",
     category: "JG_HAREMS",
-    displayName: "Kids Jg Harems",
-    description: "Kids Jg Harems - KIDS KG-L category",
+    displayName: "JG_HAREMS",
+    description: "JG_HAREMS _ KIDS KG_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -7435,35 +7217,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -7473,21 +7253,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "JG_JEANS",
     department: "KIDS",
-    subDepartment: "KG-L",
+    subDepartment: "KG_L",
     category: "JG_JEANS",
-    displayName: "Kids Jg Jeans",
-    description: "Kids Jg Jeans - KIDS KG-L category",
+    displayName: "JG_JEANS",
+    description: "JG_JEANS _ KIDS KG_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -7503,35 +7283,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: true,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: false,
-      length_inch: true,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -7541,21 +7319,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: true,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "JG_PANTY",
     department: "KIDS",
-    subDepartment: "KG-L",
+    subDepartment: "KG_L",
     category: "JG_PANTY",
-    displayName: "Kids Jg Panty",
-    description: "Kids Jg Panty - KIDS KG-L category",
+    displayName: "JG_PANTY",
+    description: "JG_PANTY _ KIDS KG_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -7571,35 +7349,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -7609,21 +7385,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: true,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "JG_T_HOT_PANT",
     department: "KIDS",
-    subDepartment: "KG-L",
+    subDepartment: "KG_L",
     category: "JG_T_HOT_PANT",
-    displayName: "Kids Jg T Hot Pant",
-    description: "Kids Jg T Hot Pant - KIDS KG-L category",
+    displayName: "JG_T_HOT_PANT",
+    description: "JG_T_HOT_PANT _ KIDS KG_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -7639,35 +7415,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -7677,21 +7451,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: true,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: true,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "JG_T_PYJAMA",
     department: "KIDS",
-    subDepartment: "KG-L",
+    subDepartment: "KG_L",
     category: "JG_T_PYJAMA",
-    displayName: "Kids Jg T Pyjama",
-    description: "Kids Jg T Pyjama - KIDS KG-L category",
+    displayName: "JG_T_PYJAMA",
+    description: "JG_T_PYJAMA _ KIDS KG_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -7707,35 +7481,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: true,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -7745,21 +7517,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: true,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "JG_T_SKRT",
     department: "KIDS",
-    subDepartment: "KG-L",
+    subDepartment: "KG_L",
     category: "JG_T_SKRT",
-    displayName: "Kids Jg T Skrt",
-    description: "Kids Jg T Skrt - KIDS KG-L category",
+    displayName: "JG_T_SKRT",
+    description: "JG_T_SKRT _ KIDS KG_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -7775,35 +7547,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: true,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -7813,21 +7583,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: true,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "YG_CARGO",
     department: "KIDS",
-    subDepartment: "KG-L",
+    subDepartment: "KG_L",
     category: "YG_CARGO",
-    displayName: "Kids Yg Cargo",
-    description: "Kids Yg Cargo - KIDS KG-L category",
+    displayName: "YG_CARGO",
+    description: "YG_CARGO _ KIDS KG_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -7843,35 +7613,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: true,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: true,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: false,
       length: false,
-      length_inch: true,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -7881,21 +7649,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "YG_CO_ORD_ST",
     department: "KIDS",
-    subDepartment: "KG-L",
+    subDepartment: "KG_L",
     category: "YG_CO_ORD_ST",
-    displayName: "Kids Yg Co Ord St",
-    description: "Kids Yg Co Ord St - KIDS KG-L category",
+    displayName: "YG_CO_ORD_ST",
+    description: "YG_CO_ORD_ST _ KIDS KG_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -7911,35 +7679,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -7949,21 +7715,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: true,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "YG_CO_ORD_ST_FS",
     department: "KIDS",
-    subDepartment: "KG-L",
+    subDepartment: "KG_L",
     category: "YG_CO_ORD_ST_FS",
-    displayName: "Kids Yg Co Ord St Fs",
-    description: "Kids Yg Co Ord St Fs - KIDS KG-L category",
+    displayName: "YG_CO_ORD_ST_FS",
+    description: "YG_CO_ORD_ST_FS _ KIDS KG_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -7979,35 +7745,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -8017,21 +7781,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: true,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "YG_D_HOT_PANT",
     department: "KIDS",
-    subDepartment: "KG-L",
+    subDepartment: "KG_L",
     category: "YG_D_HOT_PANT",
-    displayName: "Kids Yg D Hot Pant",
-    description: "Kids Yg D Hot Pant - KIDS KG-L category",
+    displayName: "YG_D_HOT_PANT",
+    description: "YG_D_HOT_PANT _ KIDS KG_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -8047,35 +7811,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -8085,21 +7847,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "YG_D_JOGGER",
     department: "KIDS",
-    subDepartment: "KG-L",
+    subDepartment: "KG_L",
     category: "YG_D_JOGGER",
-    displayName: "Kids Yg D Jogger",
-    description: "Kids Yg D Jogger - KIDS KG-L category",
+    displayName: "YG_D_JOGGER",
+    description: "YG_D_JOGGER _ KIDS KG_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -8115,35 +7877,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -8153,21 +7913,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "YG_H_CAPRI",
     department: "KIDS",
-    subDepartment: "KG-L",
+    subDepartment: "KG_L",
     category: "YG_H_CAPRI",
-    displayName: "Kids Yg H Capri",
-    description: "Kids Yg H Capri - KIDS KG-L category",
+    displayName: "YG_H_CAPRI",
+    description: "YG_H_CAPRI _ KIDS KG_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -8183,35 +7943,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -8221,21 +7979,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: true,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "YG_H_HOT_PANT",
     department: "KIDS",
-    subDepartment: "KG-L",
+    subDepartment: "KG_L",
     category: "YG_H_HOT_PANT",
-    displayName: "Kids Yg H Hot Pant",
-    description: "Kids Yg H Hot Pant - KIDS KG-L category",
+    displayName: "YG_H_HOT_PANT",
+    description: "YG_H_HOT_PANT _ KIDS KG_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -8251,35 +8009,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: true,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -8289,21 +8045,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: true,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "YG_H_PYJAMA",
     department: "KIDS",
-    subDepartment: "KG-L",
+    subDepartment: "KG_L",
     category: "YG_H_PYJAMA",
-    displayName: "Kids Yg H Pyjama",
-    description: "Kids Yg H Pyjama - KIDS KG-L category",
+    displayName: "YG_H_PYJAMA",
+    description: "YG_H_PYJAMA _ KIDS KG_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -8319,35 +8075,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: true,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: true,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: true,
-      length_inch: true,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -8357,21 +8111,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: true,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "YG_H_SKRT",
     department: "KIDS",
-    subDepartment: "KG-L",
+    subDepartment: "KG_L",
     category: "YG_H_SKRT",
-    displayName: "Kids Yg H Skrt",
-    description: "Kids Yg H Skrt - KIDS KG-L category",
+    displayName: "YG_H_SKRT",
+    description: "YG_H_SKRT _ KIDS KG_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -8387,35 +8141,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: true,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -8425,21 +8177,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: true,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "YG_HAREMS",
     department: "KIDS",
-    subDepartment: "KG-L",
+    subDepartment: "KG_L",
     category: "YG_HAREMS",
-    displayName: "Kids Yg Harems",
-    description: "Kids Yg Harems - KIDS KG-L category",
+    displayName: "YG_HAREMS",
+    description: "YG_HAREMS _ KIDS KG_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -8455,35 +8207,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: true,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -8493,21 +8243,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "YG_JEANS",
     department: "KIDS",
-    subDepartment: "KG-L",
+    subDepartment: "KG_L",
     category: "YG_JEANS",
-    displayName: "Kids Yg Jeans",
-    description: "Kids Yg Jeans - KIDS KG-L category",
+    displayName: "YG_JEANS",
+    description: "YG_JEANS _ KIDS KG_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -8523,35 +8273,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: true,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: false,
-      length_inch: true,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -8561,21 +8309,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: true,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "YG_PANTY",
     department: "KIDS",
-    subDepartment: "KG-L",
+    subDepartment: "KG_L",
     category: "YG_PANTY",
-    displayName: "Kids Yg Panty",
-    description: "Kids Yg Panty - KIDS KG-L category",
+    displayName: "YG_PANTY",
+    description: "YG_PANTY _ KIDS KG_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -8591,35 +8339,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -8629,21 +8375,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: true,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "YG_T_HOT_PANT",
     department: "KIDS",
-    subDepartment: "KG-L",
+    subDepartment: "KG_L",
     category: "YG_T_HOT_PANT",
-    displayName: "Kids Yg T Hot Pant",
-    description: "Kids Yg T Hot Pant - KIDS KG-L category",
+    displayName: "YG_T_HOT_PANT",
+    description: "YG_T_HOT_PANT _ KIDS KG_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -8659,35 +8405,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -8697,21 +8441,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: true,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: true,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "YG_T_PYJAMA",
     department: "KIDS",
-    subDepartment: "KG-L",
+    subDepartment: "KG_L",
     category: "YG_T_PYJAMA",
-    displayName: "Kids Yg T Pyjama",
-    description: "Kids Yg T Pyjama - KIDS KG-L category",
+    displayName: "YG_T_PYJAMA",
+    description: "YG_T_PYJAMA _ KIDS KG_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -8727,35 +8471,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: true,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -8765,21 +8507,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: true,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "YG_T_SKRT",
     department: "KIDS",
-    subDepartment: "KG-L",
+    subDepartment: "KG_L",
     category: "YG_T_SKRT",
-    displayName: "Kids Yg T Skrt",
-    description: "Kids Yg T Skrt - KIDS KG-L category",
+    displayName: "YG_T_SKRT",
+    description: "YG_T_SKRT _ KIDS KG_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -8795,35 +8537,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: true,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -8833,21 +8573,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: true,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "IG_FNC_FROCK",
     department: "KIDS",
-    subDepartment: "KG-U",
+    subDepartment: "KG_U",
     category: "IG_FNC_FROCK",
-    displayName: "Kids Ig Fnc Frock",
-    description: "Kids Ig Fnc Frock - KIDS KG-U category",
+    displayName: "IG_FNC_FROCK",
+    description: "IG_FNC_FROCK _ KIDS KG_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -8863,35 +8603,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: false,
       width_inch: false,
-      set: true,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: true,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -8901,21 +8639,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: true,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: true,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "IG_FROCK_FS",
     department: "KIDS",
-    subDepartment: "KG-U",
+    subDepartment: "KG_U",
     category: "IG_FROCK_FS",
-    displayName: "Kids Ig Frock Fs",
-    description: "Kids Ig Frock Fs - KIDS KG-U category",
+    displayName: "IG_FROCK_FS",
+    description: "IG_FROCK_FS _ KIDS KG_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -8931,35 +8669,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: false,
       width_inch: false,
-      set: true,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -8969,21 +8705,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: true,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "IG_ST_FS",
     department: "KIDS",
-    subDepartment: "KG-U",
+    subDepartment: "KG_U",
     category: "IG_ST_FS",
-    displayName: "Kids Ig St Fs",
-    description: "Kids Ig St Fs - KIDS KG-U category",
+    displayName: "IG_ST_FS",
+    description: "IG_ST_FS _ KIDS KG_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -8999,35 +8735,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: true,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -9037,21 +8771,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "IG_TOP_FS",
     department: "KIDS",
-    subDepartment: "KG-U",
+    subDepartment: "KG_U",
     category: "IG_TOP_FS",
-    displayName: "Kids Ig Top Fs",
-    description: "Kids Ig Top Fs - KIDS KG-U category",
+    displayName: "IG_TOP_FS",
+    description: "IG_TOP_FS _ KIDS KG_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -9067,35 +8801,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -9105,21 +8837,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: true,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "JG_H_FROCK",
     department: "KIDS",
-    subDepartment: "KG-U",
+    subDepartment: "KG_U",
     category: "JG_H_FROCK",
-    displayName: "Kids Jg H Frock",
-    description: "Kids Jg H Frock - KIDS KG-U category",
+    displayName: "JG_H_FROCK",
+    description: "JG_H_FROCK _ KIDS KG_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -9135,35 +8867,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -9173,21 +8903,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: true,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: true,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "JG_H_TOP_FS",
     department: "KIDS",
-    subDepartment: "KG-U",
+    subDepartment: "KG_U",
     category: "JG_H_TOP_FS",
-    displayName: "Kids Jg H Top Fs",
-    description: "Kids Jg H Top Fs - KIDS KG-U category",
+    displayName: "JG_H_TOP_FS",
+    description: "JG_H_TOP_FS _ KIDS KG_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -9203,35 +8933,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -9241,21 +8969,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: true,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "JG_H_TOP_HS",
     department: "KIDS",
-    subDepartment: "KG-U",
+    subDepartment: "KG_U",
     category: "JG_H_TOP_HS",
-    displayName: "Kids Jg H Top Hs",
-    description: "Kids Jg H Top Hs - KIDS KG-U category",
+    displayName: "JG_H_TOP_HS",
+    description: "JG_H_TOP_HS _ KIDS KG_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -9271,35 +8999,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: true,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -9309,21 +9035,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: true,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "JG_HOT_PANT_ST",
     department: "KIDS",
-    subDepartment: "KG-U",
+    subDepartment: "KG_U",
     category: "JG_HOT_PANT_ST",
-    displayName: "Kids Jg Hot Pant St",
-    description: "Kids Jg Hot Pant St - KIDS KG-U category",
+    displayName: "JG_HOT_PANT_ST",
+    description: "JG_HOT_PANT_ST _ KIDS KG_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -9339,35 +9065,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -9377,21 +9101,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: true,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "JG_PW_FROCK",
     department: "KIDS",
-    subDepartment: "KG-U",
+    subDepartment: "KG_U",
     category: "JG_PW_FROCK",
-    displayName: "Kids Jg Pw Frock",
-    description: "Kids Jg Pw Frock - KIDS KG-U category",
+    displayName: "JG_PW_FROCK",
+    description: "JG_PW_FROCK _ KIDS KG_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -9407,35 +9131,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -9445,21 +9167,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: true,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "JG_SKRT_TOP_ST",
     department: "KIDS",
-    subDepartment: "KG-U",
+    subDepartment: "KG_U",
     category: "JG_SKRT_TOP_ST",
-    displayName: "Kids Jg Skrt Top St",
-    description: "Kids Jg Skrt Top St - KIDS KG-U category",
+    displayName: "JG_SKRT_TOP_ST",
+    description: "JG_SKRT_TOP_ST _ KIDS KG_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -9475,35 +9197,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -9513,21 +9233,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: true,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "JG_SLIPS",
     department: "KIDS",
-    subDepartment: "KG-U",
+    subDepartment: "KG_U",
     category: "JG_SLIPS",
-    displayName: "Kids Jg Slips",
-    description: "Kids Jg Slips - KIDS KG-U category",
+    displayName: "JG_SLIPS",
+    description: "JG_SLIPS _ KIDS KG_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -9543,35 +9263,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: true,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -9581,21 +9299,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "JG_ST",
     department: "KIDS",
-    subDepartment: "KG-U",
+    subDepartment: "KG_U",
     category: "JG_ST",
-    displayName: "Kids Jg St",
-    description: "Kids Jg St - KIDS KG-U category",
+    displayName: "JG_ST",
+    description: "JG_ST _ KIDS KG_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -9611,35 +9329,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: true,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -9649,21 +9365,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: true,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "JG_ST_FS",
     department: "KIDS",
-    subDepartment: "KG-U",
+    subDepartment: "KG_U",
     category: "JG_ST_FS",
-    displayName: "Kids Jg St Fs",
-    description: "Kids Jg St Fs - KIDS KG-U category",
+    displayName: "JG_ST_FS",
+    description: "JG_ST_FS _ KIDS KG_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -9679,35 +9395,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -9717,21 +9431,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: true,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "JG_T_FROCK",
     department: "KIDS",
-    subDepartment: "KG-U",
+    subDepartment: "KG_U",
     category: "JG_T_FROCK",
-    displayName: "Kids Jg T Frock",
-    description: "Kids Jg T Frock - KIDS KG-U category",
+    displayName: "JG_T_FROCK",
+    description: "JG_T_FROCK _ KIDS KG_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -9747,35 +9461,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -9785,21 +9497,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: true,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "JG_T_M_FROCK_HS",
     department: "KIDS",
-    subDepartment: "KG-U",
+    subDepartment: "KG_U",
     category: "JG_T_M_FROCK_HS",
-    displayName: "Kids Jg T M Frock Hs",
-    description: "Kids Jg T M Frock Hs - KIDS KG-U category",
+    displayName: "JG_T_M_FROCK_HS",
+    description: "JG_T_M_FROCK_HS _ KIDS KG_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -9815,35 +9527,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -9853,21 +9563,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: true,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "JG_T_TOP_FS",
     department: "KIDS",
-    subDepartment: "KG-U",
+    subDepartment: "KG_U",
     category: "JG_T_TOP_FS",
-    displayName: "Kids Jg T Top Fs",
-    description: "Kids Jg T Top Fs - KIDS KG-U category",
+    displayName: "JG_T_TOP_FS",
+    description: "JG_T_TOP_FS _ KIDS KG_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -9883,35 +9593,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: true,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -9921,21 +9629,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: true,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "JG_T_TOP_HS",
     department: "KIDS",
-    subDepartment: "KG-U",
+    subDepartment: "KG_U",
     category: "JG_T_TOP_HS",
-    displayName: "Kids Jg T Top Hs",
-    description: "Kids Jg T Top Hs - KIDS KG-U category",
+    displayName: "JG_T_TOP_HS",
+    description: "JG_T_TOP_HS _ KIDS KG_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -9951,35 +9659,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: true,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -9989,21 +9695,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: true,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "YG_H_FROCK",
     department: "KIDS",
-    subDepartment: "KG-U",
+    subDepartment: "KG_U",
     category: "YG_H_FROCK",
-    displayName: "Kids Yg H Frock",
-    description: "Kids Yg H Frock - KIDS KG-U category",
+    displayName: "YG_H_FROCK",
+    description: "YG_H_FROCK _ KIDS KG_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -10019,35 +9725,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -10057,21 +9761,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: true,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: true,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "YG_H_TOP_FS",
     department: "KIDS",
-    subDepartment: "KG-U",
+    subDepartment: "KG_U",
     category: "YG_H_TOP_FS",
-    displayName: "Kids Yg H Top Fs",
-    description: "Kids Yg H Top Fs - KIDS KG-U category",
+    displayName: "YG_H_TOP_FS",
+    description: "YG_H_TOP_FS _ KIDS KG_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -10087,35 +9791,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -10125,21 +9827,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: true,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "YG_H_TOP_HS",
     department: "KIDS",
-    subDepartment: "KG-U",
+    subDepartment: "KG_U",
     category: "YG_H_TOP_HS",
-    displayName: "Kids Yg H Top Hs",
-    description: "Kids Yg H Top Hs - KIDS KG-U category",
+    displayName: "YG_H_TOP_HS",
+    description: "YG_H_TOP_HS _ KIDS KG_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -10155,35 +9857,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -10193,21 +9893,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: true,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "YG_KURTI",
     department: "KIDS",
-    subDepartment: "KG-U",
+    subDepartment: "KG_U",
     category: "YG_KURTI",
-    displayName: "Kids Yg Kurti",
-    description: "Kids Yg Kurti - KIDS KG-U category",
+    displayName: "YG_KURTI",
+    description: "YG_KURTI _ KIDS KG_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -10223,35 +9923,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -10261,21 +9959,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: true,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "YG_PW_FROCK",
     department: "KIDS",
-    subDepartment: "KG-U",
+    subDepartment: "KG_U",
     category: "YG_PW_FROCK",
-    displayName: "Kids Yg Pw Frock",
-    description: "Kids Yg Pw Frock - KIDS KG-U category",
+    displayName: "YG_PW_FROCK",
+    description: "YG_PW_FROCK _ KIDS KG_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -10291,35 +9989,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -10329,21 +10025,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: true,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "YG_SLIPS",
     department: "KIDS",
-    subDepartment: "KG-U",
+    subDepartment: "KG_U",
     category: "YG_SLIPS",
-    displayName: "Kids Yg Slips",
-    description: "Kids Yg Slips - KIDS KG-U category",
+    displayName: "YG_SLIPS",
+    description: "YG_SLIPS _ KIDS KG_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -10359,35 +10055,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: true,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -10397,21 +10091,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "YG_ST",
     department: "KIDS",
-    subDepartment: "KG-U",
+    subDepartment: "KG_U",
     category: "YG_ST",
-    displayName: "Kids Yg St",
-    description: "Kids Yg St - KIDS KG-U category",
+    displayName: "YG_ST",
+    description: "YG_ST _ KIDS KG_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -10427,35 +10121,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: true,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -10465,21 +10157,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: true,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "YG_T_FROCK",
     department: "KIDS",
-    subDepartment: "KG-U",
+    subDepartment: "KG_U",
     category: "YG_T_FROCK",
-    displayName: "Kids Yg T Frock",
-    description: "Kids Yg T Frock - KIDS KG-U category",
+    displayName: "YG_T_FROCK",
+    description: "YG_T_FROCK _ KIDS KG_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -10495,35 +10187,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -10533,21 +10223,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: true,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "YG_T_M_FROCK_HS",
     department: "KIDS",
-    subDepartment: "KG-U",
+    subDepartment: "KG_U",
     category: "YG_T_M_FROCK_HS",
-    displayName: "Kids Yg T M Frock Hs",
-    description: "Kids Yg T M Frock Hs - KIDS KG-U category",
+    displayName: "YG_T_M_FROCK_HS",
+    description: "YG_T_M_FROCK_HS _ KIDS KG_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -10563,35 +10253,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -10601,21 +10289,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: true,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "YG_T_TOP_FS",
     department: "KIDS",
-    subDepartment: "KG-U",
+    subDepartment: "KG_U",
     category: "YG_T_TOP_FS",
-    displayName: "Kids Yg T Top Fs",
-    description: "Kids Yg T Top Fs - KIDS KG-U category",
+    displayName: "YG_T_TOP_FS",
+    description: "YG_T_TOP_FS _ KIDS KG_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -10631,35 +10319,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: true,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -10669,21 +10355,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: true,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "YG_T_TOP_HS",
     department: "KIDS",
-    subDepartment: "KG-U",
+    subDepartment: "KG_U",
     category: "YG_T_TOP_HS",
-    displayName: "Kids Yg T Top Hs",
-    description: "Kids Yg T Top Hs - KIDS KG-U category",
+    displayName: "YG_T_TOP_HS",
+    description: "YG_T_TOP_HS _ KIDS KG_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -10699,35 +10385,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: true,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -10737,21 +10421,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: true,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "JGW_LEGGING",
     department: "KIDS",
-    subDepartment: "KGW-L",
+    subDepartment: "KGW_L",
     category: "JGW_LEGGING",
-    displayName: "Kids Jgw Legging",
-    description: "Kids Jgw Legging - KIDS KGW-L category",
+    displayName: "JGW_LEGGING",
+    description: "JGW_LEGGING _ KIDS KGW_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -10767,35 +10451,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: false,
       length: true,
-      length_inch: true,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -10805,21 +10487,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: true,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "JGW_PYJAMA",
     department: "KIDS",
-    subDepartment: "KGW-L",
+    subDepartment: "KGW_L",
     category: "JGW_PYJAMA",
-    displayName: "Kids Jgw Pyjama",
-    description: "Kids Jgw Pyjama - KIDS KGW-L category",
+    displayName: "JGW_PYJAMA",
+    description: "JGW_PYJAMA _ KIDS KGW_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -10835,35 +10517,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: true,
       width_inch: true,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: false,
       pattern: true,
       length: true,
-      length_inch: true,
+
       drawcord: true,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: true,
       zip_col: true,
       print_type: true,
@@ -10873,21 +10553,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: true,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: true,
       wash: true,
-      wash_color: true,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "YGW_LEGGING",
     department: "KIDS",
-    subDepartment: "KGW-L",
+    subDepartment: "KGW_L",
     category: "YGW_LEGGING",
-    displayName: "Kids Ygw Legging",
-    description: "Kids Ygw Legging - KIDS KGW-L category",
+    displayName: "YGW_LEGGING",
+    description: "YGW_LEGGING _ KIDS KGW_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -10903,35 +10583,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: false,
       length: true,
-      length_inch: true,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -10941,21 +10619,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: true,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "YGW_PYJAMA",
     department: "KIDS",
-    subDepartment: "KGW-L",
+    subDepartment: "KGW_L",
     category: "YGW_PYJAMA",
-    displayName: "Kids Ygw Pyjama",
-    description: "Kids Ygw Pyjama - KIDS KGW-L category",
+    displayName: "YGW_PYJAMA",
+    description: "YGW_PYJAMA _ KIDS KGW_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -10971,35 +10649,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: true,
       width_inch: true,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: false,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: true,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: true,
       zip_col: true,
       print_type: true,
@@ -11009,21 +10685,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: true,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: true,
       wash: true,
-      wash_color: true,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "IGW_JKT_FS",
     department: "KIDS",
-    subDepartment: "KGW-U",
+    subDepartment: "KGW_U",
     category: "IGW_JKT_FS",
-    displayName: "Kids Igw Jkt Fs",
-    description: "Kids Igw Jkt Fs - KIDS KGW-U category",
+    displayName: "IGW_JKT_FS",
+    description: "IGW_JKT_FS _ KIDS KGW_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -11039,35 +10715,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: true,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: true,
-      drawcord_style: true,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: true,
       zip_col: true,
       print_type: true,
@@ -11077,21 +10751,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: true,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "JGW_ST",
     department: "KIDS",
-    subDepartment: "KGW-U",
+    subDepartment: "KGW_U",
     category: "JGW_ST",
-    displayName: "Kids Jgw St",
-    description: "Kids Jgw St - KIDS KGW-U category",
+    displayName: "JGW_ST",
+    description: "JGW_ST _ KIDS KGW_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -11107,35 +10781,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: true,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: true,
-      drawcord_style: true,
-      drawcord_loop: true,
+
       button: true,
-      button_color: true,
+
       zip: true,
       zip_col: true,
       print_type: true,
@@ -11145,21 +10817,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: true,
       embroidery: true,
       embroidery_type: false,
-      placement: true,
+
       additional_accessories: false,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "JGW_TOP",
     department: "KIDS",
-    subDepartment: "KGW-U",
+    subDepartment: "KGW_U",
     category: "JGW_TOP",
-    displayName: "Kids Jgw Top",
-    description: "Kids Jgw Top - KIDS KGW-U category",
+    displayName: "JGW_TOP",
+    description: "JGW_TOP _ KIDS KGW_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -11175,35 +10847,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: true,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: true,
+
       front_open_style: true,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: false,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: true,
-      button_color: false,
+
       zip: true,
       zip_col: true,
       print_type: true,
@@ -11213,21 +10883,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: true,
-      placement: true,
+
       additional_accessories: true,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "JGW_W_PONCHO",
     department: "KIDS",
-    subDepartment: "KGW-U",
+    subDepartment: "KGW_U",
     category: "JGW_W_PONCHO",
-    displayName: "Kids Jgw W Poncho",
-    description: "Kids Jgw W Poncho - KIDS KGW-U category",
+    displayName: "JGW_W_PONCHO",
+    description: "JGW_W_PONCHO _ KIDS KGW_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -11243,35 +10913,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: false,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -11281,21 +10949,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "KIW_BOOTY",
     department: "KIDS",
-    subDepartment: "KGW-U",
+    subDepartment: "KGW_U",
     category: "KIW_BOOTY",
-    displayName: "Kids Kiw Booty",
-    description: "Kids Kiw Booty - KIDS KGW-U category",
+    displayName: "KIW_BOOTY",
+    description: "KIW_BOOTY _ KIDS KGW_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -11311,35 +10979,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -11349,21 +11015,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "KIW_ST",
     department: "KIDS",
-    subDepartment: "KGW-U",
+    subDepartment: "KGW_U",
     category: "KIW_ST",
-    displayName: "Kids Kiw St",
-    description: "Kids Kiw St - KIDS KGW-U category",
+    displayName: "KIW_ST",
+    description: "KIW_ST _ KIDS KGW_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -11379,35 +11045,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: true,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: true,
-      drawcord_style: true,
-      drawcord_loop: true,
+
       button: true,
-      button_color: true,
+
       zip: true,
       zip_col: true,
       print_type: true,
@@ -11417,21 +11081,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: true,
       embroidery: true,
       embroidery_type: false,
-      placement: true,
+
       additional_accessories: false,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "YGW_TOP",
     department: "KIDS",
-    subDepartment: "KGW-U",
+    subDepartment: "KGW_U",
     category: "YGW_TOP",
-    displayName: "Kids Ygw Top",
-    description: "Kids Ygw Top - KIDS KGW-U category",
+    displayName: "YGW_TOP",
+    description: "YGW_TOP _ KIDS KGW_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -11447,35 +11111,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: true,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: true,
+
       front_open_style: true,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: false,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: true,
-      button_color: false,
+
       zip: true,
       zip_col: true,
       print_type: true,
@@ -11485,21 +11147,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: true,
-      placement: true,
+
       additional_accessories: true,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "L_DUPATTA",
     department: "LADIES",
     subDepartment: "LK&L",
     category: "L_DUPATTA",
-    displayName: "Ladies Dupatta",
-    description: "Ladies Dupatta - LADIES LK&L category",
+    displayName: "L_DUPATTA",
+    description: "L_DUPATTA _ LADIES LK&L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -11515,35 +11177,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: false,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -11553,21 +11213,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "L_KURTI_FS",
     department: "LADIES",
     subDepartment: "LK&L",
     category: "L_KURTI_FS",
-    displayName: "Ladies Kurti Full Sleeve",
-    description: "Ladies Kurti Full Sleeve - LADIES LK&L category",
+    displayName: "L_KURTI_FS",
+    description: "L_KURTI_FS _ LADIES LK&L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -11583,35 +11243,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -11621,21 +11279,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "L_KURTI_HS",
     department: "LADIES",
     subDepartment: "LK&L",
     category: "L_KURTI_HS",
-    displayName: "Ladies Kurti Hs",
-    description: "Ladies Kurti Hs - LADIES LK&L category",
+    displayName: "L_KURTI_HS",
+    description: "L_KURTI_HS _ LADIES LK&L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -11651,35 +11309,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -11689,21 +11345,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "L_KURTI_ST",
     department: "LADIES",
     subDepartment: "LK&L",
     category: "L_KURTI_ST",
-    displayName: "Ladies Kurti St",
-    description: "Ladies Kurti St - LADIES LK&L category",
+    displayName: "L_KURTI_ST",
+    description: "L_KURTI_ST _ LADIES LK&L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -11719,35 +11375,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -11757,21 +11411,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "L_LEGGING",
     department: "LADIES",
     subDepartment: "LK&L",
     category: "L_LEGGING",
-    displayName: "Ladies Legging",
-    description: "Ladies Legging - LADIES LK&L category",
+    displayName: "L_LEGGING",
+    description: "L_LEGGING _ LADIES LK&L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -11787,35 +11441,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: false,
       length: false,
-      length_inch: true,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -11825,21 +11477,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "L_SCARF",
     department: "LADIES",
     subDepartment: "LK&L",
     category: "L_SCARF",
-    displayName: "Ladies Scarf",
-    description: "Ladies Scarf - LADIES LK&L category",
+    displayName: "L_SCARF",
+    description: "L_SCARF _ LADIES LK&L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -11855,35 +11507,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: false,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -11893,21 +11543,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "L_CARGO",
     department: "LADIES",
     subDepartment: "LL",
     category: "L_CARGO",
-    displayName: "Ladies Cargo",
-    description: "Ladies Cargo - LADIES LL category",
+    displayName: "L_CARGO",
+    description: "L_CARGO _ LADIES LL category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -11923,35 +11573,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: true,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: false,
       length: false,
-      length_inch: true,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -11961,21 +11609,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "L_CIG_PANT",
     department: "LADIES",
     subDepartment: "LL",
     category: "L_CIG_PANT",
-    displayName: "Ladies Cig Pant",
-    description: "Ladies Cig Pant - LADIES LL category",
+    displayName: "L_CIG_PANT",
+    description: "L_CIG_PANT _ LADIES LL category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -11991,35 +11639,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: true,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: false,
       pattern: false,
       length: false,
-      length_inch: true,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -12029,21 +11675,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "L_CULOTTES",
     department: "LADIES",
     subDepartment: "LL",
     category: "L_CULOTTES",
-    displayName: "Ladies Culottes",
-    description: "Ladies Culottes - LADIES LL category",
+    displayName: "L_CULOTTES",
+    description: "L_CULOTTES _ LADIES LL category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -12059,35 +11705,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: true,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: true,
       pattern: false,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -12097,21 +11741,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "L_D_JOGGER",
     department: "LADIES",
     subDepartment: "LL",
     category: "L_D_JOGGER",
-    displayName: "Ladies D Jogger",
-    description: "Ladies D Jogger - LADIES LL category",
+    displayName: "L_D_JOGGER",
+    description: "L_D_JOGGER _ LADIES LL category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -12127,35 +11771,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: true,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: true,
       pattern: false,
       length: false,
-      length_inch: true,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -12165,21 +11807,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "L_H_CAPRI",
     department: "LADIES",
     subDepartment: "LL",
     category: "L_H_CAPRI",
-    displayName: "Ladies H Capri",
-    description: "Ladies H Capri - LADIES LL category",
+    displayName: "L_H_CAPRI",
+    description: "L_H_CAPRI _ LADIES LL category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -12195,35 +11837,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: true,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: false,
       pattern: false,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -12233,21 +11873,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "L_H_HOT_PANT",
     department: "LADIES",
     subDepartment: "LL",
     category: "L_H_HOT_PANT",
-    displayName: "Ladies H Hot Pant",
-    description: "Ladies H Hot Pant - LADIES LL category",
+    displayName: "L_H_HOT_PANT",
+    description: "L_H_HOT_PANT _ LADIES LL category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -12263,35 +11903,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: true,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: false,
       pattern: false,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -12301,21 +11939,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "L_H_PYJAMA",
     department: "LADIES",
     subDepartment: "LL",
     category: "L_H_PYJAMA",
-    displayName: "Ladies H Pyjama",
-    description: "Ladies H Pyjama - LADIES LL category",
+    displayName: "L_H_PYJAMA",
+    description: "L_H_PYJAMA _ LADIES LL category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -12331,35 +11969,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: true,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: false,
       pattern: false,
       length: false,
-      length_inch: true,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -12369,21 +12005,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "L_HAREMS",
     department: "LADIES",
     subDepartment: "LL",
     category: "L_HAREMS",
-    displayName: "Ladies Harems",
-    description: "Ladies Harems - LADIES LL category",
+    displayName: "L_HAREMS",
+    description: "L_HAREMS _ LADIES LL category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -12399,35 +12035,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: true,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: true,
       pattern: false,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -12437,21 +12071,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "L_JEANS",
     department: "LADIES",
     subDepartment: "LL",
     category: "L_JEANS",
-    displayName: "Ladies Jeans",
-    description: "Ladies Jeans - LADIES LL category",
+    displayName: "L_JEANS",
+    description: "L_JEANS _ LADIES LL category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -12467,35 +12101,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: true,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: false,
       length: true,
-      length_inch: true,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -12505,21 +12137,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "L_LNG_SKIRT",
     department: "LADIES",
     subDepartment: "LL",
     category: "L_LNG_SKIRT",
-    displayName: "Ladies Lng Skirt",
-    description: "Ladies Lng Skirt - LADIES LL category",
+    displayName: "L_LNG_SKIRT",
+    description: "L_LNG_SKIRT _ LADIES LL category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -12535,35 +12167,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: true,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: false,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -12573,21 +12203,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "L_MED_SKIRT",
     department: "LADIES",
     subDepartment: "LL",
     category: "L_MED_SKIRT",
-    displayName: "Ladies Med Skirt",
-    description: "Ladies Med Skirt - LADIES LL category",
+    displayName: "L_MED_SKIRT",
+    description: "L_MED_SKIRT _ LADIES LL category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -12603,35 +12233,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: true,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: false,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -12641,21 +12269,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "L_PLAZO",
     department: "LADIES",
     subDepartment: "LL",
     category: "L_PLAZO",
-    displayName: "Ladies Plazo",
-    description: "Ladies Plazo - LADIES LL category",
+    displayName: "L_PLAZO",
+    description: "L_PLAZO _ LADIES LL category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -12671,35 +12299,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: true,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: false,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -12709,21 +12335,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "L_T_HOT_PANT",
     department: "LADIES",
     subDepartment: "LL",
     category: "L_T_HOT_PANT",
-    displayName: "Ladies T Hot Pant",
-    description: "Ladies T Hot Pant - LADIES LL category",
+    displayName: "L_T_HOT_PANT",
+    description: "L_T_HOT_PANT _ LADIES LL category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -12739,35 +12365,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: true,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: false,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -12777,21 +12401,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "L_T_PYJAMA",
     department: "LADIES",
     subDepartment: "LL",
     category: "L_T_PYJAMA",
-    displayName: "Ladies T Pyjama",
-    description: "Ladies T Pyjama - LADIES LL category",
+    displayName: "L_T_PYJAMA",
+    description: "L_T_PYJAMA _ LADIES LL category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -12807,35 +12431,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: true,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: false,
       length: false,
-      length_inch: true,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -12845,21 +12467,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "L_BRA",
     department: "LADIES",
     subDepartment: "LN&L",
     category: "L_BRA",
-    displayName: "Ladies Bra",
-    description: "Ladies Bra - LADIES LN&L category",
+    displayName: "L_BRA",
+    description: "L_BRA _ LADIES LN&L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -12875,35 +12497,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -12913,21 +12533,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "L_H_NIGHTY",
     department: "LADIES",
     subDepartment: "LN&L",
     category: "L_H_NIGHTY",
-    displayName: "Ladies H Nighty",
-    description: "Ladies H Nighty - LADIES LN&L category",
+    displayName: "L_H_NIGHTY",
+    description: "L_H_NIGHTY _ LADIES LN&L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -12943,35 +12563,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -12981,21 +12599,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "L_N_SUIT",
     department: "LADIES",
     subDepartment: "LN&L",
     category: "L_N_SUIT",
-    displayName: "Ladies N Suit",
-    description: "Ladies N Suit - LADIES LN&L category",
+    displayName: "L_N_SUIT",
+    description: "L_N_SUIT _ LADIES LN&L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -13011,35 +12629,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -13049,21 +12665,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "L_PANTY",
     department: "LADIES",
     subDepartment: "LN&L",
     category: "L_PANTY",
-    displayName: "Ladies Panty",
-    description: "Ladies Panty - LADIES LN&L category",
+    displayName: "L_PANTY",
+    description: "L_PANTY _ LADIES LN&L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -13079,35 +12695,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -13117,21 +12731,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "L_SLIPS",
     department: "LADIES",
     subDepartment: "LN&L",
     category: "L_SLIPS",
-    displayName: "Ladies Slips",
-    description: "Ladies Slips - LADIES LN&L category",
+    displayName: "L_SLIPS",
+    description: "L_SLIPS _ LADIES LN&L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -13147,35 +12761,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -13185,21 +12797,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "L_SPRT_BRA",
     department: "LADIES",
     subDepartment: "LN&L",
     category: "L_SPRT_BRA",
-    displayName: "Ladies Sprt Bra",
-    description: "Ladies Sprt Bra - LADIES LN&L category",
+    displayName: "L_SPRT_BRA",
+    description: "L_SPRT_BRA _ LADIES LN&L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -13215,35 +12827,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -13253,21 +12863,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "L_T_NIGHTY",
     department: "LADIES",
     subDepartment: "LN&L",
     category: "L_T_NIGHTY",
-    displayName: "Ladies T Nighty",
-    description: "Ladies T Nighty - LADIES LN&L category",
+    displayName: "L_T_NIGHTY",
+    description: "L_T_NIGHTY _ LADIES LN&L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -13283,35 +12893,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -13321,21 +12929,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "L_ATHLEISURE_SET",
     department: "LADIES",
     subDepartment: "LU",
     category: "L_ATHLEISURE_SET",
-    displayName: "Ladies Athleisure Set",
-    description: "Ladies Athleisure Set - LADIES LU category",
+    displayName: "L_ATHLEISURE_SET",
+    description: "L_ATHLEISURE_SET _ LADIES LU category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -13351,35 +12959,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: false,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: false,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -13389,21 +12995,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "L_BLAZER_LW",
     department: "LADIES",
     subDepartment: "LU",
     category: "L_BLAZER_LW",
-    displayName: "Ladies Blazer Lw",
-    description: "Ladies Blazer Lw - LADIES LU category",
+    displayName: "L_BLAZER_LW",
+    description: "L_BLAZER_LW _ LADIES LU category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -13419,35 +13025,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -13457,21 +13061,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "L_BLAZER_MW",
     department: "LADIES",
     subDepartment: "LU",
     category: "L_BLAZER_MW",
-    displayName: "Ladies Blazer Mw",
-    description: "Ladies Blazer Mw - LADIES LU category",
+    displayName: "L_BLAZER_MW",
+    description: "L_BLAZER_MW _ LADIES LU category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -13487,35 +13091,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -13525,21 +13127,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
-    id: "L_CO-ORD_SET",
+    id: "L_CO_ORD_SET",
     department: "LADIES",
     subDepartment: "LU",
-    category: "L_CO-ORD_SET",
-    displayName: "Ladies Co-Ord Set",
-    description: "Ladies Co-Ord Set - LADIES LU category",
+    category: "L_CO_ORD_SET",
+    displayName: "L_CO_ORD_SET",
+    description: "L_CO_ORD_SET _ LADIES LU category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -13555,35 +13157,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: false,
       width_inch: false,
-      set: true,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -13593,21 +13193,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "L_H_CROP_TOP_HS",
     department: "LADIES",
     subDepartment: "LU",
     category: "L_H_CROP_TOP_HS",
-    displayName: "Ladies H Crop Top Hs",
-    description: "Ladies H Crop Top Hs - LADIES LU category",
+    displayName: "L_H_CROP_TOP_HS",
+    description: "L_H_CROP_TOP_HS _ LADIES LU category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -13623,35 +13223,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -13661,21 +13259,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "L_H_M_FRK_FS",
     department: "LADIES",
     subDepartment: "LU",
     category: "L_H_M_FRK_FS",
-    displayName: "Ladies H M Frk Fs",
-    description: "Ladies H M Frk Fs - LADIES LU category",
+    displayName: "L_H_M_FRK_FS",
+    description: "L_H_M_FRK_FS _ LADIES LU category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -13691,35 +13289,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: false,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: false,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -13729,21 +13325,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "L_H_TOP_FS",
     department: "LADIES",
     subDepartment: "LU",
     category: "L_H_TOP_FS",
-    displayName: "Ladies H Top Fs",
-    description: "Ladies H Top Fs - LADIES LU category",
+    displayName: "L_H_TOP_FS",
+    description: "L_H_TOP_FS _ LADIES LU category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -13759,35 +13355,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -13797,21 +13391,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "L_H_TOP_HS",
     department: "LADIES",
     subDepartment: "LU",
     category: "L_H_TOP_HS",
-    displayName: "Ladies H Top Hs",
-    description: "Ladies H Top Hs - LADIES LU category",
+    displayName: "L_H_TOP_HS",
+    description: "L_H_TOP_HS _ LADIES LU category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -13827,35 +13421,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -13865,21 +13457,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "L_SHIRTS",
     department: "LADIES",
     subDepartment: "LU",
     category: "L_SHIRTS",
-    displayName: "Ladies Shirts",
-    description: "Ladies Shirts - LADIES LU category",
+    displayName: "L_SHIRTS",
+    description: "L_SHIRTS _ LADIES LU category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -13895,35 +13487,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: false,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -13933,21 +13523,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "L_T_M_FRK_FS",
     department: "LADIES",
     subDepartment: "LU",
     category: "L_T_M_FRK_FS",
-    displayName: "Ladies T M Frk Fs",
-    description: "Ladies T M Frk Fs - LADIES LU category",
+    displayName: "L_T_M_FRK_FS",
+    description: "L_T_M_FRK_FS _ LADIES LU category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -13963,35 +13553,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: true,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -14001,21 +13589,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "L_T_M_FRK_HS",
     department: "LADIES",
     subDepartment: "LU",
     category: "L_T_M_FRK_HS",
-    displayName: "Ladies T M Frk Hs",
-    description: "Ladies T M Frk Hs - LADIES LU category",
+    displayName: "L_T_M_FRK_HS",
+    description: "L_T_M_FRK_HS _ LADIES LU category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -14031,35 +13619,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: true,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -14069,21 +13655,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "L_T_TOP_FS",
     department: "LADIES",
     subDepartment: "LU",
     category: "L_T_TOP_FS",
-    displayName: "Ladies T Top Fs",
-    description: "Ladies T Top Fs - LADIES LU category",
+    displayName: "L_T_TOP_FS",
+    description: "L_T_TOP_FS _ LADIES LU category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -14099,35 +13685,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: true,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -14137,21 +13721,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "L_T_TOP_HS",
     department: "LADIES",
     subDepartment: "LU",
     category: "L_T_TOP_HS",
-    displayName: "Ladies T Top Hs",
-    description: "Ladies T Top Hs - LADIES LU category",
+    displayName: "L_T_TOP_HS",
+    description: "L_T_TOP_HS _ LADIES LU category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -14167,35 +13751,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: true,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -14205,21 +13787,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "LW_BLAZER",
     department: "LADIES",
     subDepartment: "LW",
     category: "LW_BLAZER",
-    displayName: "Ladies Lw Blazer",
-    description: "Ladies Lw Blazer - LADIES LW category",
+    displayName: "LW_BLAZER",
+    description: "LW_BLAZER _ LADIES LW category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -14235,35 +13817,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -14273,21 +13853,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "LW_CAP",
     department: "LADIES",
     subDepartment: "LW",
     category: "LW_CAP",
-    displayName: "Ladies Lw Cap",
-    description: "Ladies Lw Cap - LADIES LW category",
+    displayName: "LW_CAP",
+    description: "LW_CAP _ LADIES LW category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -14303,35 +13883,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -14341,21 +13919,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "LW_CO_ORD_SET",
     department: "LADIES",
     subDepartment: "LW",
     category: "LW_CO_ORD_SET",
-    displayName: "Ladies Lw Co Ord Set",
-    description: "Ladies Lw Co Ord Set - LADIES LW category",
+    displayName: "LW_CO_ORD_SET",
+    description: "LW_CO_ORD_SET _ LADIES LW category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -14371,35 +13949,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: true,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -14409,21 +13985,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "LW_FLC_TOP",
     department: "LADIES",
     subDepartment: "LW",
     category: "LW_FLC_TOP",
-    displayName: "Ladies Lw Flc Top",
-    description: "Ladies Lw Flc Top - LADIES LW category",
+    displayName: "LW_FLC_TOP",
+    description: "LW_FLC_TOP _ LADIES LW category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -14439,35 +14015,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -14477,21 +14051,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "LW_GLOVES",
     department: "LADIES",
     subDepartment: "LW",
     category: "LW_GLOVES",
-    displayName: "Ladies Lw Gloves",
-    description: "Ladies Lw Gloves - LADIES LW category",
+    displayName: "LW_GLOVES",
+    description: "LW_GLOVES _ LADIES LW category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -14507,35 +14081,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -14545,21 +14117,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "LW_JKT_FS",
     department: "LADIES",
     subDepartment: "LW",
     category: "LW_JKT_FS",
-    displayName: "Ladies Lw Jkt Fs",
-    description: "Ladies Lw Jkt Fs - LADIES LW category",
+    displayName: "LW_JKT_FS",
+    description: "LW_JKT_FS _ LADIES LW category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -14575,35 +14147,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -14613,21 +14183,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "LW_JKT_SL",
     department: "LADIES",
     subDepartment: "LW",
     category: "LW_JKT_SL",
-    displayName: "Ladies Lw Jkt Sl",
-    description: "Ladies Lw Jkt Sl - LADIES LW category",
+    displayName: "LW_JKT_SL",
+    description: "LW_JKT_SL _ LADIES LW category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -14643,35 +14213,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -14681,21 +14249,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "LW_KURTI",
     department: "LADIES",
     subDepartment: "LW",
     category: "LW_KURTI",
-    displayName: "Ladies Lw Kurti",
-    description: "Ladies Lw Kurti - LADIES LW category",
+    displayName: "LW_KURTI",
+    description: "LW_KURTI _ LADIES LW category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -14711,35 +14279,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: true,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -14749,21 +14315,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "LW_KURTI_ST",
     department: "LADIES",
     subDepartment: "LW",
     category: "LW_KURTI_ST",
-    displayName: "Ladies Lw Kurti St",
-    description: "Ladies Lw Kurti St - LADIES LW category",
+    displayName: "LW_KURTI_ST",
+    description: "LW_KURTI_ST _ LADIES LW category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -14779,35 +14345,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -14817,21 +14381,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "LW_LEGGING",
     department: "LADIES",
     subDepartment: "LW",
     category: "LW_LEGGING",
-    displayName: "Ladies Lw Legging",
-    description: "Ladies Lw Legging - LADIES LW category",
+    displayName: "LW_LEGGING",
+    description: "LW_LEGGING _ LADIES LW category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -14847,35 +14411,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: true,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -14885,21 +14447,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "LW_NIGHT_SUIT",
     department: "LADIES",
     subDepartment: "LW",
     category: "LW_NIGHT_SUIT",
-    displayName: "Ladies Lw Night Suit",
-    description: "Ladies Lw Night Suit - LADIES LW category",
+    displayName: "LW_NIGHT_SUIT",
+    description: "LW_NIGHT_SUIT _ LADIES LW category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -14915,35 +14477,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -14953,21 +14513,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "LW_NIGHTY",
     department: "LADIES",
     subDepartment: "LW",
     category: "LW_NIGHTY",
-    displayName: "Ladies Lw Nighty",
-    description: "Ladies Lw Nighty - LADIES LW category",
+    displayName: "LW_NIGHTY",
+    description: "LW_NIGHTY _ LADIES LW category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -14983,35 +14543,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -15021,21 +14579,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "LW_PANT",
     department: "LADIES",
     subDepartment: "LW",
     category: "LW_PANT",
-    displayName: "Ladies Lw Pant",
-    description: "Ladies Lw Pant - LADIES LW category",
+    displayName: "LW_PANT",
+    description: "LW_PANT _ LADIES LW category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -15051,35 +14609,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: true,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -15089,21 +14645,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "LW_PLAZO",
     department: "LADIES",
     subDepartment: "LW",
     category: "LW_PLAZO",
-    displayName: "Ladies Lw Plazo",
-    description: "Ladies Lw Plazo - LADIES LW category",
+    displayName: "LW_PLAZO",
+    description: "LW_PLAZO _ LADIES LW category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -15119,35 +14675,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: true,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -15157,21 +14711,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "LW_PYJAMA",
     department: "LADIES",
     subDepartment: "LW",
     category: "LW_PYJAMA",
-    displayName: "Ladies Lw Pyjama",
-    description: "Ladies Lw Pyjama - LADIES LW category",
+    displayName: "LW_PYJAMA",
+    description: "LW_PYJAMA _ LADIES LW category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -15187,35 +14741,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: true,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: true,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -15225,21 +14777,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "LW_SHAWL",
     department: "LADIES",
     subDepartment: "LW",
     category: "LW_SHAWL",
-    displayName: "Ladies Lw Shawl",
-    description: "Ladies Lw Shawl - LADIES LW category",
+    displayName: "LW_SHAWL",
+    description: "LW_SHAWL _ LADIES LW category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -15255,35 +14807,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -15293,21 +14843,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "LW_SHRUG",
     department: "LADIES",
     subDepartment: "LW",
     category: "LW_SHRUG",
-    displayName: "Ladies Lw Shrug",
-    description: "Ladies Lw Shrug - LADIES LW category",
+    displayName: "LW_SHRUG",
+    description: "LW_SHRUG _ LADIES LW category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -15323,35 +14873,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: false,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: false,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -15361,21 +14909,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "LW_SKEEVY",
     department: "LADIES",
     subDepartment: "LW",
     category: "LW_SKEEVY",
-    displayName: "Ladies Lw Skeevy",
-    description: "Ladies Lw Skeevy - LADIES LW category",
+    displayName: "LW_SKEEVY",
+    description: "LW_SKEEVY _ LADIES LW category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -15391,35 +14939,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -15429,21 +14975,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "LW_STOLE",
     department: "LADIES",
     subDepartment: "LW",
     category: "LW_STOLE",
-    displayName: "Ladies Lw Stole",
-    description: "Ladies Lw Stole - LADIES LW category",
+    displayName: "LW_STOLE",
+    description: "LW_STOLE _ LADIES LW category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -15459,35 +15005,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -15497,21 +15041,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "LW_SWEATER_FS",
     department: "LADIES",
     subDepartment: "LW",
     category: "LW_SWEATER_FS",
-    displayName: "Ladies Lw Sweater Fs",
-    description: "Ladies Lw Sweater Fs - LADIES LW category",
+    displayName: "LW_SWEATER_FS",
+    description: "LW_SWEATER_FS _ LADIES LW category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -15527,35 +15071,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -15565,21 +15107,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "LW_SWEATER_SL",
     department: "LADIES",
     subDepartment: "LW",
     category: "LW_SWEATER_SL",
-    displayName: "Ladies Lw Sweater Sl",
-    description: "Ladies Lw Sweater Sl - LADIES LW category",
+    displayName: "LW_SWEATER_SL",
+    description: "LW_SWEATER_SL _ LADIES LW category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -15595,35 +15137,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -15633,21 +15173,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "LW_THRM_LOWER",
     department: "LADIES",
     subDepartment: "LW",
     category: "LW_THRM_LOWER",
-    displayName: "Ladies Lw Thrm Lower",
-    description: "Ladies Lw Thrm Lower - LADIES LW category",
+    displayName: "LW_THRM_LOWER",
+    description: "LW_THRM_LOWER _ LADIES LW category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -15663,35 +15203,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: true,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -15701,21 +15239,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "LW_THRM_UPPER",
     department: "LADIES",
     subDepartment: "LW",
     category: "LW_THRM_UPPER",
-    displayName: "Ladies Lw Thrm Upper",
-    description: "Ladies Lw Thrm Upper - LADIES LW category",
+    displayName: "LW_THRM_UPPER",
+    description: "LW_THRM_UPPER _ LADIES LW category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -15731,35 +15269,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -15769,21 +15305,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "LW_THRM_W",
     department: "LADIES",
     subDepartment: "LW",
     category: "LW_THRM_W",
-    displayName: "Ladies Lw Thrm W",
-    description: "Ladies Lw Thrm W - LADIES LW category",
+    displayName: "LW_THRM_W",
+    description: "LW_THRM_W _ LADIES LW category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -15799,35 +15335,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: false,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: false,
       length: false,
-      length_inch: true,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -15837,21 +15371,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "LW_TOP",
     department: "LADIES",
     subDepartment: "LW",
     category: "LW_TOP",
-    displayName: "Ladies Lw Top",
-    description: "Ladies Lw Top - LADIES LW category",
+    displayName: "LW_TOP",
+    description: "LW_TOP _ LADIES LW category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -15867,35 +15401,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: true,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -15905,21 +15437,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "LW_TRACK_SUIT",
     department: "LADIES",
     subDepartment: "LW",
     category: "LW_TRACK_SUIT",
-    displayName: "Ladies Lw Track Suit",
-    description: "Ladies Lw Track Suit - LADIES LW category",
+    displayName: "LW_TRACK_SUIT",
+    description: "LW_TRACK_SUIT _ LADIES LW category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -15935,35 +15467,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: true,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -15973,21 +15503,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "LW_WNDCHTR_JKT_FS",
     department: "LADIES",
     subDepartment: "LW",
     category: "LW_WNDCHTR_JKT_FS",
-    displayName: "Ladies Lw Wndchtr Jkt Fs",
-    description: "Ladies Lw Wndchtr Jkt Fs - LADIES LW category",
+    displayName: "LW_WNDCHTR_JKT_FS",
+    description: "LW_WNDCHTR_JKT_FS _ LADIES LW category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -16003,35 +15533,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -16041,21 +15569,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "M_C_TRSR",
     department: "MENS",
     subDepartment: "ML",
     category: "M_C_TRSR",
-    displayName: "Men's C Trsr",
-    description: "Men's C Trsr - MENS ML category",
+    displayName: "M_C_TRSR",
+    description: "M_C_TRSR _ MENS ML category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -16071,35 +15599,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: true,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: true,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: false,
       length: true,
-      length_inch: true,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -16109,21 +15635,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "M_CRG_TRSR",
     department: "MENS",
     subDepartment: "ML",
     category: "M_CRG_TRSR",
-    displayName: "Men's Crg Trsr",
-    description: "Men's Crg Trsr - MENS ML category",
+    displayName: "M_CRG_TRSR",
+    description: "M_CRG_TRSR _ MENS ML category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -16139,35 +15665,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: true,
       width_inch: true,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: false,
       length: true,
-      length_inch: true,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -16177,21 +15701,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "M_F_TRSR",
     department: "MENS",
     subDepartment: "ML",
     category: "M_F_TRSR",
-    displayName: "Men's F Trsr",
-    description: "Men's F Trsr - MENS ML category",
+    displayName: "M_F_TRSR",
+    description: "M_F_TRSR _ MENS ML category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -16207,35 +15731,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: true,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: false,
       length: true,
-      length_inch: true,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -16245,21 +15767,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "M_JEANS",
     department: "MENS",
     subDepartment: "ML",
     category: "M_JEANS",
-    displayName: "Men's Jeans",
-    description: "Men's Jeans - MENS ML category",
+    displayName: "M_JEANS",
+    description: "M_JEANS _ MENS ML category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -16275,35 +15797,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: true,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: true,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: false,
       length: true,
-      length_inch: true,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -16313,21 +15833,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "M_KRT_SET",
     department: "MENS",
     subDepartment: "MO",
     category: "M_KRT_SET",
-    displayName: "Men's Krt Set",
-    description: "Men's Krt Set - MENS MO category",
+    displayName: "M_KRT_SET",
+    description: "M_KRT_SET _ MENS MO category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -16343,35 +15863,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: true,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: false,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -16381,21 +15899,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "M_MODI_JKT",
     department: "MENS",
     subDepartment: "MO",
     category: "M_MODI_JKT",
-    displayName: "Men's Modi Jkt",
-    description: "Men's Modi Jkt - MENS MO category",
+    displayName: "M_MODI_JKT",
+    description: "M_MODI_JKT _ MENS MO category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -16411,35 +15929,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: true,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: false,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -16449,21 +15965,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "M_SUIT",
     department: "MENS",
     subDepartment: "MO",
     category: "M_SUIT",
-    displayName: "Men's Suit",
-    description: "Men's Suit - MENS MO category",
+    displayName: "M_SUIT",
+    description: "M_SUIT _ MENS MO category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -16479,35 +15995,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: true,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: false,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -16517,21 +16031,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "M_BOXER",
     department: "MENS",
     subDepartment: "MS_IW",
     category: "M_BOXER",
-    displayName: "Men's Boxer",
-    description: "Men's Boxer - MENS MS_IW category",
+    displayName: "M_BOXER",
+    description: "M_BOXER _ MENS MS_IW category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -16547,35 +16061,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: true,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -16585,21 +16097,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "M_BRIEF",
     department: "MENS",
     subDepartment: "MS_IW",
     category: "M_BRIEF",
-    displayName: "Men's Brief",
-    description: "Men's Brief - MENS MS_IW category",
+    displayName: "M_BRIEF",
+    description: "M_BRIEF _ MENS MS_IW category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -16615,35 +16127,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: true,
       belt_design: true,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: true,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -16653,21 +16163,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "M_VEST",
     department: "MENS",
     subDepartment: "MS_IW",
     category: "M_VEST",
-    displayName: "Men's Vest",
-    description: "Men's Vest - MENS MS_IW category",
+    displayName: "M_VEST",
+    description: "M_VEST _ MENS MS_IW category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -16683,35 +16193,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -16721,21 +16229,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "M_H_BERMUDA",
     department: "MENS",
-    subDepartment: "MS-L",
+    subDepartment: "MS_L",
     category: "M_H_BERMUDA",
-    displayName: "Men's H Bermuda",
-    description: "Men's H Bermuda - MENS MS-L category",
+    displayName: "M_H_BERMUDA",
+    description: "M_H_BERMUDA _ MENS MS_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -16751,35 +16259,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: true,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: false,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: true,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -16789,21 +16295,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "M_H_PYJAMA",
     department: "MENS",
-    subDepartment: "MS-L",
+    subDepartment: "MS_L",
     category: "M_H_PYJAMA",
-    displayName: "Men's H Pyjama",
-    description: "Men's H Pyjama - MENS MS-L category",
+    displayName: "M_H_PYJAMA",
+    description: "M_H_PYJAMA _ MENS MS_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -16819,35 +16325,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: true,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: true,
       width_inch: true,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: true,
-      length_inch: true,
+
       drawcord: true,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -16857,21 +16361,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "M_T_BERMUDA",
     department: "MENS",
-    subDepartment: "MS-L",
+    subDepartment: "MS_L",
     category: "M_T_BERMUDA",
-    displayName: "Men's T Bermuda",
-    description: "Men's T Bermuda - MENS MS-L category",
+    displayName: "M_T_BERMUDA",
+    description: "M_T_BERMUDA _ MENS MS_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -16887,35 +16391,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: true,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: false,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: true,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -16925,21 +16427,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "M_T_JAMAICAN",
     department: "MENS",
-    subDepartment: "MS-L",
+    subDepartment: "MS_L",
     category: "M_T_JAMAICAN",
-    displayName: "Men's T Jamaican",
-    description: "Men's T Jamaican - MENS MS-L category",
+    displayName: "M_T_JAMAICAN",
+    description: "M_T_JAMAICAN _ MENS MS_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -16955,35 +16457,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: true,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: false,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: true,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -16993,21 +16493,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "M_T_PYJAMA",
     department: "MENS",
-    subDepartment: "MS-L",
+    subDepartment: "MS_L",
     category: "M_T_PYJAMA",
-    displayName: "Men's T Pyjama",
-    description: "Men's T Pyjama - MENS MS-L category",
+    displayName: "M_T_PYJAMA",
+    description: "M_T_PYJAMA _ MENS MS_L category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -17023,35 +16523,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: true,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: true,
       width_inch: true,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: true,
-      length_inch: true,
+
       drawcord: true,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -17061,21 +16559,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "M_SANDO",
     department: "MENS",
-    subDepartment: "MS-U",
+    subDepartment: "MS_U",
     category: "M_SANDO",
-    displayName: "Men's Sando",
-    description: "Men's Sando - MENS MS-U category",
+    displayName: "M_SANDO",
+    description: "M_SANDO _ MENS MS_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -17091,35 +16589,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: true,
       pattern: false,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -17129,21 +16625,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: true,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: true,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "M_TEES_FS",
     department: "MENS",
-    subDepartment: "MS-U",
+    subDepartment: "MS_U",
     category: "M_TEES_FS",
-    displayName: "Men's Tees Fs",
-    description: "Men's Tees Fs - MENS MS-U category",
+    displayName: "M_TEES_FS",
+    description: "M_TEES_FS _ MENS MS_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -17159,35 +16655,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: true,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -17197,21 +16691,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: true,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: true,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "M_TEES_HS",
     department: "MENS",
-    subDepartment: "MS-U",
+    subDepartment: "MS_U",
     category: "M_TEES_HS",
-    displayName: "Men's Tees Hs",
-    description: "Men's Tees Hs - MENS MS-U category",
+    displayName: "M_TEES_HS",
+    description: "M_TEES_HS _ MENS MS_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -17227,35 +16721,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: true,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -17265,21 +16757,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: true,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: true,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "M_TEES_PN_HS",
     department: "MENS",
-    subDepartment: "MS-U",
+    subDepartment: "MS_U",
     category: "M_TEES_PN_HS",
-    displayName: "Men's Tees Pn Hs",
-    description: "Men's Tees Pn Hs - MENS MS-U category",
+    displayName: "M_TEES_PN_HS",
+    description: "M_TEES_PN_HS _ MENS MS_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -17295,35 +16787,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: true,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -17333,21 +16823,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: true,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: true,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "M_TEES_SL",
     department: "MENS",
-    subDepartment: "MS-U",
+    subDepartment: "MS_U",
     category: "M_TEES_SL",
-    displayName: "Men's Tees Sl",
-    description: "Men's Tees Sl - MENS MS-U category",
+    displayName: "M_TEES_SL",
+    description: "M_TEES_SL _ MENS MS_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -17363,35 +16853,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -17401,21 +16889,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: true,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: true,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "M_TIGHTS_FS",
     department: "MENS",
-    subDepartment: "MS-U",
+    subDepartment: "MS_U",
     category: "M_TIGHTS_FS",
-    displayName: "Men's Tights Fs",
-    description: "Men's Tights Fs - MENS MS-U category",
+    displayName: "M_TIGHTS_FS",
+    description: "M_TIGHTS_FS _ MENS MS_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -17431,35 +16919,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: true,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -17469,21 +16955,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: true,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: true,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "M_TIGHTS_HS",
     department: "MENS",
-    subDepartment: "MS-U",
+    subDepartment: "MS_U",
     category: "M_TIGHTS_HS",
-    displayName: "Men's Tights Hs",
-    description: "Men's Tights Hs - MENS MS-U category",
+    displayName: "M_TIGHTS_HS",
+    description: "M_TIGHTS_HS _ MENS MS_U category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -17499,35 +16985,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: true,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -17537,21 +17021,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: true,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: true,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "M_C_SHIRT_FS",
     department: "MENS",
     subDepartment: "MU",
     category: "M_C_SHIRT_FS",
-    displayName: "Men's C Shirt Fs",
-    description: "Men's C Shirt Fs - MENS MU category",
+    displayName: "M_C_SHIRT_FS",
+    description: "M_C_SHIRT_FS _ MENS MU category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -17567,35 +17051,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: true,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -17605,21 +17087,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: true,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "M_C_SHIRT_HS",
     department: "MENS",
     subDepartment: "MU",
     category: "M_C_SHIRT_HS",
-    displayName: "Men's C Shirt Hs",
-    description: "Men's C Shirt Hs - MENS MU category",
+    displayName: "M_C_SHIRT_HS",
+    description: "M_C_SHIRT_HS _ MENS MU category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -17635,35 +17117,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: true,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -17673,21 +17153,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: true,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "M_F_SHIRT_FS",
     department: "MENS",
     subDepartment: "MU",
     category: "M_F_SHIRT_FS",
-    displayName: "Men's F Shirt Fs",
-    description: "Men's F Shirt Fs - MENS MU category",
+    displayName: "M_F_SHIRT_FS",
+    description: "M_F_SHIRT_FS _ MENS MU category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -17703,35 +17183,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: false,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: true,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -17741,21 +17219,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "M_H_CO_ORD_SET",
     department: "MENS",
     subDepartment: "MU",
     category: "M_H_CO_ORD_SET",
-    displayName: "Men's H Co Ord Set",
-    description: "Men's H Co Ord Set - MENS MU category",
+    displayName: "M_H_CO_ORD_SET",
+    description: "M_H_CO_ORD_SET _ MENS MU category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -17771,35 +17249,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: true,
-      neck_size: false,
+
       placket: false,
       father_belt: true,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: true,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -17809,21 +17285,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: true,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "M_KRT_PYJ",
     department: "MENS",
     subDepartment: "MU",
     category: "M_KRT_PYJ",
-    displayName: "Men's Krt Pyj",
-    description: "Men's Krt Pyj - MENS MU category",
+    displayName: "M_KRT_PYJ",
+    description: "M_KRT_PYJ _ MENS MU category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -17839,35 +17315,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: true,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -17877,21 +17351,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: true,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "M_KURTA_FS",
     department: "MENS",
     subDepartment: "MU",
     category: "M_KURTA_FS",
-    displayName: "Men's Kurta Fs",
-    description: "Men's Kurta Fs - MENS MU category",
+    displayName: "M_KURTA_FS",
+    description: "M_KURTA_FS _ MENS MU category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -17907,35 +17381,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: true,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -17945,21 +17417,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: true,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "M_KURTA_HS",
     department: "MENS",
     subDepartment: "MU",
     category: "M_KURTA_HS",
-    displayName: "Men's Kurta Hs",
-    description: "Men's Kurta Hs - MENS MU category",
+    displayName: "M_KURTA_HS",
+    description: "M_KURTA_HS _ MENS MU category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -17975,35 +17447,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: true,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -18013,21 +17483,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: true,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "M_PW_SHIRT_FS",
     department: "MENS",
     subDepartment: "MU",
     category: "M_PW_SHIRT_FS",
-    displayName: "Men's Pw Shirt Fs",
-    description: "Men's Pw Shirt Fs - MENS MU category",
+    displayName: "M_PW_SHIRT_FS",
+    description: "M_PW_SHIRT_FS _ MENS MU category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -18043,35 +17513,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: false,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: true,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -18081,21 +17549,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "M_SF_SHIRT_FS",
     department: "MENS",
     subDepartment: "MU",
     category: "M_SF_SHIRT_FS",
-    displayName: "Men's Sf Shirt Fs",
-    description: "Men's Sf Shirt Fs - MENS MU category",
+    displayName: "M_SF_SHIRT_FS",
+    description: "M_SF_SHIRT_FS _ MENS MU category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -18111,35 +17579,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: true,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -18149,21 +17615,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "M_T_CO_ORD_SET",
     department: "MENS",
     subDepartment: "MU",
     category: "M_T_CO_ORD_SET",
-    displayName: "Men's T Co Ord Set",
-    description: "Men's T Co Ord Set - MENS MU category",
+    displayName: "M_T_CO_ORD_SET",
+    description: "M_T_CO_ORD_SET _ MENS MU category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -18179,35 +17645,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: true,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: true,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -18217,21 +17681,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: true,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "MW_BLAZER",
     department: "MENS",
     subDepartment: "MW",
     category: "MW_BLAZER",
-    displayName: "Men's Mw Blazer",
-    description: "Men's Mw Blazer - MENS MW category",
+    displayName: "MW_BLAZER",
+    description: "MW_BLAZER _ MENS MW category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -18247,35 +17711,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: true,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: true,
       pattern: false,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: true,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -18285,21 +17747,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "MW_CAP",
     department: "MENS",
     subDepartment: "MW",
     category: "MW_CAP",
-    displayName: "Men's Mw Cap",
-    description: "Men's Mw Cap - MENS MW category",
+    displayName: "MW_CAP",
+    description: "MW_CAP _ MENS MW category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -18315,35 +17777,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: true,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -18353,21 +17813,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "MW_GLOVES",
     department: "MENS",
     subDepartment: "MW",
     category: "MW_GLOVES",
-    displayName: "Men's Mw Gloves",
-    description: "Men's Mw Gloves - MENS MW category",
+    displayName: "MW_GLOVES",
+    description: "MW_GLOVES _ MENS MW category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -18383,35 +17843,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: false,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -18421,21 +17879,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "MW_JKT_FS",
     department: "MENS",
     subDepartment: "MW",
     category: "MW_JKT_FS",
-    displayName: "Men's Mw Jkt Fs",
-    description: "Men's Mw Jkt Fs - MENS MW category",
+    displayName: "MW_JKT_FS",
+    description: "MW_JKT_FS _ MENS MW category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -18451,35 +17909,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: true,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: true,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: true,
-      button_color: true,
+
       zip: true,
       zip_col: true,
       print_type: false,
@@ -18489,21 +17945,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: true,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "MW_JKT_SL",
     department: "MENS",
     subDepartment: "MW",
     category: "MW_JKT_SL",
-    displayName: "Men's Mw Jkt Sl",
-    description: "Men's Mw Jkt Sl - MENS MW category",
+    displayName: "MW_JKT_SL",
+    description: "MW_JKT_SL _ MENS MW category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -18519,35 +17975,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: true,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: true,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: true,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: true,
-      button_color: true,
+
       zip: true,
       zip_col: true,
       print_type: false,
@@ -18557,21 +18011,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: true,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "MW_MODI_JKT",
     department: "MENS",
     subDepartment: "MW",
     category: "MW_MODI_JKT",
-    displayName: "Men's Mw Modi Jkt",
-    description: "Men's Mw Modi Jkt - MENS MW category",
+    displayName: "MW_MODI_JKT",
+    description: "MW_MODI_JKT _ MENS MW category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -18587,35 +18041,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: true,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: true,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: false,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: true,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -18625,21 +18077,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: true,
-      placement: true,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "MW_MUFFLER",
     department: "MENS",
     subDepartment: "MW",
     category: "MW_MUFFLER",
-    displayName: "Men's Mw Muffler",
-    description: "Men's Mw Muffler - MENS MW category",
+    displayName: "MW_MUFFLER",
+    description: "MW_MUFFLER _ MENS MW category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -18655,35 +18107,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -18693,21 +18143,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "MW_PYJAMA",
     department: "MENS",
     subDepartment: "MW",
     category: "MW_PYJAMA",
-    displayName: "Men's Mw Pyjama",
-    description: "Men's Mw Pyjama - MENS MW category",
+    displayName: "MW_PYJAMA",
+    description: "MW_PYJAMA _ MENS MW category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -18723,35 +18173,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: true,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: true,
       width_inch: true,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: true,
       length: true,
-      length_inch: true,
+
       drawcord: true,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: true,
       zip_col: false,
       print_type: true,
@@ -18761,21 +18209,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "MW_SWEATER_SL",
     department: "MENS",
     subDepartment: "MW",
     category: "MW_SWEATER_SL",
-    displayName: "Men's Mw Sweater Sl",
-    description: "Men's Mw Sweater Sl - MENS MW category",
+    displayName: "MW_SWEATER_SL",
+    description: "MW_SWEATER_SL _ MENS MW category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -18791,35 +18239,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: true,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: false,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: true,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -18829,21 +18275,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "MW_SWTR_FS",
     department: "MENS",
     subDepartment: "MW",
     category: "MW_SWTR_FS",
-    displayName: "Men's Mw Swtr Fs",
-    description: "Men's Mw Swtr Fs - MENS MW category",
+    displayName: "MW_SWTR_FS",
+    description: "MW_SWTR_FS _ MENS MW category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -18859,35 +18305,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: true,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: false,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: true,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -18897,21 +18341,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "MW_TEES_FS",
     department: "MENS",
     subDepartment: "MW",
     category: "MW_TEES_FS",
-    displayName: "Men's Mw Tees Fs",
-    description: "Men's Mw Tees Fs - MENS MW category",
+    displayName: "MW_TEES_FS",
+    description: "MW_TEES_FS _ MENS MW category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -18927,35 +18371,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: true,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: false,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: true,
       zip_col: true,
       print_type: true,
@@ -18965,21 +18407,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: true,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "MW_THRM_LOWER",
     department: "MENS",
     subDepartment: "MW",
     category: "MW_THRM_LOWER",
-    displayName: "Men's Mw Thrm Lower",
-    description: "Men's Mw Thrm Lower - MENS MW category",
+    displayName: "MW_THRM_LOWER",
+    description: "MW_THRM_LOWER _ MENS MW category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -18995,35 +18437,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: false,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: true,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: false,
       length: false,
-      length_inch: true,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -19033,21 +18473,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "MW_THRM_UPPER",
     department: "MENS",
     subDepartment: "MW",
     category: "MW_THRM_UPPER",
-    displayName: "Men's Mw Thrm Upper",
-    description: "Men's Mw Thrm Upper - MENS MW category",
+    displayName: "MW_THRM_UPPER",
+    description: "MW_THRM_UPPER _ MENS MW category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -19063,35 +18503,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: true,
-      fab_width: true,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: true,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: false,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: false,
-      number_of_pocket: false,
+
       fit: false,
       pattern: false,
       length: false,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: false,
@@ -19101,21 +18539,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "MW_TRACK_SUIT",
     department: "MENS",
     subDepartment: "MW",
     category: "MW_TRACK_SUIT",
-    displayName: "Men's Mw Track Suit",
-    description: "Men's Mw Track Suit - MENS MW category",
+    displayName: "MW_TRACK_SUIT",
+    description: "MW_TRACK_SUIT _ MENS MW category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -19131,35 +18569,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: false,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: true,
       bottom_fold: true,
       width_inch: true,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: false,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: false,
-      button_color: false,
+
       zip: false,
       zip_col: false,
       print_type: true,
@@ -19169,21 +18605,21 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: true,
-      wash_color: true,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
   {
     id: "MW_WNDCHTR_JKT_FS",
     department: "MENS",
     subDepartment: "MW",
     category: "MW_WNDCHTR_JKT_FS",
-    displayName: "Men's Mw Wndchtr Jkt Fs",
-    description: "Men's Mw Wndchtr Jkt Fs - MENS MW category",
+    displayName: "MW_WNDCHTR_JKT_FS",
+    description: "MW_WNDCHTR_JKT_FS _ MENS MW category",
     isActive: true,
     createdAt: new Date(),
     attributes: {
@@ -19199,35 +18635,33 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       fab_finish: true,
       fab_construction: true,
       fab_gsm: false,
-      fab_width: false,
+
       fab_count: true,
-      fab_weight_type: true,
-      fab_source: true,
+
       fab_shade: true,
       fab_lycra: true,
       neck: true,
       neck_type: false,
-      neck_size: false,
+
       placket: true,
       father_belt: false,
       belt_design: false,
-      belt_size: false,
+
       sleeves_main_style: false,
       bottom_fold: true,
       width_inch: false,
-      set: false,
+
       front_open_style: false,
       pocket_type: true,
-      number_of_pocket: true,
+
       fit: false,
       pattern: true,
       length: true,
-      length_inch: false,
+
       drawcord: false,
-      drawcord_style: false,
-      drawcord_loop: false,
+
       button: true,
-      button_color: true,
+
       zip: true,
       zip_col: true,
       print_type: false,
@@ -19237,32 +18671,36 @@ export const CATEGORY_DEFINITIONS: CategoryConfig[] = [
       patch_type: false,
       embroidery: false,
       embroidery_type: false,
-      placement: false,
+
       additional_accessories: false,
       wash: false,
-      wash_color: false,
-      color__main: true,
+
+      color___main: true,
       size: true,
-    }
+    },
   },
 ];
 
 // 🎯 CATEGORY STATS (for debugging)
-console.log('📊 Loaded Categories:');
-console.log('   KIDS: 169 categories');
-console.log('   MENS: 47 categories'); 
-console.log('   LADIES: 67 categories');
-console.log('   TOTAL: 283 categories');
+console.log("📊 Loaded Categories:");
+console.log("   KIDS: 169 categories");
+console.log("   MENS: 47 categories");
+console.log("   LADIES: 67 categories");
+console.log("   TOTAL: 283 categories");
 
 // Helper functions for category management
 export const getCategoryById = (id: string): CategoryConfig | undefined => {
-  return CATEGORY_DEFINITIONS.find(category => category.id === id);
+  return CATEGORY_DEFINITIONS.find((category) => category.id === id);
 };
 
-export const getCategoriesByDepartment = (department: string): CategoryConfig[] => {
-  return CATEGORY_DEFINITIONS.filter(category => category.department === department && category.isActive);
+export const getCategoriesByDepartment = (
+  department: string
+): CategoryConfig[] => {
+  return CATEGORY_DEFINITIONS.filter(
+    (category) => category.department === department && category.isActive
+  );
 };
 
 export const getActiveCategories = (): CategoryConfig[] => {
-  return CATEGORY_DEFINITIONS.filter(category => category.isActive);
-}
+  return CATEGORY_DEFINITIONS.filter((category) => category.isActive);
+};

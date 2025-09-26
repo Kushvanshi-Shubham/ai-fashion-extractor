@@ -1,4 +1,11 @@
-import type { SchemaItem, AttributeData, DiscoveredAttribute, EnhancedAIResponse, ParsedDiscoveryAttribute } from '../../types/extraction/ExtractionTypes';
+import type { AllowedValue } from '../../types/category/CategoryTypes';
+import type {
+  SchemaItem,
+  AttributeData,
+  DiscoveredAttribute,
+  EnhancedAIResponse,
+  ParsedDiscoveryAttribute,
+} from '../../types/extraction/ExtractionTypes';
 import { logger } from '../../utils/common/logger';
 
 export interface ParsedAIAttribute {
@@ -40,12 +47,20 @@ export class ResponseParser {
 
       return result;
     } catch (error) {
-      logger.error('Failed to parse legacy AI response', { error, rawResponse: aiResponse.substring(0, 500) });
-      throw new Error(`Failed to parse AI response: ${error instanceof Error ? error.message : 'Unknown error'}`);
+      logger.error('Failed to parse legacy AI response', {
+        error,
+        rawResponse: aiResponse.substring(0, 500),
+      });
+      throw new Error(
+        `Failed to parse AI response: ${error instanceof Error ? error.message : 'Unknown error'}`
+      );
     }
   }
 
-  async parseEnhancedResponse(aiResponse: string, schema: SchemaItem[]): Promise<{ attributes: AttributeData; discoveries: DiscoveredAttribute[] }> {
+  async parseEnhancedResponse(
+    aiResponse: string,
+    schema: SchemaItem[]
+  ): Promise<{ attributes: AttributeData; discoveries: DiscoveredAttribute[] }> {
     try {
       const cleanedResponse = this.cleanMarkdownJson(aiResponse);
       const parsed = JSON.parse(cleanedResponse) as EnhancedAIResponse;
@@ -73,7 +88,10 @@ export class ResponseParser {
     }
   }
 
-  private async parseSchemaAttributes(parsed: EnhancedAIResponse, schema: SchemaItem[]): Promise<AttributeData> {
+  private async parseSchemaAttributes(
+    parsed: EnhancedAIResponse,
+    schema: SchemaItem[]
+  ): Promise<AttributeData> {
     const result: AttributeData = {};
     // Safely handle both enhanced format (with schemaAttributes key) and legacy format (flat object)
     const schemaData = parsed.schemaAttributes ?? (parsed as Record<string, ParsedAIAttribute>);
@@ -124,7 +142,9 @@ export class ResponseParser {
         reasoning: discovery.reasoning || 'No reasoning provided',
         frequency: 1,
         suggestedType: discovery.suggestedType || this.inferType(discovery.normalizedValue),
-        possibleValues: discovery.possibleValues?.filter((v): v is string => typeof v === 'string' && v.trim() !== '') || undefined,
+        possibleValues:
+          discovery.possibleValues?.filter((v): v is string => typeof v === 'string' && v.trim() !== '') || undefined,
+        isPromotable: discovery.isPromotable,
       };
       discoveries.push(discoveredAttribute);
     }
@@ -145,11 +165,7 @@ export class ResponseParser {
 
   private cleanValue(value: string): string {
     if (!value) return '';
-    return value
-      .trim()
-      .replace(/\s+/g, ' ')
-      .replace(/[^\w\s\-./()]/g, '')
-      .substring(0, 100);
+    return value.trim().replace(/\s+/g, ' ').replace(/[^\w\s\-./()]/g, '').substring(0, 100);
   }
 
   private inferType(value: string): 'text' | 'select' | 'number' {
@@ -175,7 +191,10 @@ export class ResponseParser {
     );
   }
 
-  async parseWithDebugInfo(aiResponse: string, schema: SchemaItem[]): Promise<{ attributes: AttributeData; discoveries: DiscoveredAttribute[]; debugInfo: any; }> {
+  async parseWithDebugInfo(
+    aiResponse: string,
+    schema: SchemaItem[]
+  ): Promise<{ attributes: AttributeData; discoveries: DiscoveredAttribute[]; debugInfo: any }> {
     try {
       const cleanedResponse = this.cleanMarkdownJson(aiResponse);
       const parsed = JSON.parse(cleanedResponse);
@@ -212,15 +231,16 @@ export class ResponseParser {
       };
     }
   }
-  
+
   private cleanMarkdownJson(response: string): string {
     let cleaned = response.trim();
-    // Handles ```json, ```, etc., at the start of the string
-    const startMatch = cleaned.match(/^```(\w*\n)?/);
-    if (startMatch) {
-      cleaned = cleaned.substring(startMatch[0].length);
+    // Handles ```json ... ``` or ``` ... ```
+    if (cleaned.startsWith('```')) {
+      const firstNewLine = cleaned.indexOf('\n');
+      // If there's a new line, strip off the first line (e.g., ```json)
+      // Otherwise, just remove the opening backticks
+      cleaned = firstNewLine !== -1 ? cleaned.substring(firstNewLine + 1) : cleaned.substring(3);
     }
-    // Handles ``` at the end of the string
     if (cleaned.endsWith('```')) {
       cleaned = cleaned.substring(0, cleaned.length - 3);
     }
@@ -248,17 +268,21 @@ export class ResponseParser {
     }
   }
 
-  private findBestMatch(value: string, allowedValues: string[]): string | null {
+  private findBestMatch(value: string, allowedValues: AllowedValue[]): string | null {
     const normalizedValue = value.toLowerCase().trim();
-    const exactMatch = allowedValues.find((v) => v.toLowerCase() === normalizedValue);
-    if (exactMatch) return exactMatch;
+    const exactMatch = allowedValues.find(
+      (v) =>
+        v.shortForm.toLowerCase() === normalizedValue || v.fullForm?.toLowerCase() === normalizedValue
+    );
+    if (exactMatch) return exactMatch.shortForm;
 
     const partialMatch = allowedValues.find(
-      (v) => v.toLowerCase().includes(normalizedValue) || normalizedValue.includes(v.toLowerCase())
+      (v) =>
+        v.shortForm.toLowerCase().includes(normalizedValue) ||
+        normalizedValue.includes(v.shortForm.toLowerCase()) ||
+        v.fullForm?.toLowerCase().includes(normalizedValue) ||
+        (v.fullForm && normalizedValue.includes(v.fullForm.toLowerCase()))
     );
-    if (partialMatch) return partialMatch;
-
-    return null;
+    return partialMatch ? partialMatch.shortForm : null;
   }
 }
-

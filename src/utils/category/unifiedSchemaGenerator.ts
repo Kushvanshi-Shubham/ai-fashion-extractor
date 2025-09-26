@@ -4,7 +4,7 @@ import type { SchemaItem } from '../../types/extraction/ExtractionTypes';
 import { logger } from '../common/logger';
 
 // Centralized configuration for required attributes by category pattern
-const ALWAYS_REQUIRED = new Set(['macro_mvgr', 'micro_mvgr', 'color_main', 'size']);
+const ALWAYS_REQUIRED = new Set(['add_acc1', 'micro_mvgr', 'color_main', 'size']);
 const FABRIC_REQUIRED = new Set(['fab_division', 'fab_yarn_01']);
 const CATEGORY_REQUIRED_RULES: Record<string, Set<string>> = {
   'JEANS': new Set(['wash']),
@@ -86,7 +86,7 @@ export class UnifiedSchemaGenerator {
           break;
         }
 
-        const masterAttr = MASTER_ATTRIBUTES[key];
+        const masterAttr: AttributeDefinition | undefined = MASTER_ATTRIBUTES[key];
         if (!masterAttr) {
           logger.warn('Unknown attribute key skipped', { key, category: category.category });
           continue;
@@ -94,13 +94,24 @@ export class UnifiedSchemaGenerator {
 
         const required = isAttributeRequired(key, category);
 
+        const {
+          key: attrKey,
+          label,
+          fullForm,
+          type,
+          allowedValues = []
+        } = masterAttr;
+
         schema.push({
-          ...masterAttr,
+          key: attrKey,
+          label,
+          fullForm,
+          type,
+          allowedValues: type === 'select' ? allowedValues.slice(0, 10) : undefined,
           required,
-          description: UnifiedSchemaGenerator.optimizeDescriptionForAI(masterAttr.description || UnifiedSchemaGenerator.formatLabel(key)),
-          allowedValues: masterAttr.type === 'select'
-            ? (masterAttr.allowedValues?.slice(0, 10) || [])
-            : undefined,
+          description: UnifiedSchemaGenerator.optimizeDescriptionForAI(
+            masterAttr.description ?? UnifiedSchemaGenerator.formatLabel(attrKey),
+          ),
         });
       }
 
@@ -132,9 +143,11 @@ export class UnifiedSchemaGenerator {
         schema.push({
           key: attrDef.key,
           label: attrDef.label,
+          fullForm: attrDef.fullForm,
           type: attrDef.type,
           allowedValues: attrDef.allowedValues || [],
           required: false,
+          description: attrDef.description,
         });
       }
     }
