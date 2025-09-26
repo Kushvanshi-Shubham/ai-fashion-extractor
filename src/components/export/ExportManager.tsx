@@ -1,240 +1,283 @@
-import React, { useState } from 'react';
-import { Button, Select, Space, Typography, Alert, Card, Checkbox } from 'antd';
-import { DownloadOutlined, FileExcelOutlined, FileTextOutlined } from '@ant-design/icons';
-import type { ExtractedRow, SchemaItem } from '../../types/extraction/ExtractionTypes';
+import React, { useState, useCallback, memo } from 'react';
+import {
+  Card,
+  Button,
+  Select,
+  Space,
+  Typography,
+  Checkbox,
+  Divider,
+  notification,
+  Progress
+} from 'antd';
+import {
+  DownloadOutlined,
+  FileExcelOutlined,
+  FileTextOutlined
+} from '@ant-design/icons';
 import * as XLSX from 'xlsx';
+import type { ExtractedRowEnhanced, SchemaItem } from '../../types/extraction/ExtractionTypes';
 
+const { Text } = Typography;
 const { Option } = Select;
-const { Title, Text } = Typography;
-
-// ✅ FIX: Define proper type for export row
-interface ExportRowData {
-  'Row': number;
-  'Image Name': string;
-  'Status': string;
-  'Extraction Date'?: string;
-  'Processing Time (ms)'?: number;
-  'AI Model'?: string;
-  'Tokens Used'?: number;
-  [key: string]: string | number | undefined; // For dynamic attribute columns
-}
 
 interface ExportManagerProps {
-  data: ExtractedRow[];
+  extractedRows: ExtractedRowEnhanced[];
   schema: SchemaItem[];
   categoryName?: string;
   onClose: () => void;
 }
 
-export const ExportManager: React.FC<ExportManagerProps> = ({
-  data,
+type ExportFormat = 'excel' | 'csv' | 'json';
+
+interface ExportDataItem {
+  [key: string]: string | number | undefined;
+}
+
+const ExportManager: React.FC<ExportManagerProps> = ({
+  extractedRows,
   schema,
   categoryName,
   onClose
 }) => {
-  const [exportFormat, setExportFormat] = useState<'excel' | 'csv'>('excel');
-  const [selectedColumns, setSelectedColumns] = useState<string[]>(
+  const [format, setFormat] = useState<ExportFormat>('excel');
+  const [includeMetadata, setIncludeMetadata] = useState(true);
+  const [includeDiscoveries, setIncludeDiscoveries] = useState(true);
+  const [selectedAttributes, setSelectedAttributes] = useState<string[]>(
     schema.map(item => item.key)
   );
-  const [includeMetadata, setIncludeMetadata] = useState(true);
+  const [exporting, setExporting] = useState(false);
+  const [progress, setProgress] = useState(0);
 
-  const handleColumnToggle = (columnKey: string) => {
-    setSelectedColumns(prev =>
-      prev.includes(columnKey)
-        ? prev.filter(key => key !== columnKey)
-        : [...prev, columnKey]
-    );
-  };
-
-  const handleSelectAll = () => {
-    setSelectedColumns(schema.map(item => item.key));
-  };
-
-  const handleSelectNone = () => {
-    setSelectedColumns([]);
-  };
-
-  // ✅ FIX: Properly typed export data generation
-  const generateExportData = (): ExportRowData[] => {
-    return data.map((row, index) => {
-      const exportRow: ExportRowData = {
-        'Row': index + 1,
+  const prepareExportData = useCallback((): ExportDataItem[] => {
+    return extractedRows.map((row, index) => {
+      const baseData: ExportDataItem = {
+        'Row #': index + 1,
         'Image Name': row.originalFileName,
-        'Status': row.status
+        'Status': row.status,
+        'Upload Date': row.createdAt?.toLocaleDateString()
       };
 
-      // Selected attributes
-      selectedColumns.forEach(columnKey => {
-        const schemaItem = schema.find(item => item.key === columnKey);
-        const attribute = row.attributes[columnKey];
-        
-        if (schemaItem) {
-          const attributeValue = attribute?.schemaValue;
-          exportRow[schemaItem.label] = attributeValue?.toString() || '';
-          
-          if (includeMetadata && attribute) {
-            exportRow[`${schemaItem.label}_Raw`] = attribute.rawValue || '';
-            exportRow[`${schemaItem.label}_Confidence`] = attribute.visualConfidence || 0;
-          }
+      selectedAttributes.forEach(key => {
+        const schemaItem = schema.find(s => s.key === key);
+        const attribute = row.attributes[key];
+        baseData[schemaItem?.label || key] = attribute?.schemaValue || '';
+
+        if (includeMetadata && attribute) {
+          baseData[`${schemaItem?.label || key} (Confidence)`] = `${attribute.visualConfidence || 0}%`;
         }
       });
 
-      // Metadata
       if (includeMetadata) {
-        exportRow['Extraction Date'] = row.updatedAt?.toISOString() || '';
-        exportRow['Processing Time (ms)'] = row.extractionTime || 0;
-        exportRow['AI Model'] = row.modelUsed || '';
-        exportRow['Tokens Used'] = row.apiTokensUsed || 0;
+        baseData['Processing Time (ms)'] = row.extractionTime || 0;
+        baseData['AI Model'] = row.modelUsed || 'N/A';
+        baseData['Tokens Used'] = row.apiTokensUsed || 0;
       }
 
-      return exportRow;
+      if (includeDiscoveries && row.discoveries) {
+        row.discoveries.forEach(discovery => {
+          baseData[`Discovery: ${discovery.label}`] = discovery.normalizedValue;
+        });
+      }
+
+      return baseData;
     });
-  };
+  }, [extractedRows, selectedAttributes, schema, includeMetadata, includeDiscoveries]);
 
-  const handleExportExcel = () => {
+  const exportToExcel = useCallback(async (data: ExportDataItem[]) => {
+    const ws = XLSX.utils.json_to_sheet(data);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Extraction Results');
+
+    const fileName = `fashion-extraction-${categoryName?.replace(/\s+/g, '-') || 'results'}-${new Date().toISOString().split('T')[0]}.xlsx`;
+    XLSX.writeFile(wb, fileName);
+  }, [categoryName]);
+
+  const exportToCSV = useCallback(async (data: ExportDataItem[]) => {
+    const ws = XLSX.utils.json_to_sheet(data);
+    const csv = XLSX.utils.sheet_to_csv(ws);
+
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    const fileName = `fashion-extraction-${categoryName?.replace(/\s+/g, '-') || 'results'}-${new Date().toISOString().split('T')[0]}.csv`;
+
+    link.href = URL.createObjectURL(blob);
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }, [categoryName]);
+
+  const exportToJSON = useCallback(async (data: ExportDataItem[]) => {
+    const exportObject = {
+      metadata: {
+        exportDate: new Date().toISOString(),
+        category: categoryName,
+        totalRecords: data.length,
+        schema: schema.map(item => ({
+          key: item.key,
+          label: item.label,
+          type: item.type,
+          required: item.required
+        }))
+      },
+      data
+    };
+
+    const json = JSON.stringify(exportObject, null, 2);
+    const blob = new Blob([json], { type: 'application/json;charset=utf-8;' });
+    const link = document.createElement('a');
+    const fileName = `fashion-extraction-${categoryName?.replace(/\s+/g, '-') || 'results'}-${new Date().toISOString().split('T')[0]}.json`;
+
+    link.href = URL.createObjectURL(blob);
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }, [categoryName, schema]);
+
+  const handleExport = useCallback(async () => {
+    setExporting(true);
+    setProgress(0);
+
     try {
-      const exportData = generateExportData();
-      const worksheet = XLSX.utils.json_to_sheet(exportData);
-      const workbook = XLSX.utils.book_new();
-      
-      XLSX.utils.book_append_sheet(workbook, worksheet, categoryName || 'Extraction Results');
-      
-      const fileName = `${categoryName || 'clothing'}_extraction_${new Date().toISOString().split('T')[0]}.xlsx`;
-      XLSX.writeFile(workbook, fileName);
-    } catch (error) {
-      console.error('Excel export failed:', error);
-      alert('Export failed. Please try again.');
-    }
-  };
+      const exportData = prepareExportData();
+      setProgress(50);
 
-  const handleExportCSV = () => {
-    try {
-      const exportData = generateExportData();
-      const worksheet = XLSX.utils.json_to_sheet(exportData);
-      const csvData = XLSX.utils.sheet_to_csv(worksheet);
-      
-      const blob = new Blob([csvData], { type: 'text/csv;charset=utf-8;' });
-      const link = document.createElement('a');
-      const url = URL.createObjectURL(blob);
-      
-      link.setAttribute('href', url);
-      link.setAttribute('download', `${categoryName || 'clothing'}_extraction_${new Date().toISOString().split('T')[0]}.csv`);
-      link.style.visibility = 'hidden';
-      
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      
-      // Cleanup
-      URL.revokeObjectURL(url);
-    } catch (error) {
-      console.error('CSV export failed:', error);
-      alert('Export failed. Please try again.');
-    }
-  };
+      switch (format) {
+        case 'excel':
+          await exportToExcel(exportData);
+          break;
+        case 'csv':
+          await exportToCSV(exportData);
+          break;
+        case 'json':
+          await exportToJSON(exportData);
+          break;
+      }
 
-  const handleExport = () => {
-    if (exportFormat === 'excel') {
-      handleExportExcel();
-    } else {
-      handleExportCSV();
+      setProgress(100);
+      notification.success({
+        message: 'Export Successful',
+        description: `Data exported as ${format.toUpperCase()} file`,
+        duration: 3
+      });
+
+      setTimeout(onClose, 1000);
+    } catch {
+      notification.error({
+        message: 'Export Failed',
+        description: 'An error occurred during export',
+        duration: 5
+      });
+    } finally {
+      setExporting(false);
+      setProgress(0);
     }
-    onClose();
+  }, [format, prepareExportData, exportToExcel, exportToCSV, exportToJSON, onClose]);
+
+  const formatIcons = {
+    excel: <FileExcelOutlined style={{ color: '#1B6F00' }} />,
+    csv: <FileTextOutlined style={{ color: '#52c41a' }} />,
+    json: <FileTextOutlined style={{ color: '#1890ff' }} />
   };
 
   return (
-    <div>
-      <div style={{ marginBottom: 24 }}>
-        <Title level={4}>Export {data.length} Extraction Results</Title>
-        <Text type="secondary">
-          Category: {categoryName || 'Unknown'} | 
-          Available Attributes: {schema.length}
-        </Text>
-      </div>
-
-      {/* Format Selection */}
-      <Card title="Export Format" size="small" style={{ marginBottom: 16 }}>
+    <Space direction="vertical" style={{ width: '100%' }} size="large">
+      <Card size="small" title="Export Format">
         <Select
-          value={exportFormat}
-          onChange={setExportFormat}
-          style={{ width: 200 }}
+          value={format}
+          onChange={setFormat}
+          style={{ width: '100%' }}
+          size="large"
         >
           <Option value="excel">
-            <FileExcelOutlined /> Excel (.xlsx)
+            <Space>{formatIcons.excel} Excel Spreadsheet (.xlsx)</Space>
           </Option>
           <Option value="csv">
-            <FileTextOutlined /> CSV (.csv)
+            <Space>{formatIcons.csv} CSV File (.csv)</Space>
+          </Option>
+          <Option value="json">
+            <Space>{formatIcons.json} JSON Data (.json)</Space>
           </Option>
         </Select>
       </Card>
 
-      {/* Column Selection */}
-      <Card 
-        title="Select Columns" 
-        size="small" 
-        style={{ marginBottom: 16 }}
-        extra={
-          <Space>
-            <Button size="small" onClick={handleSelectAll}>Select All</Button>
-            <Button size="small" onClick={handleSelectNone}>Select None</Button>
-          </Space>
-        }
-      >
+      <Card size="small" title={`Attributes to Export (${selectedAttributes.length}/${schema.length})`}>
         <div style={{ maxHeight: 200, overflowY: 'auto' }}>
-          {schema.map(item => (
-            <div key={item.key} style={{ marginBottom: 8 }}>
-              <Checkbox
-                checked={selectedColumns.includes(item.key)}
-                onChange={() => handleColumnToggle(item.key)}
-              >
-                {item.label}
-                {item.required && <Text type="secondary"> (Required)</Text>}
-              </Checkbox>
-            </div>
-          ))}
+          <Checkbox
+            indeterminate={selectedAttributes.length > 0 && selectedAttributes.length < schema.length}
+            checked={selectedAttributes.length === schema.length}
+            onChange={(e) => setSelectedAttributes(e.target.checked ? schema.map(item => item.key) : [])}
+            style={{ marginBottom: 8 }}
+          >
+            Select All Attributes
+          </Checkbox>
+          <Divider style={{ margin: '8px 0' }} />
+          <Checkbox.Group
+            value={selectedAttributes}
+            onChange={setSelectedAttributes}
+            style={{ width: '100%' }}
+          >
+            <Space direction="vertical" style={{ width: '100%' }}>
+              {schema.map(item => (
+                <Checkbox key={item.key} value={item.key}>
+                  <Space>
+                    <Text>{item.label}</Text>
+                    {item.required && <Text type="secondary" style={{ fontSize: 11 }}>(Required)</Text>}
+                  </Space>
+                </Checkbox>
+              ))}
+            </Space>
+          </Checkbox.Group>
         </div>
       </Card>
 
-      {/* Options */}
-      <Card title="Export Options" size="small" style={{ marginBottom: 16 }}>
-        <Checkbox
-          checked={includeMetadata}
-          onChange={(e) => setIncludeMetadata(e.target.checked)}
-        >
-          Include metadata (raw values, confidence scores, processing info)
-        </Checkbox>
+      <Card size="small" title="Export Options">
+        <Space direction="vertical" style={{ width: '100%' }}>
+          <Checkbox checked={includeMetadata} onChange={(e) => setIncludeMetadata(e.target.checked)}>
+            Include AI metadata (confidence scores, processing time, token usage)
+          </Checkbox>
+          <Checkbox checked={includeDiscoveries} onChange={(e) => setIncludeDiscoveries(e.target.checked)}>
+            Include AI discoveries (additional attributes found)
+          </Checkbox>
+        </Space>
       </Card>
 
-      {/* Summary */}
-      <Alert
-        message="Export Summary"
-        description={
-          <div>
-            <Text>• {data.length} rows will be exported</Text><br/>
-            <Text>• {selectedColumns.length} attribute columns selected</Text><br/>
-            <Text>• {includeMetadata ? 'With' : 'Without'} metadata columns</Text>
-          </div>
-        }
-        type="info"
-        style={{ marginBottom: 16 }}
-      />
+      {exporting && (
+        <Progress
+          percent={progress}
+          status="active"
+          strokeColor={{ from: '#667eea', to: '#764ba2' }}
+        />
+      )}
 
-      {/* Action Buttons */}
-      <div style={{ textAlign: 'right' }}>
-        <Space>
-          <Button onClick={onClose}>
-            Cancel
-          </Button>
-          <Button
-            type="primary"
-            icon={<DownloadOutlined />}
-            onClick={handleExport}
-            disabled={selectedColumns.length === 0 || data.length === 0}
-          >
-            Export {exportFormat.toUpperCase()}
-          </Button>
+      <Card size="small" style={{ backgroundColor: '#f6f8fa' }}>
+        <Space direction="vertical" style={{ width: '100%' }}>
+          <Text strong>Export Summary:</Text>
+          <Text>• {extractedRows.length} images will be exported</Text>
+          <Text>• {selectedAttributes.length} attributes per image</Text>
+          <Text>• Format: {format.toUpperCase()}</Text>
+          {includeMetadata && <Text>• AI metadata included</Text>}
+          {includeDiscoveries && <Text>• Discovery data included</Text>}
         </Space>
+      </Card>
+
+      <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 8 }}>
+        <Button onClick={onClose}>Cancel</Button>
+        <Button
+          type="primary"
+          icon={<DownloadOutlined />}
+          loading={exporting}
+          onClick={handleExport}
+          disabled={selectedAttributes.length === 0}
+          className="btn-primary"
+        >
+          {exporting ? 'Exporting...' : `Export ${format.toUpperCase()}`}
+        </Button>
       </div>
-    </div>
+    </Space>
   );
 };
+
+export default memo(ExportManager);

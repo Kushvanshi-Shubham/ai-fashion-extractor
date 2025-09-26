@@ -180,8 +180,7 @@ export const MASTER_ATTRIBUTES: Record<string, AttributeDefinition> = {
   number_of_pocket: {
     key: 'number_of_pocket',
     label: 'NUMBER-OF POCKET',  // Original Excel column name
-    type: 'select',
-    allowedValues: ['Yes', 'No', 'None']
+    type: 'number',
   },
   fit: {
     key: 'fit',
@@ -322,8 +321,9 @@ export const MASTER_ATTRIBUTES: Record<string, AttributeDefinition> = {
   },
   size: {
     key: 'size',
-    label: 'SIZE',  // Original Excel column name
-    type: 'number',
+    label: 'SIZE', 
+    type: 'select', // Original Excel column name
+    allowedValues: ["S", "M", "L", "XL", "XXL", "XXXL", "4XL", "5XL", "6XL", "7XL", "8XL", "9XL", "10XL" ,"S-XXL", "S-3XL", "S-4XL", "S-5XL", "S-6XL", "M-XXL", "M-3XL", "M-4XL", "M-5XL", "M-6XL", "L-XXL", "L-3XL", "L-4XL", "L-5XL", "L-6XL", "XL-XXL", "XL-3XL", "XL-4XL", "XL-5XL", "XL-6XL"],
   },
 };
 
@@ -332,7 +332,10 @@ export const getAttributeDefinition = (key: string): AttributeDefinition | undef
   return MASTER_ATTRIBUTES[key];
 };
 
-// Get all attribute keys
-export const getAllAttributeKeys = (): string[] => {
-  return Object.keys(MASTER_ATTRIBUTES);
+export const getAttributesByType = (type: 'text' | 'select' | 'number' | 'boolean'): AttributeDefinition[] => {
+  return Object.values(MASTER_ATTRIBUTES).filter(attr => attr.type === type);
+};
+
+export const getRequiredAttributes = (): AttributeDefinition[] => {
+  return Object.values(MASTER_ATTRIBUTES).filter(attr => attr.required);
 };

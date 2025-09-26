@@ -1,19 +1,19 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { 
-  Input, 
-  Select, 
-  InputNumber, 
-  Badge, 
-  Button, 
-  Popover, 
-  Space, 
+import {
+  Input,
+  Select,
+  InputNumber,
+  Badge,
+  Button,
+  Popover,
+  Space,
   Tag,
   Typography
 } from 'antd';
-import { 
-  EditOutlined, 
-  CheckOutlined, 
-  CloseOutlined, 
+import {
+  EditOutlined,
+  CheckOutlined,
+  CloseOutlined,
   InfoCircleOutlined,
   RobotOutlined,
   PlusOutlined
@@ -27,7 +27,7 @@ interface AttributeCellProps {
   attribute?: AttributeDetail | null;
   schemaItem: SchemaItem;
   onChange: (value: string | number | null) => void;
-  onAddToSchema: (value: string) => void;
+  onAddToSchema?: (value: string) => void;
   disabled?: boolean;
 }
 
@@ -64,7 +64,7 @@ export const AttributeCell: React.FC<AttributeCellProps> = ({
 
   const handleAddNewValue = useCallback((newValue: string) => {
     if (newValue.trim()) {
-      onAddToSchema(newValue.trim());
+      onAddToSchema?.(newValue.trim());
       setEditValue(newValue.trim());
       onChange(newValue.trim());
       setIsEditing(false);
@@ -82,31 +82,14 @@ export const AttributeCell: React.FC<AttributeCellProps> = ({
     const value = attribute?.schemaValue;
     if (value === null || value === undefined || value === '') {
       return (
-        <Text 
-          type="secondary" 
-          italic 
-          style={{ 
-            fontSize: '12px',
-            display: 'block',
-            textAlign: 'center',
-            padding: '4px 0'
-          }}
-        >
+        <Text type="secondary" style={{ fontStyle: 'italic' }}>
           No value
         </Text>
       );
     }
+    
     return (
-      <Text 
-        style={{ 
-          fontSize: '13px', 
-          fontWeight: 500,
-          display: 'block',
-          wordBreak: 'break-word',
-          lineHeight: '1.4',
-          padding: '4px 0'
-        }}
-      >
+      <Text strong style={{ fontSize: 12 }}>
         {String(value)}
       </Text>
     );
@@ -119,20 +102,21 @@ export const AttributeCell: React.FC<AttributeCellProps> = ({
           <Select
             value={editValue as string}
             onChange={setEditValue}
-            style={{ width: '100%', minWidth: 150 }}
+            style={{ width: '100%', minWidth: 120 }}
             size="small"
-            placeholder="Select value"
             showSearch
+            allowClear
+            placeholder="Select value"
             filterOption={(input, option) =>
               (option?.children as unknown as string)?.toLowerCase().includes(input.toLowerCase())
             }
-            dropdownRender={menu => (
+            popupRender={menu => (
               <div>
                 {menu}
-                {schemaItem.allowedValues && (
+                {schemaItem.allowedValues && onAddToSchema && (
                   <div style={{ padding: 8, borderTop: '1px solid #f0f0f0' }}>
                     <Input
-                      placeholder="Add new value"
+                      placeholder="Add new value..."
                       onPressEnter={(e) => {
                         const target = e.target as HTMLInputElement;
                         handleAddNewValue(target.value);
@@ -153,7 +137,7 @@ export const AttributeCell: React.FC<AttributeCellProps> = ({
             ))}
           </Select>
         );
-
+        
       case 'number':
         return (
           <InputNumber
@@ -164,7 +148,7 @@ export const AttributeCell: React.FC<AttributeCellProps> = ({
             placeholder="Enter number"
           />
         );
-
+        
       case 'text':
       default:
         return (
@@ -180,85 +164,74 @@ export const AttributeCell: React.FC<AttributeCellProps> = ({
   };
 
   const reasoningContent = (
-    <div style={{ maxWidth: 300 }}>
-      <Space direction="vertical" size="small" style={{ width: '100%' }}>
-        <div>
-          <Text strong>AI Reasoning:</Text>
-          <Text style={{ display: 'block', marginTop: 4, fontSize: '12px' }}>
-            {attribute?.reasoning || 'No reasoning provided'}
-          </Text>
+    <div style={{ maxWidth: 250 }}>
+      <div style={{ marginBottom: 8 }}>
+        <Text strong style={{ fontSize: 12 }}>AI Reasoning:</Text>
+        <div style={{ fontSize: 11, marginTop: 4 }}>
+          {attribute?.reasoning || 'No reasoning provided'}
         </div>
-        
-        <div>
-          <Text strong>Raw Value:</Text>
-          <Text code style={{ display: 'block', marginTop: 4, fontSize: '12px' }}>
-            {attribute?.rawValue || 'null'}
-          </Text>
+      </div>
+      
+      <div style={{ marginBottom: 8 }}>
+        <Text strong style={{ fontSize: 12 }}>Raw Value:</Text>
+        <div style={{ fontSize: 11, marginTop: 4, fontFamily: 'monospace' }}>
+          {attribute?.rawValue || 'null'}
         </div>
-
-        <div>
-          <Space size="small">
-            <Tag color="blue" style={{ fontSize: '11px' }}>
-              Visual: {attribute?.visualConfidence || 0}%
-            </Tag>
-            <Tag color="green" style={{ fontSize: '11px' }}>
-              Mapping: {attribute?.mappingConfidence || 0}%
-            </Tag>
-          </Space>
-        </div>
-
-        {attribute?.isNewDiscovery && (
-          <Tag color="orange" icon={<PlusOutlined />} style={{ fontSize: '11px' }}>
-            New Discovery
-          </Tag>
-        )}
+      </div>
+      
+      <Space size="small">
+        <Tag color="blue" style={{ fontSize: 10 }}>
+          Visual: {attribute?.visualConfidence || 0}%
+        </Tag>
+        <Tag color="green" style={{ fontSize: 10 }}>
+          Mapping: {attribute?.mappingConfidence || 0}%
+        </Tag>
       </Space>
+      
+      {attribute?.isNewDiscovery && (
+        <Tag icon={<RobotOutlined />} color="purple" style={{ fontSize: '11px', marginTop: 8 }}>
+          New Discovery
+        </Tag>
+      )}
     </div>
   );
 
   if (isEditing) {
     return (
-      <div style={{ 
-        display: 'flex', 
-        alignItems: 'center', 
-        gap: 6, 
-        minHeight: 40,
-        padding: '6px'
-      }}>
-        <div style={{ flex: 1 }}>
-          {renderEditInput()}
-        </div>
+      <Space.Compact style={{ width: '100%' }}>
+        {renderEditInput()}
         <Button
           type="text"
-          size="small"
           icon={<CheckOutlined />}
+          size="small"
           onClick={handleSaveEdit}
           style={{ color: '#52c41a' }}
         />
         <Button
           type="text"
-          size="small"
           icon={<CloseOutlined />}
+          size="small"
           onClick={handleCancelEdit}
           style={{ color: '#f5222d' }}
         />
-      </div>
+      </Space.Compact>
     );
   }
 
   return (
-    <div 
-      style={{ 
-        display: 'flex', 
-        flexDirection: 'column',
+    <div
+      className="attribute-cell"
+      style={{
+        padding: 8,
         minHeight: 50,
-        padding: '8px 12px',
-        borderRadius: 6,
         backgroundColor: attribute?.schemaValue ? '#fafafa' : '#f8f9fa',
-        border: attribute?.schemaValue ? '1px solid #d9d9d9' : '1px solid #e8e8e8',
-        cursor: disabled ? 'not-allowed' : 'pointer',
+        border: '1px solid #e8e8e8',
+        borderRadius: 4,
+        cursor: disabled ? 'default' : 'pointer',
         position: 'relative',
-        transition: 'all 0.2s ease'
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between'
       }}
       onClick={handleStartEdit}
       onMouseEnter={(e) => {
@@ -271,85 +244,61 @@ export const AttributeCell: React.FC<AttributeCellProps> = ({
       }}
     >
       {/* Main Content */}
-      <div style={{ flex: 1, marginBottom: 4 }}>
+      <div style={{ flex: 1 }}>
         {renderDisplayValue()}
       </div>
 
       {/* Bottom Controls */}
-      <div style={{ 
-        display: 'flex', 
-        justifyContent: 'space-between', 
-        alignItems: 'center',
-        minHeight: 20
-      }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-          {/* AI Icon */}
-          {attribute?.rawValue && (
-            <RobotOutlined 
-              style={{ 
-                color: '#1890ff', 
-                fontSize: 12 
-              }} 
-            />
-          )}
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 4 }}>
+        {/* AI Icon */}
+        {attribute?.rawValue && (
+          <RobotOutlined style={{ fontSize: 10, color: '#667eea' }} />
+        )}
 
-          {/* Reasoning Button */}
-          {attribute?.reasoning && (
-            <Popover
-              content={reasoningContent}
-              title="Extraction Details"
-              trigger="click"
-              open={showReasoningPopover}
-              onOpenChange={setShowReasoningPopover}
-              placement="topLeft"
-            >
-              <Button
-                type="text"
-                size="small"
-                icon={<InfoCircleOutlined />}
-                style={{ 
-                  fontSize: 11,
-                  color: '#8c8c8c',
-                  minWidth: 16,
-                  height: 16,
-                  padding: 0
-                }}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setShowReasoningPopover(!showReasoningPopover);
-                }}
-              />
-            </Popover>
-          )}
-        </div>
-
-        <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-          {/* Confidence Badge */}
-          {attribute && attribute.visualConfidence > 0 && (
-            <Badge
-              count={`${attribute.visualConfidence}%`}
-              style={{ 
-                backgroundColor: getConfidenceColor(attribute.visualConfidence),
-                fontSize: 10,
-                height: 18,
-                lineHeight: '18px',
-                minWidth: 28,
-                borderRadius: 9
+        {/* Reasoning Button */}
+        {attribute?.reasoning && (
+          <Popover
+            content={reasoningContent}
+            title="AI Analysis"
+            trigger="click"
+            open={showReasoningPopover}
+            onOpenChange={setShowReasoningPopover}
+          >
+            <Button
+              type="text"
+              icon={<InfoCircleOutlined />}
+              style={{
+                fontSize: 11,
+                color: '#8c8c8c',
+                minWidth: 16,
+                height: 16,
+                padding: 0
+              }}
+              onClick={(e) => {
+                e.stopPropagation();
+                setShowReasoningPopover(!showReasoningPopover);
               }}
             />
-          )}
+          </Popover>
+        )}
 
-          {/* Edit Icon */}
-          {!disabled && (
-            <EditOutlined 
-              style={{ 
-                color: '#8c8c8c', 
-                fontSize: 12,
-                opacity: 0.6
-              }} 
-            />
-          )}
-        </div>
+        {/* Confidence Badge */}
+        {attribute && attribute.visualConfidence > 0 && (
+          <Badge
+            count={`${attribute.visualConfidence}%`}
+            style={{
+              backgroundColor: getConfidenceColor(attribute.visualConfidence),
+              fontSize: 9,
+              height: 14,
+              minWidth: 24
+            }}
+          />
+        )}
+
+        {/* Edit Icon */}
+        {!disabled && (
+          <EditOutlined style={{ fontSize: 10, color: '#8c8c8c' }} />
+        )}
       </div>
     </div>
   );

@@ -15,9 +15,9 @@ export class CategoryHelper {
   }
 
   static getCategories(department: string, subDepartment: string): CategoryConfig[] {
-    return CATEGORY_DEFINITIONS.filter(c => 
-      c.department === department && 
-      c.subDepartment === subDepartment && 
+    return CATEGORY_DEFINITIONS.filter(c =>
+      c.department === department &&
+      c.subDepartment === subDepartment &&
       c.isActive
     );
   }
@@ -33,7 +33,7 @@ export class CategoryHelper {
 
   static searchCategories(query: string): CategoryConfig[] {
     const lowercaseQuery = query.toLowerCase();
-    return CATEGORY_DEFINITIONS.filter(c => 
+    return CATEGORY_DEFINITIONS.filter(c =>
       c.isActive && (
         c.displayName.toLowerCase().includes(lowercaseQuery) ||
         c.category.toLowerCase().includes(lowercaseQuery) ||
@@ -44,7 +44,6 @@ export class CategoryHelper {
 
   static getCategoryStats(): CategoryStats {
     const activeCategories = CATEGORY_DEFINITIONS.filter(c => c.isActive);
-    
     return {
       total: activeCategories.length,
       departments: this.getDepartments().length,
@@ -57,12 +56,10 @@ export class CategoryHelper {
 
   static validateCategory(categoryConfig: CategoryConfig): string[] {
     const errors: string[] = [];
-    
     if (!categoryConfig.department) errors.push('Department is required');
     if (!categoryConfig.subDepartment) errors.push('Sub-department is required');
     if (!categoryConfig.category) errors.push('Category code is required');
     if (!categoryConfig.displayName) errors.push('Display name is required');
-    
     return errors;
   }
 }

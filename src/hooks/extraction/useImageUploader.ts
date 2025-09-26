@@ -9,7 +9,7 @@ export const useImageUploader = () => {
     progress,
     addImages,
     extractAllPending,
-    extractSingleImage, // ✅ ADD THIS LINE
+    extractImageAttributes, // ✅ ADD THIS LINE
     removeRow,
     clearAll,
     updateRowAttribute,
@@ -61,9 +61,9 @@ export const useImageUploader = () => {
   const handleReExtract = useCallback((rowId: string, schema: SchemaItem[]) => {
     const row = extractedRows.find(r => r.id === rowId);
     if (row && schema.length > 0) {
-      extractSingleImage(row, schema);
+      extractImageAttributes(row, schema);
     }
-  }, [extractedRows, extractSingleImage]); // ✅ This is fine since extractSingleImage comes from useImageExtraction
+  }, [extractedRows, extractImageAttributes]); // ✅ This is fine since extractImageAttributes comes from useImageExtraction
 
   const handleAddToSchema = useCallback((attributeKey: string, value: string) => {
     // Add to schema logic - for future enhancement
@@ -71,10 +71,10 @@ export const useImageUploader = () => {
   }, []);
 
   // ✅ Fix: Use proper type instead of any
-  const handleBulkEdit = useCallback((selectedKeys: string[], updates: Record<string, string | number | null>) => {
+  const handleBulkEdit = useCallback((selectedKeys: string[], updates: Record<string, unknown>) => {
     selectedKeys.forEach(rowId => {
       Object.entries(updates).forEach(([key, value]) => {
-        updateRowAttribute(rowId, key, value);
+        updateRowAttribute(rowId, key, value as string | number | null);
       });
     });
   }, [updateRowAttribute]);

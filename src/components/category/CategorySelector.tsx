@@ -2,8 +2,8 @@ import React from 'react';
 import { Select, Card, Typography, Tag, Button } from 'antd';
 import { ReloadOutlined, InfoCircleOutlined } from '@ant-design/icons';
 import type { CategoryConfig } from '../../types/category/CategoryTypes';
-import { SchemaGenerator } from '../../utils/category/schemaGenerator'; 
 import { useCategorySelector } from '../../hooks/category/useCategorySelector';
+import { SchemaGenerator } from '../../utils/extraction/schemaGenerator';
 
 const { Title, Text } = Typography;
 const { Option } = Select;
@@ -30,118 +30,143 @@ export const CategorySelector: React.FC<CategorySelectorProps> = ({
     isComplete
   } = useCategorySelector();
 
-  // ✅ Handle category change
-  const handleCategoryChange = (categoryCode: string): void => {
+  // ✅ Handle category selection properly with null check
+  const handleCategorySelectInternal = (categoryCode: string) => {
     const category = availableCategories.find(c => c.category === categoryCode);
     if (category) {
       onCategorySelect(category);
     }
   };
 
-  // ✅ Handle reset with proper callback
-  const handleResetSelection = (): void => {
-    resetSelection();
-    onCategorySelect(null); // ✅ FIX: Notify parent component
+  const generateSchemaPreview = (category: CategoryConfig) => {
+    const schema = SchemaGenerator.generateSchemaForCategory(category);
+    return schema.length;
   };
 
-  const selectedCategoryStats = selectedCategory 
-    ? SchemaGenerator.getSchemaStats(SchemaGenerator.generateSchemaForCategory(selectedCategory))
-    : null;
-
-  // ✅ Show selected category info (when category is selected)
-  if (selectedCategory) {
+  if (isComplete && selectedCategory) {
     return (
-      <Card className="category-selector-selected">
+      <Card className="category-summary" style={{ borderRadius: 12 }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div>
-            <Title level={4} style={{ margin: 0 }}>
+            <Title level={4} style={{ margin: 0, color: '#667eea' }}>
               {selectedCategory.displayName}
             </Title>
             <Text type="secondary">
-              {selectedCategory.department} → {selectedCategory.category || selectedCategory.subDepartment} → {selectedCategory.category}
+              {selectedCategory.department} → {selectedCategory.subDepartment}
             </Text>
             <div style={{ marginTop: 8 }}>
-              <Tag color="blue">
-                <InfoCircleOutlined /> {selectedCategoryStats?.total || 0} attributes
+              <Tag color="blue" className="selection-badge">
+                {generateSchemaPreview(selectedCategory)} Attributes Ready
               </Tag>
-              <Tag color="green">{selectedCategoryStats?.required || 0} required</Tag>
-              <Tag color="orange">{selectedCategoryStats?.optional || 0} optional</Tag>
             </div>
           </div>
-          <Button icon={<ReloadOutlined />} onClick={handleResetSelection}>
+          <Button 
+            icon={<ReloadOutlined />} 
+            onClick={() => {
+              resetSelection();
+              onCategorySelect(null);
+            }}
+            className="btn-secondary"
+          >
             Change Category
           </Button>
         </div>
-        {selectedCategory.description && (
-          <Text type="secondary" style={{ display: 'block', marginTop: 8 }}>
-            {selectedCategory.description}
-          </Text>
-        )}
       </Card>
     );
   }
 
-  // ✅ Show category selection interface (when no category is selected)
   return (
-    <Card title="Select Clothing Category" className="category-selector">
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 2fr', gap: 16 }}>
+    <Card 
+      title={
+        <span style={{ color: '#667eea', fontWeight: 600 }}>
+          <InfoCircleOutlined style={{ marginRight: 8 }} />
+          Select Fashion Category
+        </span>
+      } 
+      className="category-selector"
+      style={{ borderRadius: 12 }}
+    >
+      <div style={{ display: 'grid', gap: 16 }}>
+        {/* Department Selection */}
         <div>
-          <Text strong>Department</Text>
-          Select<Select
-            placeholder="Select Department"
-            style={{ width: '100%', marginTop: 8 }}
+          <Text strong style={{ display: 'block', marginBottom: 8 }}>
+            1. Choose Department
+          </Text>
+          <Select
+            placeholder="Select department (Kids, Ladies, Mens)"
             value={selectedDepartment}
             onChange={handleDepartmentChange}
+            style={{ width: '100%' }}
+            size="large"
+            allowClear
           >
             {departments.map(dept => (
-              <Option key={dept} value={dept}>{dept}</Option>
-            ))}
-          </Select>
-        </div>
-
-        <div>
-          <Text strong>Sub-Department</Text>
-          <Select
-            placeholder="Select Sub-Department"
-            style={{ width: '100%', marginTop: 8 }}
-            value={selectedSubDepartment}
-            onChange={handleSubDepartmentChange}
-            disabled={!selectedDepartment}
-          >
-            {subDepartments.map(subDept => (
-              <Option key={subDept} value={subDept}>{subDept}</Option>
-            ))}
-          </Select>
-        </div>
-
-        <div>
-          <Text strong>Category</Text>
-          <Select
-            placeholder="Select Category"
-            style={{ width: '100%', marginTop: 8 }}
-            onChange={handleCategoryChange}
-            disabled={!selectedSubDepartment}
-            showSearch
-            filterOption={(input, option) =>
-              (option?.children as unknown as string)?.toLowerCase().includes(input.toLowerCase()) ?? false
-            }
-          >
-            {availableCategories.map(category => (
-              <Option key={category.category} value={category.category}>
-                {category.displayName}
+              <Option key={dept} value={dept}>
+                {dept}
               </Option>
             ))}
           </Select>
         </div>
-      </div>
 
-      {availableCategories.length > 0 && !isComplete && (
-        <div style={{ marginTop: 16, textAlign: 'center' }}>
-          <Text type="secondary">
-            Choose from {availableCategories.length} available categories
-          </Text>
-        </div>
-      )}
+        {/* Sub-Department Selection */}
+        {selectedDepartment && (
+          <div>
+            <Text strong style={{ display: 'block', marginBottom: 8 }}>
+              2. Choose Sub-Department
+            </Text>
+            <Select
+              placeholder="Select sub-department"
+              value={selectedSubDepartment}
+              onChange={handleSubDepartmentChange}
+              style={{ width: '100%' }}
+              size="large"
+              allowClear
+            >
+              {subDepartments.map(subDept => (
+                <Option key={subDept} value={subDept}>
+                  {subDept}
+                </Option>
+              ))}
+            </Select>
+          </div>
+        )}
+
+        {/* Category Selection */}
+        {selectedDepartment && selectedSubDepartment && (
+          <div>
+            <Text strong style={{ display: 'block', marginBottom: 8 }}>
+              3. Choose Specific Category
+            </Text>
+            <Select
+              placeholder="Select category"
+              onChange={handleCategorySelectInternal}
+              style={{ width: '100%' }}
+              size="large"
+              showSearch
+              filterOption={(input, option) =>
+                option?.children?.toString().toLowerCase().includes(input.toLowerCase()) ?? false
+              }
+            >
+              {availableCategories.map(category => (
+                <Option key={category.category} value={category.category}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <span>{category.displayName}</span>
+                    <Tag  color="geekblue">
+                      {generateSchemaPreview(category)} attrs
+                    </Tag>
+                  </div>
+                </Option>
+              ))}
+            </Select>
+          </div>
+        )}
+
+        {availableCategories.length === 0 && selectedDepartment && selectedSubDepartment && (
+          <div style={{ textAlign: 'center', padding: 20 }}>
+            <Text type="secondary">No categories available for this selection</Text>
+          </div>
+        )}
+      </div>
     </Card>
   );
 };

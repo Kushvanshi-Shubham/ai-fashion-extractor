@@ -1,27 +1,28 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useMemo } from 'react';
 import { Table, Image, Tag, Button, Tooltip, Space, Dropdown } from 'antd';
-import { DeleteOutlined, ReloadOutlined, EyeOutlined, MoreOutlined } from '@ant-design/icons';
+import { ReloadOutlined, EyeOutlined, MoreOutlined } from '@ant-design/icons';
 import type { ColumnsType } from 'antd/es/table';
 import type { ExtractedRow, SchemaItem } from '../../types/extraction/ExtractionTypes';
 import { StatusBadge } from '../ui/StatusBadge';
-import { formatFileSize, formatDuration } from '../../utils/common/helpers';
 import { AttributeCell } from './AttributeCell';
+import { formatDuration, formatFileSize } from '../../utils/common/helpers';
 
 interface AttributeTableProps {
-  rows: ExtractedRow[];           // 📸 Your uploaded images with data
-  schema: SchemaItem[];           // 📋 List of attributes for current category  
-  selectedRowKeys: React.Key[];  // ✅ Which rows are selected (checkboxes)
-  onSelectionChange: (selectedRowKeys: React.Key[]) => void;    // When user selects rows
+  extractedRows: ExtractedRow[]; // 📸 Your uploaded images with data
+  schema: SchemaItem[]; // 📋 List of attributes for current category
+  selectedRowKeys: React.Key[]; // ✅ Which rows are selected (checkboxes)
+  onSelectionChange: (selectedRowKeys: React.Key[]) => void; // When user selects rows
   onAttributeChange: (rowId: string, attributeKey: string, value: string | number | null) => void; // When user edits attribute
-  onDeleteRow: (rowId: string) => void;        // When user deletes a row
+  onDeleteRow: (rowId: string) => void; // When user deletes a row
   onImageClick: (imageUrl: string, imageName?: string) => void; // When user clicks image to view
-  onReExtract: (rowId: string) => void;        // When user wants to re-run AI extraction
-  onAddToSchema: (attributeKey: string, value: string) => void; // When user adds new value to schema
-  onUpload: (file: File, fileList: File[]) => Promise<boolean>; // File upload handler
+  onReExtract: (rowId: string) => void; // When user wants to re-run AI extraction
+  onAddToSchema?: (attributeKey: string, value: string) => void; // When user adds new value to schema
+  isExtracting?: boolean; // Whether AI is currently working
 }
 
 export const AttributeTable: React.FC<AttributeTableProps> = ({
-  rows,
+  extractedRows,
   schema,
   selectedRowKeys,
   onSelectionChange,
@@ -29,15 +30,13 @@ export const AttributeTable: React.FC<AttributeTableProps> = ({
   onDeleteRow,
   onImageClick,
   onReExtract,
-  onAddToSchema
+  onAddToSchema,
+  isExtracting = false
 }) => {
-
   // 🏗️ BUILD TABLE COLUMNS DYNAMICALLY
   const columns: ColumnsType<ExtractedRow> = useMemo(() => {
-    
     // 1️⃣ FIXED COLUMNS (always show these)
     const baseColumns: ColumnsType<ExtractedRow> = [
-      
       // 📸 IMAGE COLUMN
       {
         title: 'Image',
@@ -52,19 +51,19 @@ export const AttributeTable: React.FC<AttributeTableProps> = ({
               alt={record.originalFileName}
               width={60}
               height={60}
-              style={{ objectFit: 'cover', borderRadius: 4, cursor: 'pointer' }}
+              style={{ objectFit: 'cover', borderRadius: 6, cursor: 'pointer' }}
               onClick={() => onImageClick(record.imagePreviewUrl, record.originalFileName)}
               preview={false}
             />
             {/* Show file size below image */}
-            <div style={{ fontSize: 11, color: '#666', marginTop: 2 }}>
+            <div style={{ fontSize: 10, color: '#666', marginTop: 4 }}>
               {formatFileSize(record.file.size)}
             </div>
           </div>
-        )
+        ),
       },
       
-      // 🔄 STATUS COLUMN  
+      // 🔄 STATUS COLUMN
       {
         title: 'Status',
         key: 'status',
@@ -77,7 +76,7 @@ export const AttributeTable: React.FC<AttributeTableProps> = ({
             
             {/* Show how long extraction took */}
             {record.extractionTime && (
-              <div style={{ fontSize: 11, color: '#666', marginTop: 2 }}>
+              <div style={{ fontSize: 10, color: '#666', marginTop: 4 }}>
                 {formatDuration(record.extractionTime)}
               </div>
             )}
@@ -85,14 +84,14 @@ export const AttributeTable: React.FC<AttributeTableProps> = ({
             {/* Show error message if extraction failed */}
             {record.error && (
               <Tooltip title={record.error}>
-                <div style={{ fontSize: 11, color: '#ff4d4f', marginTop: 2 }}>
+                <div style={{ fontSize: 10, color: '#f5222d', marginTop: 4, cursor: 'pointer' }}>
                   Click to see error
                 </div>
               </Tooltip>
             )}
           </div>
-        )
-      }
+        ),
+      },
     ];
 
     // 2️⃣ DYNAMIC ATTRIBUTE COLUMNS (changes based on category)
@@ -101,9 +100,9 @@ export const AttributeTable: React.FC<AttributeTableProps> = ({
       title: (
         <div>
           {/* Column header shows attribute name */}
-          <div style={{ fontWeight: 'bold' }}>{schemaItem.label}</div>
+          <div>{schemaItem.label}</div>
           {/* Show "Required" tag if mandatory */}
-          {schemaItem.required && <Tag color="red">Required</Tag>}
+          {schemaItem.required && <Tag  color="red">Required</Tag>}
         </div>
       ),
       key: schemaItem.key,
@@ -111,11 +110,11 @@ export const AttributeTable: React.FC<AttributeTableProps> = ({
       render: (_, record) => (
         // 🎯 This is where AttributeCell component shows the actual value
         <AttributeCell
-          attribute={record.attributes[schemaItem.key]}      // Current value
-          schemaItem={schemaItem}                            // Schema definition
+          attribute={record.attributes[schemaItem.key]} // Current value
+          schemaItem={schemaItem} // Schema definition
           onChange={(value) => onAttributeChange(record.id, schemaItem.key, value)} // Save changes
-          onAddToSchema={(value) => onAddToSchema(schemaItem.key, value)}          // Add new values
-          disabled={record.status === 'Extracting'}         // Disable if AI is working
+          onAddToSchema={(value) => onAddToSchema?.(schemaItem.key, value)} // Add new values
+          disabled={record.status === 'Extracting'} // Disable if AI is working
         />
       )
     }));
@@ -128,48 +127,41 @@ export const AttributeTable: React.FC<AttributeTableProps> = ({
         width: 120,
         fixed: 'right', // Always visible on right
         render: (_, record) => (
-          <Space size="small">
+          <Space direction="vertical" size="small">
             {/* 👁️ View Image Button */}
-            <Tooltip title="View Image">
-              <Button
-                type="text"
-                size="small"
-                icon={<EyeOutlined />}
-                onClick={() => onImageClick(record.imagePreviewUrl, record.originalFileName)}
-              />
-            </Tooltip>
+            <Button
+              type="text"
+              icon={<EyeOutlined />}
+              size="small"
+              onClick={() => onImageClick(record.imagePreviewUrl, record.originalFileName)}
+            />
             
             {/* 🔄 Re-extract Button */}
-            <Tooltip title="Re-extract">
-              <Button
-                type="text"
-                size="small"
-                icon={<ReloadOutlined />}
-                onClick={() => onReExtract(record.id)}
-                disabled={record.status === 'Extracting'}
-              />
-            </Tooltip>
-
+            <Button
+              type="text"
+              icon={<ReloadOutlined />}
+              size="small"
+              onClick={() => onReExtract(record.id)}
+              disabled={record.status === 'Extracting'}
+            />
+            
             {/* 🗑️ Delete Button (in dropdown menu) */}
             <Dropdown
               menu={{
-                items: [
-                  {
-                    key: 'delete',
-                    icon: <DeleteOutlined />,
-                    label: 'Delete Row',
-                    danger: true,
-                    onClick: () => onDeleteRow(record.id)
-                  }
-                ]
+                items: [{
+                  key: 'delete',
+                  label: 'Delete Row',
+                  danger: true,
+                  onClick: () => onDeleteRow(record.id)
+                }]
               }}
               trigger={['click']}
             >
-              <Button type="text" size="small" icon={<MoreOutlined />} />
+              <Button type="text" icon={<MoreOutlined />} size="small" />
             </Dropdown>
           </Space>
-        )
-      }
+        ),
+      },
     ];
 
     // 🔗 COMBINE ALL COLUMNS: Fixed Left + Dynamic Attributes + Fixed Right
@@ -188,67 +180,70 @@ export const AttributeTable: React.FC<AttributeTableProps> = ({
 
   // 🎨 RENDER THE TABLE
   return (
-    <div className="attribute-table responsive-attribute-table">
-      <Table<ExtractedRow>
-        columns={columns}                    // All our column definitions
-        dataSource={rows}                    // The actual data (your images)
-        rowKey="id"                          // Unique identifier for each row
-        rowSelection={rowSelection}          // Checkbox functionality  
+    <Table<ExtractedRow>
+      columns={columns} // All our column definitions
+      dataSource={extractedRows} // The actual data (your images)
+      rowKey="id" // Unique identifier for each row
+      rowSelection={rowSelection} // Checkbox functionality
+      
+      // 📱 RESPONSIVE SCROLLING
+      scroll={{
+        x: 'max-content', // Horizontal scroll for many columns
+        y: 'calc(100vh - 400px)' // Vertical scroll, responsive height
+      }}
+      
+      // 📄 PAGINATION
+      pagination={{
+        pageSize: 50, // Show 50 rows per page
+        showSizeChanger: true, // Let user change page size
+        showQuickJumper: true, // Jump to specific page
+        showTotal: (total, range) => // Show "1-50 of 200 items"
+          `${range[0]}-${range[1]} of ${total} items`,
+      }}
+      
+      size="small" // Compact table for more data
+      bordered // Show borders around cells
+      
+      // 🎨 ROW STYLING based on status
+      rowClassName={(record) => {
+        if (record.status === 'Error') return 'table-row-error';
+        if (record.status === 'Done') return 'table-row-success';
+        if (record.status === 'Extracting') return 'table-row-processing';
+        return '';
+      }}
+      
+      // 📊 SUMMARY ROW at bottom showing stats
+      summary={(pageData) => {
+        const stats = {
+          total: pageData.length,
+          done: pageData.filter(row => row.status === 'Done').length,
+          error: pageData.filter(row => row.status === 'Error').length,
+          pending: pageData.filter(row => row.status === 'Pending').length,
+        };
         
-        // 📱 RESPONSIVE SCROLLING
-        scroll={{ 
-          x: 'max-content',                  // Horizontal scroll for many columns
-          y: 'calc(100vh - 400px)'          // Vertical scroll, responsive height
-        }}
-        
-        // 📄 PAGINATION
-        pagination={{
-          pageSize: 50,                      // Show 50 rows per page
-          showSizeChanger: true,             // Let user change page size
-          showQuickJumper: true,             // Jump to specific page
-          showTotal: (total, range) =>       // Show "1-50 of 200 items"
-            `${range[0]}-${range[1]} of ${total} items`,
-        }}
-        
-        size="small"                         // Compact table for more data
-        bordered                             // Show borders around cells
-        
-        // 🎨 ROW STYLING based on status
-        rowClassName={(record) => {
-          if (record.status === 'Error') return 'table-row-error';
-          if (record.status === 'Done') return 'table-row-success';
-          if (record.status === 'Extracting') return 'table-row-processing';
-          return '';
-        }}
-        
-        // 📊 SUMMARY ROW at bottom showing stats
-        summary={(pageData) => {
-          const stats = {
-            total: pageData.length,
-            done: pageData.filter(row => row.status === 'Done').length,
-            error: pageData.filter(row => row.status === 'Error').length,
-            pending: pageData.filter(row => row.status === 'Pending').length,
-          };
-          
-          return (
-            <Table.Summary fixed>
-              <Table.Summary.Row>
-                <Table.Summary.Cell index={0} colSpan={2}>
-                  <strong>Summary:</strong>
-                </Table.Summary.Cell>
-                <Table.Summary.Cell index={2} colSpan={schema.length + 1}>
-                  <Space>
-                    <Tag color="green">Done: {stats.done}</Tag>
-                    <Tag color="red">Error: {stats.error}</Tag>
-                    <Tag color="blue">Pending: {stats.pending}</Tag>
-                    <Tag>Total: {stats.total}</Tag>
-                  </Space>
-                </Table.Summary.Cell>
-              </Table.Summary.Row>
-            </Table.Summary>
-          );
-        }}
-      />
-    </div>
+        return (
+          <Table.Summary fixed>
+            <Table.Summary.Row>
+              <Table.Summary.Cell index={0} colSpan={2}>
+                <strong>Summary:</strong>
+              </Table.Summary.Cell>
+              <Table.Summary.Cell index={1}>
+                <Tag color="success">Done: {stats.done}</Tag>
+              </Table.Summary.Cell>
+              <Table.Summary.Cell index={2}>
+                <Tag color="error">Error: {stats.error}</Tag>
+              </Table.Summary.Cell>
+              <Table.Summary.Cell index={3}>
+                <Tag color="processing">Pending: {stats.pending}</Tag>
+              </Table.Summary.Cell>
+              <Table.Summary.Cell index={4}>
+                <Tag>Total: {stats.total}</Tag>
+              </Table.Summary.Cell>
+              
+            </Table.Summary.Row>
+          </Table.Summary>
+        );
+      }}
+    />
   );
 };

@@ -1,4 +1,5 @@
 /* ===== MAIN APP STYLES ===== */
+
 .app-header {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -26,6 +27,7 @@
 }
 
 /* ===== BUTTONS ===== */
+
 .btn-primary {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   border: none;
@@ -74,6 +76,7 @@
 }
 
 /* ===== CARDS ===== */
+
 .selection-card {
   background: rgba(255, 255, 255, 0.95);
   border: none;
@@ -92,6 +95,7 @@
 }
 
 /* ===== STATS DASHBOARD ===== */
+
 .stats-dashboard {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -133,6 +137,7 @@
 }
 
 /* ===== EXTRACTION INTERFACE ===== */
+
 .extraction-interface {
   background: rgba(255, 255, 255, 0.95);
   border-radius: 16px;
@@ -144,7 +149,7 @@
 .extraction-header {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   padding: 24px;
-  color: white;
+  color: rgb(139, 50, 50);
 }
 
 .extraction-body {
@@ -159,6 +164,7 @@
 }
 
 /* ===== ATTRIBUTE TABLE ===== */
+
 .ant-table {
   border-radius: 12px;
   overflow: hidden;
@@ -196,6 +202,7 @@
 }
 
 /* ===== UPLOAD AREA ===== */
+
 .upload-area {
   padding: 32px;
   text-align: center;
@@ -219,6 +226,7 @@
 }
 
 /* ===== ATTRIBUTE CELLS ===== */
+
 .attribute-cell {
   min-height: 50px;
   border-radius: 8px;
@@ -236,6 +244,7 @@
 }
 
 /* ===== ANIMATIONS ===== */
+
 .animate-fade-in {
   animation: fadeIn 0.5s ease-out;
 }
@@ -267,6 +276,7 @@
 }
 
 /* ===== PROGRESS INDICATORS ===== */
+
 .ant-progress-bg {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
 }
@@ -281,6 +291,7 @@
 }
 
 /* ===== RESPONSIVE DESIGN ===== */
+
 @media (max-width: 1200px) {
   .stats-dashboard {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -322,6 +333,7 @@
 }
 
 /* ===== CUSTOM SCROLLBAR ===== */
+
 .ant-table-body::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -342,6 +354,7 @@
 }
 
 /* ===== MODAL ENHANCEMENTS ===== */
+
 .ant-modal-content {
   border-radius: 12px;
   overflow: hidden;
@@ -363,6 +376,7 @@
 }
 
 /* ===== FORM ENHANCEMENTS ===== */
+
 .ant-input,
 .ant-select-selector,
 .ant-input-number {
@@ -379,6 +393,7 @@
 }
 
 /* ===== TAG ENHANCEMENTS ===== */
+
 .ant-tag {
   border-radius: 12px;
   font-weight: 500;

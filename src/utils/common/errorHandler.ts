@@ -1,100 +1,113 @@
-import React from 'react'; // ✅ ADD: React import for JSX
-import { message } from 'antd';
+import React from 'react';
 import { logger } from './logger';
 
-export class AppError extends Error {
-  public code?: string;
-  public statusCode?: number;
-  public isUserFacing: boolean;
+// Error classification system - using const assertions
+export const ErrorType = {
+  NETWORK: 'NETWORK',
+  VALIDATION: 'VALIDATION',
+  AUTHENTICATION: 'AUTHENTICATION',
+  AUTHORIZATION: 'AUTHORIZATION',
+  NOT_FOUND: 'NOT_FOUND',
+  SERVER_ERROR: 'SERVER_ERROR',
+  CLIENT_ERROR: 'CLIENT_ERROR',
+  UNKNOWN: 'UNKNOWN'
+} as const;
 
-  constructor(
-    message: string,
-    code?: string,
-    statusCode?: number,
-    isUserFacing = true
-  ) {
-    super(message);
-    this.name = 'AppError';
-    this.code = code;
-    this.statusCode = statusCode;
-    this.isUserFacing = isUserFacing;
-  }
+export type ErrorTypeValues = typeof ErrorType[keyof typeof ErrorType];
+
+// Structured error interface
+export interface AppError {
+  type: ErrorTypeValues;
+  message: string;
+  userMessage: string;
+  code?: string | number;
+  context?: Record<string, unknown>;
+  originalError?: Error;
+  timestamp: Date;
 }
 
-export class APIError extends AppError {
-  constructor(message: string, statusCode: number, code?: string) {
-    super(message, code, statusCode, true);
-    this.name = 'APIError';
-  }
+// Type guard for AppError
+function isAppError(error: unknown): error is AppError {
+  return (
+    typeof error === 'object' &&
+    error !== null &&
+    'type' in error &&
+    'message' in error &&
+    'userMessage' in error &&
+    'timestamp' in error
+  );
 }
 
-export class ValidationError extends AppError {
-  public field?: string;
+// Classify errors into known types for user-friendly messages
+export const classifyError = (error: unknown, context?: string): AppError => {
+  const timestamp = new Date();
 
-  constructor(message: string, field?: string) {
-    super(message, 'VALIDATION_ERROR', 400, true);
-    this.name = 'ValidationError';
-    this.field = field;
+  if (isAppError(error)) {
+    return error;
   }
-}
 
-export const handleError = (error: Error, context?: string): void => {
-  logger.error(`Error in ${context || 'application'}`, error);
+  if (error instanceof Error) {
+    let type: ErrorTypeValues = ErrorType.UNKNOWN;
+    let userMessage = 'An unexpected error occurred. Please try again.';
 
-  if (error instanceof AppError && error.isUserFacing) {
-    message.error(error.message);
-  } else if (error instanceof APIError) {
-    const statusCode = error.statusCode ?? 500; // ✅ FIX: Handle undefined statusCode
-    
-    if (statusCode === 401) {
-      message.error('Authentication failed. Please check your API key.');
-    } else if (statusCode === 429) {
-      message.error('Rate limit exceeded. Please wait and try again.');
-    } else if (statusCode >= 500) {
-      message.error('Server error. Please try again later.');
-    } else {
-      message.error(error.message);
+    const messageLower = error.message.toLowerCase();
+
+    if (messageLower.includes('failed to fetch') || messageLower.includes('network request failed')) {
+      type = ErrorType.NETWORK;
+      userMessage = 'Network connection error. Please check your internet connection and try again.';
+    } else if (messageLower.includes('validation') || messageLower.includes('invalid')) {
+      type = ErrorType.VALIDATION;
+      userMessage = 'Please check your input and try again.';
+    } else if (messageLower.includes('unauthorized') || messageLower.includes('authentication')) {
+      type = ErrorType.AUTHENTICATION;
+      userMessage = 'Please log in and try again.';
+    } else if (messageLower.includes('forbidden') || messageLower.includes('permission')) {
+      type = ErrorType.AUTHORIZATION;
+      userMessage = 'You do not have permission to perform this action.';
+    } else if (messageLower.includes('not found') || messageLower.includes('404')) {
+      type = ErrorType.NOT_FOUND;
+      userMessage = 'The requested resource was not found.';
     }
-  } else {
-    // Unknown errors
-    message.error('An unexpected error occurred. Please try again.');
+
+    return {
+      type,
+      message: error.message,
+      userMessage,
+      context: context ? { context } : undefined,
+      originalError: error,
+      timestamp,
+    };
   }
+
+  // Non-Error objects
+  return {
+    type: ErrorType.UNKNOWN,
+    message: String(error),
+    userMessage: 'An unexpected error occurred. Please try again.',
+    context: context ? { context } : undefined,
+    timestamp,
+  };
 };
 
-// ✅ FIX: Simplified type-safe async wrapper (Vite compatible)
-export function wrapAsyncFunction<T extends unknown[], R>(
-  fn: (...args: T) => Promise<R>,
-  context?: string
-): (...args: T) => Promise<R> {
-  return async (...args: T): Promise<R> => {
-    try {
-      return await fn(...args);
-    } catch (error) {
-      handleError(error instanceof Error ? error : new Error(String(error)), context);
-      throw error;
-    }
-  };
-}
+// Main error handler - logs and returns AppError
+export const handleError = (error: unknown, context?: string): AppError => {
+  const appError = classifyError(error, context);
 
-// ✅ FIX: Simplified sync wrapper
-export function wrapSyncFunction<T extends unknown[], R>(
-  fn: (...args: T) => R,
-  context?: string
-): (...args: T) => R {
-  return (...args: T): R => {
-    try {
-      return fn(...args);
-    } catch (error) {
-      handleError(error instanceof Error ? error : new Error(String(error)), context);
-      throw error;
-    }
-  };
-}
+  logger.error(`Error in ${context || 'application'}`, {
+    type: appError.type,
+    message: appError.message,
+    code: appError.code,
+    context: appError.context,
+    stack: appError.originalError?.stack,
+  });
 
-// ✅ FIX: Simplified React component wrapper (Vite compatible)
-export function withErrorBoundary<P extends Record<string, unknown>>(
+  return appError;
+};
+
+// React HOC for error boundary wrapping of components (sync only)
+export const withErrorBoundary = <P extends object>(
   Component: React.ComponentType<P>
-): React.ComponentType<P> {
+): React.ComponentType<P> => {
   const WrappedComponent = (props: P): React.ReactElement => {
     try {
       return React.createElement(Component, props);
@@ -103,154 +116,121 @@ export function withErrorBoundary<P extends Record<string, unknown>>(
       return React.createElement('div', {}, 'Something went wrong. Please try again.');
     }
   };
-  
+
   WrappedComponent.displayName = `withErrorBoundary(${Component.displayName || Component.name})`;
   return WrappedComponent;
-}
+};
 
-// ✅ FIX: Type-safe API response handler
-export function handleApiResponse<TData>(
-  response: Response,
-  data: unknown
-): TData {
-  if (!response.ok) {
-    throw new APIError(
-      `API request failed: ${response.statusText}`,
-      response.status,
-      `HTTP_${response.status}`
-    );
-  }
-
-  if (!data) {
-    throw new APIError('No data received from API', response.status);
-  }
-
-  return data as TData;
-}
-
-// ✅ FIX: Type-safe validation helper
-export function validateRequired<T>(
-  value: T | null | undefined,
-  fieldName: string
+// Type-safe API response handler
+export function handleApiResponse<T>(
+  response: { success: boolean; data?: T; error?: string }
 ): T {
-  if (value === null || value === undefined) {
-    throw new ValidationError(`${fieldName} is required`, fieldName);
+  if (!response.success || !response.data) {
+    throw new Error(response.error || 'API request failed');
   }
-  return value;
+  return response.data;
 }
 
-// ✅ FIX: Type-safe array validation
-export function validateArray<T>(
-  value: unknown,
-  fieldName: string,
-  itemValidator?: (item: unknown) => T
-): T[] {
-  if (!Array.isArray(value)) {
-    throw new ValidationError(`${fieldName} must be an array`, fieldName);
-  }
+// Recovery strategies to wrap retry, fallback, and timeout
+export const recoveryStrategies = {
+  retry: async <T>(
+    operation: () => Promise<T>,
+    maxAttempts = 3,
+    delay = 1000
+  ): Promise<T> => {
+    let lastError: AppError | undefined;
 
-  if (itemValidator) {
-    return value.map((item, index) => {
+    for (let attempt = 1; attempt <= maxAttempts; attempt++) {
       try {
-        return itemValidator(item);
+        return await operation();
       } catch (error) {
-        throw new ValidationError(
-          `${fieldName}[${index}]: ${error instanceof Error ? error.message : String(error)}`,
-          `${fieldName}[${index}]`
-        );
-      }
-    });
-  }
+        lastError = handleError(error, 'retry-operation');
 
-  return value as T[];
-}
-
-// ✅ FIX: Type-safe object validation
-export function validateObject<T extends Record<string, unknown>>(
-  value: unknown,
-  fieldName: string,
-  schema: Record<string, (value: unknown) => unknown>
-): T {
-  if (typeof value !== 'object' || value === null) {
-    throw new ValidationError(`${fieldName} must be an object`, fieldName);
-  }
-
-  const obj = value as Record<string, unknown>;
-  const result = {} as T;
-
-  for (const [key, validator] of Object.entries(schema)) {
-    try {
-      (result as Record<string, unknown>)[key] = validator(obj[key]);
-    } catch (error) {
-      throw new ValidationError(
-        `${fieldName}.${key}: ${error instanceof Error ? error.message : String(error)}`,
-        `${fieldName}.${key}`
-      );
-    }
-  }
-
-  return result;
-}
-
-// ✅ FIX: Type-safe retry mechanism
-export function withRetry<T extends unknown[], R>(
-  fn: (...args: T) => Promise<R>,
-  maxRetries = 3,
-  delay = 1000
-): (...args: T) => Promise<R> {
-  return async (...args: T): Promise<R> => {
-    let lastError: Error = new Error('Unknown error');
-    
-    for (let attempt = 1; attempt <= maxRetries; attempt++) {
-      try {
-        return await fn(...args);
-      } catch (error) {
-        lastError = error instanceof Error ? error : new Error(String(error));
-        
-        if (attempt === maxRetries) {
-          logger.error(`Function failed after ${maxRetries} attempts`, lastError);
+        if (attempt === maxAttempts) {
           throw lastError;
         }
-        
-        logger.warn(`Attempt ${attempt} failed, retrying in ${delay}ms`, lastError);
-        await new Promise(resolve => setTimeout(resolve, delay));
-        delay *= 2; // Exponential backoff
+
+        // Exponential backoff
+        await new Promise(resolve => setTimeout(resolve, delay * Math.pow(2, attempt - 1)));
       }
     }
-    
-    throw lastError;
-  };
-}
 
-// ✅ FIX: Type-safe timeout wrapper
-export function withTimeout<T extends unknown[], R>(
-  fn: (...args: T) => Promise<R>,
-  timeoutMs = 5000
-): (...args: T) => Promise<R> {
-  return async (...args: T): Promise<R> => {
+    // Should never reach here due to throw, but satisfy TS
+    throw lastError!;
+  },
+
+  fallback: async <T>(
+    primary: () => Promise<T>,
+    fallback: () => Promise<T>
+  ): Promise<T> => {
+    try {
+      return await primary();
+    } catch (error) {
+      logger.warn('Primary operation failed, trying fallback', { error });
+      return await fallback();
+    }
+  },
+
+  withTimeout: async <T>(
+    operation: () => Promise<T>,
+    timeoutMs = 10000
+  ): Promise<T> => {
     const timeoutPromise = new Promise<never>((_, reject) => {
-      setTimeout(() => {
-        reject(new AppError(`Operation timed out after ${timeoutMs}ms`, 'TIMEOUT', 408));
-      }, timeoutMs);
+      setTimeout(() => reject(new Error('Operation timed out')), timeoutMs);
     });
 
-    return Promise.race([fn(...args), timeoutPromise]);
-  };
-}
+    return Promise.race([operation(), timeoutPromise]);
+  }
+};
 
-// ✅ FIX: Simple type guards
-export function isString(value: unknown): value is string {
-  return typeof value === 'string';
-}
+// In production, send errors to error tracking services
+export const reportError = (error: AppError, additionalContext?: Record<string, unknown>): void => {
+  if (import.meta.env.PROD) {
+    // Example: Sentry.captureException(error.originalError || new Error(error.message));
+    console.error('Production error reported:', error, additionalContext);
+  }
+};
 
-export function isNumber(value: unknown): value is number {
-  return typeof value === 'number' && !isNaN(value);
-}
+// User-friendly error message getter
+export const getUserFriendlyMessage = (error: AppError): string => error.userMessage;
 
-export function isObject(value: unknown): value is Record<string, unknown> {
-  return typeof value === 'object' && value !== null && !Array.isArray(value);
-}
+// Hook to handle errors in functional components
+export const useErrorHandler = () => {
+  const handleErrorCallback = React.useCallback((error: unknown, context?: string) => {
+    const appError = classifyError(error, context);
+    reportError(appError);
+    return appError;
+  }, []);
 
-export function isArray(value: unknown): value is unknown[] {
-  return Array.isArray(value);
-}
+  return handleErrorCallback;
+};
+
+// Factory for AppError creation
+export const createAppError = (
+  type: ErrorTypeValues,
+  message: string,
+  userMessage?: string,
+  options?: {
+    code?: string | number;
+    context?: Record<string, unknown>;
+    originalError?: Error;
+  }
+): AppError => ({
+  type,
+  message,
+  userMessage: userMessage || message,
+  code: options?.code,
+  context: options?.context,
+  originalError: options?.originalError,
+  timestamp: new Date(),
+});
+
+// Common specific error creators
+export const createNetworkError = (message = 'Network error occurred') =>
+  createAppError(ErrorType.NETWORK, message, 'Please check your connection and try again.');
+
+export const createValidationError = (message = 'Validation failed') =>
+  createAppError(ErrorType.VALIDATION, message, 'Please check your input and try again.');
+
+export const createAuthError = (message = 'Authentication required') =>
+  createAppError(ErrorType.AUTHENTICATION, message, 'Please log in and try again.');

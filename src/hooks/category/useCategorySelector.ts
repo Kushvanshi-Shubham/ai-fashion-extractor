@@ -2,8 +2,8 @@ import { useState, useCallback, useEffect, useMemo } from "react";
 import type { CategoryConfig } from "../../types/category/CategoryTypes";
 import { CategoryHelper } from "../../utils/category/categoryHelpers";
 import { logger } from "../../utils/common/logger";
-import { deriveSchemaFromCategoryAttributes } from "../../utils/category/schemaUtils";
-import type { SchemaItem } from "../../types/extraction/ExtractionTypes";
+import type { SchemaItem } from "../../types/extraction/ExtractionTypes";import { UnifiedSchemaGenerator } from "../../utils/category/unifiedSchemaGenerator";
+
 
 // Hook state interface
 interface CategorySelectorState {
@@ -75,7 +75,6 @@ export const useCategorySelector = (): UseCategorySelectorReturn => {
   // Handle department change
   const handleDepartmentChange = useCallback((department: string): void => {
     logger.debug("Department changed", { department });
-
     setState((prevState) => ({
       ...prevState,
       selectedDepartment: department,
@@ -89,7 +88,6 @@ export const useCategorySelector = (): UseCategorySelectorReturn => {
   // Handle sub-department change
   const handleSubDepartmentChange = useCallback((subDept: string): void => {
     logger.debug("Sub-department changed", { subDept });
-
     setState((prevState) => ({
       ...prevState,
       selectedSubDepartment: subDept,
@@ -99,21 +97,13 @@ export const useCategorySelector = (): UseCategorySelectorReturn => {
     }));
   }, []);
 
-  
-  // In useCategorySelector or wherever you derive schema
-const schema = useMemo(() => {
-  console.log('Selected category:', state.selectedCategory);
-  if (!state.selectedCategory) {
-    console.log('No category selected');
-    return [];
-  }
-  
-  console.log('Category attributes:', state.selectedCategory.attributes);
-  const derivedSchema = deriveSchemaFromCategoryAttributes(state.selectedCategory.attributes);
-  console.log('Derived schema:', derivedSchema);
-  return derivedSchema;
-}, [state.selectedCategory]);
-
+  // Derive schema from selected category using the unified schema generator
+  const schema = useMemo(() => {
+    if (!state.selectedCategory) {
+      return [];
+    }
+    return UnifiedSchemaGenerator.deriveSchemaFromCategoryAttributes(state.selectedCategory.attributes);
+  }, [state.selectedCategory]);
 
   // Handle category selection
   const handleCategorySelect = useCallback(
@@ -247,7 +237,6 @@ const schema = useMemo(() => {
     }
 
     path.push(category.displayName);
-
     return path;
   }, [state.selectedCategory]);
 
@@ -260,14 +249,12 @@ const schema = useMemo(() => {
   useEffect(() => {
     if (state.error) {
       logger.error("Category selector error", { error: state.error });
-
       const timer = setTimeout(() => {
         setState((prevState) => ({
           ...prevState,
           error: null,
         }));
       }, 5000);
-
       return () => clearTimeout(timer);
     }
   }, [state.error]);
@@ -281,7 +268,6 @@ const schema = useMemo(() => {
     isLoading: state.isLoading,
     error: state.error,
     selectionHistory: state.selectionHistory,
-
     schema,
 
     // Derived data

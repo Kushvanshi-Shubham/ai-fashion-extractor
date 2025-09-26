@@ -7,7 +7,7 @@ const exportWorker = new Worker(new URL('../../workers/export.worker.ts', import
 
 export const exportToExcel = (rows: ExtractedRow[]): Promise<void> => {
   return new Promise((resolve, reject) => {
-    exportWorker.postMessage({ type: 'EXPORT', payload: rows } as ExportMessage);
+    exportWorker.postMessage({ type: 'EXPORT', payload: rows } as unknown as ExportMessage);
     exportWorker.onmessage = (event: MessageEvent<ExportResult>) => {
       if (event.data.success) {
         const arrayBuffer = event.data.data!;

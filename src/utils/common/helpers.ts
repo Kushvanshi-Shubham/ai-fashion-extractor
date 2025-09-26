@@ -6,14 +6,11 @@ export const generateId = (): string => {
 
 export const formatFileSize = (bytes: number): string => {
   if (bytes === 0) return '0 Bytes';
-  
   const k = 1024;
   const sizes = ['Bytes', 'KB', 'MB', 'GB'] as const;
   const i = Math.floor(Math.log(bytes) / Math.log(k));
-  
   // Ensure we don't exceed array bounds
   const sizeIndex = Math.min(i, sizes.length - 1);
-  
   return parseFloat((bytes / Math.pow(k, sizeIndex)).toFixed(2)) + ' ' + sizes[sizeIndex];
 };
 
@@ -33,7 +30,6 @@ export function debounce<TArgs extends unknown[]>(
   wait: number
 ): (...args: TArgs) => void {
   let timeout: NodeJS.Timeout | null = null;
-  
   return (...args: TArgs): void => {
     if (timeout !== null) {
       clearTimeout(timeout);
@@ -48,7 +44,6 @@ export function debounceWithReturn<TArgs extends unknown[], TReturn>(
   wait: number
 ): (...args: TArgs) => void {
   let timeout: NodeJS.Timeout | null = null;
-  
   return (...args: TArgs): void => {
     if (timeout !== null) {
       clearTimeout(timeout);
@@ -70,7 +65,7 @@ export const isObject = (value: unknown): value is Record<string, unknown> => {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
 };
 
-export const hasProperty = <T extends Record<string, unknown>, K extends string>(
+export const hasProperty = <T extends object, K extends string>(
   obj: T,
   key: K
 ): obj is T & Record<K, unknown> => {
@@ -112,7 +107,7 @@ export const groupBy = <T, K extends keyof T>(
 };
 
 // Type-safe object manipulation
-export const omit = <T extends Record<string, unknown>, K extends keyof T>(
+export const omit = <T extends object, K extends keyof T>(
   obj: T,
   keys: K[]
 ): Omit<T, K> => {
@@ -123,7 +118,7 @@ export const omit = <T extends Record<string, unknown>, K extends keyof T>(
   return result;
 };
 
-export const pick = <T extends Record<string, unknown>, K extends keyof T>(
+export const pick = <T extends object, K extends keyof T>(
   obj: T,
   keys: K[]
 ): Pick<T, K> => {
@@ -170,7 +165,6 @@ export const formatDate = (date: Date, format = 'yyyy-mm-dd'): string => {
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, '0');
   const day = String(date.getDate()).padStart(2, '0');
-  
   return format
     .replace('yyyy', String(year))
     .replace('mm', month)
@@ -190,7 +184,6 @@ export const timeout = <T>(
   const timeoutPromise = new Promise<never>((_, reject) => {
     setTimeout(() => reject(new Error(message)), ms);
   });
-  
   return Promise.race([promise, timeoutPromise]);
 };
 
@@ -200,22 +193,18 @@ export const retry = async <T>(
   delay = 1000
 ): Promise<T> => {
   let lastError: Error;
-  
   for (let attempt = 1; attempt <= maxAttempts; attempt++) {
     try {
       return await fn();
     } catch (error) {
       lastError = error instanceof Error ? error : new Error(String(error));
-      
       if (attempt === maxAttempts) {
         throw lastError;
       }
-      
       await sleep(delay);
       delay *= 2; // Exponential backoff
     }
   }
-  
   throw lastError!;
 };
 
@@ -229,7 +218,6 @@ export const safeLocalStorage = {
       return defaultValue;
     }
   },
-  
   set: <T>(key: string, value: T): void => {
     try {
       localStorage.setItem(key, JSON.stringify(value));
@@ -237,14 +225,13 @@ export const safeLocalStorage = {
       console.error('Failed to save to localStorage:', error);
     }
   },
-  
   remove: (key: string): void => {
     try {
       localStorage.removeItem(key);
     } catch (error) {
       console.error('Failed to remove from localStorage:', error);
     }
-  }
+  },
 };
 
 // Type guards
@@ -260,10 +247,53 @@ export const isBoolean = (value: unknown): value is boolean => {
   return typeof value === 'boolean';
 };
 
-export const isArray = <T = unknown>(value: unknown): value is T[] => {
+export const isArray = <T>(value: unknown): value is T[] => {
   return Array.isArray(value);
 };
 
 export const isNullOrUndefined = (value: unknown): value is null | undefined => {
   return value === null || value === undefined;
+};
+
+// Image processing utilities
+export const compressImage = async (file: File, quality = 0.8): Promise<string> => {
+  return new Promise((resolve, reject) => {
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    const img = new Image();
+    
+    img.onload = () => {
+      const MAX_WIDTH = 800;
+      const MAX_HEIGHT = 600;
+      
+      let { width, height } = img;
+      
+      // Calculate new dimensions
+      if (width > height) {
+        if (width > MAX_WIDTH) {
+          height = height * (MAX_WIDTH / width);
+          width = MAX_WIDTH;
+        }
+      } else {
+        if (height > MAX_HEIGHT) {
+          width = width * (MAX_HEIGHT / height);
+          height = MAX_HEIGHT;
+        }
+      }
+      
+      canvas.width = width;
+      canvas.height = height;
+      
+      ctx?.drawImage(img, 0, 0, width, height);
+      
+      resolve(canvas.toDataURL('image/jpeg', quality));
+    };
+    
+    img.onerror = reject;
+    img.src = URL.createObjectURL(file);
+  });
+};
+
+export const createImagePreview = (file: File): string => {
+  return URL.createObjectURL(file);
 };

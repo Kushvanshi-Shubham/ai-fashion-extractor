@@ -1,4 +1,5 @@
 // Fixed imports and refined types, memoized format function and consistent logging with timestamps
+
 const LogLevel = {
   ERROR: 'error',
   WARN: 'warn',
@@ -25,13 +26,12 @@ class AppLogger {
   private formatMessage(level: LogLevelType, message: string, data?: LoggableData): string {
     const timestamp = new Date().toISOString();
     const prefix = `[${timestamp}] [${level.toUpperCase()}]`;
-
+    
     if (!data) {
       return `${prefix} ${message}`;
     }
 
     let formattedData: string;
-
     if (data instanceof Error) {
       formattedData = JSON.stringify({
         name: data.name,
@@ -47,41 +47,36 @@ class AppLogger {
         formattedData = '[Unserializable Object]';
       }
     }
-
+    
     return `${prefix} ${message} ${formattedData}`;
   }
 
   error(message: string, error?: Error | LoggableData): void {
     if (!this.enableLogging && !this.isDevelopment) return;
-
     const formattedMessage = this.formatMessage(LogLevel.ERROR, message, error);
     console.error(formattedMessage);
   }
 
   warn(message: string, data?: LoggableData): void {
     if (!this.enableLogging && !this.isDevelopment) return;
-
     const formattedMessage = this.formatMessage(LogLevel.WARN, message, data);
     console.warn(formattedMessage);
   }
 
   info(message: string, data?: LoggableData): void {
     if (!this.enableLogging && !this.isDevelopment) return;
-
     const formattedMessage = this.formatMessage(LogLevel.INFO, message, data);
     console.info(formattedMessage);
   }
 
   debug(message: string, data?: LoggableData): void {
     if (!this.isDevelopment) return;
-
     const formattedMessage = this.formatMessage(LogLevel.DEBUG, message, data);
     console.debug(formattedMessage);
   }
 
   performance(operation: string, duration: number, additionalData?: LoggableData): void {
     if (!this.isDevelopment) return;
-
     const message = `Performance: ${operation} took ${duration.toFixed(2)}ms`;
     this.debug(message, additionalData);
   }
@@ -113,7 +108,6 @@ class AppLogger {
 
   logIf(condition: boolean, level: LogLevelType, message: string, data?: LoggableData): void {
     if (!condition) return;
-
     switch (level) {
       case LogLevel.ERROR:
         this.error(message, data);
@@ -151,7 +145,6 @@ class AppLogger {
       },
       ...additionalData
     };
-
     this.error(`Error in ${context || 'application'}`, errorData);
   }
 
@@ -161,7 +154,6 @@ class AppLogger {
     additionalData?: LoggableData
   ): T {
     const start = performance.now();
-
     try {
       const result = fn();
       const duration = performance.now() - start;
@@ -180,7 +172,6 @@ class AppLogger {
     additionalData?: LoggableData
   ): Promise<T> {
     const start = performance.now();
-
     try {
       const result = await fn();
       const duration = performance.now() - start;

@@ -86,7 +86,7 @@ export class ApiService extends BaseApiService {
 
     const apiData = response.data!;
     const choice = apiData.choices[0];
-    
+
     if (!choice?.message?.content) {
       throw new Error('Invalid response from Vision API');
     }
@@ -119,7 +119,7 @@ export class ApiService extends BaseApiService {
 
     const apiData = response.data!;
     const choice = apiData.choices[0];
-    
+
     if (!choice?.message?.content) {
       throw new Error('Invalid response from Text API');
     }

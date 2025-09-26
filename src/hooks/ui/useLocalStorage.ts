@@ -9,7 +9,7 @@ export function useLocalStorage<T>(key: string, initialValue: T) {
       console.warn(`Error reading localStorage key "${key}":`, error);
       return initialValue;
     }
-  }); 
+  });
 
   const setValue = (value: T | ((val: T) => T)) => {
     try {

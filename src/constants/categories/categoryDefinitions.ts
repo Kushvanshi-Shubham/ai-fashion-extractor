@@ -19255,54 +19255,14 @@ console.log('   LADIES: 67 categories');
 console.log('   TOTAL: 283 categories');
 
 // Helper functions for category management
-export const getDepartments = (): string[] => {
-  const departments = [...new Set(CATEGORY_DEFINITIONS.map(c => c.department))];
-  console.log('🏢 Available Departments:', departments);
-  return departments;
+export const getCategoryById = (id: string): CategoryConfig | undefined => {
+  return CATEGORY_DEFINITIONS.find(category => category.id === id);
 };
 
-export const getSubDepartments = (department: string): string[] => {
-  const subDepts = [...new Set(CATEGORY_DEFINITIONS
-    .filter(c => c.department === department && c.isActive)
-    .map(c => c.subDepartment))];
-  console.log(`🏗️ Sub-departments for ${department}:`, subDepts);
-  return subDepts;
+export const getCategoriesByDepartment = (department: string): CategoryConfig[] => {
+  return CATEGORY_DEFINITIONS.filter(category => category.department === department && category.isActive);
 };
 
-export const getCategories = (department: string, subDepartment: string): CategoryConfig[] => {
-  const categories = CATEGORY_DEFINITIONS.filter(c => 
-    c.department === department && 
-    c.subDepartment === subDepartment && 
-    c.isActive
-  );
-  console.log(`📋 Categories for ${department} -> ${subDepartment}:`, categories.length);
-  return categories;
-};
-
-export const getCategoryConfig = (categoryCode: string): CategoryConfig | undefined => {
-  return CATEGORY_DEFINITIONS.find(c => c.category === categoryCode);
-};
-
-export const getAllCategories = (): CategoryConfig[] => {
-  return CATEGORY_DEFINITIONS.filter(c => c.isActive);
-};
-
-export const searchCategories = (query: string): CategoryConfig[] => {
-  const lowercaseQuery = query.toLowerCase();
-  return CATEGORY_DEFINITIONS.filter(c => 
-    c.isActive && (
-      c.displayName.toLowerCase().includes(lowercaseQuery) ||
-      c.category.toLowerCase().includes(lowercaseQuery) ||
-      c.department.toLowerCase().includes(lowercaseQuery)
-    )
-  );
-};
-
-// Category statistics
-export const CATEGORY_STATS = {
-  total: CATEGORY_DEFINITIONS.length,
-  departments: getDepartments().length,
-  kids: CATEGORY_DEFINITIONS.filter(c => c.department === 'KIDS').length,
-  mens: CATEGORY_DEFINITIONS.filter(c => c.department === 'MENS').length,
-  ladies: CATEGORY_DEFINITIONS.filter(c => c.department === 'LADIES').length,
-};
+export const getActiveCategories = (): CategoryConfig[] => {
+  return CATEGORY_DEFINITIONS.filter(category => category.isActive);
+}

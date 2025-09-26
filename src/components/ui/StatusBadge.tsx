@@ -1,54 +1,106 @@
 import React from 'react';
-import { Tag, Spin } from 'antd';
-import { CheckCircleOutlined, CloseCircleOutlined, ClockCircleOutlined } from '@ant-design/icons';
-import type { ExtractionStatus } from '../../types/core/CommonTypes';
+import { Badge, Tag, Tooltip } from 'antd';
+import { 
+  CheckCircleOutlined, 
+  ClockCircleOutlined, 
+  ExclamationCircleOutlined,
+  SyncOutlined 
+} from '@ant-design/icons';
+import type { ExtractedRow } from '../../types/extraction/ExtractionTypes';
 
 interface StatusBadgeProps {
-  status: ExtractionStatus;
+  status: ExtractedRow['status'];
+  showText?: boolean;
   size?: 'small' | 'default';
 }
 
 export const StatusBadge: React.FC<StatusBadgeProps> = ({ 
   status, 
-}) => { 
-  const getStatusConfig = (status: ExtractionStatus) => {
+  showText = true, 
+  size = 'default' 
+}) => {
+  const getStatusConfig = (status: ExtractedRow['status']) => {
     switch (status) {
       case 'Done':
         return {
-          color: 'success',
+          color: '#4fde07ff',
+          backgroundColor: '#77d11dff',
+          borderColor: '#020301ff',
           icon: <CheckCircleOutlined />,
-          text: 'Completed'
+          text: 'Completed',
+          tooltip: 'AI extraction completed successfully'
+        };
+      case 'Pending':
+        return {
+          color: '#1890ff',
+          backgroundColor: '#3597d3ff',
+          borderColor: '#070809ff',
+          icon: <ClockCircleOutlined />,
+          text: 'Pending',
+          tooltip: 'Waiting for AI analysis'
         };
       case 'Error':
         return {
-          color: 'error',
-          icon: <CloseCircleOutlined />,
-          text: 'Failed'
+          color: '#ff4d4f',
+          backgroundColor: '#f0381bff',
+          borderColor: '#ffadd2',
+          icon: <ExclamationCircleOutlined />,
+          text: 'Error',
+          tooltip: 'AI extraction failed - click to retry'
         };
       case 'Extracting':
         return {
-          color: 'processing',
-          icon: <Spin size="small" />,
-          text: 'Processing'
+          color: '#faad14',
+          backgroundColor: '#cfb019ff',
+          borderColor: '#ffe58f',
+          icon: <SyncOutlined spin />,
+          text: 'Processing',
+          tooltip: 'AI is analyzing the image...'
         };
-      case 'Pending':
       default:
         return {
-          color: 'default',
+          color: '#8c8c8c',
+          backgroundColor: '#989393ff',
+          borderColor: '#d9d9d9',
           icon: <ClockCircleOutlined />,
-          text: 'Pending'
+          text: 'Unknown',
+          tooltip: 'Status unknown'
         };
     }
   };
 
   const config = getStatusConfig(status);
 
+  if (!showText) {
+    return (
+      <Tooltip title={config.tooltip}>
+        <Badge 
+          color={config.color}
+          style={{ 
+            width: size === 'small' ? 8 : 10, 
+            height: size === 'small' ? 8 : 10 
+          }}
+        />
+      </Tooltip>
+    );
+  }
+
   return (
-    <Tag 
-      color={config.color} 
-      icon={config.icon}
-    >
-      {config.text}
-    </Tag>
+    <Tooltip title={config.tooltip}>
+      <Tag
+        icon={config.icon}
+        color={config.color}
+        style={{
+          backgroundColor: config.backgroundColor,
+          borderColor: config.borderColor,
+          fontSize: size === 'small' ? 11 : 12,
+          padding: size === 'small' ? '2px 6px' : '4px 8px',
+          borderRadius: 4,
+          fontWeight: 500
+        }}
+      >
+        {config.text}
+      </Tag>
+    </Tooltip>
   );
 };
