@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import {
-  Layout, Typography, Card, Spin, Alert, Button, Space, Modal, Row, Col, Progress, Input
-} from "antd";
+  Layout, Typography, Card, Spin, Alert, Button, Space, Modal, Row, Col, Progress} from "antd";
 import {
   ClearOutlined, DownloadOutlined, ArrowRightOutlined, DashboardOutlined, PlayCircleOutlined
 } from "@ant-design/icons";
@@ -31,8 +30,7 @@ const { Title, Text } = Typography;
 
 
 const App: React.FC = () => {
-  const [apiKey, setApiKey] = useState(import.meta.env.VITE_OPENAI_API_KEY || "");
-  const [showApiKeyModal, setShowApiKeyModal] = useState(!apiKey);
+ 
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
   const [imageModalVisible, setImageModalVisible] = useState(false);
   const [selectedImage, setSelectedImage] = useState<{ url: string; name?: string } | null>(null);
@@ -52,15 +50,6 @@ const App: React.FC = () => {
   });
   const [persistedCategoryCode, setPersistedCategoryCode] = useLocalStorage("selectedCategory", "");
 
-  const handleApiKeySubmit = useCallback(() => {
-    if (apiKey.startsWith("sk-")) {
-      localStorage.setItem("temp_api_key", apiKey);
-      setShowApiKeyModal(false);
-      window.location.reload();
-    } else {
-      alert("Please enter a valid OpenAI API key (starts with sk-)");
-    }
-  }, [apiKey]);
 
   const { selectedCategory, handleCategorySelect, isComplete, schema } = useCategorySelector();
 
@@ -151,48 +140,7 @@ const App: React.FC = () => {
   // Error boundary applied at root layout level for UI robustness
   return (
     <ErrorBoundary>
-      {showApiKeyModal ? (
-        <div style={{ padding: 40, textAlign: "center", minHeight: "100vh" }}>
-          <Modal
-            title="🔑 API Key Required"
-            open={showApiKeyModal}
-            onOk={handleApiKeySubmit}
-            onCancel={() => setShowApiKeyModal(false)}
-            closable={false}
-            okText="Save & Continue"
-          >
-            <Alert
-              message="OpenAI API Key Required"
-              description="This Fashion AI Extractor needs your OpenAI API key to analyze images."
-              type="info"
-              showIcon
-              style={{ marginBottom: 16 }}
-            />
-            <Input.Password
-              placeholder="sk-..."
-              value={apiKey}
-              onChange={(e) => setApiKey(e.target.value)}
-              style={{ marginBottom: 16 }}
-            />
-            <Alert
-              message="How to get your API key:"
-              description={
-                <ol style={{ textAlign: "left", paddingLeft: 16 }}>
-                  <li>
-                    Go to <a href="https://platform.openai.com" target="_blank" rel="noopener noreferrer">platform.openai.com</a>
-                  </li>
-                  <li>Create an account or sign in</li>
-                  <li>Navigate to API keys section</li>
-                  <li>Create a new secret key</li>
-                  <li>Copy and paste it above</li>
-                </ol>
-              }
-              type="warning"
-              showIcon
-            />
-          </Modal>
-        </div>
-      ) : !appReady ? (
+      {!appReady || error? (
         <Layout style={{ minHeight: "100vh", background: "linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)" }}>
           <Content style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
             <Card style={{ textAlign: "center", maxWidth: 400, boxShadow: "0 8px 32px rgba(0,0,0,0.1)" }}>

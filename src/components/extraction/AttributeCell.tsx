@@ -87,7 +87,7 @@ export const AttributeCell: React.FC<AttributeCellProps> = ({
         </Text>
       );
     }
-    
+
     return (
       <Text strong style={{ fontSize: 12 }}>
         {String(value)}
@@ -108,7 +108,9 @@ export const AttributeCell: React.FC<AttributeCellProps> = ({
             allowClear
             placeholder="Select value"
             filterOption={(input, option) =>
-              (option?.children as unknown as string)?.toLowerCase().includes(input.toLowerCase())
+              (option?.children as unknown as string)
+                ?.toLowerCase()
+                .includes(input.toLowerCase())
             }
             popupRender={menu => (
               <div>
@@ -130,14 +132,17 @@ export const AttributeCell: React.FC<AttributeCellProps> = ({
               </div>
             )}
           >
-            {schemaItem.allowedValues?.map(value => (
-              <Option key={value} value={value}>
-                {value}
+            {schemaItem.allowedValues?.map((valObj) => (
+              <Option
+                key={valObj.shortForm}
+                value={valObj.shortForm}
+              >
+                {`${valObj.shortForm} - ${valObj.fullForm}`}
               </Option>
             ))}
           </Select>
         );
-        
+
       case 'number':
         return (
           <InputNumber
@@ -148,7 +153,7 @@ export const AttributeCell: React.FC<AttributeCellProps> = ({
             placeholder="Enter number"
           />
         );
-        
+
       case 'text':
       default:
         return (
@@ -171,14 +176,14 @@ export const AttributeCell: React.FC<AttributeCellProps> = ({
           {attribute?.reasoning || 'No reasoning provided'}
         </div>
       </div>
-      
+
       <div style={{ marginBottom: 8 }}>
         <Text strong style={{ fontSize: 12 }}>Raw Value:</Text>
         <div style={{ fontSize: 11, marginTop: 4, fontFamily: 'monospace' }}>
           {attribute?.rawValue || 'null'}
         </div>
       </div>
-      
+
       <Space size="small">
         <Tag color="blue" style={{ fontSize: 10 }}>
           Visual: {attribute?.visualConfidence || 0}%
@@ -187,7 +192,7 @@ export const AttributeCell: React.FC<AttributeCellProps> = ({
           Mapping: {attribute?.mappingConfidence || 0}%
         </Tag>
       </Space>
-      
+
       {attribute?.isNewDiscovery && (
         <Tag icon={<RobotOutlined />} color="purple" style={{ fontSize: '11px', marginTop: 8 }}>
           New Discovery
@@ -243,19 +248,20 @@ export const AttributeCell: React.FC<AttributeCellProps> = ({
         e.currentTarget.style.backgroundColor = attribute?.schemaValue ? '#fafafa' : '#f8f9fa';
       }}
     >
-      {/* Main Content */}
       <div style={{ flex: 1 }}>
         {renderDisplayValue()}
       </div>
 
-      {/* Bottom Controls */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 4 }}>
-        {/* AI Icon */}
+      <div style={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginTop: 4
+      }}>
         {attribute?.rawValue && (
           <RobotOutlined style={{ fontSize: 10, color: '#667eea' }} />
         )}
 
-        {/* Reasoning Button */}
         {attribute?.reasoning && (
           <Popover
             content={reasoningContent}
@@ -282,8 +288,7 @@ export const AttributeCell: React.FC<AttributeCellProps> = ({
           </Popover>
         )}
 
-        {/* Confidence Badge */}
-        {attribute && attribute.visualConfidence > 0 && (
+                {attribute && attribute.visualConfidence > 0 && (
           <Badge
             count={`${attribute.visualConfidence}%`}
             style={{
@@ -295,7 +300,6 @@ export const AttributeCell: React.FC<AttributeCellProps> = ({
           />
         )}
 
-        {/* Edit Icon */}
         {!disabled && (
           <EditOutlined style={{ fontSize: 10, color: '#8c8c8c' }} />
         )}
