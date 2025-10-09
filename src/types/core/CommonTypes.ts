@@ -1,7 +1,7 @@
 // Base types used across the application
 export type Department = 'KIDS' | 'MENS' | 'LADIES';
 export type AttributeType = 'select' | 'text' | 'number' | 'boolean';
-export type ExtractionStatus = 'Pending' | 'Extracting' | 'Done' | 'Error';
+export type ExtractionStatus = 'Pending' | 'Queued' | 'Extracting' | 'Processing' | 'Done' | 'Error';
 export type ModelType = 
   | 'gpt-4o'              // Latest GPT-4 with vision (most capable)
   | 'gpt-4-vision-preview' // Backup vision model
