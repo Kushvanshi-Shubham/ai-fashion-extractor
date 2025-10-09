@@ -30,7 +30,7 @@ export const useImageExtraction = () => {
   const [progress, setProgress] = useState(0);
   // Discovery state
   const [discoverySettings, setDiscoverySettings] = useState<DiscoverySettings>({
-    enabled: true,
+    enabled: false, // 🔧 DEFAULT TO FALSE - Only enable when explicitly needed
     minConfidence: 70,
     showInTable: true,
     autoPromote: false,
@@ -89,12 +89,15 @@ export const useImageExtraction = () => {
         // Convert file to base64 using compression service
         const base64Image = await compress(row.file);
         
+        // 🔧 VALIDATION: Only enable discovery mode when explicitly set
+        console.log(`🔍 Frontend Extraction - Discovery Enabled: ${discoveryEnabled}, Category: ${categoryName}`);
+        
         const result: EnhancedExtractionResult =
           await backendApi.extractFromBase64({
             image: base64Image,
             schema,
             categoryName: categoryName ?? "",
-            discoveryMode: discoveryEnabled
+            discoveryMode: discoveryEnabled === true // Explicit boolean check
           });
 
         const totalTime = performance.now() - start;

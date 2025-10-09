@@ -25,12 +25,18 @@ export class BackendApiService {
 
   async extractFromBase64(request: BackendExtractionRequest): Promise<EnhancedExtractionResult> {
     try {
+      // 🔧 LOG DISCOVERY MODE STATUS
+      console.log(`🔍 Backend API Call - Discovery Mode: ${request.discoveryMode || false}`);
+      
       const response = await fetch(`${this.baseURL}/extract/base64`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(request)
+        body: JSON.stringify({
+          ...request,
+          discoveryMode: request.discoveryMode || false // Ensure boolean
+        })
       });
 
       if (!response.ok) {

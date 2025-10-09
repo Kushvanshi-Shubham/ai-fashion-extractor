@@ -57,7 +57,7 @@ export const DiscoveryToggle: React.FC<DiscoveryToggleProps> = ({
               }} 
             />
             <Text strong style={{ color: settings.enabled ? '#722ed1' : undefined }}>
-              AI Discovery Mode
+              AI Discovery Mode {settings.enabled ? '(ON)' : '(OFF)'}
             </Text>
             <Tooltip 
               title={
@@ -66,7 +66,9 @@ export const DiscoveryToggle: React.FC<DiscoveryToggleProps> = ({
                   <div>• Finds attributes beyond your schema</div>
                   <div>• Discovers brand details, construction info</div>
                   <div>• Suggests new attributes for schema</div>
-                  <div>• Slightly slower but more comprehensive</div>
+                  <div>• 🔴 Uses more tokens (7k+ vs 3k)</div>
+                  <div>• ⏱️ Slightly slower but more comprehensive</div>
+                  <div>• 🎯 Enable only when needed for new discoveries</div>
                 </div>
               }
             >
