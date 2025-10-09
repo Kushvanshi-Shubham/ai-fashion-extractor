@@ -4,7 +4,7 @@ export class ImageCompressionService {
     console.info('ImageCompressionService.destroy() called - no resources to clean.');
   }
 
-  compressImage: any; // existing property, keep as is
+  compressImage: ((file: File, options: { quality: number; maxWidth: number; maxHeight: number }) => Promise<string>) | undefined;
   
   async compressImageFallback(
     file: File,

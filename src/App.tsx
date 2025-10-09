@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import {
   Layout, Typography, Card, Spin, Alert, Button, Space, Modal, Row, Col, Progress} from "antd";
 import {
@@ -23,6 +24,8 @@ import "./App.css";
 import { ErrorBoundary } from "./components/common/ErrorBoundary";
 import DiscoveryPanel from "./components/discovery/DiscoveryPanel";
 import ExportManager from "./components/export/ExportManager";
+import UploadsList from './pages/UploadsList';
+import UploadDetail from './pages/UploadDetail';
 
 const { Header, Content } = Layout;
 const { Title, Text } = Typography;
@@ -139,7 +142,8 @@ const App: React.FC = () => {
 
   // Error boundary applied at root layout level for UI robustness
   return (
-    <ErrorBoundary>
+    <Router>
+      <ErrorBoundary>
       {!appReady || error? (
         <Layout style={{ minHeight: "100vh", background: "linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)" }}>
           <Content style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
@@ -170,6 +174,7 @@ const App: React.FC = () => {
                 🎯 AI Fashion Extractor
               </Title>
               <Space>
+                <Link to="/uploads"><Button>Uploads</Button></Link>
                 <Button
                   icon={<DashboardOutlined />}
                   onClick={() => setShowAnalytics((prev) => !prev)}
@@ -369,9 +374,14 @@ const App: React.FC = () => {
               </Modal>
             </div>
           </Content>
+          <Routes>
+            <Route path="/uploads" element={<UploadsList />} />
+            <Route path="/uploads/:id" element={<UploadDetail />} />
+          </Routes>
         </Layout>
       )}
-    </ErrorBoundary>
+      </ErrorBoundary>
+    </Router>
   );
 };
 

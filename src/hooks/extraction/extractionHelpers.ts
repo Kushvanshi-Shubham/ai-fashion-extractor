@@ -37,12 +37,11 @@ export const getMemoryInfo = () => {
 export const compressImage = async (
   file: File,
   service: ImageCompressionService,
-  recordPerf: (metrics: PerformanceMetrics) => void,
-  onProgress?: (p: number) => void
+  recordPerf: (metrics: PerformanceMetrics) => void
 ): Promise<string> => {
   const start = performance.now();
   try {
-    const result = await service.compressImage(file, { quality: 0.8, maxWidth: 800, maxHeight: 800 }, onProgress);
+    const result = await service.compressImage?.(file, { quality: 0.8, maxWidth: 800, maxHeight: 800 }) || await service.compressImageFallback(file, { quality: 0.8, maxWidth: 800, maxHeight: 800 });
     const compressionTime = performance.now() - start;
     logger.info('Worker compression complete', { file: file.name, compressionTime });
     recordPerf({

@@ -153,4 +153,98 @@ export class BackendApiService {
   isConfigured(): boolean {
     return !!this.baseURL;
   }
+
+  async listUploads(page = 1, pageSize = 20) {
+    const resp = await fetch(`${this.baseURL}/uploads?page=${page}&pageSize=${pageSize}`);
+    if (!resp.ok) throw new Error(`Failed to fetch uploads: ${resp.status}`);
+    const json = await resp.json();
+    if (!json.success) throw new Error(json.error || 'Failed to list uploads');
+    return json.data;
+  }
+
+  async getUpload(id: string) {
+    const resp = await fetch(`${this.baseURL}/uploads/${id}`);
+    if (!resp.ok) throw new Error(`Failed to fetch upload: ${resp.status}`);
+    const json = await resp.json();
+    if (!json.success) throw new Error(json.error || 'Failed to get upload');
+    return json.data;
+  }
+
+  async updateUpload(id: string, data: { status?: string; filename?: string }) {
+    const token = localStorage.getItem('authToken');
+    const resp = await fetch(`${this.baseURL}/uploads/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+      body: JSON.stringify(data),
+    });
+    if (!resp.ok) throw new Error(`Failed to update upload: ${resp.status}`);
+    const json = await resp.json();
+    if (!json.success) throw new Error(json.error || 'Failed to update upload');
+    return json.data;
+  }
+
+  async deleteUpload(id: string) {
+    const token = localStorage.getItem('authToken');
+    const resp = await fetch(`${this.baseURL}/uploads/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
+    });
+    if (!resp.ok) throw new Error(`Failed to delete upload: ${resp.status}`);
+    const json = await resp.json();
+    if (!json.success) throw new Error(json.error || 'Failed to delete upload');
+    return json.data;
+  }
+
+  async getAdminStats() {
+    const token = localStorage.getItem('authToken');
+    const resp = await fetch(`${this.baseURL}/admin/stats`, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
+    });
+    if (!resp.ok) throw new Error(`Failed to fetch admin stats: ${resp.status}`);
+    const json = await resp.json();
+    if (!json.success) throw new Error(json.error || 'Failed to get admin stats');
+    return json.data;
+  }
+
+  async login(email: string, password: string) {
+    const resp = await fetch(`${this.baseURL}/auth/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password }),
+    });
+    if (!resp.ok) throw new Error(`Login failed: ${resp.status}`);
+    const json = await resp.json();
+    if (!json.success) throw new Error(json.error || 'Login failed');
+    return json.data;
+  }
+
+  async register(email: string, password: string) {
+    const resp = await fetch(`${this.baseURL}/auth/register`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password }),
+    });
+    if (!resp.ok) throw new Error(`Registration failed: ${resp.status}`);
+    const json = await resp.json();
+    if (!json.success) throw new Error(json.error || 'Registration failed');
+    return json.data;
+  }
+
+  async getMe() {
+    const token = localStorage.getItem('authToken');
+    const resp = await fetch(`${this.baseURL}/auth/me`, {
+      headers: { 'Authorization': `Bearer ${token}` },
+    });
+    if (!resp.ok) throw new Error(`Failed to get user info: ${resp.status}`);
+    const json = await resp.json();
+    if (!json.success) throw new Error(json.error || 'Failed to get user info');
+    return json.data;
+  }
 }

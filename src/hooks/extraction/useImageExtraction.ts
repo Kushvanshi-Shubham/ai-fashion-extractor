@@ -53,8 +53,8 @@ export const useImageExtraction = () => {
   }, []);
 
   const compress = useCallback(
-    (file: File, onProgress?: (p: number) => void): Promise<string> =>
-      compressImage(file, compressionService, recordPerf, onProgress),
+    (file: File, _onProgress?: (p: number) => void): Promise<string> =>
+      compressImage(file, compressionService, recordPerf),
     [compressionService, recordPerf]
   );
 

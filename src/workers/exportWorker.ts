@@ -1,13 +1,29 @@
 // Web Worker for XLSX export - eliminates UI blocking
 import * as XLSX from 'xlsx';
 
+interface ExtractedRow {
+  status: string;
+  attributes: Record<string, { value: string; confidence: number; schemaValue?: unknown }>;
+  imageName: string;
+  originalFileName: string;
+  processingTime: number;
+  extractionTime: number;
+  extractionDate: string;
+  updatedAt?: { toISOString?: () => string };
+  aiModel: string;
+  modelUsed: string;
+  tokensUsed: number;
+  apiTokensUsed: number;
+  confidence: number;
+}
+
 interface ExportMessage {
   id: string;
   type: 'EXPORT_XLSX';
   payload: {
-    extractedRows: any[]; // Will be properly typed
+    extractedRows: ExtractedRow[];
     filename: string;
-    schema: any[];
+    schema: Record<string, unknown>[];
   };
 }
 
@@ -38,7 +54,7 @@ self.onmessage = async (event: MessageEvent<ExportMessage>) => {
     } as ExportResponse);
     
     // Filter completed rows
-    const doneRows = extractedRows.filter((r: any) => r.status === 'Done');
+    const doneRows = extractedRows.filter((r: ExtractedRow) => r.status === 'Done');
     
     self.postMessage({
       id,
@@ -48,13 +64,13 @@ self.onmessage = async (event: MessageEvent<ExportMessage>) => {
     
     // Transform data efficiently (batched processing)
     const batchSize = 100;
-    const exportData: any[] = [];
+    const exportData: Record<string, unknown>[] = [];
     
     for (let i = 0; i < doneRows.length; i += batchSize) {
       const batch = doneRows.slice(i, i + batchSize);
       
-      const batchData = batch.map((row: any, index: number) => {
-        const exportRow: any = {
+      const batchData = batch.map((row: ExtractedRow, index: number) => {
+        const exportRow: Record<string, unknown> = {
           'Row': i + index + 1,
           'Image Name': row.originalFileName,
           'Status': row.status,
@@ -67,7 +83,7 @@ self.onmessage = async (event: MessageEvent<ExportMessage>) => {
 
         // Add schema attributes
         if (row.attributes) {
-          Object.entries(row.attributes).forEach(([key, attribute]: [string, any]) => {
+          Object.entries(row.attributes).forEach(([key, attribute]: [string, { value: string; confidence: number; schemaValue?: unknown }]) => {
             if (attribute && attribute.schemaValue !== null && attribute.schemaValue !== undefined) {
               const value = attribute.schemaValue;
               exportRow[key] = typeof value === 'string' || typeof value === 'number' ? value : String(value);

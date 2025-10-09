@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { ConfigProvider } from 'antd'
-import App from './App.tsx'
+import App from './AppNew.tsx'
 import './index.css'
 
 // Ant Design theme configuration
