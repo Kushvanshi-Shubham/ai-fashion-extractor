@@ -2,8 +2,46 @@
 import type { SchemaItem } from '../../types/extraction/ExtractionTypes';
 import type { CategoryConfig } from '../../types/category/CategoryTypes';
 import { MASTER_ATTRIBUTES } from '../../constants/categories/masterAttributes';
+import { CategoryFocusedAttributeService } from '../../services/categoryFocusedAttributeService';
 
 export class SchemaGenerator {
+  // 🎯 NEW: Category-focused schema generation (surgical precision)
+  static generateFocusedSchemaForCategory(
+    categoryConfig: CategoryConfig, 
+    optimizationLevel: 'minimal' | 'standard' | 'comprehensive' = 'standard'
+  ): {
+    schema: SchemaItem[];
+    optimizationReport: {
+      tokenSavings: number;
+      accuracyBoost: number;
+      processingSpeedIncrease: number;
+      focusRatio: number;
+    };
+    filteredAttributes: string[];
+    tokenEstimate: number;
+  } {
+    console.log(`🎯 Generating focused schema for ${categoryConfig.displayName}`);
+    
+    const focusedSchema = CategoryFocusedAttributeService.generateFocusedSchema(
+      categoryConfig.department,
+      categoryConfig.subDepartment,
+      categoryConfig.category,
+      optimizationLevel
+    );
+
+    const optimizationReport = CategoryFocusedAttributeService.generateOptimizationReport(focusedSchema);
+
+    console.log(`✨ Focused schema: ${focusedSchema.relevantAttributes.length} attrs, ~${focusedSchema.tokenEstimate} tokens, ${optimizationReport.tokenSavings}% savings`);
+
+    return {
+      schema: focusedSchema.relevantAttributes,
+      optimizationReport,
+      filteredAttributes: focusedSchema.irrelevantAttributes,
+      tokenEstimate: focusedSchema.tokenEstimate
+    };
+  }
+
+  // ✅ LEGACY: Original schema generation (for backward compatibility)
   static generateSchemaForCategory(categoryConfig: CategoryConfig): SchemaItem[] {
     const activeAttributes = Object.entries(categoryConfig.attributes)
       .filter(([_, isActive]) => isActive)

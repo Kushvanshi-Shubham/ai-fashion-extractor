@@ -1640,10 +1640,12 @@ export const MASTER_ATTRIBUTES: Record<string, AttributeDefinition> = {
       { shortForm: 'L', fullForm: 'L' },
       { shortForm: 'M', fullForm: 'MONTH' },
       { shortForm: 'S', fullForm: 'S' },
+      { shortForm: 'S-XXL', fullForm: 'S-XXL' },
+      { shortForm: 'S-XXXL', fullForm: 'S-XXXL' },
       { shortForm: 'XL', fullForm: 'XL' },
       { shortForm: 'XS', fullForm: 'XS' }
     ],
-    description: 'Size - Size specification for the garment',
+    description: 'Size - Size specification/range for the garment',
   },
 
   'sleeves_main_style': {
