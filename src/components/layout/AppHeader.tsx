@@ -1,5 +1,4 @@
 import React from 'react';
-import { PageHeader } from '@ant-design/pro-layout';
 import { Button, Upload, Progress, Tooltip, Segmented, Input, Popconfirm } from 'antd';
 import {
   UploadOutlined,
@@ -117,10 +116,9 @@ export const AppHeader: React.FC<AppHeaderProps> = React.memo(({
   };
 
   return (
-    <PageHeader
-      className="app-page-header"
-      title="Clothing Attribute Extractor"
-      extra={[
+    <div className="app-page-header" style={{ padding: '16px 24px', borderBottom: '1px solid #f0f0f0', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      <h1 style={{ margin: 0 }}>Clothing Attribute Extractor</h1>
+      <div style={{ display: 'flex', gap: '8px' }}>
         <Segmented
           key="view-switcher"
           options={[
@@ -185,9 +183,8 @@ export const AppHeader: React.FC<AppHeaderProps> = React.memo(({
             Clear All
           </Button>
         </Popconfirm>
-      ]}
-    >
+      </div>
       {isExtracting && <Progress percent={progress} />}
-    </PageHeader>
+    </div>
   );
 });

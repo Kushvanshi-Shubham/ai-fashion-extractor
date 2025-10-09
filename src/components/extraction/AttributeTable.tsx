@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import React, { useMemo } from 'react';
 import { Table, Image, Tag, Button, Tooltip, Space, Dropdown } from 'antd';
 import { ReloadOutlined, EyeOutlined, MoreOutlined } from '@ant-design/icons';
@@ -30,8 +30,7 @@ export const AttributeTable: React.FC<AttributeTableProps> = ({
   onDeleteRow,
   onImageClick,
   onReExtract,
-  onAddToSchema,
-  isExtracting = false
+  onAddToSchema
 }) => {
   // 🏗️ BUILD TABLE COLUMNS DYNAMICALLY
   const columns: ColumnsType<ExtractedRow> = useMemo(() => {

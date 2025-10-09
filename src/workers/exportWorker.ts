@@ -28,7 +28,7 @@ self.onmessage = async (event: MessageEvent<ExportMessage>) => {
   if (type !== 'EXPORT_XLSX') return;
   
   try {
-    const { extractedRows, filename, schema } = payload;
+    const { extractedRows, schema } = payload;
     
     // Progress reporting
     self.postMessage({

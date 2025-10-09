@@ -1,28 +1,20 @@
 import type {
   SchemaItem,
   ExtractionResult,
-  AttributeData,
-  AttributeDetail,
-  DiscoveredAttribute,
   EnhancedExtractionResult
 } from "../../types/extraction/ExtractionTypes";
-import { PromptService } from "./promptService";
 import { logger } from "../../utils/common/logger";
-import { ApiService } from "../api/apiServices";
-import { ResponseParser } from "./responseParser";
+import { BackendApiService } from "../api/backendApi";
 
 
 export class ExtractionService {
-  private promptService = new PromptService();
-  private responseParser = new ResponseParser();
-  private apiService = new ApiService();
+  private backendApi = new BackendApiService();
   private compressImage: (file: File) => Promise<string>;
 
   constructor(compressImageFn: (file: File) => Promise<string>) {
     this.compressImage = compressImageFn;
   }
 
-  // Removed unused enabled param
   async extractAttributes(
     file: File,
     schema: SchemaItem[],
@@ -33,34 +25,20 @@ export class ExtractionService {
     try {
       const base64Image = await this.compressImage(file);
 
-      const prompt =
-        customPrompt ||
-        (categoryName
-          ? this.promptService.generateCategorySpecificPrompt(schema, categoryName)
-          : this.promptService.generateGenericPrompt(schema));
-
-      logger.info("Starting AI extraction", {
+      logger.info("Starting AI extraction via backend", {
         fileName: file.name,
         schemaSize: schema.length,
-        promptLength: prompt.length,
       });
 
-      const aiResponse = await this.apiService.callVisionAPI(base64Image, prompt);
-
-      const attributes: AttributeData = await this.responseParser.parseResponse(
-        aiResponse.content,
-        schema
-      );
+      const result = await this.backendApi.extractFromBase64({
+        image: base64Image,
+        schema,
+        customPrompt,
+        categoryName,
+        discoveryMode: false
+      });
 
       const processingTime = Date.now() - startTime;
-
-      const result: ExtractionResult = {
-        attributes,
-        tokensUsed: aiResponse.tokensUsed,
-        modelUsed: aiResponse.modelUsed,
-        processingTime,
-        confidence: this.calculateOverallConfidence(attributes),
-      };
 
       logger.info("Extraction completed successfully", {
         fileName: file.name,
@@ -69,7 +47,13 @@ export class ExtractionService {
         confidence: result.confidence,
       });
 
-      return result;
+      return {
+        attributes: result.attributes,
+        tokensUsed: result.tokensUsed,
+        modelUsed: result.modelUsed,
+        processingTime: result.processingTime,
+        confidence: result.confidence
+      };
     } catch (error) {
       const processingTime = Date.now() - startTime;
       logger.error("Extraction failed", {
@@ -91,72 +75,41 @@ export class ExtractionService {
     try {
       const base64Image = await this.compressImage(file);
 
-      const prompt = discoveryMode
-        ? this.promptService.generateDiscoveryPrompt(schema, categoryName)
-        : categoryName
-        ? this.promptService.generateCategorySpecificPrompt(schema, categoryName)
-        : this.promptService.generateGenericPrompt(schema);
-
-      logger.info("Starting enhanced AI extraction", {
+      logger.info("Starting enhanced AI extraction via backend", {
         fileName: file.name,
         schemaSize: schema.length,
         discoveryMode,
         category: categoryName,
-        promptLength: prompt.length,
       });
 
-      const aiResponse = await this.apiService.callVisionAPI(base64Image, prompt);
+      const result = await this.backendApi.extractFromBase64({
+        image: base64Image,
+        schema,
+        categoryName,
+        discoveryMode
+      });
 
-      let attributes: AttributeData;
-      let discoveries: DiscoveredAttribute[] = [];
-
-      if (discoveryMode) {
-        const enhancedResult = await this.responseParser.parseEnhancedResponse(
-          aiResponse.content,
-          schema
-        );
-        attributes = enhancedResult.attributes;
-        discoveries = enhancedResult.discoveries;
-
-        if (discoveries.length > 0) {
-          const { discoveryManager } = await import("./discovery/discoveryManager");
-          discoveryManager.addDiscoveries(discoveries, categoryName);
-        }
-      } else {
-        attributes = await this.responseParser.parseResponse(
-          aiResponse.content,
-          schema
-        );
+      if (result.discoveries && result.discoveries.length > 0) {
+        const { discoveryManager } = await import("./discovery/discoveryManager");
+        discoveryManager.addDiscoveries(result.discoveries, categoryName);
       }
 
-      const processingTime = Date.now() - startTime;
-
-      const result: EnhancedExtractionResult = {
-        attributes,
-        discoveries,
-        tokensUsed: aiResponse.tokensUsed,
-        modelUsed: aiResponse.modelUsed,
-        processingTime,
-        confidence: this.calculateOverallConfidence(attributes),
-        discoveryStats: {
-          totalFound: discoveries.length,
-          highConfidence: discoveries.filter((d) => d.confidence >= 80).length,
-          schemaPromotable: discoveries.filter((d) => d.confidence >= 75).length,
-          uniqueKeys: [...new Set(discoveries.map((d) => d.key))].length,
-        },
-      };
+      const updatedProcessingTime = Date.now() - startTime;
 
       logger.info("Enhanced extraction completed", {
         fileName: file.name,
-        processingTime,
+        processingTime: updatedProcessingTime,
         tokensUsed: result.tokensUsed,
         confidence: result.confidence,
-        discoveries: discoveries.length,
+        discoveries: result.discoveries?.length ?? 0,
         highConfidenceDiscoveries: result.discoveryStats?.highConfidence ?? 0,
         discoveryMode,
       });
 
-      return result;
+      return {
+        ...result,
+        processingTime: updatedProcessingTime
+      };
     } catch (error) {
       const processingTime = Date.now() - startTime;
       logger.error("Enhanced extraction failed", {
@@ -174,19 +127,18 @@ export class ExtractionService {
     schema: SchemaItem[],
     categoryName?: string
   ): Promise<EnhancedExtractionResult & { debugInfo?: unknown }> {
-    const baseResult = await this.extractWithDiscovery(file, schema, categoryName, true);
     try {
       const base64Image = await this.compressImage(file);
-      const prompt = this.promptService.generateDiscoveryPrompt(schema, categoryName);
-      const aiResponse = await this.apiService.callVisionAPI(base64Image, prompt);
 
-      const { debugInfo } = await this.responseParser.parseWithDebugInfo(
-        aiResponse.content,
-        schema
-      );
+      const result = await this.backendApi.extractWithDebug({
+        image: base64Image,
+        schema,
+        categoryName
+      });
 
-      return { ...baseResult, debugInfo };
+      return result;
     } catch (error) {
+      const baseResult = await this.extractWithDiscovery(file, schema, categoryName, true);
       return {
         ...baseResult,
         debugInfo: {
@@ -197,16 +149,5 @@ export class ExtractionService {
     }
   }
 
-  private calculateOverallConfidence(attributes: AttributeData): number {
-    const confidenceValues = Object.values(attributes)
-      .filter((attr): attr is AttributeDetail => attr !== null)
-      .map((attr) => attr.visualConfidence)
-      .filter((conf) => conf > 0);
 
-    if (confidenceValues.length === 0) return 0;
-
-    return Math.round(
-      confidenceValues.reduce((sum, conf) => sum + conf, 0) / confidenceValues.length
-    );
-  }
 }

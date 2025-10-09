@@ -112,7 +112,7 @@ export const LazyExportManager = LazyLoader.createLazyComponent(
 );
 
 export const LazyDiscoveryPanel = LazyLoader.createLazyComponent(
-  () => import('../../components/discovery/DiscoveryPanel').then(module => ({ default: module.DiscoveryPanel })),
+  () => import('../../components/discovery/DiscoveryPanel'),
   'DiscoveryPanel'
 );
 

@@ -3,7 +3,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useCallback, useMemo, useRef, useEffect } from "react";
 import { message } from "antd";
-import { ExtractionService } from "../../services/ai/extractionService";
+import { BackendApiService } from "../../services/api/backendApi";
 import { discoveryManager } from "../../services/ai/discovery/discoveryManager";
 import { ImageCompressionService } from "../../services/processing/ImageCompressionService";
 import type {
@@ -61,7 +61,7 @@ export const useImageExtraction = () => {
     [compress]
   );
 
-  const extractionService = useMemo(() => new ExtractionService(compress), [compress]);
+  const backendApi = useMemo(() => new BackendApiService(), []);
 
   // Extract attributes with proper error handling and user notification
   const extractImageAttributes = useCallback(
@@ -86,13 +86,16 @@ export const useImageExtraction = () => {
 
       const start = performance.now();
       try {
+        // Convert file to base64 using compression service
+        const base64Image = await compress(row.file);
+        
         const result: EnhancedExtractionResult =
-          await extractionService.extractWithDiscovery(
-            row.file,
+          await backendApi.extractFromBase64({
+            image: base64Image,
             schema,
-            categoryName ?? "",
-            discoveryEnabled
-          );
+            categoryName: categoryName ?? "",
+            discoveryMode: discoveryEnabled
+          });
 
         const totalTime = performance.now() - start;
 
@@ -162,7 +165,7 @@ export const useImageExtraction = () => {
         return row;
       }
     },
-    [extractionService, discoverySettings.enabled, recordPerf]
+    [backendApi, discoverySettings.enabled, recordPerf, compress]
   );
 
   const { extractAllPending, cancelExtraction } = useBatchExtraction(

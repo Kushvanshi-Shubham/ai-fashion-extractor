@@ -104,7 +104,7 @@ export class DiscoveryManager {
       label: discovery.label,
       type: discovery.suggestedType,
       required: false,
-      allowedValues: discovery.suggestedType === 'select' ? discovery.possibleValues : undefined,
+      allowedValues: discovery.suggestedType === 'select' ? discovery.possibleValues?.map(val => ({ shortForm: val })) : undefined,
       description: `Auto-discovered: ${discovery.reasoning.substring(0, 100)}...`
     };
 

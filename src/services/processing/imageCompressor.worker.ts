@@ -5,13 +5,13 @@ importScripts('https://unpkg.com/browser-image-compression@latest/dist/browser-i
 self.onmessage = async (event) => {
   const { file, options } = event.data;
   try {
-    const compressed = await ImageCompressionService(file, options);
+    const compressed = await (self as any).imageCompression(file, options);
     const reader = new FileReader();
     reader.onload = () => {
       self.postMessage({ success: true, dataUrl: reader.result });
     };
     reader.readAsDataURL(compressed);
   } catch (err) {
-    self.postMessage({ success: false, error: err.message });
+    self.postMessage({ success: false, error: err instanceof Error ? err.message : 'Unknown error' });
   }
 };

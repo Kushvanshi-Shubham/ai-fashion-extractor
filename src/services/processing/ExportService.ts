@@ -54,7 +54,7 @@ export class ExportService {
       
       this.worker.onerror = (error) => {
         logger.error('Export worker error', { error });
-        this.handleWorkerError(error);
+        this.handleWorkerError();
       };
       
       this.isInitialized = true;
@@ -66,7 +66,7 @@ export class ExportService {
     }
   }
 
-  private handleWorkerError(error: ErrorEvent): void {
+  private handleWorkerError(): void {
     this.exportQueue.forEach(({ reject }) => {
       reject(new Error('Export worker crashed'));
     });

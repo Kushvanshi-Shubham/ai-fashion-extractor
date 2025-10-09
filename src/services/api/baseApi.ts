@@ -108,7 +108,6 @@ export const checkApiConfiguration = (): {
   suggestions: string[];
 } => {
   const apiKey = import.meta.env.VITE_OPENAI_API_KEY;
-  const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
   if (!apiKey) {
     return {

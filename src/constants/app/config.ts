@@ -9,13 +9,9 @@ export const APP_CONFIG = {
   // Supported file types
   supportedImageTypes: ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'],
   
-  // AI Configuration
-  openAI: {
-    apiKey: import.meta.env.VITE_OPENAI_API_KEY || '',
-    baseURL: import.meta.env.VITE_API_BASE_URL || 'https://api.openai.com/v1',
-    model: 'gpt-4o',
-    maxTokens: 2048,
-    temperature: 0.1
+  // Backend API Configuration
+  api: {
+    baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api',
   },
   
   // Development settings
@@ -32,8 +28,8 @@ export const APP_CONFIG = {
 export const validateConfig = (): string[] => {
   const errors: string[] = [];
   
-  if (!APP_CONFIG.openAI.apiKey) {
-    errors.push('VITE_OPENAI_API_KEY is required');
+  if (!APP_CONFIG.api.baseURL) {
+    errors.push('VITE_API_BASE_URL is required');
   }
   
   if (APP_CONFIG.maxFileSize < 1024 * 1024) {

@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import React, { useState, useCallback, useMemo } from "react";
 import { Card, Select, Button, Space, Input, Typography, Tag } from "antd";
 import { EditOutlined, ClearOutlined } from "@ant-design/icons";
@@ -20,7 +19,6 @@ export const BulkActions: React.FC<BulkActionsProps> = React.memo(({
   selectedRowKeys,
   selectedRowCount,
   onBulkEdit,
-  onClearSelection,
   schema
 }) => {
   const [selectedAttribute, setSelectedAttribute] = useState<string>("");
@@ -65,8 +63,8 @@ export const BulkActions: React.FC<BulkActionsProps> = React.memo(({
           aria-label="Select value for bulk edit"
         >
           {selectedSchemaItem.allowedValues?.map((value) => (
-            <Option key={value} value={value}>
-              {value}
+            <Option key={value.shortForm} value={value.shortForm}>
+              {value.fullForm || value.shortForm}
             </Option>
           ))}
         </Select>

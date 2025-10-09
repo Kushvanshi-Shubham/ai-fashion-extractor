@@ -1,4 +1,4 @@
-import React, { Component, type ErrorInfo, type ReactNode } from "react";
+import { Component, type ErrorInfo, type ReactNode } from "react";
 import { Alert, Button, Card, Typography } from "antd";
 import { ReloadOutlined, BugOutlined } from "@ant-design/icons";
 import { logger } from "../../utils/common/logger";
