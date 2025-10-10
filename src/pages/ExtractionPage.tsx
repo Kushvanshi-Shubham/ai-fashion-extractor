@@ -18,6 +18,7 @@ import { useImageExtraction } from "../shared/hooks/extraction/useImageExtractio
 import { DiscoveryToggle } from "../features/extraction/components/DiscoveryToggle";
 
 import { DiscoveryPanel } from "../features/extraction/components/DiscoveryPanel";
+import VLMStatusPanel from "../components/vlm/VLMStatusPanel";
 
 import type { 
   DiscoveredAttribute
@@ -186,6 +187,9 @@ const ExtractionPage = () => {
     <Layout className="app-layout">
       <Content className="app-content">
         <div className="content-wrapper">
+          {/* 🚀 Enhanced VLM System Status */}
+          <VLMStatusPanel />
+          
           {showAnalytics && (
             <div className="stats-dashboard animate-slide-up">
               <div className="stat-card">
