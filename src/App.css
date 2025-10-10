@@ -26,6 +26,36 @@
   margin: 0 auto;
 }
 
+/* ===== STEP TRANSITIONS ===== */
+
+.step-card {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.step-card-enter {
+  opacity: 0;
+  transform: translateY(20px) scale(0.95);
+}
+
+.step-card-enter-active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.step-card-exit {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.step-card-exit-active {
+  opacity: 0;
+  transform: translateY(-20px) scale(0.95);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 /* ===== BUTTONS ===== */
 
 .btn-primary {

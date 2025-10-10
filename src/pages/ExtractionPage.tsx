@@ -3,7 +3,7 @@ import {
   Layout, Typography, Card, Spin, Alert, Button, Space, Modal, Progress
 } from "antd";
 import {
-  ClearOutlined, DownloadOutlined, DashboardOutlined
+  ClearOutlined, DownloadOutlined, DashboardOutlined, PlayCircleOutlined
 } from "@ant-design/icons";
 
 import { CategorySelector } from "../components/category/CategorySelector";
@@ -30,6 +30,7 @@ const { Content } = Layout;
 const { Title, Text } = Typography;
 
 const ExtractionPage = () => {
+  // UI State
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
   const [imageModalVisible, setImageModalVisible] = useState(false);
   const [selectedImage, setSelectedImage] = useState<{ url: string; name?: string } | null>(null);
@@ -38,6 +39,9 @@ const ExtractionPage = () => {
   const [error, setError] = useState<string | null>(null);
   const [showAnalytics, setShowAnalytics] = useState(false);
   const [activeDiscovery, setActiveDiscovery] = useState<DiscoveredAttribute | null>(null);
+  
+  // Step Flow State
+  const [currentStep, setCurrentStep] = useState<'category' | 'upload' | 'extraction'>('category');
 
   const [analytics] = useLocalStorage("analytics", {
     totalExtractions: 0,
@@ -55,8 +59,10 @@ const ExtractionPage = () => {
     extractedRows,
     isExtracting,
     progress,
+    stats,
     addImages,
     extractImageAttributes,
+    extractAllPending,
     removeRow,
     clearAll,
     updateRowAttribute,
@@ -65,6 +71,36 @@ const ExtractionPage = () => {
     globalDiscoveries,
     promoteDiscoveryToSchema
   } = useImageExtraction();
+
+  // Enhanced category selection handler that moves to next step
+  const handleCategorySelectWithStep = useCallback((category: any) => {
+    handleCategorySelect(category);
+    if (category) {
+      setTimeout(() => setCurrentStep('upload'), 300); // Smooth transition
+    }
+  }, [handleCategorySelect]);
+
+  // Enhanced image upload handler that moves to extraction step
+  const handleImagesUpload = useCallback(async (fileList: File[]) => {
+    await addImages(fileList);
+    if (fileList.length > 0) {
+      setTimeout(() => setCurrentStep('extraction'), 500); // Smooth transition after upload
+    }
+  }, [addImages]);
+
+  // Reset flow when clearing all data
+  const handleClearAllWithReset = useCallback(() => {
+    clearAll();
+    setCurrentStep('category');
+    handleCategorySelect(null);
+  }, [clearAll, handleCategorySelect]);
+
+  // Handle Extract All functionality
+  const handleExtractAllClick = useCallback(() => {
+    if (extractAllPending && schema && selectedCategory) {
+      extractAllPending(schema, selectedCategory.displayName);
+    }
+  }, [extractAllPending, schema, selectedCategory]);
 
   useEffect(() => {
     const initializeApp = async () => {
@@ -171,44 +207,169 @@ const ExtractionPage = () => {
 
           <div className="main-grid">
             <div className="left-panel">
-              <Card className="category-card animate-slide-down">
-                <CategorySelector 
-                  selectedCategory={selectedCategory}
-                  onCategorySelect={handleCategorySelect}
-                />
-              </Card>
-
-              <Card className="upload-card animate-slide-up">
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
-                  <Title level={4} style={{ margin: 0 }}>
-                    📸 Upload Images
-                  </Title>
-                  <Space>
-                    <DiscoveryToggle
-                      settings={discoverySettings}
-                      onChange={setDiscoverySettings}
-                    />
-                    <Button 
-                      icon={<DashboardOutlined />}
-                      onClick={handleToggleAnalytics}
-                      className={showAnalytics ? "btn-primary" : "btn-secondary"}
-                    >
-                      Analytics
-                    </Button>
-                  </Space>
-                </div>
-                <UploadArea onUpload={async (_file: File, fileList: File[]) => {
-                  await addImages(fileList);
-                  return false;
-                }} />
-              </Card>
-
-              {extractedRows.length > 0 && (
-                <Card className="table-card animate-fade-in">
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
-                    <Title level={4} style={{ margin: 0 }}>
-                      📋 Extracted Data ({extractedRows.length})
+              {/* Step 1: Category Selection */}
+              {currentStep === 'category' && (
+                <Card className="step-card" style={{ 
+                  border: '2px solid #1890ff',
+                  boxShadow: '0 8px 32px rgba(24, 144, 255, 0.1)' 
+                }}>
+                  <div style={{ textAlign: 'center', marginBottom: 24 }}>
+                    <Title level={3} style={{ color: '#1890ff', marginBottom: 8 }}>
+                      🎯 Step 1: Select Fashion Category
                     </Title>
+                    <Text type="secondary">Choose the category that matches your images</Text>
+                  </div>
+                  <CategorySelector 
+                    selectedCategory={selectedCategory}
+                    onCategorySelect={handleCategorySelectWithStep}
+                  />
+                </Card>
+              )}
+
+              {/* Step 2: Image Upload */}
+              {currentStep === 'upload' && (
+                <Card className="step-card" style={{ 
+                  border: '2px solid #52c41a',
+                  boxShadow: '0 8px 32px rgba(82, 196, 26, 0.1)' 
+                }}>
+                  <div style={{ textAlign: 'center', marginBottom: 24 }}>
+                    <Title level={3} style={{ color: '#52c41a', marginBottom: 8 }}>
+                      📸 Step 2: Upload Images
+                    </Title>
+                    <Text type="secondary">
+                      Selected: <strong>{selectedCategory?.displayName}</strong> | 
+                      Upload your fashion images for AI analysis
+                    </Text>
+                  </div>
+                  
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
+                    <Button 
+                      onClick={() => setCurrentStep('category')}
+                      type="link"
+                      style={{ paddingLeft: 0 }}
+                    >
+                      ← Back to Category Selection
+                    </Button>
+                    <Space>
+                      <DiscoveryToggle
+                        settings={discoverySettings}
+                        onChange={setDiscoverySettings}
+                      />
+                      <Button 
+                        icon={<DashboardOutlined />}
+                        onClick={handleToggleAnalytics}
+                        className={showAnalytics ? "btn-primary" : "btn-secondary"}
+                      >
+                        Analytics
+                      </Button>
+                    </Space>
+                  </div>
+                  
+                  <UploadArea onUpload={async (_file: File, fileList: File[]) => {
+                    await handleImagesUpload(fileList);
+                    return false;
+                  }} />
+                </Card>
+              )}
+
+              {/* Step 3: Extraction Results */}
+              {currentStep === 'extraction' && extractedRows.length > 0 && (
+                <Card className="step-card" style={{ 
+                  border: '2px solid #722ed1',
+                  boxShadow: '0 8px 32px rgba(114, 46, 209, 0.1)' 
+                }}>
+                  <div style={{ textAlign: 'center', marginBottom: 24 }}>
+                    <Title level={3} style={{ color: '#722ed1', marginBottom: 8 }}>
+                      🤖 Step 3: AI Extraction Results
+                    </Title>
+                    <Text type="secondary">
+                      Category: <strong>{selectedCategory?.displayName}</strong> | 
+                      {extractedRows.length} images processed
+                    </Text>
+                  </div>
+
+                  {/* Stats Dashboard */}
+                  {stats && (
+                    <div style={{ 
+                      display: 'flex', 
+                      justifyContent: 'center', 
+                      gap: '24px', 
+                      marginBottom: 24,
+                      flexWrap: 'wrap'
+                    }}>
+                      <div style={{ textAlign: 'center', padding: '12px', background: '#f0f9ff', borderRadius: '8px', minWidth: '100px' }}>
+                        <div style={{ fontSize: '24px', fontWeight: 'bold', color: '#1890ff' }}>{stats.total}</div>
+                        <div style={{ fontSize: '12px', color: '#666' }}>Total Images</div>
+                      </div>
+                      <div style={{ textAlign: 'center', padding: '12px', background: '#f6ffed', borderRadius: '8px', minWidth: '100px' }}>
+                        <div style={{ fontSize: '24px', fontWeight: 'bold', color: '#52c41a' }}>{stats.done}</div>
+                        <div style={{ fontSize: '12px', color: '#666' }}>Completed</div>
+                      </div>
+                      <div style={{ textAlign: 'center', padding: '12px', background: '#fff7e6', borderRadius: '8px', minWidth: '100px' }}>
+                        <div style={{ fontSize: '24px', fontWeight: 'bold', color: '#fa8c16' }}>{stats.pending}</div>
+                        <div style={{ fontSize: '12px', color: '#666' }}>Pending</div>
+                      </div>
+                      <div style={{ textAlign: 'center', padding: '12px', background: '#f9f0ff', borderRadius: '8px', minWidth: '100px' }}>
+                        <div style={{ fontSize: '24px', fontWeight: 'bold', color: '#722ed1' }}>{Math.round(stats.successRate)}%</div>
+                        <div style={{ fontSize: '12px', color: '#666' }}>Success Rate</div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Extract All Button */}
+                  {stats && (stats.pending > 0 || stats.error > 0) && (
+                    <div style={{ textAlign: 'center', marginBottom: 24 }}>
+                      <Button
+                        type="primary"
+                        icon={<PlayCircleOutlined />}
+                        size="large"
+                        onClick={handleExtractAllClick}
+                        disabled={isExtracting}
+                        loading={isExtracting}
+                        style={{
+                          background: 'linear-gradient(135deg, #722ed1 0%, #eb2f96 100%)',
+                          border: 'none',
+                          height: '48px',
+                          fontSize: '16px',
+                          fontWeight: '600',
+                          paddingLeft: '32px',
+                          paddingRight: '32px'
+                        }}
+                      >
+                        {isExtracting 
+                          ? `Extracting... (${Math.round(progress)}%)` 
+                          : `Extract All Pending (${stats.pending + (stats.error || 0)})`
+                        }
+                      </Button>
+                      {isExtracting && (
+                        <div style={{ marginTop: 12 }}>
+                          <Progress 
+                            percent={Math.round(progress)} 
+                            size="small" 
+                            style={{ maxWidth: 300, margin: '0 auto' }}
+                            strokeColor={{ from: '#722ed1', to: '#eb2f96' }}
+                          />
+                        </div>
+                      )}
+                    </div>
+                  )}
+                  
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
+                    <Space>
+                      <Button 
+                        onClick={() => setCurrentStep('upload')}
+                        type="link"
+                        style={{ paddingLeft: 0 }}
+                      >
+                        ← Back to Upload
+                      </Button>
+                      <Button 
+                        onClick={() => setCurrentStep('category')}
+                        type="link"
+                      >
+                        ← Change Category
+                      </Button>
+                    </Space>
                     <Space>
                       <BulkActions
                         selectedRowKeys={selectedRowKeys}
@@ -226,10 +387,10 @@ const ExtractionPage = () => {
                       </Button>
                       <Button
                         icon={<ClearOutlined />}
-                        onClick={clearAll}
+                        onClick={handleClearAllWithReset}
                         className="btn-danger"
                       >
-                        Clear All
+                        Start Over
                       </Button>
                     </Space>
                   </div>
@@ -271,13 +432,16 @@ const ExtractionPage = () => {
               )}
             </div>
 
-            <div className="right-panel">
-              <DiscoveryPanel 
-                discoveries={globalDiscoveries}
-                onPromoteToSchema={(discoveryKey: string) => promoteDiscoveryToSchema(discoveryKey)}
-                onViewDetails={handleDiscoveryClick}
-              />
-            </div>
+            {/* Right Panel - Show Discovery Panel only during extraction step */}
+            {currentStep === 'extraction' && (
+              <div className="right-panel">
+                <DiscoveryPanel 
+                  discoveries={globalDiscoveries}
+                  onPromoteToSchema={(discoveryKey: string) => promoteDiscoveryToSchema(discoveryKey)}
+                  onViewDetails={handleDiscoveryClick}
+                />
+              </div>
+            )}
           </div>
         </div>
       </Content>
