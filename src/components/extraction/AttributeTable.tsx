@@ -4,9 +4,10 @@ import { Table, Image, Tag, Button, Tooltip, Space, Dropdown } from 'antd';
 import { ReloadOutlined, EyeOutlined, MoreOutlined } from '@ant-design/icons';
 import type { ColumnsType } from 'antd/es/table';
 import type { ExtractedRow, SchemaItem } from '../../types/extraction/ExtractionTypes';
-import { StatusBadge } from '../ui/StatusBadge';
-import { AttributeCell } from './AttributeCell';
+
 import { formatDuration, formatFileSize } from '../../utils/common/helpers';
+import { StatusBadge } from '../../shared';
+import { AttributeCell } from '../../features/extraction';
 
 interface AttributeTableProps {
   extractedRows: ExtractedRow[]; // 📸 Your uploaded images with data

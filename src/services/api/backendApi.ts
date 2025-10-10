@@ -7,6 +7,11 @@ export interface BackendExtractionRequest {
   categoryName?: string;
   customPrompt?: string;
   discoveryMode?: boolean;
+  // 🚀 NEW VLM PARAMETERS
+  department?: 'mens' | 'ladies' | 'kids';
+  subDepartment?: 'tops' | 'bottoms' | 'accessories' | 'footwear';
+  season?: 'spring' | 'summer' | 'fall' | 'winter';
+  occasion?: 'casual' | 'formal' | 'sport' | 'party';
 }
 
 export interface BackendExtractionResponse {
@@ -14,6 +19,11 @@ export interface BackendExtractionResponse {
   data?: EnhancedExtractionResult;
   error?: string;
   timestamp: number;
+  metadata?: {
+    enhancedMode?: boolean;
+    vlmPipeline?: string;
+    fashionSpecialized?: boolean;
+  };
 }
 
 export class BackendApiService {
@@ -23,6 +33,62 @@ export class BackendApiService {
     this.baseURL = APP_CONFIG.api.baseURL;
   }
 
+  // 🚀 ENHANCED VLM EXTRACTION (New Primary Method)
+  async extractFromBase64VLM(request: BackendExtractionRequest): Promise<EnhancedExtractionResult> {
+    try {
+      console.log(`🚀 Enhanced VLM Extraction - Discovery: ${request.discoveryMode || false}, Dept: ${request.department}`);
+      
+      const response = await fetch(`${this.baseURL}/vlm/extract/base64`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...request,
+          discoveryMode: request.discoveryMode || false
+        })
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error || `Enhanced VLM API request failed: ${response.status}`);
+      }
+
+      const result: BackendExtractionResponse = await response.json();
+      
+      if (!result.success) {
+        throw new Error(result.error || 'Enhanced VLM extraction failed');
+      }
+
+      if (!result.data) {
+        throw new Error('No data returned from enhanced VLM extraction');
+      }
+
+      console.log(`✅ Enhanced VLM Success - Confidence: ${result.data.confidence}%, Model: ${result.data.modelUsed}`);
+      return result.data;
+    } catch (error) {
+      console.error('Enhanced VLM extraction failed:', error);
+      throw new Error(`Enhanced VLM extraction failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    }
+  }
+
+  // 📊 VLM SYSTEM HEALTH CHECK
+  async vlmHealthCheck(): Promise<{ success: boolean; message: string; data: Record<string, unknown> }> {
+    try {
+      const response = await fetch(`${this.baseURL}/vlm/health`);
+      
+      if (!response.ok) {
+        throw new Error(`VLM health check failed: ${response.status}`);
+      }
+
+      return await response.json();
+    } catch (error) {
+      console.error('VLM health check failed:', error);
+      throw new Error(`VLM health check failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    }
+  }
+
+  // 🎯 LEGACY METHOD (Keep for backward compatibility)
   async extractFromBase64(request: BackendExtractionRequest): Promise<EnhancedExtractionResult> {
     try {
       // 🔧 LOG DISCOVERY MODE STATUS
@@ -152,5 +218,99 @@ export class BackendApiService {
 
   isConfigured(): boolean {
     return !!this.baseURL;
+  }
+
+  async listUploads(page = 1, pageSize = 20) {
+    const resp = await fetch(`${this.baseURL}/uploads?page=${page}&pageSize=${pageSize}`);
+    if (!resp.ok) throw new Error(`Failed to fetch uploads: ${resp.status}`);
+    const json = await resp.json();
+    if (!json.success) throw new Error(json.error || 'Failed to list uploads');
+    return json.data;
+  }
+
+  async getUpload(id: string) {
+    const resp = await fetch(`${this.baseURL}/uploads/${id}`);
+    if (!resp.ok) throw new Error(`Failed to fetch upload: ${resp.status}`);
+    const json = await resp.json();
+    if (!json.success) throw new Error(json.error || 'Failed to get upload');
+    return json.data;
+  }
+
+  async updateUpload(id: string, data: { status?: string; filename?: string }) {
+    const token = localStorage.getItem('authToken');
+    const resp = await fetch(`${this.baseURL}/uploads/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+      body: JSON.stringify(data),
+    });
+    if (!resp.ok) throw new Error(`Failed to update upload: ${resp.status}`);
+    const json = await resp.json();
+    if (!json.success) throw new Error(json.error || 'Failed to update upload');
+    return json.data;
+  }
+
+  async deleteUpload(id: string) {
+    const token = localStorage.getItem('authToken');
+    const resp = await fetch(`${this.baseURL}/uploads/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
+    });
+    if (!resp.ok) throw new Error(`Failed to delete upload: ${resp.status}`);
+    const json = await resp.json();
+    if (!json.success) throw new Error(json.error || 'Failed to delete upload');
+    return json.data;
+  }
+
+  async getAdminStats() {
+    const token = localStorage.getItem('authToken');
+    const resp = await fetch(`${this.baseURL}/admin/stats`, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
+    });
+    if (!resp.ok) throw new Error(`Failed to fetch admin stats: ${resp.status}`);
+    const json = await resp.json();
+    if (!json.success) throw new Error(json.error || 'Failed to get admin stats');
+    return json.data;
+  }
+
+  async login(email: string, password: string) {
+    const resp = await fetch(`${this.baseURL}/auth/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password }),
+    });
+    if (!resp.ok) throw new Error(`Login failed: ${resp.status}`);
+    const json = await resp.json();
+    if (!json.success) throw new Error(json.error || 'Login failed');
+    return json.data;
+  }
+
+  async register(email: string, password: string) {
+    const resp = await fetch(`${this.baseURL}/auth/register`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password }),
+    });
+    if (!resp.ok) throw new Error(`Registration failed: ${resp.status}`);
+    const json = await resp.json();
+    if (!json.success) throw new Error(json.error || 'Registration failed');
+    return json.data;
+  }
+
+  async getMe() {
+    const token = localStorage.getItem('authToken');
+    const resp = await fetch(`${this.baseURL}/auth/me`, {
+      headers: { 'Authorization': `Bearer ${token}` },
+    });
+    if (!resp.ok) throw new Error(`Failed to get user info: ${resp.status}`);
+    const json = await resp.json();
+    if (!json.success) throw new Error(json.error || 'Failed to get user info');
+    return json.data;
   }
 }

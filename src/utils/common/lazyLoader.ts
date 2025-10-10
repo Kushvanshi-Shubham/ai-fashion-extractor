@@ -107,29 +107,29 @@ export class LazyLoader {
 
 // ✅ FIXED: Create proper lazy components for your existing components
 export const LazyExportManager = LazyLoader.createLazyComponent(
-  () => import('../../components/export/ExportButton').then(module => ({ default: module.ExportButton })),
+  () => import('../../features/extraction/components/ExportButton').then(module => ({ default: module.ExportButton })),
   'ExportManager'
 );
 
 export const LazyDiscoveryPanel = LazyLoader.createLazyComponent(
-  () => import('../../components/discovery/DiscoveryPanel'),
+  () => import('../../features/extraction/components/DiscoveryPanel').then(module => ({ default: module.DiscoveryPanel })),
   'DiscoveryPanel'
 );
 
 export const LazyDiscoveryDetailModal = LazyLoader.createLazyComponent(
-  () => import('../../components/discovery/DiscoveryDetailModal').then(module => ({ default: module.DiscoveryDetailModal })),
+  () => import('../../features/extraction/components/DiscoveryDetailModal').then(module => ({ default: module.DiscoveryDetailModal })),
   'DiscoveryDetailModal'
 );
 
 // ✅ BONUS: Preload critical components on app start
 export const preloadCriticalComponents = () => {
   LazyLoader.preloadComponent(
-    () => import('../../components/export/ExportButton'),
+    () => import('../../features/extraction/components/ExportButton'),
     'ExportManager'
   );
   
   LazyLoader.preloadComponent(
-    () => import('../../components/discovery/DiscoveryPanel'),
+    () => import('../../features/extraction/components/DiscoveryPanel'),
     'DiscoveryPanel'
   );
 };

@@ -53,8 +53,8 @@ export const useImageExtraction = () => {
   }, []);
 
   const compress = useCallback(
-    (file: File, onProgress?: (p: number) => void): Promise<string> =>
-      compressImage(file, compressionService, recordPerf, onProgress),
+    (file: File, _onProgress?: (p: number) => void): Promise<string> =>
+      compressImage(file, compressionService, recordPerf),
     [compressionService, recordPerf]
   );
 
@@ -233,16 +233,34 @@ export const useImageExtraction = () => {
         // Convert file to base64 using compression service
         const base64Image = await compress(row.file);
         
-        // 🔧 VALIDATION: Only enable discovery mode when explicitly set
-        console.log(`🔍 Frontend Extraction - Discovery Enabled: ${discoveryEnabled}, Category: ${categoryName}`);
+        // � ENHANCED VLM EXTRACTION: Use new multi-VLM pipeline
+        console.log(`� Enhanced VLM Extraction - Discovery: ${discoveryEnabled}, Category: ${categoryName}`);
         
-        const result: EnhancedExtractionResult =
-          await backendApi.extractFromBase64({
+        // Try enhanced VLM first, fallback to legacy if needed
+        let result: EnhancedExtractionResult;
+        try {
+          result = await backendApi.extractFromBase64VLM({
             image: base64Image,
             schema,
             categoryName: categoryName ?? "",
-            discoveryMode: discoveryEnabled === true // Explicit boolean check
+            discoveryMode: discoveryEnabled === true,
+            // Extract department info from category name
+            department: categoryName?.toLowerCase().includes('mens') ? 'mens' : 
+                       categoryName?.toLowerCase().includes('ladies') ? 'ladies' :
+                       categoryName?.toLowerCase().includes('kids') ? 'kids' : undefined,
+            subDepartment: categoryName?.toLowerCase().includes('shirt') || categoryName?.toLowerCase().includes('top') ? 'tops' :
+                          categoryName?.toLowerCase().includes('pant') || categoryName?.toLowerCase().includes('short') ? 'bottoms' : undefined
           });
+          console.log(`✅ Enhanced VLM Success - Model: ${result.modelUsed}, Confidence: ${result.confidence}%`);
+        } catch (vlmError) {
+          console.warn('🔄 Enhanced VLM failed, falling back to legacy API:', vlmError);
+          result = await backendApi.extractFromBase64({
+            image: base64Image,
+            schema,
+            categoryName: categoryName ?? "",
+            discoveryMode: discoveryEnabled === true
+          });
+        }
 
         const totalTime = performance.now() - start;
 
