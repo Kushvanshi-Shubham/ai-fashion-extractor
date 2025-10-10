@@ -6,27 +6,25 @@ import {
   ClearOutlined, DownloadOutlined, DashboardOutlined, PlayCircleOutlined
 } from "@ant-design/icons";
 
-
-import { BulkActions } from "../features/extraction/components/BulkActions";
-
-
-import { useCategorySelector } from "../shared/hooks/category/useCategorySelector";
-import { useLocalStorage } from "../shared/hooks/ui/useLocalStorage";
-import { CategoryHelper } from "../shared/utils/category/categoryHelpers";
-import { indexedDBService } from "../shared/services/storage/indexedDBService";
-import { useImageExtraction } from "../shared/hooks/extraction/useImageExtraction";
-import { DiscoveryToggle } from "../features/extraction/components/DiscoveryToggle";
-
-import { DiscoveryPanel } from "../features/extraction/components/DiscoveryPanel";
-
+import { CategorySelector } from "../components/CategorySelector";
+import { AttributeTable } from "../components/AttributeTable";
+import { BulkActions } from "../components/BulkActions";
+import { ImageModal } from "../../../shared/components/ui/ImageModal";
+import { UploadArea } from "../components/UploadArea";
+import { useCategorySelector } from "../../../shared/hooks/category/useCategorySelector";
+import { useLocalStorage } from "../../../shared/hooks/ui/useLocalStorage";
+import { CategoryHelper } from "../../../shared/utils/category/categoryHelpers";
+import { indexedDBService } from "../../../shared/services/storage/indexedDBService";
+import { useImageExtraction } from "../../../shared/hooks/extraction/useImageExtraction";
+import { DiscoveryToggle } from "../components/DiscoveryToggle";
+import { DiscoveryDetailModal } from "../components/DiscoveryDetailModal";
+import { DiscoveryPanel } from "../components/DiscoveryPanel";
+import ExportManager from "../components/ExportManager";
 import type { 
   DiscoveredAttribute
-} from "../shared/types/extraction/ExtractionTypes";
-import type { CategoryConfig } from "../shared/types/category/CategoryTypes";
+} from "../../../shared/types/extraction/ExtractionTypes";
 
-import "../styles/App.css";
-import { AttributeTable, CategorySelector, DiscoveryDetailModal, ExportManager, UploadArea } from "../features/extraction";
-import { ImageModal } from "../shared";
+import "../../../styles/App.css";
 
 const { Content } = Layout;
 const { Title, Text } = Typography;
@@ -75,7 +73,7 @@ const ExtractionPage = () => {
   } = useImageExtraction();
 
   // Enhanced category selection handler that moves to next step
-  const handleCategorySelectWithStep = useCallback((category: CategoryConfig | null) => {
+  const handleCategorySelectWithStep = useCallback((category: any) => {
     handleCategorySelect(category);
     if (category) {
       setTimeout(() => setCurrentStep('upload'), 300); // Smooth transition

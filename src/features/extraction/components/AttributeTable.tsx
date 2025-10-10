@@ -3,11 +3,10 @@ import React, { useMemo } from 'react';
 import { Table, Image, Tag, Button, Tooltip, Space, Dropdown } from 'antd';
 import { ReloadOutlined, EyeOutlined, MoreOutlined } from '@ant-design/icons';
 import type { ColumnsType } from 'antd/es/table';
-import type { ExtractedRow, SchemaItem } from '../../types/extraction/ExtractionTypes';
-
-import { formatDuration, formatFileSize } from '../../utils/common/helpers';
-import { StatusBadge } from '../../shared';
-import { AttributeCell } from '../../features/extraction';
+import type { ExtractedRow, SchemaItem } from '../../../shared/types/extraction/ExtractionTypes';
+import { StatusBadge } from '../../../shared/components/ui/StatusBadge';
+import { AttributeCell } from './AttributeCell';
+import { formatDuration, formatFileSize } from '../../../shared/utils/common/helpers';
 
 interface AttributeTableProps {
   extractedRows: ExtractedRow[]; // 📸 Your uploaded images with data

@@ -6,26 +6,26 @@ import {
   ClearOutlined, DownloadOutlined, ArrowRightOutlined, DashboardOutlined, PlayCircleOutlined
 } from "@ant-design/icons";
 
-import { CategorySelector } from "./components/category/CategorySelector";
-import { AttributeTable } from "./components/extraction/AttributeTable";
-import { BulkActions } from "./components/extraction/BulkActions";
-import { ImageModal } from "./components/ui/ImageModal";
-import { UploadArea } from "./components/extraction/UploadArea";
-import { useCategorySelector } from "./hooks/category/useCategorySelector";
-import { useLocalStorage } from "./hooks/ui/useLocalStorage";
-import { CategoryHelper } from "./utils/category/categoryHelpers";
-import { indexedDBService } from "./services/storage/indexedDBService";
-import { useImageExtraction } from "./hooks/extraction/useImageExtraction";
-import { DiscoveryToggle } from "./components/discovery/DiscoveryToggle";
-import { DiscoveryDetailModal } from "./components/discovery/DiscoveryDetailModal";
-import type { DiscoveredAttribute } from "./types/extraction/ExtractionTypes";
+import { CategorySelector } from "./features/extraction/components/CategorySelector";
+import { AttributeTable } from "./features/extraction/components/AttributeTable";
+import { BulkActions } from "./features/extraction/components/BulkActions";
+import { ImageModal } from "./shared/components/ui/ImageModal";
+import { UploadArea } from "./features/extraction/components/UploadArea";
+import { useCategorySelector } from "./shared/hooks/category/useCategorySelector";
+import { useLocalStorage } from "./shared/hooks/ui/useLocalStorage";
+import { CategoryHelper } from "./shared/utils/category/categoryHelpers";
+import { indexedDBService } from "./shared/services/storage/indexedDBService";
+import { useImageExtraction } from "./shared/hooks/extraction/useImageExtraction";
+import { DiscoveryToggle } from "./features/extraction/components/DiscoveryToggle";
+import { DiscoveryDetailModal } from "./features/extraction/components/DiscoveryDetailModal";
+import type { DiscoveredAttribute } from "./shared/types/extraction/ExtractionTypes";
 
-import "./App.css";
-import { ErrorBoundary } from "./components/common/ErrorBoundary";
-import DiscoveryPanel from "./components/discovery/DiscoveryPanel";
-import ExportManager from "./components/export/ExportManager";
-import UploadsList from './pages/UploadsList';
-import UploadDetail from './pages/UploadDetail';
+import "./styles/App.css";
+import { ErrorBoundary } from "./shared/components/ErrorBoundary";
+import { DiscoveryPanel } from "./features/extraction/components/DiscoveryPanel";
+import ExportManager from "./features/extraction/components/ExportManager";
+import UploadsList from './features/dashboard/pages/UploadsList';
+import UploadDetail from './features/dashboard/pages/UploadDetail';
 
 const { Header, Content } = Layout;
 const { Title, Text } = Typography;
