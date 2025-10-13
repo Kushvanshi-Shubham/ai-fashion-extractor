@@ -23,6 +23,8 @@ import {
   compressImage,
 } from "./extractionHelpers";
 import { useBatchExtraction } from "./useBatchExtraction";
+import { AttributeProcessor } from "../../services/extraction/rangeAwareProcessor";
+import { MASTER_ATTRIBUTES } from "../../../constants/categories/masterAttributes";
 
 export const useImageExtraction = () => {
   // Core state
@@ -122,10 +124,22 @@ export const useImageExtraction = () => {
           )
         );
 
-        // Poll for results with progress updates
+        // Create AbortController for this specific job
+        const jobAbortController = new AbortController();
+        abortRef.current = jobAbortController;
+        
+        console.log(`🎯 Created AbortController for job ${jobId}`);
+        
+        // Poll for results with progress updates and cancellation support
         const result = await queueService.pollJobUntilComplete(
           jobId,
           (status) => {
+            // Check if extraction was cancelled
+            if (jobAbortController.signal.aborted) {
+              console.log(`🛑 Extraction cancelled for job ${jobId}`);
+              throw new Error('Extraction cancelled by user');
+            }
+            
             // Update progress based on queue status
             let progressPercent = 10;
             switch (status.status) {
@@ -152,10 +166,16 @@ export const useImageExtraction = () => {
 
         const totalTime = performance.now() - start;
 
+        // 🎯 APPLY SMART ATTRIBUTE PROCESSING
+        const processedAttributes = AttributeProcessor.processBatchResults(
+          result.attributes, 
+          MASTER_ATTRIBUTES
+        );
+
         const updated: ExtractedRowEnhanced = {
           ...row,
           status: "Done",
-          attributes: result.attributes,
+          attributes: processedAttributes,
           discoveries: result.discoveries ?? [],
           apiTokensUsed: result.tokensUsed,
           modelUsed: result.modelUsed,
@@ -246,10 +266,16 @@ export const useImageExtraction = () => {
 
         const totalTime = performance.now() - start;
 
+        // 🎯 APPLY SMART ATTRIBUTE PROCESSING
+        const processedAttributesSync = AttributeProcessor.processBatchResults(
+          result.attributes, 
+          MASTER_ATTRIBUTES
+        );
+
         const updated: ExtractedRowEnhanced = {
           ...row,
           status: "Done",
-          attributes: result.attributes,
+          attributes: processedAttributesSync,
           discoveries: result.discoveries ?? [],
           apiTokensUsed: result.tokensUsed,
           modelUsed: result.modelUsed,
@@ -348,12 +374,30 @@ export const useImageExtraction = () => {
   }, []);
 
   const clearAll = useCallback(() => {
-    abortRef.current?.abort();
+    console.log('🧹 Clearing all extractions and aborting ongoing processes...');
+    
+    // Abort all ongoing extractions
+    if (abortRef.current) {
+      abortRef.current.abort();
+      console.log('🛑 Aborted current extraction controller');
+    }
+    
+    // Cancel any pending queue jobs
+    try {
+      queueService.cancelAllJobs();
+      console.log('🛑 Cancelled all pending queue jobs');
+    } catch (error) {
+      console.warn('⚠️ Could not cancel queue jobs:', error);
+    }
+    
+    // Clean up blob URLs
     extractedRows.forEach((r) => {
       if (r.imagePreviewUrl.startsWith("blob:")) {
         URL.revokeObjectURL(r.imagePreviewUrl);
       }
     });
+    
+    // Reset all state
     setExtractedRows([]);
     discoveryManager.clear();
     setGlobalDiscoveries([]);
@@ -361,7 +405,9 @@ export const useImageExtraction = () => {
     setExtractionErrors([]);
     setProgress(0);
     setIsExtracting(false);
-  }, [extractedRows]);
+    
+    console.log('✅ All extractions cleared and state reset');
+  }, [extractedRows, queueService]);
 
   // Promote discovery to schema with success/error message
   const promoteDiscoveryToSchema = useCallback((key: string) => {

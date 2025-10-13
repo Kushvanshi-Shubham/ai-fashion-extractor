@@ -53,9 +53,21 @@ export interface DiscoveryStats {
   uniqueKeys: number;
 }
 
+export interface OCRLabels {
+  sizeLabels: string[];
+  brandLabels: string[];
+  careLabels: string[];
+  materialLabels: string[];
+  countryLabels: string[];
+  priceLabels: string[];
+  generalText: string[];
+  confidence: number;
+}
+
 export interface EnhancedExtractionResult extends ExtractionResult {
   discoveries?: DiscoveredAttribute[];
   discoveryStats?: DiscoveryStats;
+  ocrLabels?: OCRLabels; // 📖 OCR-extracted text labels
   errorDetails?: {
     stage: 'compression' | 'api' | 'parsing';
     originalError: string;

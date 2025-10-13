@@ -241,4 +241,15 @@ export class QueueService {
       return minutes > 0 ? `${hours}h ${minutes}m` : `${hours}h`;
     }
   }
+
+  // 🛑 CANCEL ALL JOBS - For extraction reset
+  cancelAllJobs(): Promise<void> {
+    return new Promise((resolve) => {
+      console.log('🛑 Cancelling all pending queue jobs (client-side)');
+      // For now, this is a client-side cancellation
+      // The actual jobs will timeout or complete on server
+      // TODO: Add server-side job cancellation API
+      resolve();
+    });
+  }
 }

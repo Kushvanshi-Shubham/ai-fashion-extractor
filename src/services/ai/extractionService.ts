@@ -1,7 +1,8 @@
 import type {
   SchemaItem,
   ExtractionResult,
-  EnhancedExtractionResult
+  EnhancedExtractionResult,
+  OCRLabels
 } from "../../types/extraction/ExtractionTypes";
 import { logger } from "../../utils/common/logger";
 import { BackendApiService } from "../api/backendApi";
@@ -146,6 +147,106 @@ export class ExtractionService {
           message: error instanceof Error ? error.message : "Unknown error",
         },
       };
+    }
+  }
+
+  // 🔍 MULTI-CROP ENHANCED EXTRACTION
+  async extractWithMultiCrop(
+    file: File,
+    schema: SchemaItem[],
+    categoryName?: string,
+    department?: string,
+    subDepartment?: string
+  ): Promise<EnhancedExtractionResult> {
+    const startTime = Date.now();
+    try {
+      logger.info("Starting multi-crop AI extraction via backend", {
+        fileName: file.name,
+        schemaSize: schema.length,
+        category: categoryName,
+        department,
+        subDepartment,
+      });
+
+      // Use the backend's multi-crop endpoint directly with FormData
+      const result = await this.backendApi.extractWithMultiCrop({
+        file,
+        schema,
+        categoryName,
+        department,
+        subDepartment
+      });
+
+      if (result.discoveries && result.discoveries.length > 0) {
+        const { discoveryManager } = await import("./discovery/discoveryManager");
+        discoveryManager.addDiscoveries(result.discoveries, categoryName);
+      }
+
+      const updatedProcessingTime = Date.now() - startTime;
+
+      logger.info("Multi-crop extraction completed", {
+        fileName: file.name,
+        processingTime: updatedProcessingTime,
+        tokensUsed: result.tokensUsed,
+        confidence: result.confidence,
+        discoveries: result.discoveries?.length ?? 0,
+        highConfidenceDiscoveries: result.discoveryStats?.highConfidence ?? 0,
+        multiCrop: true,
+      });
+
+      return {
+        ...result,
+        processingTime: updatedProcessingTime
+      };
+    } catch (error) {
+      const processingTime = Date.now() - startTime;
+      logger.error("Multi-crop extraction failed", {
+        fileName: file.name,
+        processingTime,
+        error,
+      });
+      
+      // Fallback to regular enhanced extraction
+      logger.info("Falling back to standard enhanced extraction", {
+        fileName: file.name,
+      });
+      return this.extractWithDiscovery(file, schema, categoryName, true);
+    }
+  }
+
+  // 📖 OCR-ONLY TEXT EXTRACTION
+  async extractOCRLabels(file: File): Promise<{
+    ocrLabels: OCRLabels;
+    sectionResults: {
+      fullImage: OCRLabels;
+      topSection: OCRLabels;
+      centerSection: OCRLabels;
+      bottomSection: OCRLabels;
+    };
+    processingTime: number;
+    confidence: number;
+  }> {
+    try {
+      logger.info("Starting OCR text extraction", {
+        fileName: file.name,
+      });
+
+      const result = await this.backendApi.extractOCRLabels(file);
+
+      logger.info("OCR extraction completed", {
+        fileName: file.name,
+        processingTime: result.processingTime,
+        confidence: result.confidence,
+        labelsFound: Object.values(result.ocrLabels).flat().length - 1,
+      });
+
+      return result;
+    } catch (error) {
+      logger.error("OCR extraction failed", {
+        fileName: file.name,
+        error,
+      });
+      throw error;
     }
   }
 
