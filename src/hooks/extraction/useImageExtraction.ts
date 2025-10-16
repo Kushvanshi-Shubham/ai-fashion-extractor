@@ -243,13 +243,7 @@ export const useImageExtraction = () => {
             image: base64Image,
             schema,
             categoryName: categoryName ?? "",
-            discoveryMode: discoveryEnabled === true,
-            // Extract department info from category name
-            department: categoryName?.toLowerCase().includes('mens') ? 'mens' : 
-                       categoryName?.toLowerCase().includes('ladies') ? 'ladies' :
-                       categoryName?.toLowerCase().includes('kids') ? 'kids' : undefined,
-            subDepartment: categoryName?.toLowerCase().includes('shirt') || categoryName?.toLowerCase().includes('top') ? 'tops' :
-                          categoryName?.toLowerCase().includes('pant') || categoryName?.toLowerCase().includes('short') ? 'bottoms' : undefined
+            discoveryMode: discoveryEnabled === true
           });
           console.log(`✅ Enhanced VLM Success - Model: ${result.modelUsed}, Confidence: ${result.confidence}%`);
         } catch (vlmError) {
@@ -331,6 +325,121 @@ export const useImageExtraction = () => {
       }
     },
     [backendApi, discoverySettings.enabled, recordPerf, compress]
+  );
+
+  // 🔍 MULTI-CROP ENHANCED EXTRACTION
+  const extractImageAttributesWithMultiCrop = useCallback(
+    async (
+      row: ExtractedRowEnhanced,
+      schema: SchemaItem[],
+      categoryName?: string,
+      department?: string,
+      subDepartment?: string
+    ) => {
+      const discoveryEnabled = discoverySettings.enabled;
+      
+      setExtractedRows((prev) =>
+        prev.map((r) =>
+          r.id === row.id
+            ? {
+                ...r,
+                status: "Extracting",
+                processingProgress: 0,
+                error: undefined,
+              }
+            : r
+        )
+      );
+
+      const start = performance.now();
+      try {
+        console.log(`🔍 Multi-Crop Extraction - Discovery: ${discoveryEnabled}, Category: ${categoryName}, Dept: ${department}`);
+        
+        // Use ExtractionService for multi-crop analysis
+        const { ExtractionService } = await import("../../services/ai/extractionService");
+        const extractionService = new ExtractionService(compress);
+        
+        const result = await extractionService.extractWithMultiCrop(
+          row.file,
+          schema,
+          categoryName,
+          department,
+          subDepartment
+        );
+
+        const totalTime = performance.now() - start;
+
+        const updated: ExtractedRowEnhanced = {
+          ...row,
+          status: "Done",
+          attributes: result.attributes,
+          discoveries: result.discoveries ?? [],
+          apiTokensUsed: result.tokensUsed,
+          modelUsed: result.modelUsed,
+          extractionTime: totalTime,
+          confidence: result.confidence,
+          updatedAt: new Date(),
+          processingProgress: 100,
+        };
+
+        setExtractedRows((prev) =>
+          prev.map((r) => (r.id === row.id ? updated : r))
+        );
+
+        // Handle discoveries if any
+        const discoveries = result.discoveries ?? [];
+        if (discoveries.length > 0) {
+          setGlobalDiscoveries((prev) => {
+            const newDiscoveries = discoveries.filter(
+              (d) => !prev.some((existing) => existing.key === d.key)
+            );
+            return [...prev, ...newDiscoveries];
+          });
+        }
+
+        console.log(`✅ Multi-crop extraction completed: ${row.file.name} in ${totalTime}ms, tokens: ${result.tokensUsed}, confidence: ${result.confidence}%`);
+        
+        return updated;
+
+      } catch (error) {
+        const totalTime = performance.now() - start;
+        console.error("❌ Multi-crop extraction failed:", error);
+
+        const msg = error instanceof Error ? error.message : "Multi-crop extraction failed";
+
+        const updated: ExtractedRowEnhanced = {
+          ...row,
+          status: "Error",
+          error: msg,
+          extractionTime: totalTime,
+          updatedAt: new Date(),
+          processingProgress: 0,
+        };
+
+        setExtractedRows((prev) =>
+          prev.map((r) => (r.id === row.id ? updated : r))
+        );
+
+        setExtractionErrors((prev) => [
+          ...prev,
+          {
+            id: `multi-crop-${row.id}-${Date.now()}`,
+            code: "MULTICROP_FAIL",
+            message: msg,
+            details: { fileName: row.originalFileName },
+            retryable: true,
+            timestamp: new Date(),
+          },
+        ]);
+
+        message.error(`Multi-crop extraction failed for ${row.originalFileName}: ${msg}`);
+
+        // Fallback to regular extraction
+        console.log("🔄 Falling back to regular extraction...");
+        return extractImageAttributes(row, schema, categoryName);
+      }
+    },
+    [extractImageAttributes, discoverySettings.enabled, recordPerf, compress]
   );
 
   const { extractAllPending, cancelExtraction } = useBatchExtraction(
@@ -461,6 +570,7 @@ export const useImageExtraction = () => {
     addImages,
     extractImageAttributes,
     extractImageAttributesWithQueue, // 🚀 New queue-based extraction
+    extractImageAttributesWithMultiCrop, // 🔍 Multi-crop enhanced extraction
     useQueueSystem,
     setUseQueueSystem,
     extractAllPending,

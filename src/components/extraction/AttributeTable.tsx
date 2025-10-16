@@ -83,9 +83,9 @@ export const AttributeTable: React.FC<AttributeTableProps> = ({
             
             {/* Show error message if extraction failed */}
             {record.error && (
-              <Tooltip title={record.error}>
-                <div style={{ fontSize: 10, color: '#f5222d', marginTop: 4, cursor: 'pointer' }}>
-                  Click to see error
+              <Tooltip title={record.error} trigger="hover">
+                <div style={{ fontSize: 10, color: '#f5222d', marginTop: 4, cursor: 'help' }}>
+                  ⚠️ Error details
                 </div>
               </Tooltip>
             )}

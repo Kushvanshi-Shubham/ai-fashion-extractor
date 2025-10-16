@@ -46,7 +46,7 @@ export const StatusBadge: React.FC<StatusBadgeProps> = ({
           borderColor: '#ffadd2',
           icon: <ExclamationCircleOutlined />,
           text: 'Error',
-          tooltip: 'AI extraction failed - click to retry'
+          tooltip: 'AI extraction failed - retry available'
         };
       case 'Extracting':
         return {

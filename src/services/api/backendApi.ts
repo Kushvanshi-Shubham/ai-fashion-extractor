@@ -1,4 +1,4 @@
-import type { SchemaItem, EnhancedExtractionResult } from '../../types/extraction/ExtractionTypes';
+import type { SchemaItem, EnhancedExtractionResult, OCRLabels } from '../../types/extraction/ExtractionTypes';
 import { APP_CONFIG } from '../../constants/app/config';
 
 export interface BackendExtractionRequest {
@@ -7,11 +7,6 @@ export interface BackendExtractionRequest {
   categoryName?: string;
   customPrompt?: string;
   discoveryMode?: boolean;
-  // 🚀 NEW VLM PARAMETERS
-  department?: 'mens' | 'ladies' | 'kids';
-  subDepartment?: 'tops' | 'bottoms' | 'accessories' | 'footwear';
-  season?: 'spring' | 'summer' | 'fall' | 'winter';
-  occasion?: 'casual' | 'formal' | 'sport' | 'party';
 }
 
 export interface BackendExtractionResponse {
@@ -36,7 +31,7 @@ export class BackendApiService {
   // 🚀 ENHANCED VLM EXTRACTION (New Primary Method)
   async extractFromBase64VLM(request: BackendExtractionRequest): Promise<EnhancedExtractionResult> {
     try {
-      console.log(`🚀 Enhanced VLM Extraction - Discovery: ${request.discoveryMode || false}, Dept: ${request.department}`);
+      console.log(`🚀 Enhanced VLM Extraction - Discovery: ${request.discoveryMode || false}, Category: ${request.categoryName}`);
       
       const response = await fetch(`${this.baseURL}/vlm/extract/base64`, {
         method: 'POST',
@@ -200,6 +195,72 @@ export class BackendApiService {
     }
   }
 
+  // 🔍 MULTI-CROP ENHANCED EXTRACTION
+  async extractWithMultiCrop({
+    file,
+    schema,
+    categoryName,
+    department,
+    subDepartment
+  }: {
+    file: File;
+    schema: SchemaItem[];
+    categoryName?: string;
+    department?: string;
+    subDepartment?: string;
+  }): Promise<EnhancedExtractionResult> {
+    try {
+      console.log('🔍 Multi-crop API call:', { fileName: file.name, category: categoryName });
+      
+      const formData = new FormData();
+      formData.append('image', file);
+      formData.append('schema', JSON.stringify(schema));
+      
+      if (categoryName) {
+        formData.append('categoryName', categoryName);
+      }
+      
+      if (department) {
+        formData.append('department', department);
+      }
+      
+      if (subDepartment) {
+        formData.append('subDepartment', subDepartment);
+      }
+
+      const response = await fetch(`${this.baseURL}/extract/multi-crop`, {
+        method: 'POST',
+        body: formData
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error || `Multi-crop API request failed: ${response.status}`);
+      }
+
+      const result: BackendExtractionResponse = await response.json();
+      
+      if (!result.success) {
+        throw new Error(result.error || 'Multi-crop extraction failed');
+      }
+
+      if (!result.data) {
+        throw new Error('No data returned from multi-crop extraction');
+      }
+
+      console.log('✅ Multi-crop extraction successful:', {
+        confidence: result.data.confidence,
+        tokensUsed: result.data.tokensUsed,
+        discoveries: result.data.discoveries?.length ?? 0
+      });
+
+      return result.data;
+    } catch (error) {
+      console.error('Backend API multi-crop extraction failed:', error);
+      throw new Error(`Multi-crop extraction failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    }
+  }
+
   async healthCheck(): Promise<{ success: boolean; message: string; version: string }> {
     try {
       const response = await fetch(`${this.baseURL}/health`);
@@ -312,5 +373,62 @@ export class BackendApiService {
     const json = await resp.json();
     if (!json.success) throw new Error(json.error || 'Failed to get user info');
     return json.data;
+  }
+
+  // 📖 OCR-ONLY TEXT EXTRACTION
+  async extractOCRLabels(file: File): Promise<{
+    ocrLabels: OCRLabels;
+    sectionResults: {
+      fullImage: OCRLabels;
+      topSection: OCRLabels;
+      centerSection: OCRLabels;
+      bottomSection: OCRLabels;
+    };
+    processingTime: number;
+    confidence: number;
+  }> {
+    try {
+      console.log('📖 OCR extraction:', { fileName: file.name });
+      
+      const formData = new FormData();
+      formData.append('image', file);
+
+      const response = await fetch(`${this.baseURL}/extract/ocr`, {
+        method: 'POST',
+        body: formData
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error || `OCR extraction failed: ${response.status}`);
+      }
+
+      const result: BackendExtractionResponse = await response.json();
+      
+      if (!result.success) {
+        throw new Error(result.error || 'OCR extraction failed');
+      }
+
+      if (!result.data) {
+        throw new Error('No data returned from OCR extraction');
+      }
+
+      console.log('✅ OCR extraction successful');
+
+      return result.data as unknown as {
+        ocrLabels: OCRLabels;
+        sectionResults: {
+          fullImage: OCRLabels;
+          topSection: OCRLabels;
+          centerSection: OCRLabels;
+          bottomSection: OCRLabels;
+        };
+        processingTime: number;
+        confidence: number;
+      };
+    } catch (error) {
+      console.error('Backend API OCR extraction failed:', error);
+      throw new Error(`OCR extraction failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    }
   }
 }

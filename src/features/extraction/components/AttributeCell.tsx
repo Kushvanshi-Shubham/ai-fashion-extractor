@@ -40,7 +40,6 @@ export const AttributeCell: React.FC<AttributeCellProps> = ({
 }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editValue, setEditValue] = useState<string | number | null>(null);
-  const [showReasoningPopover, setShowReasoningPopover] = useState(false);
 
   useEffect(() => {
     setEditValue(attribute?.schemaValue ?? null);
@@ -79,18 +78,31 @@ export const AttributeCell: React.FC<AttributeCellProps> = ({
   };
 
   const renderDisplayValue = () => {
-    const value = attribute?.schemaValue;
-    if (value === null || value === undefined || value === '') {
+    const schemaValue = attribute?.schemaValue;
+    const rawValue = attribute?.rawValue;
+    
+    // 1. Show schemaValue if it exists
+    if (schemaValue !== null && schemaValue !== undefined && schemaValue !== '') {
       return (
-        <Text type="secondary" style={{ fontStyle: 'italic' }}>
-          No value
+        <Text strong style={{ fontSize: 12 }}>
+          {String(schemaValue)}
         </Text>
       );
     }
-
+    
+    // 2. Fallback to rawValue if schemaValue is empty but rawValue exists
+    if (rawValue !== null && rawValue !== undefined && rawValue !== '') {
+      return (
+        <Text style={{ fontSize: 12, color: '#666', fontStyle: 'italic' }}>
+          {String(rawValue)}
+        </Text>
+      );
+    }
+    
+    // 3. Only show "No value" if both are empty
     return (
-      <Text strong style={{ fontSize: 12 }}>
-        {String(value)}
+      <Text type="secondary" style={{ fontStyle: 'italic' }}>
+        No value
       </Text>
     );
   };
@@ -266,9 +278,7 @@ export const AttributeCell: React.FC<AttributeCellProps> = ({
           <Popover
             content={reasoningContent}
             title="AI Analysis"
-            trigger="click"
-            open={showReasoningPopover}
-            onOpenChange={setShowReasoningPopover}
+            trigger="hover"
           >
             <Button
               type="text"
@@ -278,11 +288,8 @@ export const AttributeCell: React.FC<AttributeCellProps> = ({
                 color: '#8c8c8c',
                 minWidth: 16,
                 height: 16,
-                padding: 0
-              }}
-              onClick={(e) => {
-                e.stopPropagation();
-                setShowReasoningPopover(!showReasoningPopover);
+                padding: 0,
+                cursor: 'help'
               }}
             />
           </Popover>
