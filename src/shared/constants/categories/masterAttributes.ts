@@ -1638,7 +1638,7 @@ export const MASTER_ATTRIBUTES: Record<string, AttributeDefinition> = {
       { shortForm: '95', fullForm: '95' },
       { shortForm: 'A', fullForm: 'A' },
       { shortForm: 'L', fullForm: 'L' },
-      { shortForm: 'M', fullForm: 'MONTH' },
+      { shortForm: 'M', fullForm: 'MEDIUM' },
       { shortForm: 'S', fullForm: 'S' },
       { shortForm: 'S-XXL', fullForm: 'S-XXL' },
       { shortForm: 'S-XXXL', fullForm: 'S-XXXL' },
