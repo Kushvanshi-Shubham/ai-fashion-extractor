@@ -9,7 +9,7 @@ export * from './hooks/category/useCategorySelector';
 export * from './hooks/extraction/useImageExtraction';
 
 // Services
-export * from './services/api/backendApi';
+export * from '../services/api/backendApi';
 export * from './services/storage/indexedDBService';
 
 // Utils

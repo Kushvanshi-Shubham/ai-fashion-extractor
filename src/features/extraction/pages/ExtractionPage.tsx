@@ -61,7 +61,7 @@ const ExtractionPage = () => {
     progress,
     stats,
     addImages,
-    extractImageAttributes,
+    extractImageAttributesWithQueue, // 🔄 Use queue-based extraction for re-extract feature
     extractAllPending,
     removeRow,
     clearAll,
@@ -420,10 +420,18 @@ const ExtractionPage = () => {
                     onAttributeChange={updateRowAttribute}
                     onDeleteRow={removeRow}
                     onImageClick={handleImageClick}
-                    onReExtract={(rowId: string) => {
+                    onReExtract={(rowId: string, forceRefresh?: boolean) => {
                       const row = extractedRows.find(r => r.id === rowId);
-                      if (row) {
-                        extractImageAttributes(row, schema, selectedCategory?.displayName);
+                      if (row && schema && selectedCategory) {
+                        // Call queue-based extraction with forceRefresh flag
+                        extractImageAttributesWithQueue(
+                          row, 
+                          schema, 
+                          selectedCategory.displayName,
+                          selectedCategory.department,
+                          selectedCategory.subDepartment,
+                          forceRefresh || false
+                        );
                       }
                     }}
                     isExtracting={isExtracting}

@@ -3,7 +3,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useCallback, useMemo, useRef, useEffect } from "react";
 import { message } from "antd";
-import { BackendApiService } from "../../services/api/backendApi";
+import { BackendApiService } from "../../../services/api/backendApi";
 import { QueueService } from "../../services/api/queueService";
 import { discoveryManager } from "../../services/ai/discovery/discoveryManager";
 import { ImageCompressionService } from "../../services/processing/ImageCompressionService";
@@ -75,7 +75,8 @@ export const useImageExtraction = () => {
       schema: SchemaItem[],
       categoryName?: string,
       department?: string,
-      subDepartment?: string
+      subDepartment?: string,
+      forceRefresh?: boolean // 🔄 Force bypass cache and get fresh extraction
     ) => {
       const discoveryEnabled = discoverySettings.enabled;
       
@@ -98,7 +99,7 @@ export const useImageExtraction = () => {
         // Convert file to base64 using compression service
         const base64Image = await compress(row.file);
         
-        console.log(`🔍 Queue Extraction - Discovery: ${discoveryEnabled}, Category: ${categoryName}, Dept: ${department}`);
+        console.log(`🔍 Queue Extraction - Discovery: ${discoveryEnabled}, Category: ${categoryName}, Dept: ${department}, Force Refresh: ${forceRefresh}`);
         
         // Submit job to queue
         const { jobId } = await queueService.submitJob({
@@ -108,7 +109,8 @@ export const useImageExtraction = () => {
           department,
           subDepartment,
           priority: 'normal', // Could be dynamic based on user type
-          discoveryMode: discoveryEnabled
+          discoveryMode: discoveryEnabled,
+          forceRefresh: forceRefresh || false // 🔄 Pass forceRefresh flag to backend
         });
 
         // Update status to processing

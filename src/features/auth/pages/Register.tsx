@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Form, Input, Button, Card, Typography, message } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { Link, useNavigate } from 'react-router-dom';
-import { BackendApiService } from '../../../shared/services/api/backendApi';
+import { BackendApiService } from '../../../services/api/backendApi';
 
 const { Title, Text } = Typography;
 const api = new BackendApiService();

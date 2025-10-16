@@ -12,6 +12,7 @@ export interface QueueJobRequest {
   priority?: 'low' | 'normal' | 'high';
   userId?: string;
   discoveryMode?: boolean;
+  forceRefresh?: boolean; // 🔄 Skip cache and force fresh extraction
 }
 
 export interface QueueJobStatus {

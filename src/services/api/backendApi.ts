@@ -1,3 +1,4 @@
+
 import type { SchemaItem, EnhancedExtractionResult, OCRLabels } from '../../types/extraction/ExtractionTypes';
 import { APP_CONFIG } from '../../constants/app/config';
 

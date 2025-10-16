@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Card, Descriptions, Button, message, Space } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
-import { BackendApiService } from '../../../shared/services/api/backendApi';
+import { BackendApiService } from '../../../services/api/backendApi';
 
 const api = new BackendApiService();
 

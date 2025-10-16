@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Card, Spin, Typography } from 'antd';
-import { BackendApiService } from '../../../shared/services/api/backendApi';
+import { BackendApiService } from '../../../services/api/backendApi';
 
 const api = new BackendApiService();
 
