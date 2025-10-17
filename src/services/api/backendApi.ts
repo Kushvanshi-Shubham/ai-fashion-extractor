@@ -1,5 +1,5 @@
 
-import type { SchemaItem, EnhancedExtractionResult, OCRLabels } from '../../types/extraction/ExtractionTypes';
+import type { SchemaItem, EnhancedExtractionResult } from '../../types/extraction/ExtractionTypes';
 import { APP_CONFIG } from '../../constants/app/config';
 
 export interface BackendExtractionRequest {
@@ -161,38 +161,6 @@ export class BackendApiService {
     } catch (error) {
       console.error('Backend API file extraction failed:', error);
       throw new Error(`File extraction failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
-    }
-  }
-
-  async extractWithDebug(request: BackendExtractionRequest): Promise<EnhancedExtractionResult & { debugInfo?: unknown }> {
-    try {
-      const response = await fetch(`${this.baseURL}/extract/debug`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(request)
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        throw new Error(errorData.error || `API request failed: ${response.status}`);
-      }
-
-      const result: BackendExtractionResponse = await response.json();
-      
-      if (!result.success) {
-        throw new Error(result.error || 'Debug extraction failed');
-      }
-
-      if (!result.data) {
-        throw new Error('No data returned from debug extraction');
-      }
-
-      return result.data as EnhancedExtractionResult & { debugInfo?: unknown };
-    } catch (error) {
-      console.error('Backend API debug extraction failed:', error);
-      throw new Error(`Debug extraction failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
     }
   }
 
@@ -374,62 +342,5 @@ export class BackendApiService {
     const json = await resp.json();
     if (!json.success) throw new Error(json.error || 'Failed to get user info');
     return json.data;
-  }
-
-  // 📖 OCR-ONLY TEXT EXTRACTION
-  async extractOCRLabels(file: File): Promise<{
-    ocrLabels: OCRLabels;
-    sectionResults: {
-      fullImage: OCRLabels;
-      topSection: OCRLabels;
-      centerSection: OCRLabels;
-      bottomSection: OCRLabels;
-    };
-    processingTime: number;
-    confidence: number;
-  }> {
-    try {
-      console.log('📖 OCR extraction:', { fileName: file.name });
-      
-      const formData = new FormData();
-      formData.append('image', file);
-
-      const response = await fetch(`${this.baseURL}/extract/ocr`, {
-        method: 'POST',
-        body: formData
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        throw new Error(errorData.error || `OCR extraction failed: ${response.status}`);
-      }
-
-      const result: BackendExtractionResponse = await response.json();
-      
-      if (!result.success) {
-        throw new Error(result.error || 'OCR extraction failed');
-      }
-
-      if (!result.data) {
-        throw new Error('No data returned from OCR extraction');
-      }
-
-      console.log('✅ OCR extraction successful');
-
-      return result.data as unknown as {
-        ocrLabels: OCRLabels;
-        sectionResults: {
-          fullImage: OCRLabels;
-          topSection: OCRLabels;
-          centerSection: OCRLabels;
-          bottomSection: OCRLabels;
-        };
-        processingTime: number;
-        confidence: number;
-      };
-    } catch (error) {
-      console.error('Backend API OCR extraction failed:', error);
-      throw new Error(`OCR extraction failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
-    }
   }
 }

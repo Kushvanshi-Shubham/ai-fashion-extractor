@@ -1,8 +1,16 @@
 /**
  * 🎯 Hierarchy Stats Component
- * Displays dashboard statistics
+ * Displays dashboard statistics with Ant Design Statistic
  */
 
+import { Row, Col, Card, Statistic, Skeleton } from 'antd';
+import { 
+  BankOutlined, 
+  FolderOutlined, 
+  TagsOutlined, 
+  BgColorsOutlined, 
+  StarOutlined 
+} from '@ant-design/icons';
 import type { DashboardStats } from '../../../services/adminApi';
 
 interface HierarchyStatsProps {
@@ -13,74 +21,83 @@ interface HierarchyStatsProps {
 export const HierarchyStats = ({ stats, loading }: HierarchyStatsProps) => {
   const statCards = [
     {
-      label: 'Departments',
+      title: 'Departments',
       value: stats?.departments || 0,
-      icon: '🏢',
-      color: 'blue',
+      icon: <BankOutlined style={{ fontSize: 24, color: '#1890ff' }} />,
+      valueStyle: { color: '#1890ff' },
+      prefix: null,
     },
     {
-      label: 'Sub-Departments',
+      title: 'Sub-Departments',
       value: stats?.subDepartments || 0,
-      icon: '📁',
-      color: 'purple',
+      icon: <FolderOutlined style={{ fontSize: 24, color: '#722ed1' }} />,
+      valueStyle: { color: '#722ed1' },
+      prefix: null,
     },
     {
-      label: 'Categories',
+      title: 'Categories',
       value: stats?.categories || 0,
-      icon: '🏷️',
-      color: 'green',
+      icon: <TagsOutlined style={{ fontSize: 24, color: '#52c41a' }} />,
+      valueStyle: { color: '#52c41a' },
+      prefix: null,
     },
     {
-      label: 'Master Attributes',
+      title: 'Master Attributes',
       value: stats?.masterAttributes || 0,
-      icon: '🎨',
-      color: 'orange',
+      icon: <BgColorsOutlined style={{ fontSize: 24, color: '#fa8c16' }} />,
+      valueStyle: { color: '#fa8c16' },
+      prefix: null,
     },
     {
-      label: 'Allowed Values',
+      title: 'Allowed Values',
       value: stats?.allowedValues || 0,
-      icon: '✨',
-      color: 'pink',
+      icon: <StarOutlined style={{ fontSize: 24, color: '#eb2f96' }} />,
+      valueStyle: { color: '#eb2f96' },
+      prefix: null,
     },
   ];
 
-  const colorClasses = {
-    blue: 'bg-blue-50 text-blue-600',
-    purple: 'bg-purple-50 text-purple-600',
-    green: 'bg-green-50 text-green-600',
-    orange: 'bg-orange-50 text-orange-600',
-    pink: 'bg-pink-50 text-pink-600',
-  };
-
   if (loading) {
     return (
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
-        {[...Array(5)].map((_, i) => (
-          <div key={i} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 animate-pulse">
-            <div className="h-4 bg-gray-200 rounded w-2/3 mb-4"></div>
-            <div className="h-8 bg-gray-200 rounded w-1/2"></div>
-          </div>
+      <Row gutter={[16, 16]}>
+        {[...Array(5)].map((_, index) => (
+          <Col xs={24} sm={12} md={8} lg={8} xl={4} key={index}>
+            <Card>
+              <Skeleton active paragraph={{ rows: 2 }} />
+            </Card>
+          </Col>
         ))}
-      </div>
+      </Row>
     );
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
-      {statCards.map((stat) => (
-        <div
-          key={stat.label}
-          className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow"
-        >
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-sm font-medium text-gray-600">{stat.label}</span>
-            <span className={`text-2xl ${colorClasses[stat.color as keyof typeof colorClasses]}`}>
-              {stat.icon}
-            </span>
-          </div>
-          <p className="text-3xl font-bold text-gray-900">{stat.value.toLocaleString()}</p>
-        </div>
+    <Row gutter={[16, 16]}>
+      {statCards.map((stat, index) => (
+        <Col xs={24} sm={12} md={8} lg={8} xl={4} key={index}>
+          <Card 
+            bordered={false} 
+            hoverable
+            style={{ 
+              borderRadius: 8,
+              transition: 'all 0.3s ease',
+            }}
+            bodyStyle={{ padding: '20px 24px' }}
+          >
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+              <Statistic
+                title={stat.title}
+                value={stat.value}
+                valueStyle={stat.valueStyle}
+                prefix={stat.prefix}
+              />
+              <div style={{ marginTop: 4 }}>
+                {stat.icon}
+              </div>
+            </div>
+          </Card>
+        </Col>
       ))}
-    </div>
+    </Row>
   );
 };

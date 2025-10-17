@@ -1,15 +1,17 @@
 import React, { useState, useEffect, useCallback } from "react";
 import {
-  Layout, Typography, Card, Spin, Alert, Button, Space, Modal, Progress
+  Layout, Typography, Card, Spin, Alert, Button, Space, Modal, Progress,
+  Steps, Statistic, Row, Col, Image
 } from "antd";
 import {
-  ClearOutlined, DownloadOutlined, DashboardOutlined, PlayCircleOutlined
+  ClearOutlined, DownloadOutlined, DashboardOutlined, PlayCircleOutlined,
+  CheckCircleOutlined, UploadOutlined, RobotOutlined, AppstoreOutlined
 } from "@ant-design/icons";
+import "./ExtractionPage.css";
 
 import { CategorySelector } from "../components/CategorySelector";
 import { AttributeTable } from "../components/AttributeTable";
 import { BulkActions } from "../components/BulkActions";
-import { ImageModal } from "../../../shared/components/ui/ImageModal";
 import { UploadArea } from "../components/UploadArea";
 import { useCategorySelector } from "../../../shared/hooks/category/useCategorySelector";
 import { useLocalStorage } from "../../../shared/hooks/ui/useLocalStorage";
@@ -20,9 +22,11 @@ import { DiscoveryToggle } from "../components/DiscoveryToggle";
 import { DiscoveryDetailModal } from "../components/DiscoveryDetailModal";
 import { DiscoveryPanel } from "../components/DiscoveryPanel";
 import ExportManager from "../components/ExportManager";
+import VLMStatusPanel from "../../../components/vlm/VLMStatusPanel";
 import type { 
   DiscoveredAttribute
 } from "../../../shared/types/extraction/ExtractionTypes";
+import type { CategoryConfig } from "../../../shared/types/category/CategoryTypes";
 
 import "../../../styles/App.css";
 
@@ -61,7 +65,7 @@ const ExtractionPage = () => {
     progress,
     stats,
     addImages,
-    extractImageAttributesWithQueue, // 🔄 Use queue-based extraction for re-extract feature
+    extractImageAttributes,
     extractAllPending,
     removeRow,
     clearAll,
@@ -73,7 +77,7 @@ const ExtractionPage = () => {
   } = useImageExtraction();
 
   // Enhanced category selection handler that moves to next step
-  const handleCategorySelectWithStep = useCallback((category: any) => {
+  const handleCategorySelectWithStep = useCallback((category: CategoryConfig | null) => {
     handleCategorySelect(category);
     if (category) {
       setTimeout(() => setCurrentStep('upload'), 300); // Smooth transition
@@ -184,25 +188,71 @@ const ExtractionPage = () => {
     <Layout className="app-layout">
       <Content className="app-content">
         <div className="content-wrapper">
+          {/* 🚀 Enhanced VLM System Status */}
+          <VLMStatusPanel />
+
+          {/* Step Indicator */}
+          <Card className="steps-card" style={{ marginBottom: 24 }}>
+            <Steps
+              current={
+                currentStep === 'category' ? 0 : 
+                currentStep === 'upload' ? 1 : 2
+              }
+              items={[
+                {
+                  title: 'Select Category',
+                  icon: <AppstoreOutlined />,
+                  description: 'Choose fashion category'
+                },
+                {
+                  title: 'Upload Images',
+                  icon: <UploadOutlined />,
+                  description: 'Add product images'
+                },
+                {
+                  title: 'AI Extraction',
+                  icon: <RobotOutlined />,
+                  description: 'Extract attributes'
+                }
+              ]}
+            />
+          </Card>
+          
           {showAnalytics && (
-            <div className="stats-dashboard animate-slide-up">
-              <div className="stat-card">
-                <div className="stat-number">{analytics.totalExtractions}</div>
-                <div className="stat-label">Total Extractions</div>
-              </div>
-              <div className="stat-card">
-                <div className="stat-number">{analytics.totalTokens.toLocaleString()}</div>
-                <div className="stat-label">🎯 Tokens Used</div>
-              </div>
-              <div className="stat-card">
-                <div className="stat-number">{(analytics.totalTime / 1000).toFixed(1)}s</div>
-                <div className="stat-label">⏱️ Processing Time</div>
-              </div>
-              <div className="stat-card">
-                <div className="stat-number">{(analytics.averageAccuracy * 100).toFixed(1)}%</div>
-                <div className="stat-label">📊 Avg Accuracy</div>
-              </div>
-            </div>
+            <Card className="stats-card animate-slide-up" style={{ marginBottom: 24 }}>
+              <Row gutter={[24, 24]}>
+                <Col xs={24} sm={12} lg={6}>
+                  <Statistic 
+                    title="Total Extractions"
+                    value={analytics.totalExtractions}
+                    prefix={<CheckCircleOutlined style={{ color: '#52c41a' }} />}
+                  />
+                </Col>
+                <Col xs={24} sm={12} lg={6}>
+                  <Statistic 
+                    title="Tokens Used"
+                    value={analytics.totalTokens}
+                    prefix={<RobotOutlined style={{ color: '#1890ff' }} />}
+                  />
+                </Col>
+                <Col xs={24} sm={12} lg={6}>
+                  <Statistic 
+                    title="Processing Time"
+                    value={(analytics.totalTime / 1000).toFixed(1)}
+                    suffix="s"
+                    prefix={<DashboardOutlined style={{ color: '#fa8c16' }} />}
+                  />
+                </Col>
+                <Col xs={24} sm={12} lg={6}>
+                  <Statistic 
+                    title="Avg Accuracy"
+                    value={(analytics.averageAccuracy * 100).toFixed(1)}
+                    suffix="%"
+                    prefix={<CheckCircleOutlined style={{ color: '#722ed1' }} />}
+                  />
+                </Col>
+              </Row>
+            </Card>
           )}
 
           <div className="main-grid">
@@ -290,30 +340,40 @@ const ExtractionPage = () => {
 
                   {/* Stats Dashboard */}
                   {stats && (
-                    <div style={{ 
-                      display: 'flex', 
-                      justifyContent: 'center', 
-                      gap: '24px', 
-                      marginBottom: 24,
-                      flexWrap: 'wrap'
-                    }}>
-                      <div style={{ textAlign: 'center', padding: '12px', background: '#f0f9ff', borderRadius: '8px', minWidth: '100px' }}>
-                        <div style={{ fontSize: '24px', fontWeight: 'bold', color: '#1890ff' }}>{stats.total}</div>
-                        <div style={{ fontSize: '12px', color: '#666' }}>Total Images</div>
-                      </div>
-                      <div style={{ textAlign: 'center', padding: '12px', background: '#f6ffed', borderRadius: '8px', minWidth: '100px' }}>
-                        <div style={{ fontSize: '24px', fontWeight: 'bold', color: '#52c41a' }}>{stats.done}</div>
-                        <div style={{ fontSize: '12px', color: '#666' }}>Completed</div>
-                      </div>
-                      <div style={{ textAlign: 'center', padding: '12px', background: '#fff7e6', borderRadius: '8px', minWidth: '100px' }}>
-                        <div style={{ fontSize: '24px', fontWeight: 'bold', color: '#fa8c16' }}>{stats.pending}</div>
-                        <div style={{ fontSize: '12px', color: '#666' }}>Pending</div>
-                      </div>
-                      <div style={{ textAlign: 'center', padding: '12px', background: '#f9f0ff', borderRadius: '8px', minWidth: '100px' }}>
-                        <div style={{ fontSize: '24px', fontWeight: 'bold', color: '#722ed1' }}>{Math.round(stats.successRate)}%</div>
-                        <div style={{ fontSize: '12px', color: '#666' }}>Success Rate</div>
-                      </div>
-                    </div>
+                    <Card className="extraction-stats-card" style={{ marginBottom: 24, background: '#fafafa' }}>
+                      <Row gutter={[16, 16]}>
+                        <Col xs={12} sm={6}>
+                          <Statistic 
+                            title="Total Images"
+                            value={stats.total}
+                            valueStyle={{ color: '#1890ff' }}
+                          />
+                        </Col>
+                        <Col xs={12} sm={6}>
+                          <Statistic 
+                            title="Completed"
+                            value={stats.done}
+                            valueStyle={{ color: '#52c41a' }}
+                            prefix={<CheckCircleOutlined />}
+                          />
+                        </Col>
+                        <Col xs={12} sm={6}>
+                          <Statistic 
+                            title="Pending"
+                            value={stats.pending}
+                            valueStyle={{ color: '#fa8c16' }}
+                          />
+                        </Col>
+                        <Col xs={12} sm={6}>
+                          <Statistic 
+                            title="Success Rate"
+                            value={Math.round(stats.successRate)}
+                            suffix="%"
+                            valueStyle={{ color: '#722ed1' }}
+                          />
+                        </Col>
+                      </Row>
+                    </Card>
                   )}
 
                   {/* Extract All Button */}
@@ -420,17 +480,14 @@ const ExtractionPage = () => {
                     onAttributeChange={updateRowAttribute}
                     onDeleteRow={removeRow}
                     onImageClick={handleImageClick}
-                    onReExtract={(rowId: string, forceRefresh?: boolean) => {
+                    onReExtract={(rowId: string) => {
                       const row = extractedRows.find(r => r.id === rowId);
                       if (row && schema && selectedCategory) {
-                        // Call queue-based extraction with forceRefresh flag
-                        extractImageAttributesWithQueue(
+                        // Call direct extraction
+                        extractImageAttributes(
                           row, 
                           schema, 
-                          selectedCategory.displayName,
-                          selectedCategory.department,
-                          selectedCategory.subDepartment,
-                          forceRefresh || false
+                          selectedCategory.displayName
                         );
                       }
                     }}
@@ -455,12 +512,25 @@ const ExtractionPage = () => {
       </Content>
 
       {/* Modals */}
-      <ImageModal
-        visible={imageModalVisible}
-        imageUrl={selectedImage?.url || ""}
-        imageName={selectedImage?.name}
-        onClose={() => setImageModalVisible(false)}
-      />
+      <Modal
+        title={selectedImage?.name || "Image Preview"}
+        open={imageModalVisible}
+        onCancel={() => setImageModalVisible(false)}
+        footer={null}
+        width={800}
+        centered
+      >
+        <div style={{ textAlign: 'center' }}>
+          <Image
+            src={selectedImage?.url || ""}
+            alt={selectedImage?.name || "Product Image"}
+            style={{ maxWidth: '100%', maxHeight: '70vh' }}
+            preview={{
+              mask: 'Click to zoom',
+            }}
+          />
+        </div>
+      </Modal>
 
       <Modal
         title="Export Data"

@@ -1,8 +1,7 @@
 import type {
   SchemaItem,
   ExtractionResult,
-  EnhancedExtractionResult,
-  OCRLabels
+  EnhancedExtractionResult
 } from "../../types/extraction/ExtractionTypes";
 import { logger } from "../../utils/common/logger";
 import { BackendApiService } from "../api/backendApi";
@@ -123,33 +122,6 @@ export class ExtractionService {
     }
   }
 
-  async extractWithDebug(
-    file: File,
-    schema: SchemaItem[],
-    categoryName?: string
-  ): Promise<EnhancedExtractionResult & { debugInfo?: unknown }> {
-    try {
-      const base64Image = await this.compressImage(file);
-
-      const result = await this.backendApi.extractWithDebug({
-        image: base64Image,
-        schema,
-        categoryName
-      });
-
-      return result;
-    } catch (error) {
-      const baseResult = await this.extractWithDiscovery(file, schema, categoryName, true);
-      return {
-        ...baseResult,
-        debugInfo: {
-          error: "Debug info extraction failed",
-          message: error instanceof Error ? error.message : "Unknown error",
-        },
-      };
-    }
-  }
-
   // 🔍 MULTI-CROP ENHANCED EXTRACTION
   async extractWithMultiCrop(
     file: File,
@@ -213,42 +185,4 @@ export class ExtractionService {
       return this.extractWithDiscovery(file, schema, categoryName, true);
     }
   }
-
-  // 📖 OCR-ONLY TEXT EXTRACTION
-  async extractOCRLabels(file: File): Promise<{
-    ocrLabels: OCRLabels;
-    sectionResults: {
-      fullImage: OCRLabels;
-      topSection: OCRLabels;
-      centerSection: OCRLabels;
-      bottomSection: OCRLabels;
-    };
-    processingTime: number;
-    confidence: number;
-  }> {
-    try {
-      logger.info("Starting OCR text extraction", {
-        fileName: file.name,
-      });
-
-      const result = await this.backendApi.extractOCRLabels(file);
-
-      logger.info("OCR extraction completed", {
-        fileName: file.name,
-        processingTime: result.processingTime,
-        confidence: result.confidence,
-        labelsFound: Object.values(result.ocrLabels).flat().length - 1,
-      });
-
-      return result;
-    } catch (error) {
-      logger.error("OCR extraction failed", {
-        fileName: file.name,
-        error,
-      });
-      throw error;
-    }
-  }
-
-
 }

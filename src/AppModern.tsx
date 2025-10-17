@@ -75,69 +75,79 @@ const App: React.FC = () => {
       <AppProviders>
         <ErrorBoundary>
           <Router>
-            <MainLayout>
-              <Routes>
-                {/* Public Routes */}
-                <Route path="/" element={<LandingPage />} />
-                <Route path="/login" element={<LoginPage />} />
-                <Route path="/register" element={<RegisterPage />} />
-                
-                {/* Protected Routes */}
-                <Route 
-                  path="/dashboard" 
-                  element={
-                    <ProtectedRoute>
+            <Routes>
+              {/* Public Routes - No MainLayout */}
+              <Route path="/" element={<LandingPage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/register" element={<RegisterPage />} />
+              
+              {/* Protected Routes - With MainLayout */}
+              <Route 
+                path="/dashboard" 
+                element={
+                  <ProtectedRoute>
+                    <MainLayout>
                       <DashboardPage />
-                    </ProtectedRoute>
-                  } 
-                />
-                <Route 
-                  path="/extraction" 
-                  element={
-                    <ProtectedRoute>
+                    </MainLayout>
+                  </ProtectedRoute>
+                } 
+              />
+              <Route 
+                path="/extraction" 
+                element={
+                  <ProtectedRoute>
+                    <MainLayout>
                       <ExtractionPage />
-                    </ProtectedRoute>
-                  } 
-                />
-                <Route 
-                  path="/analytics" 
-                  element={
-                    <ProtectedRoute>
+                    </MainLayout>
+                  </ProtectedRoute>
+                } 
+              />
+              <Route 
+                path="/analytics" 
+                element={
+                  <ProtectedRoute>
+                    <MainLayout>
                       <AnalyticsPage />
-                    </ProtectedRoute>
-                  } 
-                />
-                <Route 
-                  path="/profile" 
-                  element={
-                    <ProtectedRoute>
+                    </MainLayout>
+                  </ProtectedRoute>
+                } 
+              />
+              <Route 
+                path="/profile" 
+                element={
+                  <ProtectedRoute>
+                    <MainLayout>
                       <ProfilePage />
-                    </ProtectedRoute>
-                  } 
-                />
-                
-                {/* Admin Routes */}
-                <Route 
-                  path="/admin" 
-                  element={
-                    <AdminRoute>
+                    </MainLayout>
+                  </ProtectedRoute>
+                } 
+              />
+              
+              {/* Admin Routes - With MainLayout */}
+              <Route 
+                path="/admin" 
+                element={
+                  <AdminRoute>
+                    <MainLayout>
                       <AdminPage />
-                    </AdminRoute>
-                  } 
-                />
-                <Route 
-                  path="/admin/hierarchy" 
-                  element={
-                    <AdminRoute>
+                    </MainLayout>
+                  </AdminRoute>
+                } 
+              />
+              <Route 
+                path="/admin/hierarchy" 
+                element={
+                  <AdminRoute>
+                    <MainLayout>
                       <HierarchyManagement />
-                    </AdminRoute>
-                  } 
-                />
-                
-                {/* Fallback */}
-                <Route path="*" element={<Navigate to="/dashboard" replace />} />
-              </Routes>
-            </MainLayout>
+                    </MainLayout>
+                  </AdminRoute>
+                } 
+              />
+              
+              {/* Fallback */}
+              <Route path="*" element={<Navigate to="/dashboard" replace />} />
+            </Routes>
           </Router>
         </ErrorBoundary>
       </AppProviders>

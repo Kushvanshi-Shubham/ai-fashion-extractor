@@ -1,14 +1,28 @@
 import React from 'react';
-import { Button, Card, Row, Col, Typography, Space } from 'antd';
+import { Button, Card, Row, Col, Typography, Space, Avatar, Divider } from 'antd';
 import {
   RobotOutlined,
   FastForwardOutlined,
   SecurityScanOutlined,
   CloudOutlined,
   ArrowRightOutlined,
-  CheckCircleOutlined
+  CheckCircleOutlined,
+  ThunderboltOutlined,
+  SafetyOutlined,
+  GlobalOutlined,
+  ApiOutlined,
+  MailOutlined,
+  PhoneOutlined,
+  EnvironmentOutlined,
+  GithubOutlined,
+  TwitterOutlined,
+  LinkedinOutlined,
+  StarFilled
 } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
+import { colors } from '../../../theme/colors';
+import { LandingNavbar } from '../../../shared/components/layout/LandingNavbar';
+import './LandingPage.css';
 
 const { Title, Paragraph, Text } = Typography;
 
@@ -18,17 +32,17 @@ const LandingPage: React.FC = () => {
 
   const features = [
     {
-      icon: <RobotOutlined style={{ fontSize: '48px', color: '#1890ff' }} />,
+      icon: <RobotOutlined style={{ fontSize: '48px', color: colors.primary[500] }} />,
       title: 'AI-Powered Extraction',
       description: 'Advanced machine learning algorithms analyze fashion images and extract detailed product attributes automatically.',
     },
     {
-      icon: <FastForwardOutlined style={{ fontSize: '48px', color: '#52c41a' }} />,
+      icon: <FastForwardOutlined style={{ fontSize: '48px', color: colors.success[500] }} />,
       title: 'Lightning Fast',
       description: 'Process hundreds of images in minutes. Our optimized pipeline handles bulk operations with ease.',
     },
     {
-      icon: <SecurityScanOutlined style={{ fontSize: '48px', color: '#fa541c' }} />,
+      icon: <SecurityScanOutlined style={{ fontSize: '48px', color: colors.error[500] }} />,
       title: 'High Accuracy',
       description: 'Over 95% accuracy in attribute detection with confidence scores for each extracted data point.',
     },
@@ -36,6 +50,50 @@ const LandingPage: React.FC = () => {
       icon: <CloudOutlined style={{ fontSize: '48px', color: '#722ed1' }} />,
       title: 'Cloud-Based',
       description: 'Scalable cloud infrastructure ensures reliable performance and data security.',
+    },
+    {
+      icon: <ThunderboltOutlined style={{ fontSize: '48px', color: colors.warning[500] }} />,
+      title: 'Real-Time Processing',
+      description: 'Get instant results with our optimized real-time processing engine for immediate insights.',
+    },
+    {
+      icon: <SafetyOutlined style={{ fontSize: '48px', color: colors.info[500] }} />,
+      title: 'Enterprise Security',
+      description: 'Bank-level encryption and security protocols to keep your data safe and compliant.',
+    },
+    {
+      icon: <GlobalOutlined style={{ fontSize: '48px', color: colors.primary[600] }} />,
+      title: 'Multi-Language Support',
+      description: 'Extract attributes in multiple languages with our global AI models supporting 50+ languages.',
+    },
+    {
+      icon: <ApiOutlined style={{ fontSize: '48px', color: colors.success[600] }} />,
+      title: 'REST API Access',
+      description: 'Integrate seamlessly with your existing systems using our comprehensive REST API.',
+    },
+  ];
+
+  const testimonials = [
+    {
+      name: 'Sarah Johnson',
+      role: 'Product Manager, FashionHub',
+      avatar: 'S',
+      rating: 5,
+      text: 'AI Fashion Extractor has revolutionized our product cataloging process. What used to take days now takes hours!',
+    },
+    {
+      name: 'Michael Chen',
+      role: 'CTO, StyleTech',
+      avatar: 'M',
+      rating: 5,
+      text: 'The accuracy is impressive. We\'ve processed over 100,000 images with 95%+ accuracy. Highly recommended!',
+    },
+    {
+      name: 'Emily Rodriguez',
+      role: 'E-commerce Director, TrendyWear',
+      avatar: 'E',
+      rating: 5,
+      text: 'Best investment we\'ve made. The API integration was seamless and the support team is fantastic.',
     },
   ];
 
@@ -55,8 +113,14 @@ const LandingPage: React.FC = () => {
   };
 
   return (
-    <div style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', minHeight: '100vh' }}>
+    <div style={{ minHeight: '100vh' }}>
+      {/* Professional Navbar */}
+      <LandingNavbar transparent={true} fixed={true} />
+
       {/* Hero Section */}
+      <div style={{ 
+        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+      }}>
       <div style={{ 
         padding: '100px 24px 80px', 
         textAlign: 'center', 
@@ -163,7 +227,7 @@ const LandingPage: React.FC = () => {
       </div>
 
       {/* Features Section */}
-      <div style={{ 
+      <div id="features" style={{ 
         background: '#fff', 
         padding: '100px 24px',
       }}>
@@ -177,27 +241,29 @@ const LandingPage: React.FC = () => {
             </Paragraph>
           </div>
 
-          <Row gutter={[32, 32]}>
+          <Row gutter={[24, 24]}>
             {features.map((feature, index) => (
-              <Col xs={24} md={12} lg={6} key={index}>
+              <Col xs={24} sm={12} lg={6} key={index}>
                 <Card
                   hoverable
+                  className="feature-card"
                   style={{
                     height: '100%',
                     textAlign: 'center',
                     border: 'none',
-                    boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
-                    borderRadius: '12px',
+                    boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
+                    borderRadius: '16px',
+                    transition: 'all 0.3s ease',
                   }}
-                  bodyStyle={{ padding: '40px 24px' }}
+                  bodyStyle={{ padding: '32px 20px' }}
                 >
-                  <div style={{ marginBottom: '24px' }}>
+                  <div style={{ marginBottom: '20px' }}>
                     {feature.icon}
                   </div>
-                  <Title level={4} style={{ marginBottom: '16px' }}>
+                  <Title level={4} style={{ marginBottom: '12px', fontSize: '18px' }}>
                     {feature.title}
                   </Title>
-                  <Paragraph style={{ color: '#666', lineHeight: 1.6 }}>
+                  <Paragraph style={{ color: colors.text.secondary, lineHeight: 1.6, fontSize: '14px', margin: 0 }}>
                     {feature.description}
                   </Paragraph>
                 </Card>
@@ -208,7 +274,7 @@ const LandingPage: React.FC = () => {
       </div>
 
       {/* How It Works Section */}
-      <div style={{ 
+      <div id="how-it-works" style={{ 
         background: '#f8f9fa', 
         padding: '100px 24px',
       }}>
@@ -298,9 +364,78 @@ const LandingPage: React.FC = () => {
         </div>
       </div>
 
+      {/* Testimonials Section */}
+      <div id="testimonials" style={{ 
+        background: '#fff',
+        padding: '100px 24px',
+      }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+          <div style={{ textAlign: 'center', marginBottom: '60px' }}>
+            <Title level={2} style={{ marginBottom: '16px' }}>
+              Trusted by Fashion Leaders
+            </Title>
+            <Paragraph style={{ fontSize: '18px', color: colors.text.secondary }}>
+              See what our customers say about their experience
+            </Paragraph>
+          </div>
+
+          <Row gutter={[32, 32]}>
+            {testimonials.map((testimonial, index) => (
+              <Col xs={24} md={8} key={index}>
+                <Card
+                  className="testimonial-card"
+                  style={{
+                    height: '100%',
+                    borderRadius: '16px',
+                    border: '1px solid #f0f0f0',
+                    boxShadow: '0 4px 12px rgba(0,0,0,0.05)',
+                  }}
+                  bodyStyle={{ padding: '32px' }}
+                >
+                  <div style={{ marginBottom: '20px' }}>
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <StarFilled key={i} style={{ color: colors.warning[500], fontSize: '18px', marginRight: '4px' }} />
+                    ))}
+                  </div>
+                  <Paragraph style={{ 
+                    fontSize: '15px', 
+                    lineHeight: 1.8, 
+                    color: colors.text.primary,
+                    marginBottom: '24px',
+                    fontStyle: 'italic'
+                  }}>
+                    "{testimonial.text}"
+                  </Paragraph>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                    <Avatar 
+                      size={48} 
+                      style={{ 
+                        background: `linear-gradient(135deg, ${colors.primary[500]} 0%, ${colors.primary[600]} 100%)`,
+                        fontSize: '20px',
+                        fontWeight: 'bold'
+                      }}
+                    >
+                      {testimonial.avatar}
+                    </Avatar>
+                    <div>
+                      <div style={{ fontWeight: 600, color: colors.text.primary, marginBottom: '4px' }}>
+                        {testimonial.name}
+                      </div>
+                      <div style={{ fontSize: '13px', color: colors.text.secondary }}>
+                        {testimonial.role}
+                      </div>
+                    </div>
+                  </div>
+                </Card>
+              </Col>
+            ))}
+          </Row>
+        </div>
+      </div>
+
       {/* CTA Section */}
       <div style={{ 
-        background: 'linear-gradient(135deg, #1890ff 0%, #722ed1 100%)',
+        background: `linear-gradient(135deg, ${colors.primary[500]} 0%, #722ed1 100%)`,
         padding: '80px 24px',
         color: '#fff',
         textAlign: 'center'
@@ -337,6 +472,93 @@ const LandingPage: React.FC = () => {
             </Text>
           </Space>
         </div>
+      </div>
+
+      {/* Footer Section */}
+      <div style={{ 
+        background: colors.neutral[900],
+        padding: '60px 24px 24px',
+        color: colors.neutral[100]
+      }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+          <Row gutter={[48, 48]}>
+            <Col xs={24} sm={12} md={6}>
+              <Title level={4} style={{ color: '#fff', marginBottom: '20px' }}>
+                AI Fashion Extractor
+              </Title>
+              <Paragraph style={{ color: colors.neutral[400], lineHeight: 1.8 }}>
+                Transform your fashion catalog with intelligent AI-powered image analysis and attribute extraction.
+              </Paragraph>
+              <Space size="large" style={{ marginTop: '20px' }}>
+                <GithubOutlined style={{ fontSize: '24px', color: colors.neutral[400], cursor: 'pointer' }} />
+                <TwitterOutlined style={{ fontSize: '24px', color: colors.neutral[400], cursor: 'pointer' }} />
+                <LinkedinOutlined style={{ fontSize: '24px', color: colors.neutral[400], cursor: 'pointer' }} />
+              </Space>
+            </Col>
+
+            <Col xs={24} sm={12} md={6}>
+              <Title level={5} style={{ color: '#fff', marginBottom: '20px' }}>
+                Product
+              </Title>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                <a href="#features" style={{ color: colors.neutral[400], textDecoration: 'none' }}>Features</a>
+                <a href="#pricing" style={{ color: colors.neutral[400], textDecoration: 'none' }}>Pricing</a>
+                <a href="#api" style={{ color: colors.neutral[400], textDecoration: 'none' }}>API Docs</a>
+                <a href="#integrations" style={{ color: colors.neutral[400], textDecoration: 'none' }}>Integrations</a>
+              </div>
+            </Col>
+
+            <Col xs={24} sm={12} md={6}>
+              <Title level={5} style={{ color: '#fff', marginBottom: '20px' }}>
+                Company
+              </Title>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                <a href="#about" style={{ color: colors.neutral[400], textDecoration: 'none' }}>About Us</a>
+                <a href="#careers" style={{ color: colors.neutral[400], textDecoration: 'none' }}>Careers</a>
+                <a href="#blog" style={{ color: colors.neutral[400], textDecoration: 'none' }}>Blog</a>
+                <a href="#press" style={{ color: colors.neutral[400], textDecoration: 'none' }}>Press Kit</a>
+              </div>
+            </Col>
+
+            <Col xs={24} sm={12} md={6}>
+              <Title level={5} style={{ color: '#fff', marginBottom: '20px' }}>
+                Contact
+              </Title>
+              <Space direction="vertical" size="middle">
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <MailOutlined style={{ color: colors.primary[400] }} />
+                  <span style={{ color: colors.neutral[400] }}>support@aifashion.ai</span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <PhoneOutlined style={{ color: colors.primary[400] }} />
+                  <span style={{ color: colors.neutral[400] }}>+1 (555) 123-4567</span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <EnvironmentOutlined style={{ color: colors.primary[400] }} />
+                  <span style={{ color: colors.neutral[400] }}>San Francisco, CA</span>
+                </div>
+              </Space>
+            </Col>
+          </Row>
+
+          <Divider style={{ background: colors.neutral[700], margin: '40px 0 24px' }} />
+
+          <Row justify="space-between" align="middle">
+            <Col xs={24} md={12} style={{ textAlign: 'center', marginBottom: '16px' }}>
+              <Text style={{ color: colors.neutral[500] }}>
+                © 2025 AI Fashion Extractor. All rights reserved.
+              </Text>
+            </Col>
+            <Col xs={24} md={12} style={{ textAlign: 'center' }}>
+              <Space split={<span style={{ color: colors.neutral[600] }}>|</span>}>
+                <a href="#privacy" style={{ color: colors.neutral[500], textDecoration: 'none' }}>Privacy Policy</a>
+                <a href="#terms" style={{ color: colors.neutral[500], textDecoration: 'none' }}>Terms of Service</a>
+                <a href="#cookies" style={{ color: colors.neutral[500], textDecoration: 'none' }}>Cookie Policy</a>
+              </Space>
+            </Col>
+          </Row>
+        </div>
+      </div>
       </div>
     </div>
   );

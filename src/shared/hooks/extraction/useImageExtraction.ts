@@ -4,7 +4,6 @@
 import { useState, useCallback, useMemo, useRef, useEffect } from "react";
 import { message } from "antd";
 import { BackendApiService } from "../../../services/api/backendApi";
-import { QueueService } from "../../services/api/queueService";
 import { discoveryManager } from "../../services/ai/discovery/discoveryManager";
 import { ImageCompressionService } from "../../services/processing/ImageCompressionService";
 import type {
@@ -31,7 +30,7 @@ export const useImageExtraction = () => {
   const [isExtracting, setIsExtracting] = useState(false);
   const [extractedRows, setExtractedRows] = useState<ExtractedRowEnhanced[]>([]);
   const [progress, setProgress] = useState(0);
-  const [useQueueSystem, setUseQueueSystem] = useState(true); // 🚀 Toggle for queue system
+  
   // Discovery state
   const [discoverySettings, setDiscoverySettings] = useState<DiscoverySettings>({
     enabled: false, // 🔧 DEFAULT TO FALSE - Only enable when explicitly needed
@@ -66,168 +65,6 @@ export const useImageExtraction = () => {
   );
 
   const backendApi = useMemo(() => new BackendApiService(), []);
-  const queueService = useMemo(() => new QueueService(), []);
-
-  // 🚀 NEW: Queue-based extraction with optimized token usage
-  const extractImageAttributesWithQueue = useCallback(
-    async (
-      row: ExtractedRowEnhanced,
-      schema: SchemaItem[],
-      categoryName?: string,
-      department?: string,
-      subDepartment?: string,
-      forceRefresh?: boolean // 🔄 Force bypass cache and get fresh extraction
-    ) => {
-      const discoveryEnabled = discoverySettings.enabled;
-      
-      setExtractedRows((prev) =>
-        prev.map((r) =>
-          r.id === row.id
-            ? {
-                ...r,
-                status: "Queued",
-                processingProgress: 0,
-                error: undefined,
-              }
-            : r
-        )
-      );
-
-      const start = performance.now();
-      
-      try {
-        // Convert file to base64 using compression service
-        const base64Image = await compress(row.file);
-        
-        console.log(`🔍 Queue Extraction - Discovery: ${discoveryEnabled}, Category: ${categoryName}, Dept: ${department}, Force Refresh: ${forceRefresh}`);
-        
-        // Submit job to queue
-        const { jobId } = await queueService.submitJob({
-          image: base64Image,
-          schema,
-          categoryName: categoryName ?? "",
-          department,
-          subDepartment,
-          priority: 'normal', // Could be dynamic based on user type
-          discoveryMode: discoveryEnabled,
-          forceRefresh: forceRefresh || false // 🔄 Pass forceRefresh flag to backend
-        });
-
-        // Update status to processing
-        setExtractedRows((prev) =>
-          prev.map((r) =>
-            r.id === row.id
-              ? {
-                  ...r,
-                  status: "Processing",
-                  processingProgress: 10,
-                }
-              : r
-          )
-        );
-
-        // Create AbortController for this specific job
-        const jobAbortController = new AbortController();
-        abortRef.current = jobAbortController;
-        
-        console.log(`🎯 Created AbortController for job ${jobId}`);
-        
-        // Poll for results with progress updates and cancellation support
-        const result = await queueService.pollJobUntilComplete(
-          jobId,
-          (status) => {
-            // Check if extraction was cancelled
-            if (jobAbortController.signal.aborted) {
-              console.log(`🛑 Extraction cancelled for job ${jobId}`);
-              throw new Error('Extraction cancelled by user');
-            }
-            
-            // Update progress based on queue status
-            let progressPercent = 10;
-            switch (status.status) {
-              case 'pending':
-                progressPercent = Math.min(30, 10 + (status.queuePosition * 5));
-                break;
-              case 'processing':
-                progressPercent = 50;
-                break;
-            }
-            
-            setExtractedRows((prev) =>
-              prev.map((r) =>
-                r.id === row.id
-                  ? {
-                      ...r,
-                      processingProgress: progressPercent,
-                    }
-                  : r
-              )
-            );
-          }
-        );
-
-        const totalTime = performance.now() - start;
-
-        // 🎯 APPLY SMART ATTRIBUTE PROCESSING
-        const processedAttributes = AttributeProcessor.processBatchResults(
-          result.attributes, 
-          MASTER_ATTRIBUTES
-        );
-
-        const updated: ExtractedRowEnhanced = {
-          ...row,
-          status: "Done",
-          attributes: processedAttributes,
-          discoveries: result.discoveries ?? [],
-          apiTokensUsed: result.tokensUsed,
-          modelUsed: result.modelUsed,
-          extractionTime: totalTime,
-          confidence: result.confidence,
-          updatedAt: new Date(),
-          processingProgress: 100,
-        };
-
-        setExtractedRows((prev) =>
-          prev.map((r) => (r.id === row.id ? updated : r))
-        );
-
-        // Handle discoveries if any
-        const discoveries = result.discoveries ?? [];
-        if (discoveries.length > 0) {
-          setGlobalDiscoveries((prev) => {
-            const newDiscoveries = discoveries.filter(
-              (d) => !prev.some((existing) => existing.key === d.key)
-            );
-            return [...prev, ...newDiscoveries];
-          });
-        }
-
-        console.log(`✅ Queue extraction completed: ${row.file.name} in ${totalTime}ms, tokens: ${result.tokensUsed}`);
-        
-        return updated;
-
-      } catch (error) {
-        const totalTime = performance.now() - start;
-        console.error("❌ Queue extraction failed:", error);
-
-        const updated: ExtractedRowEnhanced = {
-          ...row,
-          status: "Error",
-          error: error instanceof Error ? error.message : "Queue extraction failed",
-          extractionTime: totalTime,
-          updatedAt: new Date(),
-          processingProgress: 0,
-        };
-
-        setExtractedRows((prev) =>
-          prev.map((r) => (r.id === row.id ? updated : r))
-        );
-
-        return updated;
-      }
-    },
-    [discoverySettings.enabled, compress, queueService, setExtractedRows, setGlobalDiscoveries]
-  );
 
   // Extract attributes with proper error handling and user notification
   const extractImageAttributes = useCallback(
@@ -384,14 +221,6 @@ export const useImageExtraction = () => {
       console.log('🛑 Aborted current extraction controller');
     }
     
-    // Cancel any pending queue jobs
-    try {
-      queueService.cancelAllJobs();
-      console.log('🛑 Cancelled all pending queue jobs');
-    } catch (error) {
-      console.warn('⚠️ Could not cancel queue jobs:', error);
-    }
-    
     // Clean up blob URLs
     extractedRows.forEach((r) => {
       if (r.imagePreviewUrl.startsWith("blob:")) {
@@ -409,7 +238,7 @@ export const useImageExtraction = () => {
     setIsExtracting(false);
     
     console.log('✅ All extractions cleared and state reset');
-  }, [extractedRows, queueService]);
+  }, [extractedRows]);
 
   // Promote discovery to schema with success/error message
   const promoteDiscoveryToSchema = useCallback((key: string) => {
@@ -490,9 +319,6 @@ export const useImageExtraction = () => {
     progress,
     addImages,
     extractImageAttributes,
-    extractImageAttributesWithQueue, // 🚀 New queue-based extraction
-    useQueueSystem,
-    setUseQueueSystem,
     extractAllPending,
     cancelExtraction,
     removeRow,

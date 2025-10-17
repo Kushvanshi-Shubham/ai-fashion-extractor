@@ -20,11 +20,12 @@ import { HierarchyTree } from '../components/HierarchyTree';
 import { DepartmentManager } from '../components/DepartmentManager';
 import { CategoryManager } from '../components/CategoryManager';
 import { AttributeManager } from '../components/AttributeManager';
+import { CategoryAttributeMatrix } from '../components/CategoryAttributeMatrix';
 
 const { Content } = Layout;
 const { Title, Text } = Typography;
 
-type TabType = 'overview' | 'departments' | 'categories' | 'attributes';
+type TabType = 'overview' | 'departments' | 'categories' | 'attributes' | 'mappings';
 
 export default function HierarchyManagement() {
   const [activeTab, setActiveTab] = useState<TabType>('overview');
@@ -97,6 +98,15 @@ export default function HierarchyManagement() {
         </span>
       ),
       children: <AttributeManager />,
+    },
+    {
+      key: 'mappings',
+      label: (
+        <span>
+          <TagsOutlined /> Category-Attribute Mappings
+        </span>
+      ),
+      children: <CategoryAttributeMatrix />,
     },
   ];
 

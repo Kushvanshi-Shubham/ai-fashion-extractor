@@ -86,6 +86,7 @@ export interface CategoryAttribute {
   id: number;
   categoryId: number;
   attributeId: number;
+  isEnabled: boolean;
   displayOrder: number;
   isRequired: boolean;
   attribute?: MasterAttribute;
@@ -223,6 +224,43 @@ export const deleteCategory = async (id: number): Promise<void> => {
 
 export const updateCategoryAttributes = async (id: number, attributeIds: number[]): Promise<void> => {
   await adminApi.put(`/categories/${id}/attributes`, { attributeIds });
+};
+
+export const updateCategoryAttributeMapping = async (
+  categoryId: number,
+  attributeId: number,
+  data: {
+    isEnabled?: boolean;
+    isRequired?: boolean;
+    displayOrder?: number;
+    defaultValue?: string | null;
+  }
+): Promise<void> => {
+  await adminApi.put(`/categories/${categoryId}/attributes/${attributeId}`, data);
+};
+
+export const addAttributeToCategory = async (
+  categoryId: number,
+  data: {
+    attributeId: number;
+    isEnabled?: boolean;
+    isRequired?: boolean;
+    displayOrder?: number;
+    defaultValue?: string | null;
+  }
+): Promise<CategoryAttribute> => {
+  const { data: response } = await adminApi.post<ApiResponse<CategoryAttribute>>(
+    `/categories/${categoryId}/attributes`,
+    data
+  );
+  return response.data;
+};
+
+export const removeAttributeFromCategory = async (
+  categoryId: number,
+  attributeId: number
+): Promise<void> => {
+  await adminApi.delete(`/categories/${categoryId}/attributes/${attributeId}`);
 };
 
 // ═══════════════════════════════════════════════════════
