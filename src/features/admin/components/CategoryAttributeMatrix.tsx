@@ -4,7 +4,7 @@
  */
 
 import { useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import {
   Card,
   Table,
@@ -18,22 +18,25 @@ import {
   Tooltip,
   Select,
   Badge,
+  message,
 } from 'antd';
 import { 
   TagsOutlined, 
   SearchOutlined, 
-  CheckCircleOutlined,
-  CloseCircleOutlined,
   FilterOutlined,
 } from '@ant-design/icons';
 import type { ColumnsType } from 'antd/es/table';
-import { getHierarchyTree } from '../../../services/adminApi';
+import { 
+  getHierarchyTree,
+  updateCategoryAttributeMapping,
+} from '../../../services/adminApi';
 
 const { Title, Text } = Typography;
 const { Search } = Input;
 const { Option } = Select;
 
 interface AttributeMapping {
+  attributeId: number;
   attributeKey: string;
   attributeLabel: string;
   isEnabled: boolean;
@@ -52,7 +55,17 @@ interface CategoryWithAttributes {
   attributes: AttributeMapping[];
 }
 
+interface ApiErrorResponse {
+  response?: {
+    data?: {
+      error?: string;
+    };
+  };
+  message: string;
+}
+
 export const CategoryAttributeMatrix = () => {
+  const queryClient = useQueryClient();
   const [searchText, setSearchText] = useState('');
   const [departmentFilter, setDepartmentFilter] = useState<string>('all');
   const [expandedRowKeys, setExpandedRowKeys] = useState<number[]>([]);
@@ -63,11 +76,32 @@ export const CategoryAttributeMatrix = () => {
     queryFn: getHierarchyTree,
   });
 
+  // Mutation for updating mappings
+  const updateMappingMutation = useMutation({
+    mutationFn: ({ 
+      categoryId, 
+      attributeId, 
+      data 
+    }: { 
+      categoryId: number; 
+      attributeId: number; 
+      data: { isEnabled?: boolean; isRequired?: boolean; displayOrder?: number; defaultValue?: string | null };
+    }) => updateCategoryAttributeMapping(categoryId, attributeId, data),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['hierarchy-tree-full'] });
+      message.success('Mapping updated successfully!');
+    },
+    onError: (error: ApiErrorResponse) => {
+      message.error(error.response?.data?.error || error.message);
+    },
+  });
+
   // Transform hierarchy data into flat category list with attributes
   const processedData: CategoryWithAttributes[] = hierarchyData?.flatMap((dept) =>
     dept.subDepartments?.flatMap((subDept) =>
       subDept.categories?.map((cat) => {
         const attributes: AttributeMapping[] = cat.attributes?.map((attr) => ({
+          attributeId: attr.attributeId,
           attributeKey: attr.attribute?.key || '',
           attributeLabel: attr.attribute?.label || '',
           isEnabled: attr.isEnabled || false,
@@ -214,32 +248,47 @@ export const CategoryAttributeMatrix = () => {
         width: 250,
       },
       {
-        title: 'Status',
-        key: 'status',
-        width: 120,
+        title: 'Enabled',
+        key: 'isEnabled',
+        width: 100,
         align: 'center',
         render: (_: unknown, attr: AttributeMapping) => (
-          <Space>
-            {attr.isEnabled ? (
-              <Tag icon={<CheckCircleOutlined />} color="success">
-                Enabled
-              </Tag>
-            ) : (
-              <Tag icon={<CloseCircleOutlined />} color="default">
-                Disabled
-              </Tag>
-            )}
-          </Space>
+          <Tooltip title="Click to toggle">
+            <Switch
+              checked={attr.isEnabled}
+              size="small"
+              onChange={(checked) => {
+                updateMappingMutation.mutate({
+                  categoryId: record.id,
+                  attributeId: attr.attributeId,
+                  data: { isEnabled: checked },
+                });
+              }}
+              loading={updateMappingMutation.isPending}
+            />
+          </Tooltip>
         ),
       },
       {
         title: 'Required',
-        dataIndex: 'isRequired',
         key: 'isRequired',
         width: 100,
         align: 'center',
-        render: (isRequired: boolean) => (
-          <Switch checked={isRequired} disabled size="small" />
+        render: (_: unknown, attr: AttributeMapping) => (
+          <Tooltip title="Mark as required">
+            <Switch
+              checked={attr.isRequired}
+              size="small"
+              onChange={(checked) => {
+                updateMappingMutation.mutate({
+                  categoryId: record.id,
+                  attributeId: attr.attributeId,
+                  data: { isRequired: checked },
+                });
+              }}
+              loading={updateMappingMutation.isPending}
+            />
+          </Tooltip>
         ),
       },
       {

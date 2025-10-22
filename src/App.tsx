@@ -78,7 +78,7 @@ const App: React.FC = () => {
       try {
         await indexedDBService.initialize();
         if (persistedCategoryCode) {
-          const categoryConfig = CategoryHelper.getCategoryConfig(persistedCategoryCode);
+          const categoryConfig = await CategoryHelper.getCategoryConfig(persistedCategoryCode);
           if (categoryConfig) {
             handleCategorySelect(categoryConfig);
           }
@@ -153,7 +153,7 @@ const App: React.FC = () => {
                 🎯 Initializing AI Fashion System
               </Title>
               <Text type="secondary">
-                Setting up {CategoryHelper.getCategoryStats().total} categories...
+                Setting up categories from database...
               </Text>
               {error && (
                 <Alert

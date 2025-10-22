@@ -15,7 +15,7 @@ import { BulkActions } from "../components/BulkActions";
 import { UploadArea } from "../components/UploadArea";
 import { useCategorySelector } from "../../../shared/hooks/category/useCategorySelector";
 import { useLocalStorage } from "../../../shared/hooks/ui/useLocalStorage";
-import { CategoryHelper } from "../../../shared/utils/category/categoryHelpers";
+import { useCategoryConfig, useAllCategoriesAsConfigs } from "../../../hooks/useHierarchyQueries";
 import { indexedDBService } from "../../../shared/services/storage/indexedDBService";
 import { useImageExtraction } from "../../../shared/hooks/extraction/useImageExtraction";
 import { DiscoveryToggle } from "../components/DiscoveryToggle";
@@ -56,6 +56,15 @@ const ExtractionPage = () => {
     lastUsed: null,
   });
   const [persistedCategoryCode, setPersistedCategoryCode] = useLocalStorage("selectedCategory", "");
+
+  // Fetch persisted category from database
+  const { data: persistedCategory, isLoading: isLoadingPersistedCategory } = useCategoryConfig(
+    persistedCategoryCode,
+    { enabled: !!persistedCategoryCode }
+  );
+
+  // Fetch all categories for stats
+  const { data: allCategories = [], isLoading: isLoadingAllCategories } = useAllCategoriesAsConfigs();
 
   const { selectedCategory, handleCategorySelect, schema } = useCategorySelector();
 
@@ -110,19 +119,21 @@ const ExtractionPage = () => {
     const initializeApp = async () => {
       try {
         await indexedDBService.initialize();
-        if (persistedCategoryCode) {
-          const categoryConfig = CategoryHelper.getCategoryConfig(persistedCategoryCode);
-          if (categoryConfig) {
-            handleCategorySelect(categoryConfig);
-          }
+        // Wait for persisted category to load from database
+        if (persistedCategoryCode && persistedCategory) {
+          handleCategorySelect(persistedCategory);
         }
         setAppReady(true);
       } catch (err) {
         setError(err instanceof Error ? err.message : "An unknown error occurred during initialization");
       }
     };
-    initializeApp();
-  }, [persistedCategoryCode, handleCategorySelect]);
+    
+    // Don't initialize until we've loaded the persisted category (if any)
+    if (!persistedCategoryCode || persistedCategory || !isLoadingPersistedCategory) {
+      initializeApp();
+    }
+  }, [persistedCategoryCode, persistedCategory, isLoadingPersistedCategory, handleCategorySelect]);
 
   useEffect(() => {
     if (selectedCategory) {
@@ -162,7 +173,7 @@ const ExtractionPage = () => {
     });
   }, [selectedRowKeys, updateRowAttribute]);
 
-  return !appReady ? (
+  return (!appReady || isLoadingAllCategories) ? (
     <Layout style={{ minHeight: "100vh", display: "flex", justifyContent: "center", alignItems: "center" }}>
       <Content style={{ textAlign: "center" }}>
         <Card style={{ textAlign: "center", maxWidth: 400, boxShadow: "0 8px 32px rgba(0,0,0,0.1)" }}>
@@ -171,7 +182,10 @@ const ExtractionPage = () => {
             🎯 Initializing AI Fashion System
           </Title>
           <Text type="secondary">
-            Setting up {CategoryHelper.getCategoryStats().total} categories...
+            {isLoadingAllCategories 
+              ? "Loading categories from database..."
+              : `Setting up ${allCategories.length} categories...`
+            }
           </Text>
           {error && (
             <Alert

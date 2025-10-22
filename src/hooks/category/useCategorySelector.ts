@@ -1,8 +1,15 @@
 import { useState, useCallback, useEffect, useMemo } from "react";
 import type { CategoryConfig } from "../../types/category/CategoryTypes";
-import { CategoryHelper } from "../../utils/category/categoryHelpers";
 import { logger } from "../../utils/common/logger";
-import type { SchemaItem } from "../../types/extraction/ExtractionTypes";import { UnifiedSchemaGenerator } from "../../utils/category/unifiedSchemaGenerator";
+import type { SchemaItem } from "../../types/extraction/ExtractionTypes";
+import { UnifiedSchemaGenerator } from "../../utils/category/unifiedSchemaGenerator";
+import {
+  useDepartmentCodes,
+  useSubDepartmentCodes,
+  useCategoriesByDeptAndSubDept,
+  useCategoryConfig,
+} from "../useHierarchyQueries";
+import { useCategoryWithAttributes } from "../useHierarchyQueries";
 
 
 // Hook state interface
@@ -33,6 +40,11 @@ interface UseCategorySelectorReturn {
   subDepartments: string[];
   availableCategories: CategoryConfig[];
 
+  // Loading states for each level
+  isDepartmentsLoading: boolean;
+  isSubDepartmentsLoading: boolean;
+  isCategoriesLoading: boolean;
+
   // Actions
   handleCategorySelect: (category: CategoryConfig | null) => void;
   handleDepartmentChange: (department: string) => void;
@@ -58,19 +70,37 @@ export const useCategorySelector = (): UseCategorySelectorReturn => {
     selectionHistory: [],
   });
 
-  const departments = CategoryHelper.getDepartments();
+  // Fetch departments from database
+  const { data: departmentsData = [], isLoading: isDepartmentsLoading } = useDepartmentCodes();
 
-  const subDepartments = state.selectedDepartment
-    ? CategoryHelper.getSubDepartments(state.selectedDepartment)
-    : [];
+  // Fetch sub-departments for selected department
+  const { data: subDepartmentsData = [], isLoading: isSubDepartmentsLoading } = useSubDepartmentCodes(
+    state.selectedDepartment || '',
+    { enabled: !!state.selectedDepartment }
+  );
 
-  const availableCategories =
-    state.selectedDepartment && state.selectedSubDepartment
-      ? CategoryHelper.getCategories(
-          state.selectedDepartment,
-          state.selectedSubDepartment
-        )
-      : [];
+  // Fetch categories for selected department and sub-department
+  const { data: categoriesData = [], isLoading: isCategoriesLoading } = useCategoriesByDeptAndSubDept(
+    state.selectedDepartment || '',
+    state.selectedSubDepartment || '',
+    { enabled: !!state.selectedDepartment && !!state.selectedSubDepartment }
+  );
+
+  // Fetch selected category config (used for validation)
+  const { data: validationCategory } = useCategoryConfig(
+    state.selectedCategory?.category || '',
+    { enabled: !!state.selectedCategory?.category }
+  );
+
+  // Sync loading states
+  useEffect(() => {
+    const isLoading = isDepartmentsLoading || isSubDepartmentsLoading || isCategoriesLoading;
+    setState(prev => ({ ...prev, isLoading }));
+  }, [isDepartmentsLoading, isSubDepartmentsLoading, isCategoriesLoading]);
+
+  const departments = departmentsData;
+  const subDepartments = subDepartmentsData;
+  const availableCategories = categoriesData;
 
   // Handle department change
   const handleDepartmentChange = useCallback((department: string): void => {
@@ -97,13 +127,20 @@ export const useCategorySelector = (): UseCategorySelectorReturn => {
     }));
   }, []);
 
-  // Derive schema from selected category using the unified schema generator
+  // Fetch selected category with full attributes from database
+  const { data: selectedCategoryWithAttributes } = useCategoryWithAttributes(
+    state.selectedCategory?.category || '',
+    { enabled: !!state.selectedCategory?.category }
+  );
+
+  // Derive schema from selected category using the database-aware schema generator
   const schema = useMemo(() => {
-    if (!state.selectedCategory) {
+    if (!selectedCategoryWithAttributes || !selectedCategoryWithAttributes.attributes) {
       return [];
     }
-    return UnifiedSchemaGenerator.deriveSchemaFromCategoryAttributes(state.selectedCategory.attributes);
-  }, [state.selectedCategory]);
+    // Use the new database-aware method that doesn't need MASTER_ATTRIBUTES
+    return UnifiedSchemaGenerator.deriveSchemaFromDatabaseAttributes(selectedCategoryWithAttributes.attributes);
+  }, [selectedCategoryWithAttributes]);
 
   // Handle category selection
   const handleCategorySelect = useCallback(
@@ -127,19 +164,7 @@ export const useCategorySelector = (): UseCategorySelectorReturn => {
           };
         }
 
-        // Validate category
-        const isValid = CategoryHelper.getCategoryConfig(category.category);
-        if (!isValid) {
-          logger.error("Invalid category selected", {
-            category: category.category,
-          });
-          return {
-            ...prevState,
-            error: `Invalid category: ${category.category}`,
-            isLoading: false,
-          };
-        }
-
+        // Category will be validated via the validationCategory query
         // Update history immutably (keep last 5 selections)
         const newHistory = [
           category,
@@ -210,16 +235,17 @@ export const useCategorySelector = (): UseCategorySelectorReturn => {
     });
   }, []);
 
-  // Validate category code
+  // Validate category code (uses React Query cache or fetches from DB)
   const validateCategory = useCallback((categoryCode: string): boolean => {
     try {
-      const category = CategoryHelper.getCategoryConfig(categoryCode);
-      return !!category;
+      // The validation happens via the validationCategory query
+      // For immediate validation, we can check the cache
+      return !!validationCategory;
     } catch (error) {
       logger.error("Category validation failed", { categoryCode, error });
       return false;
     }
-  }, []);
+  }, [validationCategory]);
 
   // Get category breadcrumb path
   const getCategoryPath = useCallback((): string[] => {
@@ -274,6 +300,11 @@ export const useCategorySelector = (): UseCategorySelectorReturn => {
     departments,
     subDepartments,
     availableCategories,
+
+    // Loading states for each level
+    isDepartmentsLoading,
+    isSubDepartmentsLoading,
+    isCategoriesLoading,
 
     // Actions
     handleCategorySelect,

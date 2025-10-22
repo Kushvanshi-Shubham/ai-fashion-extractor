@@ -306,9 +306,16 @@ export const deleteAllowedValue = async (attributeId: number, valueId: number): 
 // HIERARCHY
 // ═══════════════════════════════════════════════════════
 
+export interface HierarchyTreeResponse {
+  departments: Department[];
+  totalCategories: number;
+  totalAttributes: number;
+}
+
 export const getHierarchyTree = async (): Promise<Department[]> => {
-  const { data } = await adminApi.get<ApiResponse<Department[]>>('/hierarchy/tree');
-  return data.data;
+  const { data } = await adminApi.get<ApiResponse<HierarchyTreeResponse>>('/hierarchy/tree');
+  // Extract just the departments array for backward compatibility
+  return data.data.departments;
 };
 
 export const exportHierarchy = async (): Promise<Blob> => {

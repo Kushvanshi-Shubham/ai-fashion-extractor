@@ -3,7 +3,6 @@ import { Select, Card, Typography, Tag, Button } from 'antd';
 import { ReloadOutlined, InfoCircleOutlined } from '@ant-design/icons';
 import type { CategoryConfig } from '../../../shared/types/category/CategoryTypes';
 import { useCategorySelector } from '../../../shared/hooks/category/useCategorySelector';
-import { SchemaGenerator } from '../../../shared/utils/extraction/schemaGenerator';
 
 const { Title, Text } = Typography;
 const { Option } = Select;
@@ -27,7 +26,10 @@ export const CategorySelector: React.FC<CategorySelectorProps> = ({
     handleDepartmentChange,
     handleSubDepartmentChange,
     resetSelection,
-    isComplete
+    isComplete,
+    isDepartmentsLoading,
+    isSubDepartmentsLoading,
+    isCategoriesLoading,
   } = useCategorySelector();
 
   // ✅ Handle category selection properly with null check
@@ -36,11 +38,6 @@ export const CategorySelector: React.FC<CategorySelectorProps> = ({
     if (category) {
       onCategorySelect(category);
     }
-  };
-
-  const generateSchemaPreview = (category: CategoryConfig) => {
-    const schema = SchemaGenerator.generateSchemaForCategory(category);
-    return schema.length;
   };
 
   if (isComplete && selectedCategory) {
@@ -56,7 +53,7 @@ export const CategorySelector: React.FC<CategorySelectorProps> = ({
             </Text>
             <div style={{ marginTop: 8 }}>
               <Tag color="blue" className="selection-badge">
-                {generateSchemaPreview(selectedCategory)} Attributes Ready
+                Category Selected
               </Tag>
             </div>
           </div>
@@ -99,6 +96,7 @@ export const CategorySelector: React.FC<CategorySelectorProps> = ({
             style={{ width: '100%' }}
             size="large"
             allowClear
+            loading={isDepartmentsLoading}
           >
             {departments.map(dept => (
               <Option key={dept} value={dept}>
@@ -115,12 +113,14 @@ export const CategorySelector: React.FC<CategorySelectorProps> = ({
               2. Choose Sub-Department
             </Text>
             <Select
-              placeholder="Select sub-department"
+              placeholder={isSubDepartmentsLoading ? "Loading sub-departments..." : "Select sub-department"}
               value={selectedSubDepartment}
               onChange={handleSubDepartmentChange}
               style={{ width: '100%' }}
               size="large"
               allowClear
+              loading={isSubDepartmentsLoading}
+              disabled={isSubDepartmentsLoading}
             >
               {subDepartments.map(subDept => (
                 <Option key={subDept} value={subDept}>
@@ -138,11 +138,13 @@ export const CategorySelector: React.FC<CategorySelectorProps> = ({
               3. Choose Specific Category
             </Text>
             <Select
-              placeholder="Select category"
+              placeholder={isCategoriesLoading ? "Loading categories..." : "Select category"}
               onChange={handleCategorySelectInternal}
               style={{ width: '100%' }}
               size="large"
               showSearch
+              loading={isCategoriesLoading}
+              disabled={isCategoriesLoading}
               filterOption={(input, option) =>
                 option?.children?.toString().toLowerCase().includes(input.toLowerCase()) ?? false
               }
@@ -151,9 +153,6 @@ export const CategorySelector: React.FC<CategorySelectorProps> = ({
                 <Option key={category.category} value={category.category}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <span>{category.displayName}</span>
-                    <Tag  color="geekblue">
-                      {generateSchemaPreview(category)} attrs
-                    </Tag>
                   </div>
                 </Option>
               ))}
