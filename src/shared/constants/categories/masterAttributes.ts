@@ -291,7 +291,8 @@ export const MASTER_ATTRIBUTES: Record<string, AttributeDefinition> = {
       { shortForm: 'SRSK_WRK', fullForm: 'SWAROSKI WORK' },
       { shortForm: 'STONE WORK', fullForm: 'STONE WORK' },
       { shortForm: 'THREAD_WRK', fullForm: 'THREAD WORK' },
-      { shortForm: 'ZARI EMB', fullForm: 'ZARI EMBROIDERY' }
+      { shortForm: 'ZARI EMB', fullForm: 'ZARI EMBROIDERY' },
+      { shortForm: 'NO_EMB', fullForm: 'NO EMBROIDERY' }
     ],
     description: 'Embroidery Type - Style and technique of embroidered details',
   },
@@ -1638,7 +1639,7 @@ export const MASTER_ATTRIBUTES: Record<string, AttributeDefinition> = {
       { shortForm: '95', fullForm: '95' },
       { shortForm: 'A', fullForm: 'A' },
       { shortForm: 'L', fullForm: 'L' },
-      { shortForm: 'M', fullForm: 'MONTH' },
+      { shortForm: 'M', fullForm: 'MEDIUM' },
       { shortForm: 'S', fullForm: 'S' },
       { shortForm: 'S-XXL', fullForm: 'S-XXL' },
       { shortForm: 'S-XXXL', fullForm: 'S-XXXL' },

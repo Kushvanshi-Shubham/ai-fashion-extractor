@@ -4,7 +4,7 @@ import type {
   EnhancedExtractionResult
 } from "../../types/extraction/ExtractionTypes";
 import { logger } from "../../utils/common/logger";
-import { BackendApiService } from "../api/backendApi";
+import { BackendApiService } from "../../../services/api/backendApi";
 
 
 export class ExtractionService {
@@ -121,33 +121,4 @@ export class ExtractionService {
       throw error;
     }
   }
-
-  async extractWithDebug(
-    file: File,
-    schema: SchemaItem[],
-    categoryName?: string
-  ): Promise<EnhancedExtractionResult & { debugInfo?: unknown }> {
-    try {
-      const base64Image = await this.compressImage(file);
-
-      const result = await this.backendApi.extractWithDebug({
-        image: base64Image,
-        schema,
-        categoryName
-      });
-
-      return result;
-    } catch (error) {
-      const baseResult = await this.extractWithDiscovery(file, schema, categoryName, true);
-      return {
-        ...baseResult,
-        debugInfo: {
-          error: "Debug info extraction failed",
-          message: error instanceof Error ? error.message : "Unknown error",
-        },
-      };
-    }
-  }
-
-
 }

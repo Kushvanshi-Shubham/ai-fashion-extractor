@@ -1,0 +1,74 @@
+/* Dashboard Page Styles */
+
+.dashboard-container {
+  padding: 0;
+  background: #f0f2f5;
+}
+
+.dashboard-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 40px 32px;
+  margin-bottom: 24px;
+  border-radius: 0 0 20px 20px;
+}
+
+.stat-card {
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.trend-indicator {
+  font-size: 12px;
+  margin-left: 8px;
+}
+
+.trend-up {
+  color: #52c41a;
+}
+
+.trend-down {
+  color: #ff4d4f;
+}
+
+.quick-action-button {
+  height: 48px;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.quick-action-button:hover {
+  transform: scale(1.02);
+}
+
+.activity-timeline .ant-timeline-item {
+  padding-bottom: 20px;
+}
+
+.activity-timeline .ant-timeline-item-content {
+  min-height: 50px;
+}
+
+.system-health-item {
+  padding: 12px;
+  background: #fafafa;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .dashboard-header {
+    padding: 24px 16px;
+  }
+
+  .stat-card {
+    margin-bottom: 16px;
+  }
+}

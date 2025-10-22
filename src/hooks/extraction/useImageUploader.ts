@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import { useImageExtraction } from "./useImageExtraction";
+import { useImageExtraction } from "../../shared/hooks/extraction/useImageExtraction";
 import type { SchemaItem } from "../../types/extraction/ExtractionTypes";
 
 export const useImageUploader = () => {
@@ -19,13 +19,13 @@ export const useImageUploader = () => {
 
   const stats = {
     total: extractedRows.length,
-    done: extractedRows.filter((r) => r.status === "Done").length,
-    pending: extractedRows.filter((r) => r.status === "Pending").length,
-    extracting: extractedRows.filter((r) => r.status === "Extracting").length,
-    error: extractedRows.filter((r) => r.status === "Error").length,
+    done: extractedRows.filter((r: { status: string }) => r.status === "Done").length,
+    pending: extractedRows.filter((r: { status: string }) => r.status === "Pending").length,
+    extracting: extractedRows.filter((r: { status: string }) => r.status === "Extracting").length,
+    error: extractedRows.filter((r: { status: string }) => r.status === "Error").length,
     successRate:
       extractedRows.length > 0
-        ? (extractedRows.filter((r) => r.status === "Done").length / extractedRows.length) * 100
+        ? (extractedRows.filter((r: { status: string }) => r.status === "Done").length / extractedRows.length) * 100
         : 0,
   };
 
@@ -59,7 +59,7 @@ export const useImageUploader = () => {
 
   // ✅ Fix: Remove extractSingleImage from dependencies (it's not a dependency)
   const handleReExtract = useCallback((rowId: string, schema: SchemaItem[]) => {
-    const row = extractedRows.find(r => r.id === rowId);
+    const row = extractedRows.find((r: { id: string }) => r.id === rowId);
     if (row && schema.length > 0) {
       extractImageAttributes(row, schema);
     }

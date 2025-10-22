@@ -6,7 +6,13 @@ import {
   Button,
   Statistic,
   Typography,
-  Space
+  Space,
+  Avatar,
+  Badge,
+  Tag,
+  Progress,
+  Timeline,
+  Alert
 } from 'antd';
 import {
   PlusOutlined,
@@ -18,10 +24,16 @@ import {
   ClockCircleOutlined,
   UserOutlined,
   DownloadOutlined,
-  FileSearchOutlined
+  FileSearchOutlined,
+  CheckCircleOutlined,
+  SyncOutlined,
+  CloseCircleOutlined,
+  ThunderboltOutlined,
+  CloudServerOutlined
 } from '@ant-design/icons';
+import './Dashboard.css';
 
-const { Title, Paragraph } = Typography;
+const { Title, Paragraph, Text } = Typography;
 
 export default function Dashboard() {
   const navigate = useNavigate();
@@ -33,6 +45,46 @@ export default function Dashboard() {
     accuracy: 96.8,
     processingTime: 2.3
   };
+
+  // Recent activity data
+  const recentActivity = [
+    {
+      id: 1,
+      type: 'success',
+      title: 'Extraction Completed',
+      description: 'Men\'s T-Shirt - 25 attributes extracted',
+      time: '2 minutes ago',
+      icon: <CheckCircleOutlined />,
+      color: '#52c41a'
+    },
+    {
+      id: 2,
+      type: 'processing',
+      title: 'Processing Images',
+      description: 'Batch upload - 15 items in queue',
+      time: '5 minutes ago',
+      icon: <SyncOutlined spin />,
+      color: '#1890ff'
+    },
+    {
+      id: 3,
+      type: 'success',
+      title: 'Export Completed',
+      description: 'Downloaded 150 product records',
+      time: '1 hour ago',
+      icon: <DownloadOutlined />,
+      color: '#52c41a'
+    },
+    {
+      id: 4,
+      type: 'error',
+      title: 'Extraction Failed',
+      description: 'Women\'s Dress - Image quality too low',
+      time: '2 hours ago',
+      icon: <CloseCircleOutlined />,
+      color: '#ff4d4f'
+    },
+  ];
 
   const handleQuickAction = (action: string) => {
     switch (action) {
@@ -217,6 +269,84 @@ export default function Dashboard() {
                   Get Started
                 </Button>
               </div>
+            </Card>
+          </Col>
+        </Row>
+
+        {/* Recent Activity & System Health */}
+        <Row gutter={[24, 24]} style={{ marginTop: '24px' }}>
+          <Col xs={24} lg={12}>
+            <Card 
+              title={
+                <Space>
+                  <ThunderboltOutlined style={{ color: '#1890ff' }} />
+                  <span>Recent Activity</span>
+                </Space>
+              }
+              extra={<Button type="link">View All</Button>}
+              style={{ borderRadius: '12px', boxShadow: '0 4px 20px rgba(0,0,0,0.1)' }}
+            >
+              <Timeline
+                items={recentActivity.map(activity => ({
+                  dot: <Avatar size="small" icon={activity.icon} style={{ background: activity.color }} />,
+                  children: (
+                    <div>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4px' }}>
+                        <Text strong>{activity.title}</Text>
+                        <Text type="secondary" style={{ fontSize: '12px' }}>{activity.time}</Text>
+                      </div>
+                      <Text type="secondary">{activity.description}</Text>
+                    </div>
+                  ),
+                }))}
+              />
+            </Card>
+          </Col>
+
+          <Col xs={24} lg={12}>
+            <Card 
+              title={
+                <Space>
+                  <CloudServerOutlined style={{ color: '#52c41a' }} />
+                  <span>System Health</span>
+                </Space>
+              }
+              extra={<Badge status="success" text="All Systems Operational" />}
+              style={{ borderRadius: '12px', boxShadow: '0 4px 20px rgba(0,0,0,0.1)' }}
+            >
+              <Space direction="vertical" size="large" style={{ width: '100%' }}>
+                <div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
+                    <Text>API Service</Text>
+                    <Tag color="green">Operational</Tag>
+                  </div>
+                  <Progress percent={100} strokeColor="#52c41a" showInfo={false} />
+                </div>
+
+                <div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
+                    <Text>AI Model</Text>
+                    <Tag color="green">Healthy</Tag>
+                  </div>
+                  <Progress percent={98} strokeColor="#52c41a" showInfo={false} />
+                </div>
+
+                <div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
+                    <Text>Database</Text>
+                    <Tag color="green">Operational</Tag>
+                  </div>
+                  <Progress percent={100} strokeColor="#52c41a" showInfo={false} />
+                </div>
+
+                <Alert
+                  message="System Uptime: 99.9%"
+                  description="All services are running smoothly. Last updated 2 minutes ago."
+                  type="success"
+                  showIcon
+                  icon={<CheckCircleOutlined />}
+                />
+              </Space>
             </Card>
           </Col>
         </Row>

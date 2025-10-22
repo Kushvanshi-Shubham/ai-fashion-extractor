@@ -1,7 +1,7 @@
 
 import React, { useMemo } from 'react';
 import { Table, Image, Tag, Button, Tooltip, Space, Dropdown } from 'antd';
-import { ReloadOutlined, EyeOutlined, MoreOutlined } from '@ant-design/icons';
+import { ReloadOutlined, EyeOutlined, MoreOutlined, ThunderboltOutlined } from '@ant-design/icons';
 import type { ColumnsType } from 'antd/es/table';
 import type { ExtractedRow, SchemaItem } from '../../../shared/types/extraction/ExtractionTypes';
 import { StatusBadge } from '../../../shared/components/ui/StatusBadge';
@@ -16,7 +16,7 @@ interface AttributeTableProps {
   onAttributeChange: (rowId: string, attributeKey: string, value: string | number | null) => void; // When user edits attribute
   onDeleteRow: (rowId: string) => void; // When user deletes a row
   onImageClick: (imageUrl: string, imageName?: string) => void; // When user clicks image to view
-  onReExtract: (rowId: string) => void; // When user wants to re-run AI extraction
+  onReExtract: (rowId: string, forceRefresh?: boolean) => void; // When user wants to re-run AI extraction (forceRefresh=true to bypass cache)
   onAddToSchema?: (attributeKey: string, value: string) => void; // When user adds new value to schema
   isExtracting?: boolean; // Whether AI is currently working
 }
@@ -82,9 +82,9 @@ export const AttributeTable: React.FC<AttributeTableProps> = ({
             
             {/* Show error message if extraction failed */}
             {record.error && (
-              <Tooltip title={record.error}>
-                <div style={{ fontSize: 10, color: '#f5222d', marginTop: 4, cursor: 'pointer' }}>
-                  Click to see error
+              <Tooltip title={record.error} trigger="hover">
+                <div style={{ fontSize: 10, color: '#f5222d', marginTop: 4, cursor: 'help' }}>
+                  ⚠️ Error details
                 </div>
               </Tooltip>
             )}
@@ -135,14 +135,28 @@ export const AttributeTable: React.FC<AttributeTableProps> = ({
               onClick={() => onImageClick(record.imagePreviewUrl, record.originalFileName)}
             />
             
-            {/* 🔄 Re-extract Button */}
-            <Button
-              type="text"
-              icon={<ReloadOutlined />}
-              size="small"
-              onClick={() => onReExtract(record.id)}
-              disabled={record.status === 'Extracting'}
-            />
+            {/* 🔄 Re-extract Button (uses cache if available) */}
+            <Tooltip title="Re-extract (uses cache if available)">
+              <Button
+                type="text"
+                icon={<ReloadOutlined />}
+                size="small"
+                onClick={() => onReExtract(record.id, false)}
+                disabled={record.status === 'Extracting'}
+              />
+            </Tooltip>
+            
+            {/* ⚡ Force Re-extract Button (bypasses cache) */}
+            <Tooltip title="Force fresh extraction (bypasses cache)">
+              <Button
+                type="text"
+                icon={<ThunderboltOutlined />}
+                size="small"
+                onClick={() => onReExtract(record.id, true)}
+                disabled={record.status === 'Extracting'}
+                style={{ color: '#faad14' }}
+              />
+            </Tooltip>
             
             {/* 🗑️ Delete Button (in dropdown menu) */}
             <Dropdown

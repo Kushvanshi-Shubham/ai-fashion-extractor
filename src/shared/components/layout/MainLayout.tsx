@@ -11,9 +11,11 @@ import {
   MenuUnfoldOutlined,
   BellOutlined,
   GlobalOutlined,
-  ControlOutlined
+  ControlOutlined,
+  SettingOutlined
 } from '@ant-design/icons';
 import { useNavigate, useLocation } from 'react-router-dom';
+import './MainLayout.css';
 
 const { Header, Sider, Content, Footer } = Layout;
 const { Text } = Typography;
@@ -98,6 +100,12 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
         onClick: () => navigate('/profile'),
       },
       {
+        key: 'settings',
+        icon: <SettingOutlined />,
+        label: 'Settings',
+        onClick: () => navigate('/profile'), // Can be changed to /settings later
+      },
+      {
         key: 'divider',
         type: 'divider' as const,
       },
@@ -135,9 +143,11 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
           collapsed={collapsed}
           breakpoint="lg"
           collapsedWidth={isMobile ? 0 : 80}
+          className="modern-sider"
           style={{
-            background: 'linear-gradient(180deg, #001529 0%, #002140 100%)',
-            boxShadow: '2px 0 8px rgba(0,0,0,0.15)',
+            background: '#fff',
+            boxShadow: '2px 0 8px rgba(0,0,0,0.06)',
+            borderRight: '1px solid #f0f0f0',
           }}
         >
           <div 
@@ -148,8 +158,8 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
               alignItems: 'center',
               justifyContent: collapsed ? 'center' : 'flex-start',
               padding: collapsed ? '0' : '0 24px',
-              borderBottom: '1px solid rgba(255,255,255,0.1)',
-              marginBottom: '16px',
+              borderBottom: '1px solid #f0f0f0',
+              marginBottom: '8px',
             }}
           >
             <GlobalOutlined style={{ fontSize: '24px', color: '#1890ff' }} />
@@ -157,7 +167,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
               <span
                 style={{
                   marginLeft: '12px',
-                  color: '#fff',
+                  color: '#262626',
                   fontSize: '18px',
                   fontWeight: 'bold',
                 }}
@@ -168,11 +178,14 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
           </div>
 
           <Menu
-            theme="dark"
+            theme="light"
             mode="inline"
             selectedKeys={[location.pathname]}
             items={getMenuItems()}
             onClick={handleMenuClick}
+            style={{
+              borderRight: 'none',
+            }}
           />
 
           {!collapsed && (
@@ -183,12 +196,13 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
                 left: '16px',
                 right: '16px',
                 padding: '12px',
-                background: 'rgba(255,255,255,0.05)',
+                background: '#f5f5f5',
                 borderRadius: '8px',
+                textAlign: 'center',
               }}
             >
-              <Text style={{ color: 'rgba(255,255,255,0.7)', fontSize: '12px' }}>
-                © 2025 AI Fashion Extractor
+              <Text style={{ color: 'rgba(0,0,0,0.45)', fontSize: '12px' }}>
+                © 2025 AI Fashion
               </Text>
             </div>
           )}

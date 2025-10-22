@@ -8,6 +8,24 @@ export interface AttributeDefinition {
   allowedValues?: AllowedValue[];
   required?: boolean;
   description?: string;
+  // 🎯 SMART RANGE DETECTION
+  rangeConfig?: RangeConfiguration;
+}
+
+export interface RangeConfiguration {
+  enableRangeDetection: boolean;
+  rangeType: 'size' | 'gsm' | 'numeric' | 'custom';
+  sizeHierarchy?: string[];  // For size: ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL']
+  numericRanges?: NumericRange[];  // For GSM: [{min: 100, max: 150, label: '100-150G'}]
+  customRanges?: string[];   // For custom patterns
+  fallbackToRaw?: boolean;   // If no range found, return raw value
+}
+
+export interface NumericRange {
+  min: number;
+  max: number;
+  label: string;
+  unit?: string;
 }
 
 export interface AllowedValue {

@@ -291,7 +291,8 @@ export const MASTER_ATTRIBUTES: Record<string, AttributeDefinition> = {
       { shortForm: 'SRSK_WRK', fullForm: 'SWAROSKI WORK' },
       { shortForm: 'STONE WORK', fullForm: 'STONE WORK' },
       { shortForm: 'THREAD_WRK', fullForm: 'THREAD WORK' },
-      { shortForm: 'ZARI EMB', fullForm: 'ZARI EMBROIDERY' }
+      { shortForm: 'ZARI EMB', fullForm: 'ZARI EMBROIDERY' },
+      { shortForm: 'NO_EMB', fullForm: 'NO EMBROIDERY' }
     ],
     description: 'Embroidery Type - Style and technique of embroidered details',
   },
@@ -634,6 +635,23 @@ export const MASTER_ATTRIBUTES: Record<string, AttributeDefinition> = {
       { shortForm: '95G', fullForm: '95G' }
     ],
     description: 'Grams per Square Meter - Weight measurement of fabric density',
+    // 🎯 SMART RANGE DETECTION for GSM
+    rangeConfig: {
+      enableRangeDetection: true,
+      rangeType: 'gsm',
+      numericRanges: [
+        { min: 80, max: 100, label: '80-100G', unit: 'G' },
+        { min: 100, max: 120, label: '100-120G', unit: 'G' },
+        { min: 120, max: 140, label: '120-140G', unit: 'G' },
+        { min: 140, max: 160, label: '140-160G', unit: 'G' },
+        { min: 160, max: 180, label: '160-180G', unit: 'G' },
+        { min: 180, max: 200, label: '180-200G', unit: 'G' },
+        { min: 200, max: 250, label: '200-250G', unit: 'G' },
+        { min: 250, max: 300, label: '250-300G', unit: 'G' },
+        { min: 300, max: 400, label: '300-400G', unit: 'G' }
+      ],
+      fallbackToRaw: true
+    }
   },
 
   'fab_lycra': {
@@ -1503,6 +1521,7 @@ export const MASTER_ATTRIBUTES: Record<string, AttributeDefinition> = {
       { shortForm: 'H_BONE PKT', fullForm: 'HERRINGBONE POCKET' },
       { shortForm: 'KNG_PKT', fullForm: 'KNGAROO POCKET' },
       { shortForm: 'LOOP PKT', fullForm: 'LOOP POCKET' },
+      { shortForm: 'NO_PKT', fullForm: 'NO POCKETS' },
       { shortForm: 'PATCH_PKT', fullForm: 'PATCH POCKET' },
       { shortForm: 'PKT WITH SIDE_RIB', fullForm: 'POCKET WITH SIDE RIB' },
       { shortForm: 'PKT WITH ZIP', fullForm: 'POCKET WITH ZIP' },
@@ -1638,7 +1657,7 @@ export const MASTER_ATTRIBUTES: Record<string, AttributeDefinition> = {
       { shortForm: '95', fullForm: '95' },
       { shortForm: 'A', fullForm: 'A' },
       { shortForm: 'L', fullForm: 'L' },
-      { shortForm: 'M', fullForm: 'MONTH' },
+      { shortForm: 'M', fullForm: 'MEDIUM' },
       { shortForm: 'S', fullForm: 'S' },
       { shortForm: 'S-XXL', fullForm: 'S-XXL' },
       { shortForm: 'S-XXXL', fullForm: 'S-XXXL' },
@@ -1646,6 +1665,19 @@ export const MASTER_ATTRIBUTES: Record<string, AttributeDefinition> = {
       { shortForm: 'XS', fullForm: 'XS' }
     ],
     description: 'Size - Size specification/range for the garment',
+    // 🎯 SMART RANGE DETECTION for SIZE
+    rangeConfig: {
+      enableRangeDetection: true,
+      rangeType: 'size',
+      sizeHierarchy: [
+        '0-3M', '0-6M', '3-6M', '6-12M', '12-18M', '18-24M',
+        '2-3Y', '4-5Y', '6-7Y', '8-9Y', '10-11Y', '12-13Y', '14-15Y', '14Y', '15Y', '16Y', '17Y',
+        'XS', 'S', 'M', 'L', 'XL', 'XXL', '2XL', 'XXXL', '3XL', '4XL', '5XL',
+        '16', '18', '20', '22', '24', '26', '28', '30', '32', '34', '36', '38', '40', '42', '44',
+        '75', '80', '85', '90', '95', '100'
+      ],
+      fallbackToRaw: true
+    }
   },
 
   'sleeves_main_style': {
@@ -1679,6 +1711,7 @@ export const MASTER_ATTRIBUTES: Record<string, AttributeDefinition> = {
       { shortForm: 'REG_SLV', fullForm: 'REGULAR SLEEVE' },
       { shortForm: 'RGLN_SLV', fullForm: 'REGLAN SLEEVE' },
       { shortForm: 'RIB FINISH', fullForm: 'RIB FINISH' },
+      { shortForm: 'SHORT_SLV', fullForm: 'SHORT SLEEVE' },
       { shortForm: 'ROLL_UP', fullForm: 'ROLL UP' },
       { shortForm: 'ROLL_UP_SLV', fullForm: 'ROLL UP SLEEVE' },
       { shortForm: 'SELF FOLD', fullForm: 'SELF FOLD' },

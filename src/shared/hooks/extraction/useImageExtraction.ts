@@ -3,8 +3,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useCallback, useMemo, useRef, useEffect } from "react";
 import { message } from "antd";
-import { BackendApiService } from "../../services/api/backendApi";
-import { QueueService } from "../../services/api/queueService";
+import { BackendApiService } from "../../../services/api/backendApi";
 import { discoveryManager } from "../../services/ai/discovery/discoveryManager";
 import { ImageCompressionService } from "../../services/processing/ImageCompressionService";
 import type {
@@ -23,13 +22,15 @@ import {
   compressImage,
 } from "./extractionHelpers";
 import { useBatchExtraction } from "./useBatchExtraction";
+import { AttributeProcessor } from "../../services/extraction/rangeAwareProcessor";
+import { MASTER_ATTRIBUTES } from "../../../constants/categories/masterAttributes";
 
 export const useImageExtraction = () => {
   // Core state
   const [isExtracting, setIsExtracting] = useState(false);
   const [extractedRows, setExtractedRows] = useState<ExtractedRowEnhanced[]>([]);
   const [progress, setProgress] = useState(0);
-  const [useQueueSystem, setUseQueueSystem] = useState(true); // 🚀 Toggle for queue system
+  
   // Discovery state
   const [discoverySettings, setDiscoverySettings] = useState<DiscoverySettings>({
     enabled: false, // 🔧 DEFAULT TO FALSE - Only enable when explicitly needed
@@ -64,148 +65,6 @@ export const useImageExtraction = () => {
   );
 
   const backendApi = useMemo(() => new BackendApiService(), []);
-  const queueService = useMemo(() => new QueueService(), []);
-
-  // 🚀 NEW: Queue-based extraction with optimized token usage
-  const extractImageAttributesWithQueue = useCallback(
-    async (
-      row: ExtractedRowEnhanced,
-      schema: SchemaItem[],
-      categoryName?: string,
-      department?: string,
-      subDepartment?: string
-    ) => {
-      const discoveryEnabled = discoverySettings.enabled;
-      
-      setExtractedRows((prev) =>
-        prev.map((r) =>
-          r.id === row.id
-            ? {
-                ...r,
-                status: "Queued",
-                processingProgress: 0,
-                error: undefined,
-              }
-            : r
-        )
-      );
-
-      const start = performance.now();
-      
-      try {
-        // Convert file to base64 using compression service
-        const base64Image = await compress(row.file);
-        
-        console.log(`🔍 Queue Extraction - Discovery: ${discoveryEnabled}, Category: ${categoryName}, Dept: ${department}`);
-        
-        // Submit job to queue
-        const { jobId } = await queueService.submitJob({
-          image: base64Image,
-          schema,
-          categoryName: categoryName ?? "",
-          department,
-          subDepartment,
-          priority: 'normal', // Could be dynamic based on user type
-          discoveryMode: discoveryEnabled
-        });
-
-        // Update status to processing
-        setExtractedRows((prev) =>
-          prev.map((r) =>
-            r.id === row.id
-              ? {
-                  ...r,
-                  status: "Processing",
-                  processingProgress: 10,
-                }
-              : r
-          )
-        );
-
-        // Poll for results with progress updates
-        const result = await queueService.pollJobUntilComplete(
-          jobId,
-          (status) => {
-            // Update progress based on queue status
-            let progressPercent = 10;
-            switch (status.status) {
-              case 'pending':
-                progressPercent = Math.min(30, 10 + (status.queuePosition * 5));
-                break;
-              case 'processing':
-                progressPercent = 50;
-                break;
-            }
-            
-            setExtractedRows((prev) =>
-              prev.map((r) =>
-                r.id === row.id
-                  ? {
-                      ...r,
-                      processingProgress: progressPercent,
-                    }
-                  : r
-              )
-            );
-          }
-        );
-
-        const totalTime = performance.now() - start;
-
-        const updated: ExtractedRowEnhanced = {
-          ...row,
-          status: "Done",
-          attributes: result.attributes,
-          discoveries: result.discoveries ?? [],
-          apiTokensUsed: result.tokensUsed,
-          modelUsed: result.modelUsed,
-          extractionTime: totalTime,
-          confidence: result.confidence,
-          updatedAt: new Date(),
-          processingProgress: 100,
-        };
-
-        setExtractedRows((prev) =>
-          prev.map((r) => (r.id === row.id ? updated : r))
-        );
-
-        // Handle discoveries if any
-        const discoveries = result.discoveries ?? [];
-        if (discoveries.length > 0) {
-          setGlobalDiscoveries((prev) => {
-            const newDiscoveries = discoveries.filter(
-              (d) => !prev.some((existing) => existing.key === d.key)
-            );
-            return [...prev, ...newDiscoveries];
-          });
-        }
-
-        console.log(`✅ Queue extraction completed: ${row.file.name} in ${totalTime}ms, tokens: ${result.tokensUsed}`);
-        
-        return updated;
-
-      } catch (error) {
-        const totalTime = performance.now() - start;
-        console.error("❌ Queue extraction failed:", error);
-
-        const updated: ExtractedRowEnhanced = {
-          ...row,
-          status: "Error",
-          error: error instanceof Error ? error.message : "Queue extraction failed",
-          extractionTime: totalTime,
-          updatedAt: new Date(),
-          processingProgress: 0,
-        };
-
-        setExtractedRows((prev) =>
-          prev.map((r) => (r.id === row.id ? updated : r))
-        );
-
-        return updated;
-      }
-    },
-    [discoverySettings.enabled, compress, queueService, setExtractedRows, setGlobalDiscoveries]
-  );
 
   // Extract attributes with proper error handling and user notification
   const extractImageAttributes = useCallback(
@@ -246,10 +105,16 @@ export const useImageExtraction = () => {
 
         const totalTime = performance.now() - start;
 
+        // 🎯 APPLY SMART ATTRIBUTE PROCESSING
+        const processedAttributesSync = AttributeProcessor.processBatchResults(
+          result.attributes, 
+          MASTER_ATTRIBUTES
+        );
+
         const updated: ExtractedRowEnhanced = {
           ...row,
           status: "Done",
-          attributes: result.attributes,
+          attributes: processedAttributesSync,
           discoveries: result.discoveries ?? [],
           apiTokensUsed: result.tokensUsed,
           modelUsed: result.modelUsed,
@@ -348,12 +213,22 @@ export const useImageExtraction = () => {
   }, []);
 
   const clearAll = useCallback(() => {
-    abortRef.current?.abort();
+    console.log('🧹 Clearing all extractions and aborting ongoing processes...');
+    
+    // Abort all ongoing extractions
+    if (abortRef.current) {
+      abortRef.current.abort();
+      console.log('🛑 Aborted current extraction controller');
+    }
+    
+    // Clean up blob URLs
     extractedRows.forEach((r) => {
       if (r.imagePreviewUrl.startsWith("blob:")) {
         URL.revokeObjectURL(r.imagePreviewUrl);
       }
     });
+    
+    // Reset all state
     setExtractedRows([]);
     discoveryManager.clear();
     setGlobalDiscoveries([]);
@@ -361,6 +236,8 @@ export const useImageExtraction = () => {
     setExtractionErrors([]);
     setProgress(0);
     setIsExtracting(false);
+    
+    console.log('✅ All extractions cleared and state reset');
   }, [extractedRows]);
 
   // Promote discovery to schema with success/error message
@@ -442,9 +319,6 @@ export const useImageExtraction = () => {
     progress,
     addImages,
     extractImageAttributes,
-    extractImageAttributesWithQueue, // 🚀 New queue-based extraction
-    useQueueSystem,
-    setUseQueueSystem,
     extractAllPending,
     cancelExtraction,
     removeRow,

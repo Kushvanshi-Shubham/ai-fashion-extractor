@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { List, Card, Typography, Spin } from 'antd';
-import { BackendApiService } from '../../../shared/services/api/backendApi';
+import { BackendApiService } from '../../../services/api/backendApi';
 import { Link } from 'react-router-dom';
 
 const api = new BackendApiService();

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Card, Row, Col, Statistic, Progress } from 'antd';
+import { Card, Row, Col, Statistic, Progress, DatePicker, Select, Button, Space, Spin, Empty, Typography } from 'antd';
 import { 
   LineChart, 
   Line, 
@@ -10,15 +10,29 @@ import {
   ResponsiveContainer,
   PieChart,
   Pie,
-  Cell
+  Cell,
+  Legend
 } from 'recharts';
 import { 
   CloudUploadOutlined, 
   CheckCircleOutlined, 
-  ClockCircleOutlined 
+  ClockCircleOutlined,
+  DownloadOutlined,
+  FilterOutlined,
+  CalendarOutlined,
+  ReloadOutlined
 } from '@ant-design/icons';
+import { colors } from '../../../theme/colors';
+import './Analytics.css';
+
+const { RangePicker } = DatePicker;
+const { Option } = Select;
+const { Title } = Typography;
 
 export default function Analytics() {
+  const [loading, setLoading] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  
   const [stats] = useState({
     totalUploads: 1247,
     completed: 1156,
@@ -28,6 +42,37 @@ export default function Analytics() {
     tokensUsed: 45000,
     accuracy: 94.2
   });
+
+  const categories = [
+    { value: 'all', label: 'All Categories' },
+    { value: 'tops', label: 'Tops' },
+    { value: 'bottoms', label: 'Bottoms' },
+    { value: 'dresses', label: 'Dresses' },
+    { value: 'outerwear', label: 'Outerwear' },
+    { value: 'accessories', label: 'Accessories' },
+  ];
+
+  const handleExport = () => {
+    setLoading(true);
+    setTimeout(() => {
+      // Simulate export
+      const dataStr = JSON.stringify({ stats, timeSeriesData, statusData }, null, 2);
+      const dataBlob = new Blob([dataStr], { type: 'application/json' });
+      const url = URL.createObjectURL(dataBlob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `analytics-report-${new Date().toISOString()}.json`;
+      link.click();
+      setLoading(false);
+    }, 500);
+  };
+
+  const handleRefresh = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  };
 
   const timeSeriesData = [
     { date: '2024-01', uploads: 120, completed: 115 },
@@ -39,16 +84,51 @@ export default function Analytics() {
   ];
 
   const statusData = [
-    { name: 'Completed', value: stats.completed, color: '#52c41a' },
-    { name: 'Failed', value: stats.failed, color: '#f5222d' },
-    { name: 'Processing', value: stats.processing, color: '#1890ff' },
+    { name: 'Completed', value: stats.completed, color: colors.success[500] },
+    { name: 'Failed', value: stats.failed, color: colors.error[500] },
+    { name: 'Processing', value: stats.processing, color: colors.primary[500] },
   ];
 
   return (
-    <div style={{ padding: 24 }}>
-      <h1 style={{ marginBottom: 24 }}>Analytics Dashboard</h1>
+    <div className="analytics-page">
+      <div className="analytics-header">
+        <Title level={2} style={{ margin: 0 }}>Analytics Dashboard</Title>
+        <Space size="middle">
+          <RangePicker 
+            onChange={() => {}}
+            placeholder={['Start Date', 'End Date']}
+            suffixIcon={<CalendarOutlined />}
+          />
+          <Select
+            value={selectedCategory}
+            onChange={setSelectedCategory}
+            style={{ width: 200 }}
+            suffixIcon={<FilterOutlined />}
+          >
+            {categories.map(cat => (
+              <Option key={cat.value} value={cat.value}>{cat.label}</Option>
+            ))}
+          </Select>
+          <Button 
+            icon={<ReloadOutlined />}
+            onClick={handleRefresh}
+            loading={loading}
+          >
+            Refresh
+          </Button>
+          <Button 
+            type="primary" 
+            icon={<DownloadOutlined />}
+            onClick={handleExport}
+            loading={loading}
+          >
+            Export Report
+          </Button>
+        </Space>
+      </div>
 
-      <Row gutter={[16, 16]} style={{ marginBottom: 24 }}>
+      <Spin spinning={loading}>
+        <Row gutter={[16, 16]} style={{ marginBottom: 24 }}>
         <Col xs={24} sm={12} md={6}>
           <Card>
             <Statistic
@@ -95,81 +175,125 @@ export default function Analytics() {
 
       <Row gutter={[16, 16]} style={{ marginBottom: 24 }}>
         <Col xs={24} md={12}>
-          <Card title="Upload Trends">
-            <ResponsiveContainer width="100%" height={300}>
-              <LineChart data={timeSeriesData}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="date" />
-                <YAxis />
-                <Tooltip />
-                <Line type="monotone" dataKey="uploads" stroke="#1890ff" strokeWidth={2} />
-                <Line type="monotone" dataKey="completed" stroke="#52c41a" strokeWidth={2} />
-              </LineChart>
-            </ResponsiveContainer>
+          <Card title="Upload Trends" className="chart-card">
+            {timeSeriesData.length > 0 ? (
+              <ResponsiveContainer width="100%" height={300}>
+                <LineChart data={timeSeriesData}>
+                  <CartesianGrid strokeDasharray="3 3" stroke={colors.border.light} />
+                  <XAxis dataKey="date" stroke={colors.text.secondary} />
+                  <YAxis stroke={colors.text.secondary} />
+                  <Tooltip 
+                    contentStyle={{ 
+                      background: colors.background.base,
+                      border: `1px solid ${colors.border.base}`,
+                      borderRadius: '6px'
+                    }}
+                  />
+                  <Legend />
+                  <Line 
+                    type="monotone" 
+                    dataKey="uploads" 
+                    stroke={colors.primary[500]} 
+                    strokeWidth={3}
+                    name="Total Uploads"
+                  />
+                  <Line 
+                    type="monotone" 
+                    dataKey="completed" 
+                    stroke={colors.success[500]} 
+                    strokeWidth={3}
+                    name="Completed"
+                  />
+                </LineChart>
+              </ResponsiveContainer>
+            ) : (
+              <Empty description="No data available" style={{ padding: '60px 0' }} />
+            )}
           </Card>
         </Col>
         
         <Col xs={24} md={12}>
-          <Card title="Status Distribution">
-            <ResponsiveContainer width="100%" height={300}>
-              <PieChart>
-                <Pie
-                  data={statusData}
-                  cx="50%"
-                  cy="50%"
-                  outerRadius={100}
-                  fill="#8884d8"
-                  dataKey="value"
-                >
-                  {statusData.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={entry.color} />
-                  ))}
-                </Pie>
-                <Tooltip />
-              </PieChart>
-            </ResponsiveContainer>
+          <Card title="Status Distribution" className="chart-card">
+            {statusData.length > 0 ? (
+              <ResponsiveContainer width="100%" height={300}>
+                <PieChart>
+                  <Pie
+                    data={statusData}
+                    cx="50%"
+                    cy="50%"
+                    outerRadius={100}
+                    fill="#8884d8"
+                    dataKey="value"
+                    label={(entry) => `${entry.name}: ${entry.value}`}
+                  >
+                    {statusData.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={entry.color} />
+                    ))}
+                  </Pie>
+                  <Tooltip 
+                    contentStyle={{ 
+                      background: colors.background.base,
+                      border: `1px solid ${colors.border.base}`,
+                      borderRadius: '6px'
+                    }}
+                  />
+                  <Legend />
+                </PieChart>
+              </ResponsiveContainer>
+            ) : (
+              <Empty description="No data available" style={{ padding: '60px 0' }} />
+            )}
           </Card>
         </Col>
       </Row>
 
       <Row gutter={[16, 16]}>
         <Col xs={24} md={12}>
-          <Card title="AI Model Accuracy">
+          <Card title="AI Model Accuracy" className="metrics-card">
             <div style={{ marginBottom: 16 }}>
-              <div>Overall Accuracy</div>
+              <div style={{ marginBottom: 8, color: colors.text.secondary }}>Overall Accuracy</div>
               <Progress 
                 percent={stats.accuracy} 
                 status="active" 
-                strokeColor={{ from: '#108ee9', to: '#87d068' }}
+                strokeColor={{ from: colors.primary[500], to: colors.success[500] }}
+                trailColor={colors.border.light}
               />
             </div>
             <div style={{ marginBottom: 16 }}>
-              <div>Attribute Detection</div>
-              <Progress percent={89} strokeColor="#52c41a" />
+              <div style={{ marginBottom: 8, color: colors.text.secondary }}>Attribute Detection</div>
+              <Progress 
+                percent={89} 
+                strokeColor={colors.success[500]}
+                trailColor={colors.border.light}
+              />
             </div>
             <div>
-              <div>Category Classification</div>
-              <Progress percent={96} strokeColor="#1890ff" />
+              <div style={{ marginBottom: 8, color: colors.text.secondary }}>Category Classification</div>
+              <Progress 
+                percent={96} 
+                strokeColor={colors.primary[500]}
+                trailColor={colors.border.light}
+              />
             </div>
           </Card>
         </Col>
         
         <Col xs={24} md={12}>
-          <Card title="Performance Metrics">
+          <Card title="Performance Metrics" className="metrics-card">
             <Row gutter={16}>
               <Col span={12}>
                 <Statistic
                   title="Avg Response Time"
                   value={245}
                   suffix="ms"
-                  valueStyle={{ color: '#3f8600' }}
+                  valueStyle={{ color: colors.success[600] }}
                 />
               </Col>
               <Col span={12}>
                 <Statistic
                   title="Queue Length"
                   value={3}
-                  valueStyle={{ color: '#cf1322' }}
+                  valueStyle={{ color: colors.error[500] }}
                 />
               </Col>
             </Row>
@@ -179,7 +303,7 @@ export default function Analytics() {
                   title="Daily Limit"
                   value={85}
                   suffix="% used"
-                  valueStyle={{ color: '#faad14' }}
+                  valueStyle={{ color: colors.warning[500] }}
                 />
               </Col>
               <Col span={12}>
@@ -187,13 +311,14 @@ export default function Analytics() {
                   title="Error Rate"
                   value={3.4}
                   suffix="%"
-                  valueStyle={{ color: '#f5222d' }}
+                  valueStyle={{ color: colors.error[500] }}
                 />
               </Col>
             </Row>
           </Card>
         </Col>
       </Row>
+      </Spin>
     </div>
   );
 }
