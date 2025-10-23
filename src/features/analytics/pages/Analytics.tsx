@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { Card, Row, Col, Statistic, Progress, DatePicker, Select, Button, Space, Spin, Empty, Typography } from 'antd';
 import { 
   LineChart, 
@@ -23,6 +23,14 @@ import {
   ReloadOutlined
 } from '@ant-design/icons';
 import { colors } from '../../../theme/colors';
+import { CostOverview, CategoryCostTable, ModelComparison } from '../components';
+import { 
+  calculateMonthlyCosts, 
+  calculateModelComparison,
+  formatCurrency
+} from '../../../shared/utils/costCalculator';
+import { analyticsService } from '../../../services/analyticsService';
+import type { Dayjs } from 'dayjs';
 import './Analytics.css';
 
 const { RangePicker } = DatePicker;
@@ -32,56 +40,139 @@ const { Title } = Typography;
 export default function Analytics() {
   const [loading, setLoading] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [dateRange, setDateRange] = useState<[Dayjs | null, Dayjs | null] | null>(null);
   
-  const [stats] = useState({
-    totalUploads: 1247,
-    completed: 1156,
-    failed: 43,
-    processing: 48,
-    avgProcessingTime: 2.3,
-    tokensUsed: 45000,
-    accuracy: 94.2
-  });
+  // Get real data from analytics service
+  const allHistory = analyticsService.getHistory();
+  
+  // Filter data based on category and date range
+  const filteredHistory = useMemo(() => {
+    let filtered = selectedCategory === 'all' 
+      ? allHistory 
+      : allHistory.filter(record => record.category === selectedCategory);
+    
+    if (dateRange && dateRange[0] && dateRange[1]) {
+      const startDate = dateRange[0].toDate();
+      const endDate = dateRange[1].toDate();
+      filtered = filtered.filter(record => {
+        const recordDate = new Date(record.timestamp);
+        return recordDate >= startDate && recordDate <= endDate;
+      });
+    }
+    
+    return filtered;
+  }, [allHistory, selectedCategory, dateRange]);
 
-  const categories = [
-    { value: 'all', label: 'All Categories' },
-    { value: 'tops', label: 'Tops' },
-    { value: 'bottoms', label: 'Bottoms' },
-    { value: 'dresses', label: 'Dresses' },
-    { value: 'outerwear', label: 'Outerwear' },
-    { value: 'accessories', label: 'Accessories' },
-  ];
+  // Calculate stats from real data
+  const stats = useMemo(() => analyticsService.getStats(filteredHistory), [filteredHistory]);
+  const timeSeriesData = useMemo(() => analyticsService.getTimeSeriesData(30), []);
+  const categoryStats = useMemo(() => analyticsService.getCategoryStats(filteredHistory), [filteredHistory]);
+  const modelUsageStats = useMemo(() => analyticsService.getModelUsageStats(filteredHistory), [filteredHistory]);
+
+  // Get unique categories from data
+  const categories = useMemo(() => {
+    const uniqueCategories = new Set(allHistory.map(r => r.category).filter(Boolean));
+    return [
+      { value: 'all', label: 'All Categories' },
+      ...Array.from(uniqueCategories).map(cat => ({ value: cat, label: cat }))
+    ];
+  }, [allHistory]);
+
+  // Prepare cost data for components
+  const currentMonthCost = useMemo(() => {
+    const now = new Date();
+    const currentMonthStart = new Date(now.getFullYear(), now.getMonth(), 1);
+    const currentMonthRecords = allHistory.filter(r => new Date(r.timestamp) >= currentMonthStart);
+    return analyticsService.getStats(currentMonthRecords).totalCost;
+  }, [allHistory]);
+
+  const lastMonthCost = useMemo(() => {
+    const now = new Date();
+    const lastMonthStart = new Date(now.getFullYear(), now.getMonth() - 1, 1);
+    const lastMonthEnd = new Date(now.getFullYear(), now.getMonth(), 0);
+    const lastMonthRecords = allHistory.filter(r => {
+      const recordDate = new Date(r.timestamp);
+      return recordDate >= lastMonthStart && recordDate <= lastMonthEnd;
+    });
+    return analyticsService.getStats(lastMonthRecords).totalCost;
+  }, [allHistory]);
+
+  const monthlyAnalysis = useMemo(() => {
+    const now = new Date();
+    const daysElapsed = now.getDate();
+    const totalDays = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
+    
+    return calculateMonthlyCosts(
+      currentMonthCost,
+      lastMonthCost,
+      daysElapsed,
+      totalDays
+    );
+  }, [currentMonthCost, lastMonthCost]);
+
+  const categoryCostBreakdown = useMemo(() => {
+    if (categoryStats.length === 0) return [];
+    
+    const totalCost = categoryStats.reduce((sum, cat) => sum + cat.cost, 0);
+    
+    return categoryStats.map(cat => ({
+      category: cat.category,
+      extractionCount: cat.count,
+      totalCost: cat.cost,
+      avgCostPerExtraction: cat.count > 0 ? cat.cost / cat.count : 0,
+      tokenUsage: cat.tokensUsed,
+      percentage: totalCost > 0 ? (cat.cost / totalCost) * 100 : 0
+    }));
+  }, [categoryStats]);
+
+  // Get current model (most used model)
+  const currentModel = useMemo(() => {
+    if (modelUsageStats.length === 0) return 'gpt-4o';
+    return modelUsageStats.reduce((max, stat) => 
+      stat.count > max.count ? stat : max
+    ).model;
+  }, [modelUsageStats]);
+
+  // Calculate model comparison using average tokens
+  const avgTokensPerExtraction = useMemo(() => {
+    return stats.totalExtractions > 0 ? stats.totalTokensUsed / stats.totalExtractions : 1000;
+  }, [stats]);
+
+  const modelComparison = useMemo(() => {
+    // Assume 60% input, 40% output ratio
+    const inputTokens = Math.round(avgTokensPerExtraction * 0.6);
+    const outputTokens = Math.round(avgTokensPerExtraction * 0.4);
+    return calculateModelComparison(inputTokens, outputTokens);
+  }, [avgTokensPerExtraction]);
 
   const handleExport = () => {
     setLoading(true);
-    setTimeout(() => {
-      // Simulate export
-      const dataStr = JSON.stringify({ stats, timeSeriesData, statusData }, null, 2);
-      const dataBlob = new Blob([dataStr], { type: 'application/json' });
+    try {
+      const exportData = analyticsService.exportToJSON();
+      const dataBlob = new Blob([exportData], { type: 'application/json' });
       const url = URL.createObjectURL(dataBlob);
       const link = document.createElement('a');
       link.href = url;
       link.download = `analytics-report-${new Date().toISOString()}.json`;
       link.click();
+      URL.revokeObjectURL(url);
+    } finally {
       setLoading(false);
-    }, 500);
+    }
   };
 
   const handleRefresh = () => {
     setLoading(true);
+    // Force re-render by triggering a state change
     setTimeout(() => {
       setLoading(false);
-    }, 1000);
+      window.location.reload(); // Simple refresh for now
+    }, 500);
   };
 
-  const timeSeriesData = [
-    { date: '2024-01', uploads: 120, completed: 115 },
-    { date: '2024-02', uploads: 180, completed: 172 },
-    { date: '2024-03', uploads: 220, completed: 210 },
-    { date: '2024-04', uploads: 280, completed: 268 },
-    { date: '2024-05', uploads: 320, completed: 305 },
-    { date: '2024-06', uploads: 127, completed: 120 },
-  ];
+  const handleDateRangeChange = (dates: [Dayjs | null, Dayjs | null] | null) => {
+    setDateRange(dates);
+  };
 
   const statusData = [
     { name: 'Completed', value: stats.completed, color: colors.success[500] },
@@ -95,7 +186,7 @@ export default function Analytics() {
         <Title level={2} style={{ margin: 0 }}>Analytics Dashboard</Title>
         <Space size="middle">
           <RangePicker 
-            onChange={() => {}}
+            onChange={handleDateRangeChange}
             placeholder={['Start Date', 'End Date']}
             suffixIcon={<CalendarOutlined />}
           />
@@ -132,8 +223,8 @@ export default function Analytics() {
         <Col xs={24} sm={12} md={6}>
           <Card>
             <Statistic
-              title="Total Uploads"
-              value={stats.totalUploads}
+              title="Total Extractions"
+              value={stats.totalExtractions}
               prefix={<CloudUploadOutlined />}
               valueStyle={{ color: '#1890ff' }}
             />
@@ -143,7 +234,7 @@ export default function Analytics() {
           <Card>
             <Statistic
               title="Success Rate"
-              value={((stats.completed / stats.totalUploads) * 100).toFixed(1)}
+              value={stats.totalExtractions > 0 ? ((stats.completed / stats.totalExtractions) * 100).toFixed(1) : '0'}
               suffix="%"
               prefix={<CheckCircleOutlined />}
               valueStyle={{ color: '#52c41a' }}
@@ -154,7 +245,7 @@ export default function Analytics() {
           <Card>
             <Statistic
               title="Avg Processing Time"
-              value={stats.avgProcessingTime}
+              value={(stats.avgProcessingTime / 1000).toFixed(2)}
               suffix="sec"
               prefix={<ClockCircleOutlined />}
               valueStyle={{ color: '#faad14' }}
@@ -165,7 +256,7 @@ export default function Analytics() {
           <Card>
             <Statistic
               title="Tokens Used"
-              value={stats.tokensUsed}
+              value={stats.totalTokensUsed}
               prefix={<CloudUploadOutlined />}
               valueStyle={{ color: '#722ed1' }}
             />
@@ -175,7 +266,7 @@ export default function Analytics() {
 
       <Row gutter={[16, 16]} style={{ marginBottom: 24 }}>
         <Col xs={24} md={12}>
-          <Card title="Upload Trends" className="chart-card">
+          <Card title="Extraction Trends" className="chart-card">
             {timeSeriesData.length > 0 ? (
               <ResponsiveContainer width="100%" height={300}>
                 <LineChart data={timeSeriesData}>
@@ -192,10 +283,10 @@ export default function Analytics() {
                   <Legend />
                   <Line 
                     type="monotone" 
-                    dataKey="uploads" 
+                    dataKey="extractions" 
                     stroke={colors.primary[500]} 
                     strokeWidth={3}
-                    name="Total Uploads"
+                    name="Total Extractions"
                   />
                   <Line 
                     type="monotone" 
@@ -203,6 +294,13 @@ export default function Analytics() {
                     stroke={colors.success[500]} 
                     strokeWidth={3}
                     name="Completed"
+                  />
+                  <Line 
+                    type="monotone" 
+                    dataKey="failed" 
+                    stroke={colors.error[500]} 
+                    strokeWidth={2}
+                    name="Failed"
                   />
                 </LineChart>
               </ResponsiveContainer>
@@ -249,30 +347,31 @@ export default function Analytics() {
 
       <Row gutter={[16, 16]}>
         <Col xs={24} md={12}>
-          <Card title="AI Model Accuracy" className="metrics-card">
+          <Card title="AI Model Performance" className="metrics-card">
             <div style={{ marginBottom: 16 }}>
-              <div style={{ marginBottom: 8, color: colors.text.secondary }}>Overall Accuracy</div>
+              <div style={{ marginBottom: 8, color: colors.text.secondary }}>Overall Confidence</div>
               <Progress 
-                percent={stats.accuracy} 
+                percent={Math.round(stats.avgConfidence)} 
                 status="active" 
                 strokeColor={{ from: colors.primary[500], to: colors.success[500] }}
                 trailColor={colors.border.light}
               />
             </div>
             <div style={{ marginBottom: 16 }}>
-              <div style={{ marginBottom: 8, color: colors.text.secondary }}>Attribute Detection</div>
+              <div style={{ marginBottom: 8, color: colors.text.secondary }}>Success Rate</div>
               <Progress 
-                percent={89} 
+                percent={stats.totalExtractions > 0 ? Math.round((stats.completed / stats.totalExtractions) * 100) : 0} 
                 strokeColor={colors.success[500]}
                 trailColor={colors.border.light}
               />
             </div>
             <div>
-              <div style={{ marginBottom: 8, color: colors.text.secondary }}>Category Classification</div>
+              <div style={{ marginBottom: 8, color: colors.text.secondary }}>Total Cost</div>
               <Progress 
-                percent={96} 
+                percent={Math.min(100, Math.round((stats.totalCost / 100) * 100))} 
                 strokeColor={colors.primary[500]}
                 trailColor={colors.border.light}
+                format={() => formatCurrency(stats.totalCost)}
               />
             </div>
           </Card>
@@ -318,6 +417,44 @@ export default function Analytics() {
           </Card>
         </Col>
       </Row>
+
+      {/* Cost Analytics Section */}
+      {stats.totalExtractions > 0 && (
+        <>
+          <Row gutter={[16, 16]} style={{ marginTop: 24 }}>
+            <Col xs={24}>
+              <CostOverview
+                currentMonthCost={currentMonthCost}
+                monthlyAnalysis={monthlyAnalysis}
+                totalLifetimeCost={stats.totalCost}
+                averageCostPerExtraction={stats.totalExtractions > 0 ? stats.totalCost / stats.totalExtractions : 0}
+                monthlyBudget={100} // $100 monthly budget - make this configurable later
+              />
+            </Col>
+          </Row>
+
+          <Row gutter={[16, 16]} style={{ marginTop: 24 }}>
+            <Col xs={24}>
+              <CategoryCostTable
+                data={categoryCostBreakdown}
+                loading={loading}
+              />
+            </Col>
+          </Row>
+
+          <Row gutter={[16, 16]} style={{ marginTop: 24, marginBottom: 24 }}>
+            <Col xs={24}>
+              <ModelComparison
+                currentModel={currentModel}
+                inputTokens={Math.round(avgTokensPerExtraction * 0.6)}
+                outputTokens={Math.round(avgTokensPerExtraction * 0.4)}
+                comparison={modelComparison}
+              />
+            </Col>
+          </Row>
+        </>
+      )}
+
       </Spin>
     </div>
   );

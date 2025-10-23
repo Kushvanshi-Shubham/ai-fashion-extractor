@@ -36,6 +36,7 @@ import {
   type MasterAttribute,
   type AllowedValue,
 } from '../../../services/adminApi';
+import { sanitizeText, sanitizeCode } from '../../../shared/utils/security/sanitizer';
 import './AttributeManager.css';
 
 const { Title, Text } = Typography;
@@ -159,10 +160,18 @@ export const AttributeManager = () => {
     try {
       const values = await attrForm.validateFields();
       
+      // Sanitize all text inputs
+      const sanitizedValues = {
+        ...values,
+        code: sanitizeCode(values.code), // Alphanumeric + underscore only
+        name: sanitizeText(values.name), // Remove HTML tags
+        description: values.description ? sanitizeText(values.description) : undefined,
+      };
+      
       if (editingAttribute) {
-        updateAttrMutation.mutate({ id: editingAttribute.id, data: values });
+        updateAttrMutation.mutate({ id: editingAttribute.id, data: sanitizedValues });
       } else {
-        createAttrMutation.mutate(values);
+        createAttrMutation.mutate(sanitizedValues);
       }
     } catch (error) {
       console.error('Validation failed:', error);
@@ -180,7 +189,15 @@ export const AttributeManager = () => {
     
     try {
       const values = await valueForm.validateFields();
-      addValueMutation.mutate({ attributeId: selectedAttribute.id, data: values });
+      
+      // Sanitize allowed value input
+      const sanitizedValues = {
+        ...values,
+        value: sanitizeText(values.value), // Remove HTML tags
+        displayValue: values.displayValue ? sanitizeText(values.displayValue) : undefined,
+      };
+      
+      addValueMutation.mutate({ attributeId: selectedAttribute.id, data: sanitizedValues });
     } catch (error) {
       console.error('Validation failed:', error);
     }

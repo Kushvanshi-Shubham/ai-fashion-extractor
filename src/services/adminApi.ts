@@ -318,6 +318,15 @@ export const getHierarchyTree = async (): Promise<Department[]> => {
   return data.data.departments;
 };
 
+/**
+ * Get category with ALL master attributes (showing enabled/disabled status)
+ * Used by admin matrix to show all 44 attributes with toggles
+ */
+export const getCategoryWithAllAttributes = async (categoryId: number) => {
+  const { data } = await adminApi.get(`/categories/${categoryId}/all-attributes`);
+  return data.data;
+};
+
 export const exportHierarchy = async (): Promise<Blob> => {
   const { data } = await adminApi.get('/hierarchy/export', {
     responseType: 'blob',

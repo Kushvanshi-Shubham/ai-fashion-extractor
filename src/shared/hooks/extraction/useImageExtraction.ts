@@ -185,7 +185,17 @@ export const useImageExtraction = () => {
     [backendApi, discoverySettings.enabled, recordPerf, compress]
   );
 
-  const { extractAllPending, cancelExtraction } = useBatchExtraction(
+  const { 
+    extractAllPending, 
+    cancelExtraction,
+    pauseExtraction,
+    resumeExtraction,
+    retryFailed,
+    clearCompleted,
+    isPaused,
+    estimatedTimeRemaining,
+    totalTokensUsed
+  } = useBatchExtraction(
     extractedRows,
     setExtractedRows,
     extractImageAttributes,
@@ -326,6 +336,13 @@ export const useImageExtraction = () => {
     extractImageAttributes,
     extractAllPending,
     cancelExtraction,
+    pauseExtraction,
+    resumeExtraction,
+    retryFailed,
+    clearCompleted,
+    isPaused,
+    estimatedTimeRemaining,
+    totalTokensUsed,
     removeRow,
     clearAll,
     updateRowAttribute,

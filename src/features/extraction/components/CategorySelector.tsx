@@ -149,13 +149,20 @@ export const CategorySelector: React.FC<CategorySelectorProps> = ({
                 option?.children?.toString().toLowerCase().includes(input.toLowerCase()) ?? false
               }
             >
-              {availableCategories.map(category => (
-                <Option key={category.category} value={category.category}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <span>{category.displayName}</span>
-                  </div>
-                </Option>
-              ))}
+              {availableCategories.map(category => {
+                const enabledAttrs = Object.values(category.attributes || {}).filter(v => v === true).length;
+                const totalAttrs = Object.keys(category.attributes || {}).length;
+                return (
+                  <Option key={category.category} value={category.category}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <span>{category.displayName}</span>
+                      <Tag color="blue" style={{ marginLeft: 8 }}>
+                        {enabledAttrs} of {totalAttrs}
+                      </Tag>
+                    </div>
+                  </Option>
+                );
+              })}
             </Select>
           </div>
         )}

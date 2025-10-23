@@ -4,15 +4,16 @@ import {
   Steps, Statistic, Row, Col, Image
 } from "antd";
 import {
-  ClearOutlined, DownloadOutlined, DashboardOutlined, PlayCircleOutlined,
-  CheckCircleOutlined, UploadOutlined, RobotOutlined, AppstoreOutlined
+  ClearOutlined, DownloadOutlined, DashboardOutlined,
+  CheckCircleOutlined, UploadOutlined, RobotOutlined, AppstoreOutlined,
+  ClockCircleOutlined, DeleteOutlined
 } from "@ant-design/icons";
 import "./ExtractionPage.css";
 
 import { CategorySelector } from "../components/CategorySelector";
 import { AttributeTable } from "../components/AttributeTable";
 import { BulkActions } from "../components/BulkActions";
-import { UploadArea } from "../components/UploadArea";
+import { UploadArea } from "../components";
 import { useCategorySelector } from "../../../shared/hooks/category/useCategorySelector";
 import { useLocalStorage } from "../../../shared/hooks/ui/useLocalStorage";
 import { useCategoryConfig, useAllCategoriesAsConfigs } from "../../../hooks/useHierarchyQueries";
@@ -76,6 +77,14 @@ const ExtractionPage = () => {
     addImages,
     extractImageAttributes,
     extractAllPending,
+    cancelExtraction,
+    pauseExtraction,
+    resumeExtraction,
+    retryFailed,
+    clearCompleted,
+    isPaused,
+    estimatedTimeRemaining,
+    totalTokensUsed,
     removeRow,
     clearAll,
     updateRowAttribute,
@@ -107,13 +116,6 @@ const ExtractionPage = () => {
     setCurrentStep('category');
     handleCategorySelect(null);
   }, [clearAll, handleCategorySelect]);
-
-  // Handle Extract All functionality
-  const handleExtractAllClick = useCallback(() => {
-    if (extractAllPending && schema && selectedCategory) {
-      extractAllPending(schema, selectedCategory.displayName);
-    }
-  }, [extractAllPending, schema, selectedCategory]);
 
   useEffect(() => {
     const initializeApp = async () => {
@@ -387,45 +389,177 @@ const ExtractionPage = () => {
                           />
                         </Col>
                       </Row>
+
+                      {/* Token Usage */}
+                      {totalTokensUsed > 0 && (
+                        <div style={{ marginTop: 16, textAlign: 'center' }}>
+                          <Text type="secondary">
+                            ⚡ Total Tokens Used: <strong>{totalTokensUsed.toLocaleString()}</strong>
+                          </Text>
+                        </div>
+                      )}
                     </Card>
                   )}
 
-                  {/* Extract All Button */}
-                  {stats && (stats.pending > 0 || stats.error > 0) && (
-                    <div style={{ textAlign: 'center', marginBottom: 24 }}>
-                      <Button
-                        type="primary"
-                        icon={<PlayCircleOutlined />}
-                        size="large"
-                        onClick={handleExtractAllClick}
-                        disabled={isExtracting}
-                        loading={isExtracting}
-                        style={{
-                          background: 'linear-gradient(135deg, #722ed1 0%, #eb2f96 100%)',
-                          border: 'none',
-                          height: '48px',
-                          fontSize: '16px',
-                          fontWeight: '600',
-                          paddingLeft: '32px',
-                          paddingRight: '32px'
-                        }}
-                      >
-                        {isExtracting 
-                          ? `Extracting... (${Math.round(progress)}%)` 
-                          : `Extract All Pending (${stats.pending + (stats.error || 0)})`
-                        }
-                      </Button>
-                      {isExtracting && (
-                        <div style={{ marginTop: 12 }}>
-                          <Progress 
-                            percent={Math.round(progress)} 
-                            size="small" 
-                            style={{ maxWidth: 300, margin: '0 auto' }}
-                            strokeColor={{ from: '#722ed1', to: '#eb2f96' }}
+                  {/* Processing Status Section */}
+                  {extractedRows.length > 0 && (
+                    <Card 
+                      title={
+                        <Space>
+                          <RobotOutlined style={{ color: '#722ed1' }} />
+                          <span>Processing Status</span>
+                        </Space>
+                      }
+                      style={{ marginBottom: 24 }}
+                    >
+                      {/* Overall Progress Bar */}
+                      {(isExtracting || stats.done > 0) && (
+                        <div style={{ marginBottom: 24 }}>
+                          <div style={{ marginBottom: 8, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                            <Text strong>Overall Progress</Text>
+                            <Text type="secondary">
+                              {stats.done + stats.error} / {stats.total} items
+                            </Text>
+                          </div>
+                          <Progress
+                            percent={Math.round(progress)}
+                            status={
+                              isExtracting ? 'active' :
+                              stats.error > 0 && stats.done + stats.error === stats.total ? 'exception' :
+                              stats.done === stats.total ? 'success' : 'normal'
+                            }
+                            strokeColor={{
+                              from: '#722ed1',
+                              to: '#eb2f96'
+                            }}
                           />
+                          
+                          {/* Live Processing Info */}
+                          {isExtracting && (
+                            <div style={{ marginTop: 12 }}>
+                              <Space size="large" wrap>
+                                {stats.extracting > 0 && (
+                                  <Text type="secondary">
+                                    🔄 Currently processing: <strong>{stats.extracting}</strong>
+                                  </Text>
+                                )}
+                                {totalTokensUsed > 0 && (
+                                  <Text type="secondary">
+                                    ⚡ Tokens: <strong>{totalTokensUsed.toLocaleString()}</strong>
+                                  </Text>
+                                )}
+                                {estimatedTimeRemaining > 0 && (
+                                  <Text type="secondary">
+                                    ⏱️ Est. remaining: <strong>{Math.round(estimatedTimeRemaining)}s</strong>
+                                  </Text>
+                                )}
+                              </Space>
+                            </div>
+                          )}
                         </div>
                       )}
-                    </div>
+
+                      {/* Status Banner */}
+                      {isExtracting && isPaused && (
+                        <Alert
+                          message="Batch processing is paused"
+                          description="Click Resume to continue processing, or Stop to cancel."
+                          type="warning"
+                          showIcon
+                          style={{ marginBottom: 16 }}
+                        />
+                      )}
+
+                      {!isExtracting && stats.done + stats.error === stats.total && stats.total > 0 && (
+                        <Alert
+                          message={
+                            stats.error === 0 
+                              ? 'Batch processing completed successfully!' 
+                              : `Batch completed with ${stats.error} failed items`
+                          }
+                          description={
+                            stats.error === 0 
+                              ? `All ${stats.done} items processed successfully.`
+                              : `${stats.done} succeeded, ${stats.error} failed. You can retry failed items below.`
+                          }
+                          type={stats.error === 0 ? 'success' : 'warning'}
+                          showIcon
+                          style={{ marginBottom: 16 }}
+                        />
+                      )}
+
+                      {/* Action Controls */}
+                      <div style={{ marginTop: 16 }}>
+                        <Space wrap size="middle">
+                          {/* Start/Pause/Resume/Stop */}
+                          {!isExtracting && stats.pending > 0 && (
+                            <Button
+                              type="primary"
+                              icon={<RobotOutlined />}
+                              size="large"
+                              onClick={() => extractAllPending && extractAllPending(schema, selectedCategory?.displayName)}
+                              style={{
+                                background: 'linear-gradient(135deg, #722ed1 0%, #eb2f96 100%)',
+                                border: 'none'
+                              }}
+                            >
+                              Start Batch ({stats.pending + stats.error})
+                            </Button>
+                          )}
+
+                          {isExtracting && !isPaused && (
+                            <Button
+                              icon={<ClockCircleOutlined />}
+                              size="large"
+                              onClick={pauseExtraction}
+                            >
+                              Pause
+                            </Button>
+                          )}
+
+                          {isExtracting && isPaused && (
+                            <Button
+                              type="primary"
+                              icon={<RobotOutlined />}
+                              size="large"
+                              onClick={resumeExtraction}
+                            >
+                              Resume
+                            </Button>
+                          )}
+
+                          {isExtracting && (
+                            <Button
+                              danger
+                              icon={<ClearOutlined />}
+                              size="large"
+                              onClick={cancelExtraction}
+                            >
+                              Stop
+                            </Button>
+                          )}
+
+                          {/* Batch Operations */}
+                          {!isExtracting && stats.error > 0 && (
+                            <Button
+                              icon={<CheckCircleOutlined />}
+                              onClick={retryFailed}
+                            >
+                              Retry Failed ({stats.error})
+                            </Button>
+                          )}
+
+                          {!isExtracting && stats.done > 0 && (
+                            <Button
+                              icon={<DeleteOutlined />}
+                              onClick={clearCompleted}
+                            >
+                              Clear Completed ({stats.done})
+                            </Button>
+                          )}
+                        </Space>
+                      </div>
+                    </Card>
                   )}
                   
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>

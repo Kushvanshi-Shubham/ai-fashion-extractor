@@ -18,6 +18,7 @@ import { AnalyticsPage } from './features/analytics';
 
 // Shared Components
 import { ErrorBoundary } from './shared/components/ErrorBoundary';
+import { SentryTest } from './components/SentryTest';
 
 // Global Styles
 import './styles/App.css';
@@ -80,6 +81,11 @@ const App: React.FC = () => {
               <Route path="/" element={<LandingPage />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/register" element={<RegisterPage />} />
+              
+              {/* Sentry Test Route (Development Only - Remove or protect in production) */}
+              {import.meta.env.MODE === 'development' && (
+                <Route path="/sentry-test" element={<SentryTest />} />
+              )}
               
               {/* Protected Routes - With MainLayout */}
               <Route 

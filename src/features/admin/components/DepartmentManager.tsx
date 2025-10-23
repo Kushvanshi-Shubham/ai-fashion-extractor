@@ -29,6 +29,7 @@ import {
   deleteDepartment,
   type Department,
 } from '../../../services/adminApi';
+import { sanitizeText, sanitizeCode } from '../../../shared/utils/security/sanitizer';
 import './DepartmentManager.css';
 
 const { Title } = Typography;
@@ -116,10 +117,18 @@ export const DepartmentManager = () => {
 
   const handleModalOk = () => {
     form.validateFields().then((values) => {
+      // Sanitize all text inputs
+      const sanitizedValues = {
+        ...values,
+        code: sanitizeCode(values.code), // Alphanumeric + underscore only
+        name: sanitizeText(values.name), // Remove HTML tags
+        description: values.description ? sanitizeText(values.description) : undefined,
+      };
+
       if (editingDept) {
-        updateMutation.mutate({ id: editingDept.id, data: values });
+        updateMutation.mutate({ id: editingDept.id, data: sanitizedValues });
       } else {
-        createMutation.mutate(values);
+        createMutation.mutate(sanitizedValues);
       }
     });
   };
