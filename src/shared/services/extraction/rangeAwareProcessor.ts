@@ -87,6 +87,17 @@ export class AttributeProcessor {
         if (originalValue && typeof originalValue === 'string' && originalValue.trim()) {
           originalValue = originalValue.trim();
           
+          // 🔍 DEBUG: Log for specific attributes
+          if (key === 'fab_weave-02') {
+            console.log(`🔍 [PROCESSOR] fab_weave-02 BEFORE processing:`, {
+              key,
+              originalValue,
+              rawValue: attributeDetail.rawValue,
+              schemaValue: attributeDetail.schemaValue,
+              fullAttributeDetail: attributeDetail
+            });
+          }
+          
           console.log(`📝 Processing [${key}]: "${originalValue}"`);
           
           // Check if it's a null-like value first
@@ -108,10 +119,15 @@ export class AttributeProcessor {
           
           if (attributeDef) {
             const processedValue = this.processExtractionResult(key, originalValue, attributeDef);
-            if (processedValue && processedValue !== originalValue) {
+            if (processedValue) {
+              // processedValue exists - either transformed or exact match
               finalSchemaValue = processedValue;
               matchFound = true;
-              console.log(`✅ Schema match found [${key}]: "${originalValue}" → "${processedValue}"`);
+              if (processedValue !== originalValue) {
+                console.log(`✅ Schema match found [${key}]: "${originalValue}" → "${processedValue}"`);
+              } else {
+                console.log(`✅ Exact schema match [${key}]: "${originalValue}"`);
+              }
             } else {
               // No schema match - decide whether to show raw value or blank
               if (this.isValidRawValue(originalValue)) {

@@ -104,6 +104,13 @@ export const useImageExtraction = () => {
 
         const totalTime = performance.now() - start;
 
+        // 🔍 DEBUG: Log raw API response attributes
+        console.log('🔍 [FRONTEND API RESPONSE] Attribute keys from API:', Object.keys(result.attributes || {}));
+        console.log('🔍 [FRONTEND API RESPONSE] fab_yarn-01 (hyphen):', result.attributes?.['fab_yarn-01']);
+        console.log('🔍 [FRONTEND API RESPONSE] fab_yarn_01 (underscore):', result.attributes?.['fab_yarn_01']);
+        console.log('🔍 [FRONTEND API RESPONSE] fab_weave-02 (hyphen):', result.attributes?.['fab_weave-02']);
+        console.log('🔍 [FRONTEND API RESPONSE] fab_weave_02 (underscore):', result.attributes?.['fab_weave_02']);
+
         // 🎯 APPLY SMART ATTRIBUTE PROCESSING
         // Convert schema array to Record format for AttributeProcessor
         const schemaAsRecord = schema.reduce((acc, attr) => {
@@ -115,6 +122,13 @@ export const useImageExtraction = () => {
           result.attributes, 
           schemaAsRecord
         );
+
+        // 🔍 DEBUG: Log processed attributes
+        console.log('🔍 [FRONTEND AFTER PROCESSING] Attribute keys after processing:', Object.keys(processedAttributesSync || {}));
+        console.log('🔍 [FRONTEND AFTER PROCESSING] fab_yarn-01 (hyphen):', processedAttributesSync?.['fab_yarn-01']);
+        console.log('🔍 [FRONTEND AFTER PROCESSING] fab_yarn_01 (underscore):', processedAttributesSync?.['fab_yarn_01']);
+        console.log('🔍 [FRONTEND AFTER PROCESSING] fab_weave-02 (hyphen):', processedAttributesSync?.['fab_weave-02']);
+        console.log('🔍 [FRONTEND AFTER PROCESSING] fab_weave_02 (underscore):', processedAttributesSync?.['fab_weave_02']);
 
         const updated: ExtractedRowEnhanced = {
           ...row,

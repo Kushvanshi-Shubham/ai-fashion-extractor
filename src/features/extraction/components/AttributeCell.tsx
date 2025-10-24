@@ -41,6 +41,18 @@ export const AttributeCell: React.FC<AttributeCellProps> = ({
   const [isEditing, setIsEditing] = useState(false);
   const [editValue, setEditValue] = useState<string | number | null>(null);
 
+  // 🔍 DEBUG: Log data for specific attributes
+  useEffect(() => {
+    if (schemaItem.key === 'fab_yarn-01' || schemaItem.key === 'fab_yarn-02' || schemaItem.key === 'fab_weave-02') {
+      console.log(`[AttributeCell] ${schemaItem.key}:`, {
+        hasAttribute: !!attribute,
+        attribute,
+        schemaValue: attribute?.schemaValue,
+        rawValue: attribute?.rawValue
+      });
+    }
+  }, [attribute, schemaItem.key]);
+
   useEffect(() => {
     setEditValue(attribute?.schemaValue ?? null);
   }, [attribute?.schemaValue]);
