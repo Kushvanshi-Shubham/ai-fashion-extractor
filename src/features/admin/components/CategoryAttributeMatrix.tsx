@@ -4,7 +4,7 @@
  */
 
 import { useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import {
   Card,
   Table,
@@ -18,22 +18,27 @@ import {
   Tooltip,
   Select,
   Badge,
+  message,
+  Spin,
 } from 'antd';
 import { 
   TagsOutlined, 
   SearchOutlined, 
-  CheckCircleOutlined,
-  CloseCircleOutlined,
   FilterOutlined,
 } from '@ant-design/icons';
 import type { ColumnsType } from 'antd/es/table';
-import { getHierarchyTree } from '../../../services/adminApi';
+import { 
+  getHierarchyTree,
+  updateCategoryAttributeMapping,
+  getCategoryWithAllAttributes,
+} from '../../../services/adminApi';
 
 const { Title, Text } = Typography;
 const { Search } = Input;
 const { Option } = Select;
 
 interface AttributeMapping {
+  attributeId: number;
   attributeKey: string;
   attributeLabel: string;
   isEnabled: boolean;
@@ -52,7 +57,17 @@ interface CategoryWithAttributes {
   attributes: AttributeMapping[];
 }
 
+interface ApiErrorResponse {
+  response?: {
+    data?: {
+      error?: string;
+    };
+  };
+  message: string;
+}
+
 export const CategoryAttributeMatrix = () => {
+  const queryClient = useQueryClient();
   const [searchText, setSearchText] = useState('');
   const [departmentFilter, setDepartmentFilter] = useState<string>('all');
   const [expandedRowKeys, setExpandedRowKeys] = useState<number[]>([]);
@@ -63,11 +78,33 @@ export const CategoryAttributeMatrix = () => {
     queryFn: getHierarchyTree,
   });
 
+  // Mutation for updating mappings
+  const updateMappingMutation = useMutation({
+    mutationFn: ({ 
+      categoryId, 
+      attributeId, 
+      data 
+    }: { 
+      categoryId: number; 
+      attributeId: number; 
+      data: { isEnabled?: boolean; isRequired?: boolean; displayOrder?: number; defaultValue?: string | null };
+    }) => updateCategoryAttributeMapping(categoryId, attributeId, data),
+    onSuccess: (_data, variables) => {
+      queryClient.invalidateQueries({ queryKey: ['hierarchy-tree-full'] });
+      queryClient.invalidateQueries({ queryKey: ['category-all-attributes', variables.categoryId] });
+      message.success('Mapping updated successfully!');
+    },
+    onError: (error: ApiErrorResponse) => {
+      message.error(error.response?.data?.error || error.message);
+    },
+  });
+
   // Transform hierarchy data into flat category list with attributes
   const processedData: CategoryWithAttributes[] = hierarchyData?.flatMap((dept) =>
     dept.subDepartments?.flatMap((subDept) =>
       subDept.categories?.map((cat) => {
         const attributes: AttributeMapping[] = cat.attributes?.map((attr) => ({
+          attributeId: attr.attributeId,
           attributeKey: attr.attribute?.key || '',
           attributeLabel: attr.attribute?.label || '',
           isEnabled: attr.isEnabled || false,
@@ -184,15 +221,30 @@ export const CategoryAttributeMatrix = () => {
     },
   ];
 
-  // Expanded row showing attribute details
-  const expandedRowRender = (record: CategoryWithAttributes) => {
-    const attributeColumns: ColumnsType<AttributeMapping> = [
+  // Component for expanded row - fetches ALL 44 attributes
+  const ExpandedRow = ({ categoryId }: { categoryId: number }) => {
+    const { data: fullCategoryData, isLoading } = useQuery({
+      queryKey: ['category-all-attributes', categoryId],
+      queryFn: () => getCategoryWithAllAttributes(categoryId),
+    });
+
+    if (isLoading) {
+      return (
+        <div style={{ padding: 40, textAlign: 'center' }}>
+          <Spin tip="Loading all attributes..." />
+        </div>
+      );
+    }
+
+    const allAttributes = fullCategoryData?.allAttributes || [];
+
+    const attributeColumns: ColumnsType<typeof allAttributes[0]> = [
       {
         title: '#',
         key: 'order',
         width: 60,
         align: 'center',
-        render: (_: unknown, _record: AttributeMapping, index: number) => (
+        render: (_: unknown, _record: unknown, index: number) => (
           <Text type="secondary">{index + 1}</Text>
         ),
       },
@@ -214,32 +266,48 @@ export const CategoryAttributeMatrix = () => {
         width: 250,
       },
       {
-        title: 'Status',
-        key: 'status',
-        width: 120,
+        title: 'Enabled',
+        key: 'isEnabled',
+        width: 100,
         align: 'center',
-        render: (_: unknown, attr: AttributeMapping) => (
-          <Space>
-            {attr.isEnabled ? (
-              <Tag icon={<CheckCircleOutlined />} color="success">
-                Enabled
-              </Tag>
-            ) : (
-              <Tag icon={<CloseCircleOutlined />} color="default">
-                Disabled
-              </Tag>
-            )}
-          </Space>
+        render: (_: unknown, attr: typeof allAttributes[0]) => (
+          <Tooltip title={attr.hasMapping ? "Toggle enabled/disabled" : "Click to enable (will create mapping)"}>
+            <Switch
+              checked={attr.isEnabled}
+              size="small"
+              onChange={(checked) => {
+                updateMappingMutation.mutate({
+                  categoryId,
+                  attributeId: attr.attributeId,
+                  data: { isEnabled: checked },
+                });
+              }}
+              loading={updateMappingMutation.isPending}
+            />
+          </Tooltip>
         ),
       },
       {
         title: 'Required',
-        dataIndex: 'isRequired',
         key: 'isRequired',
         width: 100,
         align: 'center',
-        render: (isRequired: boolean) => (
-          <Switch checked={isRequired} disabled size="small" />
+        render: (_: unknown, attr: typeof allAttributes[0]) => (
+          <Tooltip title="Mark as required">
+            <Switch
+              checked={attr.isRequired}
+              size="small"
+              disabled={!attr.isEnabled}
+              onChange={(checked) => {
+                updateMappingMutation.mutate({
+                  categoryId,
+                  attributeId: attr.attributeId,
+                  data: { isRequired: checked },
+                });
+              }}
+              loading={updateMappingMutation.isPending}
+            />
+          </Tooltip>
         ),
       },
       {
@@ -252,18 +320,47 @@ export const CategoryAttributeMatrix = () => {
           <Tag color="orange">{order}</Tag>
         ),
       },
+      {
+        title: 'Status',
+        key: 'hasMapping',
+        width: 100,
+        align: 'center',
+        render: (_: unknown, attr: typeof allAttributes[0]) => (
+          attr.hasMapping ? (
+            <Tag color="green">Mapped</Tag>
+          ) : (
+            <Tag color="default">Not Mapped</Tag>
+          )
+        ),
+      },
     ];
 
     return (
-      <Table
-        columns={attributeColumns}
-        dataSource={record.attributes}
-        pagination={false}
-        size="small"
-        rowKey="attributeKey"
-        style={{ marginLeft: 40, marginRight: 40 }}
-      />
+      <div style={{ marginLeft: 40, marginRight: 40 }}>
+        <div style={{ marginBottom: 16, padding: 12, background: '#f0f2f5', borderRadius: 4 }}>
+          <Space>
+            <Text strong>Total Master Attributes:</Text>
+            <Badge count={allAttributes.length} style={{ backgroundColor: '#1890ff' }} />
+            <Text strong style={{ marginLeft: 16 }}>Enabled:</Text>
+            <Badge count={allAttributes.filter((a: typeof allAttributes[0]) => a.isEnabled).length} style={{ backgroundColor: '#52c41a' }} />
+            <Text strong style={{ marginLeft: 16 }}>Mapped:</Text>
+            <Badge count={allAttributes.filter((a: typeof allAttributes[0]) => a.hasMapping).length} style={{ backgroundColor: '#722ed1' }} />
+          </Space>
+        </div>
+        <Table
+          columns={attributeColumns}
+          dataSource={allAttributes}
+          pagination={false}
+          size="small"
+          rowKey="attributeKey"
+        />
+      </div>
     );
+  };
+
+  // Expanded row showing attribute details
+  const expandedRowRender = (record: CategoryWithAttributes) => {
+    return <ExpandedRow categoryId={record.id} />;
   };
 
   const handleExpandAll = () => {

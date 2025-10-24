@@ -106,16 +106,28 @@ export const AttributeTable: React.FC<AttributeTableProps> = ({
       ),
       key: schemaItem.key,
       width: 180, // 📏 Updated width for better mobile experience
-      render: (_, record) => (
-        // 🎯 This is where AttributeCell component shows the actual value
-        <AttributeCell
-          attribute={record.attributes[schemaItem.key]} // Current value
-          schemaItem={schemaItem} // Schema definition
-          onChange={(value) => onAttributeChange(record.id, schemaItem.key, value)} // Save changes
-          onAddToSchema={(value) => onAddToSchema?.(schemaItem.key, value)} // Add new values
-          disabled={record.status === 'Extracting'} // Disable if AI is working
-        />
-      )
+      render: (_, record) => {
+        // 🔍 DEBUG: Log for specific attributes
+        if (schemaItem.key === 'fab_yarn-01' || schemaItem.key === 'fab_yarn-02' || schemaItem.key === 'fab_weave-02') {
+          console.log(`[AttributeTable] Rendering ${schemaItem.key}:`, {
+            schemaItemKey: schemaItem.key,
+            attributeKeys: Object.keys(record.attributes || {}),
+            attributeValue: record.attributes[schemaItem.key],
+            hasAttribute: !!record.attributes[schemaItem.key]
+          });
+        }
+        
+        return (
+          // 🎯 This is where AttributeCell component shows the actual value
+          <AttributeCell
+            attribute={record.attributes[schemaItem.key]} // Current value
+            schemaItem={schemaItem} // Schema definition
+            onChange={(value) => onAttributeChange(record.id, schemaItem.key, value)} // Save changes
+            onAddToSchema={(value) => onAddToSchema?.(schemaItem.key, value)} // Add new values
+            disabled={record.status === 'Extracting'} // Disable if AI is working
+          />
+        );
+      }
     }));
 
     // 3️⃣ ACTIONS COLUMN (always on the right)

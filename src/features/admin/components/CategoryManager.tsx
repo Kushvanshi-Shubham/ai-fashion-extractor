@@ -36,6 +36,7 @@ import {
   type Category,
   type Department,
 } from '../../../services/adminApi';
+import { sanitizeText, sanitizeCode } from '../../../shared/utils/security/sanitizer';
 import './CategoryManager.css';
 
 const { Title } = Typography;
@@ -117,7 +118,9 @@ export const CategoryManager = () => {
   });
 
   const handleSearch = (value: string) => {
-    setParams({ ...params, search: value, page: 1 });
+    // ✅ SANITIZE SEARCH INPUT
+    const sanitized = sanitizeText(value);
+    setParams({ ...params, search: sanitized, page: 1 });
   };
 
   const handleTableChange = (pagination: TablePaginationConfig) => {
@@ -158,12 +161,21 @@ export const CategoryManager = () => {
     try {
       const values = await form.validateFields();
       // Remove departmentId before sending (not in Category model, used only for UI)
-      const { departmentId: _dept, ...categoryData } = values;
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { departmentId, ...categoryData } = values;
+      
+      // ✅ SANITIZE USER INPUT
+      const sanitized = {
+        ...categoryData,
+        code: sanitizeCode(categoryData.code), // Remove special characters
+        name: sanitizeText(categoryData.name), // Remove HTML/XSS
+        description: categoryData.description ? sanitizeText(categoryData.description) : undefined,
+      };
       
       if (editingCategory) {
-        updateMutation.mutate({ id: editingCategory.id, data: categoryData });
+        updateMutation.mutate({ id: editingCategory.id, data: sanitized });
       } else {
-        createMutation.mutate(categoryData);
+        createMutation.mutate(sanitized);
       }
     } catch (error) {
       console.error('Validation failed:', error);

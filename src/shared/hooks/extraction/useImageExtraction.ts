@@ -23,7 +23,6 @@ import {
 } from "./extractionHelpers";
 import { useBatchExtraction } from "./useBatchExtraction";
 import { AttributeProcessor } from "../../services/extraction/rangeAwareProcessor";
-import { MASTER_ATTRIBUTES } from "../../../constants/categories/masterAttributes";
 
 export const useImageExtraction = () => {
   // Core state
@@ -106,9 +105,15 @@ export const useImageExtraction = () => {
         const totalTime = performance.now() - start;
 
         // 🎯 APPLY SMART ATTRIBUTE PROCESSING
+        // Convert schema array to Record format for AttributeProcessor
+        const schemaAsRecord = schema.reduce((acc, attr) => {
+          acc[attr.key] = attr;
+          return acc;
+        }, {} as Record<string, SchemaItem>);
+        
         const processedAttributesSync = AttributeProcessor.processBatchResults(
           result.attributes, 
-          MASTER_ATTRIBUTES
+          schemaAsRecord
         );
 
         const updated: ExtractedRowEnhanced = {
@@ -180,7 +185,17 @@ export const useImageExtraction = () => {
     [backendApi, discoverySettings.enabled, recordPerf, compress]
   );
 
-  const { extractAllPending, cancelExtraction } = useBatchExtraction(
+  const { 
+    extractAllPending, 
+    cancelExtraction,
+    pauseExtraction,
+    resumeExtraction,
+    retryFailed,
+    clearCompleted,
+    isPaused,
+    estimatedTimeRemaining,
+    totalTokensUsed
+  } = useBatchExtraction(
     extractedRows,
     setExtractedRows,
     extractImageAttributes,
@@ -321,6 +336,13 @@ export const useImageExtraction = () => {
     extractImageAttributes,
     extractAllPending,
     cancelExtraction,
+    pauseExtraction,
+    resumeExtraction,
+    retryFailed,
+    clearCompleted,
+    isPaused,
+    estimatedTimeRemaining,
+    totalTokensUsed,
     removeRow,
     clearAll,
     updateRowAttribute,

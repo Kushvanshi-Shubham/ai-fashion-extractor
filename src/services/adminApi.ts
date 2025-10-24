@@ -306,8 +306,24 @@ export const deleteAllowedValue = async (attributeId: number, valueId: number): 
 // HIERARCHY
 // ═══════════════════════════════════════════════════════
 
+export interface HierarchyTreeResponse {
+  departments: Department[];
+  totalCategories: number;
+  totalAttributes: number;
+}
+
 export const getHierarchyTree = async (): Promise<Department[]> => {
-  const { data } = await adminApi.get<ApiResponse<Department[]>>('/hierarchy/tree');
+  const { data } = await adminApi.get<ApiResponse<HierarchyTreeResponse>>('/hierarchy/tree');
+  // Extract just the departments array for backward compatibility
+  return data.data.departments;
+};
+
+/**
+ * Get category with ALL master attributes (showing enabled/disabled status)
+ * Used by admin matrix to show all 44 attributes with toggles
+ */
+export const getCategoryWithAllAttributes = async (categoryId: number) => {
+  const { data } = await adminApi.get(`/categories/${categoryId}/all-attributes`);
   return data.data;
 };
 
