@@ -343,4 +343,67 @@ export class BackendApiService {
     if (!json.success) throw new Error(json.error || 'Failed to get user info');
     return json.data;
   }
+
+  // 🎯 NEW: Category-Based Extraction with Metadata
+  async extractWithCategory(request: {
+    image: string;
+    categoryCode: string;
+    vendorName?: string;
+    designNumber?: string;
+    pptNumber?: string;
+    costPrice?: number;
+    sellingPrice?: number;
+    notes?: string;
+    discoveryMode?: boolean;
+    customPrompt?: string;
+  }): Promise<EnhancedExtractionResult & {
+    category: {
+      code: string;
+      name: string;
+      fullForm: string | null;
+      department: string;
+      subDepartment: string;
+    };
+    metadata: {
+      vendorName?: string;
+      designNumber?: string;
+      pptNumber?: string;
+      costPrice?: number;
+      sellingPrice?: number;
+      notes?: string;
+    };
+  }> {
+    try {
+      console.log(`🎯 Category-Based Extraction - Code: ${request.categoryCode}, Discovery: ${request.discoveryMode || false}`);
+      
+      const response = await fetch(`${this.baseURL}/extract/category`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(request)
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error || `Category extraction failed: ${response.status}`);
+      }
+
+      const result = await response.json();
+      
+      if (!result.success) {
+        throw new Error(result.error || 'Category extraction failed');
+      }
+
+      if (!result.data) {
+        throw new Error('No data returned from category extraction');
+      }
+
+      console.log(`✅ Category Extraction Success - ${result.data.category.name}, Confidence: ${result.data.confidence}%`);
+      return result.data;
+    } catch (error) {
+      console.error('Category extraction failed:', error);
+      throw new Error(`Category extraction failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    }
+  }
 }

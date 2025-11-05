@@ -13,7 +13,8 @@ import "./ExtractionPage.css";
 import { CategorySelector } from "../components/CategorySelector";
 import { AttributeTable } from "../components/AttributeTable";
 import { BulkActions } from "../components/BulkActions";
-import { UploadArea } from "../components";
+import { UploadArea, MetadataInputs } from "../components";
+import type { ProductMetadata } from "../components";
 import { useCategorySelector } from "../../../shared/hooks/category/useCategorySelector";
 import { useLocalStorage } from "../../../shared/hooks/ui/useLocalStorage";
 import { useCategoryConfig, useAllCategoriesAsConfigs } from "../../../hooks/useHierarchyQueries";
@@ -47,6 +48,9 @@ const ExtractionPage = () => {
   
   // Step Flow State
   const [currentStep, setCurrentStep] = useState<'category' | 'upload' | 'extraction'>('category');
+  
+  // Metadata State
+  const [metadata, setMetadata] = useState<ProductMetadata>({});
 
   const [analytics] = useLocalStorage("analytics", {
     totalExtractions: 0,
@@ -331,6 +335,13 @@ const ExtractionPage = () => {
                     </Space>
                   </div>
                   
+                  {/* Product Metadata Inputs */}
+                  <MetadataInputs 
+                    value={metadata}
+                    onChange={setMetadata}
+                    disabled={isExtracting}
+                  />
+                  
                   <UploadArea onUpload={async (_file: File, fileList: File[]) => {
                     await handleImagesUpload(fileList);
                     return false;
@@ -497,7 +508,12 @@ const ExtractionPage = () => {
                               type="primary"
                               icon={<RobotOutlined />}
                               size="large"
-                              onClick={() => extractAllPending && extractAllPending(schema, selectedCategory?.displayName)}
+                              onClick={() => extractAllPending && extractAllPending(
+                                schema, 
+                                selectedCategory?.displayName,
+                                selectedCategory?.category, // category code
+                                metadata // metadata object
+                              )}
                               style={{
                                 background: 'linear-gradient(135deg, #722ed1 0%, #eb2f96 100%)',
                                 border: 'none'

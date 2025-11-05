@@ -30,6 +30,18 @@ export const useImageExtraction = () => {
   const [extractedRows, setExtractedRows] = useState<ExtractedRowEnhanced[]>([]);
   const [progress, setProgress] = useState(0);
   
+  // Metadata state
+  const [currentMetadata, setCurrentMetadata] = useState<{
+    vendorName?: string;
+    designNumber?: string;
+    pptNumber?: string;
+    costPrice?: number;
+    sellingPrice?: number;
+    notes?: string;
+  }>({});
+  
+  const [currentCategoryCode, setCurrentCategoryCode] = useState<string>();
+  
   // Discovery state
   const [discoverySettings, setDiscoverySettings] = useState<DiscoverySettings>({
     enabled: false, // 🔧 DEFAULT TO FALSE - Only enable when explicitly needed
@@ -70,7 +82,16 @@ export const useImageExtraction = () => {
     async (
       row: ExtractedRowEnhanced,
       schema: SchemaItem[],
-      categoryName?: string
+      categoryName?: string,
+      categoryCode?: string,
+      metadata?: {
+        vendorName?: string;
+        designNumber?: string;
+        pptNumber?: string;
+        costPrice?: number;
+        sellingPrice?: number;
+        notes?: string;
+      }
     ) => {
       const discoveryEnabled = discoverySettings.enabled;
       setExtractedRows((prev) =>
@@ -92,15 +113,33 @@ export const useImageExtraction = () => {
         const base64Image = await compress(row.file);
         
         // 🔧 VALIDATION: Only enable discovery mode when explicitly set
-        console.log(`🔍 Frontend Extraction - Discovery Enabled: ${discoveryEnabled}, Category: ${categoryName}`);
+        console.log(`🔍 Frontend Extraction - Discovery Enabled: ${discoveryEnabled}, Category: ${categoryName}, Code: ${categoryCode}, Has Metadata: ${!!metadata}`);
         
-        const result: EnhancedExtractionResult =
-          await backendApi.extractFromBase64({
+        // Use category-based extraction if category code and metadata are provided
+        let result: EnhancedExtractionResult;
+        if (categoryCode && metadata && Object.keys(metadata).length > 0) {
+          console.log(`🎯 Using category-based extraction with metadata for ${categoryCode}`);
+          result = await backendApi.extractWithCategory({
+            image: base64Image,
+            categoryCode,
+            vendorName: metadata.vendorName,
+            designNumber: metadata.designNumber,
+            pptNumber: metadata.pptNumber,
+            costPrice: metadata.costPrice,
+            sellingPrice: metadata.sellingPrice,
+            notes: metadata.notes,
+            discoveryMode: discoveryEnabled === true
+          });
+        } else {
+          // Fall back to legacy extraction without metadata
+          console.log(`📦 Using legacy extraction without metadata`);
+          result = await backendApi.extractFromBase64({
             image: base64Image,
             schema,
             categoryName: categoryName ?? "",
             discoveryMode: discoveryEnabled === true // Explicit boolean check
           });
+        }
 
         const totalTime = performance.now() - start;
 
@@ -355,5 +394,10 @@ export const useImageExtraction = () => {
     globalDiscoveries,
     promoteDiscoveryToSchema,
     getMemoryInfo,
+    // Metadata support
+    currentMetadata,
+    setCurrentMetadata,
+    currentCategoryCode,
+    setCurrentCategoryCode,
   };
 };

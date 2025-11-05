@@ -8,7 +8,20 @@ import type { ExtractedRowEnhanced, BatchOperationResult, SchemaItem, Performanc
 export const useBatchExtraction = (
   extractedRows: ExtractedRowEnhanced[],
   setExtractedRows: React.Dispatch<React.SetStateAction<ExtractedRowEnhanced[]>>,
-  extractFunc: (row: ExtractedRowEnhanced, schema: SchemaItem[], cat?: string) => Promise<ExtractedRowEnhanced>,
+  extractFunc: (
+    row: ExtractedRowEnhanced, 
+    schema: SchemaItem[], 
+    cat?: string,
+    categoryCode?: string,
+    metadata?: {
+      vendorName?: string;
+      designNumber?: string;
+      pptNumber?: string;
+      costPrice?: number;
+      sellingPrice?: number;
+      notes?: string;
+    }
+  ) => Promise<ExtractedRowEnhanced>,
   setProgress: (p: number) => void,
   setIsExtracting: (b: boolean) => void,
   _recordPerf: (metrics: PerformanceMetrics) => void,
@@ -21,7 +34,16 @@ export const useBatchExtraction = (
 
   const extractAllPending = useCallback(async (
     schema: SchemaItem[],
-    categoryName?: string
+    categoryName?: string,
+    categoryCode?: string,
+    metadata?: {
+      vendorName?: string;
+      designNumber?: string;
+      pptNumber?: string;
+      costPrice?: number;
+      sellingPrice?: number;
+      notes?: string;
+    }
   ): Promise<BatchOperationResult | void> => {
     const pending = extractedRows.filter(row =>
       row.status === 'Pending' || (row.status === 'Error' && (row.retryCount || 0) < 3)
@@ -68,7 +90,7 @@ export const useBatchExtraction = (
         r.id === row.id ? { ...r, status: 'Extracting', processingProgress: 10 } : r
       ));
 
-      const task = extractFunc(row, schema, categoryName)
+      const task = extractFunc(row, schema, categoryName, categoryCode, metadata)
         .then(updated => { 
           if (updated.status === 'Done') {
             successCount++;
