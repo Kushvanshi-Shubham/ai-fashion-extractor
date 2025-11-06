@@ -1,7 +1,7 @@
 import type { RangeConfiguration, NumericRange } from '../../types/category/CategoryTypes';
 
 /**
- * 🎯 SMART RANGE DETECTION UTILITY
+ * SMART RANGE DETECTION UTILITY
  * 
  * Intelligently detects and formats attribute ranges like:
  * - Size ranges: "S-XXL", "XS-L", individual sizes
@@ -33,7 +33,7 @@ export class RangeDetector {
   ];
 
   /**
-   * 🎯 MAIN DETECTION METHOD
+   * MAIN DETECTION METHOD
    * Analyzes extracted text and returns formatted range or raw value
    */
   public static detectRange(

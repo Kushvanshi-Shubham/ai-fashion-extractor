@@ -1,4 +1,4 @@
-# 🎯 AI Fashion Attribute Extractor v1.0
+# AI Fashion Attribute Extractor v1.0
 
 > **Advanced AI-powered fashion attribute extraction system with 283+ categories and computer vision capabilities**
 
@@ -9,7 +9,7 @@
 
 ## ✨ Features
 
-### 🤖 AI-Powered Extraction
+###  AI-Powered Extraction
 - **GPT-4 Vision Integration** - Advanced computer vision for accurate attribute detection
 - **Real-time Processing** - Concurrent image analysis with progress tracking
 - **Confidence Scoring** - AI confidence metrics for each extracted attribute
@@ -33,7 +33,7 @@
 - **Error Handling** - Comprehensive error management and logging
 - **Performance Optimized** - Efficient rendering and data processing
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 - Node.js 18+ 

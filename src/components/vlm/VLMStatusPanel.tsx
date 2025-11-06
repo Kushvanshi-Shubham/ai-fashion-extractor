@@ -102,7 +102,7 @@ export const VLMStatusPanel: React.FC = () => {
     <Card 
       title={
         <Space>
-          <Title level={5} style={{ margin: 0 }}>🚀 Enhanced VLM System</Title>
+          <Title level={5} style={{ margin: 0 }}>Enhanced VLM System</Title>
           <Badge 
             count={`${healthyProviders}/${providers.length}`} 
             style={{ backgroundColor: systemHealth > 75 ? '#52c41a' : systemHealth > 50 ? '#fa8c16' : '#ff4d4f' }}
@@ -193,7 +193,7 @@ export const VLMStatusPanel: React.FC = () => {
           borderRadius: '4px'
         }}>
           <Text style={{ fontSize: '11px' }}>
-            💡 Enhanced system uses {healthyProviders} AI models for {systemHealth > 50 ? '85-95%' : '70-85%'} accuracy
+             Enhanced system uses {healthyProviders} AI models for {systemHealth > 50 ? '85-95%' : '70-85%'} accuracy
           </Text>
         </div>
       </Space>

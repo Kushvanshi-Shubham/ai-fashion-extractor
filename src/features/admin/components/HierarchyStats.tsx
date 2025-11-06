@@ -1,5 +1,5 @@
 /**
- * 🎯 Hierarchy Stats Component
+ * Hierarchy Stats Component
  * Displays dashboard statistics with Ant Design Statistic
  */
 

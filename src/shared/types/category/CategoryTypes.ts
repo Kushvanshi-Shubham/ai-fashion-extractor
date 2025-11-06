@@ -8,7 +8,7 @@ export interface AttributeDefinition {
   allowedValues?: AllowedValue[];
   required?: boolean;
   description?: string;
-  // 🎯 SMART RANGE DETECTION
+  // SMART RANGE DETECTION
   rangeConfig?: RangeConfiguration;
 }
 

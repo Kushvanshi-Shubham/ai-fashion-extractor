@@ -118,7 +118,7 @@ export const AttributeTable: React.FC<AttributeTableProps> = ({
         }
         
         return (
-          // 🎯 This is where AttributeCell component shows the actual value
+          // This is where AttributeCell component shows the actual value
           <AttributeCell
             attribute={record.attributes[schemaItem.key]} // Current value
             schemaItem={schemaItem} // Schema definition
@@ -158,7 +158,7 @@ export const AttributeTable: React.FC<AttributeTableProps> = ({
               />
             </Tooltip>
             
-            {/* ⚡ Force Re-extract Button (bypasses cache) */}
+            {/*  Force Re-extract Button (bypasses cache) */}
             <Tooltip title="Force fresh extraction (bypasses cache)">
               <Button
                 type="text"

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Layout, Menu, Avatar, Dropdown, Button, Badge, Space, Typography, Breadcrumb } from 'antd';
 import {
   HomeOutlined,
-  DashboardOutlined,
   FileSearchOutlined,
   BarChartOutlined,
   UserOutlined,
@@ -52,19 +51,11 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
 
   // Navigation menu items
   const getMenuItems = () => {
-    const publicItems = [
-      {
-        key: '/',
-        icon: <HomeOutlined />,
-        label: 'Home',
-      },
-    ];
-
     const privateItems = [
       {
         key: '/dashboard',
-        icon: <DashboardOutlined />,
-        label: 'Dashboard',
+        icon: <HomeOutlined />,
+        label: 'Home',
       },
       {
         key: '/extraction',
@@ -83,10 +74,17 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
         key: '/admin',
         icon: <ControlOutlined />,
         label: 'Admin Panel',
+        children: [
+          {
+            key: '/admin/hierarchy',
+            icon: <GlobalOutlined />,
+            label: 'Hierarchy Management',
+          },
+        ],
       },
     ];
 
-    if (!isAuthenticated) return publicItems;
+    if (!isAuthenticated) return [];
     return [...privateItems, ...(isAdmin ? adminItems : [])];
   };
 

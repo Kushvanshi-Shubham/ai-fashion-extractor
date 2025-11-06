@@ -150,12 +150,22 @@ export interface CategoryExtractionResponse {
 // ===========================
 
 /**
+ * Get auth headers for API requests
+ */
+const getAuthHeaders = () => {
+  const token = localStorage.getItem('authToken');
+  return token ? { Authorization: `Bearer ${token}` } : {};
+};
+
+/**
  * Get the complete category hierarchy for dropdowns
  * This loads all departments, sub-departments, and categories in one call
+ * Updated: /api/user/categories/hierarchy
  */
 export const getCategoryHierarchy = async (): Promise<CategoryHierarchyResponse> => {
   const response = await axios.get<{ success: boolean; data: CategoryHierarchyResponse }>(
-    `${API_BASE_URL}/categories/hierarchy`
+    `${API_BASE_URL}/user/categories/hierarchy`,
+    { headers: getAuthHeaders() }
   );
   return response.data.data;
 };
@@ -163,21 +173,27 @@ export const getCategoryHierarchy = async (): Promise<CategoryHierarchyResponse>
 /**
  * Get category schema with attributes and allowed values
  * This is what you need before extraction
+ * Updated: /api/user/categories/:code/schema
  */
 export const getCategorySchema = async (categoryCode: string): Promise<CategorySchemaResponse> => {
   const response = await axios.get<{ success: boolean; data: CategorySchemaResponse }>(
-    `${API_BASE_URL}/categories/${categoryCode}/schema`
+    `${API_BASE_URL}/user/categories/${categoryCode}/schema`,
+    { headers: getAuthHeaders() }
   );
   return response.data.data;
 };
 
 /**
  * Search categories by query string
+ * Updated: /api/user/categories/search
  */
 export const searchCategories = async (query: string, limit = 20): Promise<CategorySearchResult[]> => {
   const response = await axios.get<{ success: boolean; data: CategorySearchResult[]; count: number }>(
-    `${API_BASE_URL}/categories/search`,
-    { params: { q: query, limit } }
+    `${API_BASE_URL}/user/categories/search`,
+    { 
+      params: { q: query, limit },
+      headers: getAuthHeaders()
+    }
   );
   return response.data.data;
 };
@@ -185,13 +201,15 @@ export const searchCategories = async (query: string, limit = 20): Promise<Categ
 /**
  * Extract attributes using category code
  * This is the new extraction endpoint that uses database schema
+ * Updated: /api/user/extract/category
  */
 export const extractWithCategory = async (
   request: CategoryExtractionRequest
 ): Promise<CategoryExtractionResponse> => {
   const response = await axios.post<{ success: boolean; data: CategoryExtractionResponse }>(
-    `${API_BASE_URL}/extract/category`,
-    request
+    `${API_BASE_URL}/user/extract/category`,
+    request,
+    { headers: getAuthHeaders() }
   );
   return response.data.data;
 };

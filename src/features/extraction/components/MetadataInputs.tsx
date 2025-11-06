@@ -47,7 +47,7 @@ export const MetadataInputs: React.FC<MetadataInputsProps> = ({
       }
       extra={
         <Text type="secondary" style={{ fontSize: 12 }}>
-          🤖 AI will extract from tag/board if visible
+           AI will extract from tag/board if visible
         </Text>
       }
       className="metadata-inputs"

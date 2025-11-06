@@ -108,7 +108,7 @@ export const AttributeTable: React.FC<AttributeTableProps> = ({
       key: schemaItem.key,
       width: 180, // 📏 Updated width for better mobile experience
       render: (_, record) => (
-        // 🎯 This is where AttributeCell component shows the actual value
+        // This is where AttributeCell component shows the actual value
         <AttributeCell
           attribute={record.attributes[schemaItem.key]} // Current value
           schemaItem={schemaItem} // Schema definition

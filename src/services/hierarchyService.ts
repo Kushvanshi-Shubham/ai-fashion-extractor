@@ -14,7 +14,21 @@
 import axios from 'axios';
 import type { CategoryConfig } from '../types/category/CategoryTypes';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL?.replace('/api', '') + '/api/admin' || 'http://localhost:5000/api/admin';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL?.replace('/api', '') + '/api/user' || 'http://localhost:5000/api/user';
+
+// Create axios instance with auth interceptor
+const apiClient = axios.create({
+  baseURL: API_BASE_URL
+});
+
+// Add auth token to all requests
+apiClient.interceptors.request.use((config) => {
+  const token = localStorage.getItem('authToken');
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
 
 // ===========================
 // TYPE DEFINITIONS
@@ -117,7 +131,7 @@ export interface HierarchyTreeResponse {
  * Includes departments, sub-departments, categories, and attributes
  */
 export const getHierarchyTree = async (): Promise<HierarchyTreeResponse> => {
-  const response = await axios.get<{ success: boolean; data: HierarchyTreeResponse }>(`${API_BASE_URL}/hierarchy/tree`);
+  const response = await apiClient.get<{ success: boolean; data: HierarchyTreeResponse }>(`/hierarchy/tree`);
   return response.data.data;
 };
 
@@ -126,7 +140,7 @@ export const getHierarchyTree = async (): Promise<HierarchyTreeResponse> => {
  */
 export const getDepartments = async (includeInactive = false): Promise<Department[]> => {
   const params = includeInactive ? { includeInactive: 'true' } : {};
-  const response = await axios.get<{ success: boolean; data: Department[] }>(`${API_BASE_URL}/departments`, { params });
+  const response = await apiClient.get<{ success: boolean; data: Department[] }>(`/departments`, { params });
   return response.data.data;
 };
 
@@ -138,7 +152,7 @@ export const getSubDepartments = async (departmentId?: number, includeInactive =
   if (departmentId) params.departmentId = String(departmentId);
   if (includeInactive) params.includeInactive = 'true';
   
-  const response = await axios.get<{ success: boolean; data: SubDepartment[] }>(`${API_BASE_URL}/sub-departments`, { params });
+  const response = await apiClient.get<{ success: boolean; data: SubDepartment[] }>(`/sub-departments`, { params });
   return response.data.data;
 };
 
@@ -155,7 +169,7 @@ export const getCategories = async (filters?: {
   if (filters?.subDepartmentId) params.subDepartmentId = String(filters.subDepartmentId);
   if (filters?.includeInactive) params.includeInactive = 'true';
   
-  const response = await axios.get<{ success: boolean; data: Category[] }>(`${API_BASE_URL}/categories`, { params });
+  const response = await apiClient.get<{ success: boolean; data: Category[] }>(`/categories`, { params });
   return response.data.data;
 };
 
@@ -164,7 +178,7 @@ export const getCategories = async (filters?: {
  */
 export const getCategoryWithAttributes = async (categoryCode: string): Promise<HierarchyNode | null> => {
   try {
-    const response = await axios.get<{ success: boolean; data: HierarchyNode }>(`${API_BASE_URL}/categories/${categoryCode}/attributes`);
+    const response = await apiClient.get<{ success: boolean; data: HierarchyNode }>(`/categories/${categoryCode}/attributes`);
     return response.data.data;
   } catch (error) {
     if (axios.isAxiosError(error) && error.response?.status === 404) {
@@ -179,7 +193,7 @@ export const getCategoryWithAttributes = async (categoryCode: string): Promise<H
  */
 export const getMasterAttributes = async (includeValues = false): Promise<MasterAttribute[]> => {
   const params = includeValues ? { includeValues: 'true' } : {};
-  const response = await axios.get<{ success: boolean; data: MasterAttribute[] }>(`${API_BASE_URL}/attributes`, { params });
+  const response = await apiClient.get<{ success: boolean; data: MasterAttribute[] }>(`/attributes`, { params });
   return response.data.data;
 };
 
@@ -423,3 +437,4 @@ export const hierarchyQueryKeys = {
     [...hierarchyQueryKeys.all, 'category', code] as const,
   attributes: () => [...hierarchyQueryKeys.all, 'attributes'] as const,
 };
+

@@ -42,7 +42,7 @@ export default function Register() {
     }}>
       <Card style={{ width: 400, boxShadow: '0 8px 32px rgba(0,0,0,0.1)' }}>
         <div style={{ textAlign: 'center', marginBottom: 24 }}>
-          <Title level={2} style={{ color: '#667eea' }}>🎯 Join Us</Title>
+          <Title level={2} style={{ color: '#667eea' }}>Join Us</Title>
           <Text type="secondary">Create your AI Fashion Extractor account</Text>
         </div>
         

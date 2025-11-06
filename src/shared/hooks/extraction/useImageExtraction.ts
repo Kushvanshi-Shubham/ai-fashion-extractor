@@ -118,7 +118,7 @@ export const useImageExtraction = () => {
         // Use category-based extraction if category code and metadata are provided
         let result: EnhancedExtractionResult;
         if (categoryCode && metadata && Object.keys(metadata).length > 0) {
-          console.log(`🎯 Using category-based extraction with metadata for ${categoryCode}`);
+          console.log(`Using category-based extraction with metadata for ${categoryCode}`);
           result = await backendApi.extractWithCategory({
             image: base64Image,
             categoryCode,
@@ -143,7 +143,7 @@ export const useImageExtraction = () => {
 
         const totalTime = performance.now() - start;
 
-        // 🎯 APPLY SMART ATTRIBUTE PROCESSING
+        // APPLY SMART ATTRIBUTE PROCESSING
         // Convert schema array to Record format for AttributeProcessor
         const schemaAsRecord = schema.reduce((acc, attr) => {
           acc[attr.key] = attr;

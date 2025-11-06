@@ -24,7 +24,6 @@ import { DiscoveryToggle } from "../components/DiscoveryToggle";
 import { DiscoveryDetailModal } from "../components/DiscoveryDetailModal";
 import { DiscoveryPanel } from "../components/DiscoveryPanel";
 import ExportManager from "../components/ExportManager";
-import VLMStatusPanel from "../../../components/vlm/VLMStatusPanel";
 import type { 
   DiscoveredAttribute
 } from "../../../shared/types/extraction/ExtractionTypes";
@@ -185,7 +184,7 @@ const ExtractionPage = () => {
         <Card style={{ textAlign: "center", maxWidth: 400, boxShadow: "0 8px 32px rgba(0,0,0,0.1)" }}>
           <Spin size="large" />
           <Title level={4} style={{ marginTop: 16, color: "#667eea" }}>
-            🎯 Initializing AI Fashion System
+            Initializing AI Fashion System
           </Title>
           <Text type="secondary">
             {isLoadingAllCategories 
@@ -208,9 +207,6 @@ const ExtractionPage = () => {
     <Layout className="app-layout">
       <Content className="app-content">
         <div className="content-wrapper">
-          {/* 🚀 Enhanced VLM System Status */}
-          <VLMStatusPanel />
-
           {/* Step Indicator */}
           <Card className="steps-card" style={{ marginBottom: 24 }}>
             <Steps
@@ -285,7 +281,7 @@ const ExtractionPage = () => {
                 }}>
                   <div style={{ textAlign: 'center', marginBottom: 24 }}>
                     <Title level={3} style={{ color: '#1890ff', marginBottom: 8 }}>
-                      🎯 Step 1: Select Fashion Category
+                      Step 1: Select Fashion Category
                     </Title>
                     <Text type="secondary">Choose the category that matches your images</Text>
                   </div>
@@ -357,7 +353,7 @@ const ExtractionPage = () => {
                 }}>
                   <div style={{ textAlign: 'center', marginBottom: 24 }}>
                     <Title level={3} style={{ color: '#722ed1', marginBottom: 8 }}>
-                      🤖 Step 3: AI Extraction Results
+                       Step 3: AI Extraction Results
                     </Title>
                     <Text type="secondary">
                       Category: <strong>{selectedCategory?.displayName}</strong> | 
@@ -405,7 +401,7 @@ const ExtractionPage = () => {
                       {totalTokensUsed > 0 && (
                         <div style={{ marginTop: 16, textAlign: 'center' }}>
                           <Text type="secondary">
-                            ⚡ Total Tokens Used: <strong>{totalTokensUsed.toLocaleString()}</strong>
+                             Total Tokens Used: <strong>{totalTokensUsed.toLocaleString()}</strong>
                           </Text>
                         </div>
                       )}
@@ -456,7 +452,7 @@ const ExtractionPage = () => {
                                 )}
                                 {totalTokensUsed > 0 && (
                                   <Text type="secondary">
-                                    ⚡ Tokens: <strong>{totalTokensUsed.toLocaleString()}</strong>
+                                     Tokens: <strong>{totalTokensUsed.toLocaleString()}</strong>
                                   </Text>
                                 )}
                                 {estimatedTimeRemaining > 0 && (
@@ -629,7 +625,7 @@ const ExtractionPage = () => {
                       />
                       <div className="progress-info">
                         <Space>
-                          <Text>🤖 AI Processing...</Text>
+                          <Text> AI Processing...</Text>
                           <Text type="secondary">({progress.toFixed(1)}%)</Text>
                         </Space>
                       </div>

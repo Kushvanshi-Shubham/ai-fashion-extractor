@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Card, Row, Col, Statistic, Table, Button, message, Tag } from 'antd';
+import { Card, Row, Col, Statistic, Button, message } from 'antd';
 import { 
   UserOutlined, 
   CloudUploadOutlined, 
@@ -13,7 +13,6 @@ const api = new BackendApiService();
 
 export default function Admin() {
   const [stats, setStats] = useState({ totalUploads: 0, completed: 0, failed: 0, pending: 0 });
-  const [uploads, setUploads] = useState<Array<Record<string, unknown>>>([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -23,12 +22,8 @@ export default function Admin() {
   const loadData = async () => {
     setLoading(true);
     try {
-      const [adminStats, uploadsData] = await Promise.all([
-        api.getAdminStats(),
-        api.listUploads(1, 50)
-      ]);
+      const adminStats = await api.getAdminStats();
       setStats(adminStats);
-      setUploads(uploadsData);
     } catch (error) {
       message.error('Failed to load admin data');
       console.error(error);
@@ -36,71 +31,6 @@ export default function Admin() {
       setLoading(false);
     }
   };
-
-  const handleDelete = async (id: string) => {
-    try {
-      await api.deleteUpload(id);
-      message.success('Upload deleted successfully');
-      loadData();
-    } catch (error) {
-      message.error('Failed to delete upload');
-      console.error(error);
-    }
-  };
-
-  const columns = [
-    {
-      title: 'ID',
-      dataIndex: 'id',
-      key: 'id',
-      width: 100,
-      render: (id: string) => id.slice(0, 8) + '...',
-    },
-    {
-      title: 'Filename',
-      dataIndex: 'filename',
-      key: 'filename',
-    },
-    {
-      title: 'Status',
-      dataIndex: 'status',
-      key: 'status',
-      render: (status: string) => {
-        const colors = {
-          COMPLETED: 'green',
-          FAILED: 'red',
-          PROCESSING: 'blue',
-          PENDING: 'orange'
-        };
-        return <Tag color={colors[status as keyof typeof colors]}>{status}</Tag>;
-      },
-    },
-    {
-      title: 'User ID',
-      dataIndex: 'userId',
-      key: 'userId',
-      render: (userId: string) => userId ? userId.slice(0, 8) + '...' : 'N/A',
-    },
-    {
-      title: 'Created',
-      dataIndex: 'createdAt',
-      key: 'createdAt',
-      render: (date: string) => new Date(date).toLocaleString(),
-    },
-    {
-      title: 'Actions',
-      key: 'actions',
-      render: (_: unknown, record: Record<string, unknown>) => (
-        <Button 
-          size="small" 
-          danger 
-          onClick={() => handleDelete(String(record.id))}
-        >
-          Delete
-        </Button>
-      ),
-    },
-  ];
 
   return (
     <div style={{ padding: 24 }}>
@@ -154,14 +84,11 @@ export default function Admin() {
         </Col>
       </Row>
 
-      <Card title="All Uploads">
-        <Table
-          columns={columns}
-          dataSource={uploads}
-          rowKey="id"
-          loading={loading}
-          pagination={{ pageSize: 20 }}
-        />
+      <Card title="Admin Overview">
+        <p>Use the sidebar navigation to manage the system:</p>
+        <ul>
+          <li><strong>Hierarchy Management:</strong> Manage departments, categories, and attributes</li>
+        </ul>
       </Card>
     </div>
   );

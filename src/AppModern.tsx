@@ -13,7 +13,7 @@ import MainLayout from './shared/components/layout/MainLayout';
 import { LoginPage, RegisterPage } from './features/auth';
 import { ExtractionPage } from './features/extraction';
 import { DashboardPage, ProfilePage, LandingPage } from './features/dashboard';
-import { AdminPage, HierarchyManagement } from './features/admin';
+import { HierarchyManagement } from './features/admin';
 import { AnalyticsPage } from './features/analytics';
 
 // Shared Components
@@ -132,13 +132,7 @@ const App: React.FC = () => {
               {/* Admin Routes - With MainLayout */}
               <Route 
                 path="/admin" 
-                element={
-                  <AdminRoute>
-                    <MainLayout>
-                      <AdminPage />
-                    </MainLayout>
-                  </AdminRoute>
-                } 
+                element={<Navigate to="/admin/hierarchy" replace />}
               />
               <Route 
                 path="/admin/hierarchy" 

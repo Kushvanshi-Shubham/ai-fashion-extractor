@@ -57,7 +57,7 @@ export default function Login() {
       >
         <div style={{ textAlign: 'center', marginBottom: 32 }}>
           <Title level={2} style={{ color: '#667eea', marginBottom: 8 }}>
-            🎯 AI Fashion Extractor
+            AI Fashion Extractor
           </Title>
           <Text type="secondary" style={{ fontSize: '15px' }}>
             Sign in to manage your fashion catalog

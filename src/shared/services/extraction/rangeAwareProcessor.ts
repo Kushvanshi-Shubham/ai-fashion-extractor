@@ -2,7 +2,7 @@ import type { AttributeDefinition } from '../../types/category/CategoryTypes';
 import type { AttributeData } from '../../types/extraction/ExtractionTypes';
 
 /**
- * 🎯 UNIVERSAL ATTRIBUTE PROCESSOR
+ * UNIVERSAL ATTRIBUTE PROCESSOR
  * 
  * Processes ALL extraction results by:
  * 1. Matching extracted values against schema allowedValues (exact match priority)
@@ -13,7 +13,7 @@ import type { AttributeData } from '../../types/extraction/ExtractionTypes';
 export class AttributeProcessor {
   
   /**
-   * 🎯 MAIN PROCESSING METHOD
+   * MAIN PROCESSING METHOD
    * Processes extracted value to find best match in schema or return raw value
    */
   public static processExtractionResult(
@@ -50,7 +50,7 @@ export class AttributeProcessor {
     if (attributeDefinition.rangeConfig?.enableRangeDetection) {
       const rangeMatch = this.detectRangeValue(cleanValue, attributeDefinition);
       if (rangeMatch && rangeMatch !== cleanValue) {
-        console.log(`🎯 Range Detection [${attributeKey}]: "${extractedValue}" → "${rangeMatch}"`);
+        console.log(`Range Detection [${attributeKey}]: "${extractedValue}" → "${rangeMatch}"`);
         return rangeMatch;
       }
     }
@@ -71,7 +71,7 @@ export class AttributeProcessor {
     
     const processedResults: AttributeData = { ...results };
     
-    console.log('🎯 Processing extraction results:', Object.keys(results));
+    console.log('Processing extraction results:', Object.keys(results));
     
     // STEP 1: Analyze context from all extracted values
     const extractionContext = this.analyzeExtractionContext(results);
@@ -316,7 +316,7 @@ export class AttributeProcessor {
   }
 
   /**
-   * 🎯 ULTRA-STRICT SEMANTIC MATCHING  
+   * ULTRA-STRICT SEMANTIC MATCHING  
    * Only matches when 100% semantically correct
    */
   private static findSemanticMatch(
@@ -424,7 +424,7 @@ export class AttributeProcessor {
       }
     }
 
-    // 🎯 CRITICAL NECK TYPE SAFEGUARDS
+    // CRITICAL NECK TYPE SAFEGUARDS
     // Block incorrect "plain" detections and enforce proper neck construction identification
     const neckSafeguards = [
       // Block meaningless terms
@@ -448,7 +448,7 @@ export class AttributeProcessor {
       if (neckSafeguard.pattern.test(valueLower)) {
         // Block meaningless matches
         if (neckSafeguard.blockMatch) {
-          console.log(`🎯 NECK SAFEGUARD: Blocking meaningless term "${value}" - requires proper neck construction identification`);
+          console.log(`NECK SAFEGUARD: Blocking meaningless term "${value}" - requires proper neck construction identification`);
           return null; // Force AI to look deeper
         }
         
@@ -456,7 +456,7 @@ export class AttributeProcessor {
         if (neckSafeguard.correctMatch) {
           const correctOption = allowedValues.find(opt => opt.shortForm === neckSafeguard.correctMatch);
           if (correctOption) {
-            console.log(`🎯 NECK SAFEGUARD: "${value}" → MATCHED to "${neckSafeguard.correctMatch}" (neck intelligence)`);
+            console.log(`NECK SAFEGUARD: "${value}" → MATCHED to "${neckSafeguard.correctMatch}" (neck intelligence)`);
             return correctOption.shortForm;
           }
         }
@@ -465,7 +465,7 @@ export class AttributeProcessor {
         if (neckSafeguard.fallback) {
           const correctOption = allowedValues.find(opt => opt.shortForm === neckSafeguard.fallback);
           if (correctOption) {
-            console.log(`🎯 NECK SAFEGUARD: "${value}" → FALLBACK to "${neckSafeguard.fallback}" (neck intelligence)`);
+            console.log(`NECK SAFEGUARD: "${value}" → FALLBACK to "${neckSafeguard.fallback}" (neck intelligence)`);
             return correctOption.shortForm;
           }
         }
@@ -812,7 +812,7 @@ export class AttributeProcessor {
       if (semanticScore > highestSemanticScore && semanticScore >= 0.9) {
         highestSemanticScore = semanticScore;
         bestMatch = allowed.shortForm;
-        console.log(`  🎯 New best match: ${allowed.shortForm} (score: ${semanticScore.toFixed(2)})`);
+        console.log(`  New best match: ${allowed.shortForm} (score: ${semanticScore.toFixed(2)})`);
       }
     }
     
@@ -1110,7 +1110,7 @@ export class AttributeProcessor {
   }
 
   /**
-   * 🎯 CAPITAL LETTER INTELLIGENCE
+   * CAPITAL LETTER INTELLIGENCE
    * Smart matching for capital letter schemas
    */
   private static checkCapitalMatch(userValue: string, schemaValue: string): boolean {
@@ -1411,7 +1411,7 @@ export class AttributeProcessor {
   }
 
   /**
-   * 🎯 SIMPLE RANGE DETECTION
+   * SIMPLE RANGE DETECTION
    * Only for attributes that have range configuration
    */
   private static detectRangeValue(
@@ -1552,7 +1552,7 @@ export class AttributeProcessor {
   }
 
   /**
-   * 🎯 CONTEXTUAL INTELLIGENCE
+   * CONTEXTUAL INTELLIGENCE
    * Understands fashion context like size+color combinations
    */
   private static checkContextualIntelligence(value: string, shortForm: string, fullForm: string): number {

@@ -1,7 +1,7 @@
 {
   "name": "ai-fashion-extractor",
   "version": "1.0.0",
-  "description": "🎯 AI-powered fashion attribute extraction system with 283+ categories and advanced computer vision. Built with React, TypeScript, and OpenAI GPT-4 Vision.",
+  "description": "AI-powered fashion attribute extraction system with 283+ categories and advanced computer vision. Built with React, TypeScript, and OpenAI GPT-4 Vision.",
   "author": {
     "name": "Shubham Kushvanshi"
   },

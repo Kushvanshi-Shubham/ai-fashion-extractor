@@ -1,5 +1,5 @@
 /**
- * 🎯 Hierarchy Management Page
+ * Hierarchy Management Page
  * Manage departments, sub-departments, categories, and attributes
  */
 
@@ -21,6 +21,7 @@ import { DepartmentManager } from '../components/DepartmentManager';
 import { CategoryManager } from '../components/CategoryManager';
 import { AttributeManager } from '../components/AttributeManager';
 import { CategoryAttributeMatrix } from '../components/CategoryAttributeMatrix';
+import VLMStatusPanel from '../../../components/vlm/VLMStatusPanel';
 
 const { Content } = Layout;
 const { Title, Text } = Typography;
@@ -67,6 +68,7 @@ export default function HierarchyManagement() {
       ),
       children: (
         <Space direction="vertical" size="large" style={{ width: '100%' }}>
+          <VLMStatusPanel />
           <HierarchyStats stats={stats} loading={statsLoading} />
           <HierarchyTree hierarchy={hierarchy} loading={hierarchyLoading} />
         </Space>
@@ -124,7 +126,7 @@ export default function HierarchyManagement() {
           }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <div>
-                <Title level={2} style={{ margin: 0 }}>🎯 Hierarchy Management</Title>
+                <Title level={2} style={{ margin: 0 }}>Hierarchy Management</Title>
                 <Text type="secondary">Manage departments, categories & attributes</Text>
               </div>
               <Space>

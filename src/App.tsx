@@ -150,7 +150,7 @@ const App: React.FC = () => {
             <Card style={{ textAlign: "center", maxWidth: 400, boxShadow: "0 8px 32px rgba(0,0,0,0.1)" }}>
               <Spin size="large" />
               <Title level={4} style={{ marginTop: 16, color: "#667eea" }}>
-                🎯 Initializing AI Fashion System
+                Initializing AI Fashion System
               </Title>
               <Text type="secondary">
                 Setting up categories from database...
@@ -171,7 +171,7 @@ const App: React.FC = () => {
           <Header className="app-header">
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", height: "100%" }}>
               <Title level={2} className="app-title">
-                🎯 AI Fashion Extractor
+                AI Fashion Extractor
               </Title>
               <Space>
                 <Link to="/uploads"><Button>Uploads</Button></Link>
@@ -196,7 +196,7 @@ const App: React.FC = () => {
                   </div>
                   <div className="stat-card">
                     <div className="stat-number">{analytics.totalTokens.toLocaleString()}</div>
-                    <div className="stat-label">🎯 Tokens Used</div>
+                    <div className="stat-label">Tokens Used</div>
                   </div>
                   <div className="stat-card">
                     <div className="stat-number">{Math.round(analytics.totalTime / 1000)}s</div>

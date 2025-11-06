@@ -1,5 +1,5 @@
 /**
- * 🎯 Admin API Service
+ * Admin API Service
  * Handles all API calls to the backend admin endpoints
  */
 
@@ -13,6 +13,47 @@ const adminApi = axios.create({
     'Content-Type': 'application/json',
   },
 });
+
+// ═══════════════════════════════════════════════════════
+// REQUEST INTERCEPTOR - Add Auth Token
+// ═══════════════════════════════════════════════════════
+adminApi.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('authToken');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
+// ═══════════════════════════════════════════════════════
+// RESPONSE INTERCEPTOR - Handle Auth Errors
+// ═══════════════════════════════════════════════════════
+adminApi.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401) {
+      // Token expired or invalid - clear and redirect to login
+      console.warn('🔐 Authentication failed - redirecting to login');
+      localStorage.removeItem('authToken');
+      localStorage.removeItem('user');
+      
+      // Only redirect if not already on login page
+      if (!window.location.pathname.includes('/login')) {
+        window.location.href = '/login';
+      }
+    } else if (error.response?.status === 403) {
+      // Forbidden - insufficient permissions
+      console.error('🚫 Access denied - insufficient permissions');
+      // You can show a toast/notification here
+    }
+    return Promise.reject(error);
+  }
+);
 
 // ═══════════════════════════════════════════════════════
 // TYPES

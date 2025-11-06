@@ -1,5 +1,5 @@
 /**
- * 🎯 Category-Attribute Matrix Viewer
+ * Category-Attribute Matrix Viewer
  * Shows which attributes are enabled/disabled for each category in a table format
  */
 

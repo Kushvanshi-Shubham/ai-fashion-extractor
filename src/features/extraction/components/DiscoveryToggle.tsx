@@ -68,7 +68,7 @@ export const DiscoveryToggle: React.FC<DiscoveryToggleProps> = ({
                   <div>• Suggests new attributes for schema</div>
                   <div>• 🔴 Uses more tokens (7k+ vs 3k)</div>
                   <div>• ⏱️ Slightly slower but more comprehensive</div>
-                  <div>• 🎯 Enable only when needed for new discoveries</div>
+                  <div>• Enable only when needed for new discoveries</div>
                 </div>
               }
             >

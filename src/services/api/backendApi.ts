@@ -29,21 +29,58 @@ export class BackendApiService {
     this.baseURL = APP_CONFIG.api.baseURL;
   }
 
-  // 🚀 ENHANCED VLM EXTRACTION (New Primary Method)
+  /**
+   * Get auth headers for API requests
+   */
+  private getAuthHeaders(): HeadersInit {
+    const token = localStorage.getItem('authToken');
+    const headers: HeadersInit = {
+      'Content-Type': 'application/json',
+    };
+    
+    if (token) {
+      headers['Authorization'] = `Bearer ${token}`;
+    }
+    
+    return headers;
+  }
+
+  /**
+   * Handle auth errors and redirect to login
+   */
+  private handleAuthError(response: Response): void {
+    if (response.status === 401) {
+      console.warn('🔐 Authentication required - redirecting to login');
+      localStorage.removeItem('authToken');
+      localStorage.removeItem('user');
+      
+      if (!window.location.pathname.includes('/login')) {
+        window.location.href = '/login';
+      }
+    } else if (response.status === 403) {
+      console.error('🚫 Access denied - insufficient permissions');
+    }
+  }
+
+  // ENHANCED VLM EXTRACTION (New Primary Method - Updated to use /api/user/*)
   async extractFromBase64VLM(request: BackendExtractionRequest): Promise<EnhancedExtractionResult> {
     try {
-      console.log(`🚀 Enhanced VLM Extraction - Discovery: ${request.discoveryMode || false}, Category: ${request.categoryName}`);
+      console.log(`Enhanced VLM Extraction - Discovery: ${request.discoveryMode || false}, Category: ${request.categoryName}`);
       
-      const response = await fetch(`${this.baseURL}/vlm/extract/base64`, {
+      // Updated endpoint: /api/user/extract/base64
+      const response = await fetch(`${this.baseURL}/user/extract/base64`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: this.getAuthHeaders(),
         body: JSON.stringify({
           ...request,
           discoveryMode: request.discoveryMode || false
         })
       });
+
+      // Handle auth errors
+      if (response.status === 401 || response.status === 403) {
+        this.handleAuthError(response);
+      }
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
@@ -84,22 +121,25 @@ export class BackendApiService {
     }
   }
 
-  // 🎯 LEGACY METHOD (Keep for backward compatibility)
+  // LEGACY METHOD (Keep for backward compatibility - Updated with auth)
   async extractFromBase64(request: BackendExtractionRequest): Promise<EnhancedExtractionResult> {
     try {
-      // 🔧 LOG DISCOVERY MODE STATUS
-      console.log(`🔍 Backend API Call - Discovery Mode: ${request.discoveryMode || false}`);
+      console.log(`🔍 Legacy API Call - Discovery Mode: ${request.discoveryMode || false}`);
       
-      const response = await fetch(`${this.baseURL}/extract/base64`, {
+      // Updated endpoint: /api/user/extract/base64 (same as VLM for consistency)
+      const response = await fetch(`${this.baseURL}/user/extract/base64`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: this.getAuthHeaders(),
         body: JSON.stringify({
           ...request,
-          discoveryMode: request.discoveryMode || false // Ensure boolean
+          discoveryMode: request.discoveryMode || false
         })
       });
+
+      // Handle auth errors
+      if (response.status === 401 || response.status === 403) {
+        this.handleAuthError(response);
+      }
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
@@ -125,6 +165,8 @@ export class BackendApiService {
 
   async extractFromFile(file: File, schema: SchemaItem[], categoryName?: string, discoveryMode = false): Promise<EnhancedExtractionResult> {
     try {
+      const token = localStorage.getItem('authToken');
+      
       const formData = new FormData();
       formData.append('image', file);
       formData.append('schema', JSON.stringify(schema));
@@ -137,10 +179,19 @@ export class BackendApiService {
         formData.append('discoveryMode', 'true');
       }
 
-      const response = await fetch(`${this.baseURL}/extract/upload`, {
+      // Updated endpoint: /api/user/extract/upload
+      const response = await fetch(`${this.baseURL}/user/extract/upload`, {
         method: 'POST',
+        headers: {
+          'Authorization': token ? `Bearer ${token}` : '',
+        },
         body: formData
       });
+
+      // Handle auth errors
+      if (response.status === 401 || response.status === 403) {
+        this.handleAuthError(response);
+      }
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
@@ -250,51 +301,11 @@ export class BackendApiService {
     return !!this.baseURL;
   }
 
-  async listUploads(page = 1, pageSize = 20) {
-    const resp = await fetch(`${this.baseURL}/uploads?page=${page}&pageSize=${pageSize}`);
-    if (!resp.ok) throw new Error(`Failed to fetch uploads: ${resp.status}`);
-    const json = await resp.json();
-    if (!json.success) throw new Error(json.error || 'Failed to list uploads');
-    return json.data;
-  }
-
-  async getUpload(id: string) {
-    const resp = await fetch(`${this.baseURL}/uploads/${id}`);
-    if (!resp.ok) throw new Error(`Failed to fetch upload: ${resp.status}`);
-    const json = await resp.json();
-    if (!json.success) throw new Error(json.error || 'Failed to get upload');
-    return json.data;
-  }
-
-  async updateUpload(id: string, data: { status?: string; filename?: string }) {
-    const token = localStorage.getItem('authToken');
-    const resp = await fetch(`${this.baseURL}/uploads/${id}`, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
-      },
-      body: JSON.stringify(data),
-    });
-    if (!resp.ok) throw new Error(`Failed to update upload: ${resp.status}`);
-    const json = await resp.json();
-    if (!json.success) throw new Error(json.error || 'Failed to update upload');
-    return json.data;
-  }
-
-  async deleteUpload(id: string) {
-    const token = localStorage.getItem('authToken');
-    const resp = await fetch(`${this.baseURL}/uploads/${id}`, {
-      method: 'DELETE',
-      headers: {
-        'Authorization': `Bearer ${token}`,
-      },
-    });
-    if (!resp.ok) throw new Error(`Failed to delete upload: ${resp.status}`);
-    const json = await resp.json();
-    if (!json.success) throw new Error(json.error || 'Failed to delete upload');
-    return json.data;
-  }
+  // REMOVED: Upload management endpoints - no longer used
+  // async listUploads(page = 1, pageSize = 20) { ... }
+  // async getUpload(id: string) { ... }
+  // async updateUpload(id: string, data: ...) { ... }
+  // async deleteUpload(id: string) { ... }
 
   async getAdminStats() {
     const token = localStorage.getItem('authToken');
@@ -344,7 +355,7 @@ export class BackendApiService {
     return json.data;
   }
 
-  // 🎯 NEW: Category-Based Extraction with Metadata
+  // NEW: Category-Based Extraction with Metadata
   async extractWithCategory(request: {
     image: string;
     categoryCode: string;
@@ -374,15 +385,19 @@ export class BackendApiService {
     };
   }> {
     try {
-      console.log(`🎯 Category-Based Extraction - Code: ${request.categoryCode}, Discovery: ${request.discoveryMode || false}`);
+      console.log(`Category-Based Extraction - Code: ${request.categoryCode}, Discovery: ${request.discoveryMode || false}`);
       
-      const response = await fetch(`${this.baseURL}/extract/category`, {
+      // Updated endpoint: /api/user/extract/category
+      const response = await fetch(`${this.baseURL}/user/extract/category`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: this.getAuthHeaders(),
         body: JSON.stringify(request)
       });
+
+      // Handle auth errors
+      if (response.status === 401 || response.status === 403) {
+        this.handleAuthError(response);
+      }
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));

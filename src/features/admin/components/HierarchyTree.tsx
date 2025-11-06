@@ -1,5 +1,5 @@
 /**
- * 🎯 Hierarchy Tree Component
+ * Hierarchy Tree Component
  * Displays the complete fashion hierarchy tree with Ant Design Tree
  */
 

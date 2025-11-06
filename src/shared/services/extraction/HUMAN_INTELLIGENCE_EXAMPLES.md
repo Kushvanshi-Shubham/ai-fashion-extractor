@@ -40,7 +40,7 @@
 // ✅ Shows raw value: "Midnight Blue Stripes" (no forced matching)
 
 /**
- * 🎯 KEY INTELLIGENCE FEATURES:
+ * KEY INTELLIGENCE FEATURES:
  * 
  * 1. TEXT NORMALIZATION: Removes spaces, punctuation, handles case
  * 2. ABBREVIATION DETECTION: XL → Extra Large, RN → Round Neck  

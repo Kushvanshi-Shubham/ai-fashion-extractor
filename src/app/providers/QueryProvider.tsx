@@ -1,5 +1,5 @@
 /**
- * 🎯 React Query Provider
+ * React Query Provider
  * Configures TanStack Query for the application
  */
 
