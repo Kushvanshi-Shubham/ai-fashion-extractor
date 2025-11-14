@@ -48,6 +48,7 @@
     "axios": "^1.12.2",
     "browser-image-compression": "^2.0.2",
     "dompurify": "^3.3.0",
+    "exceljs": "^4.4.0",
     "file-saver": "^2.0.5",
     "idb": "^8.0.3",
     "lucide-react": "^0.544.0",

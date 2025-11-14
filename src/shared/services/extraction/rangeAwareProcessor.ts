@@ -421,6 +421,10 @@ export class AttributeProcessor {
             return correctOption.shortForm;
           }
         }
+        
+        // CRITICAL: If pocket matched but not in schema - RETURN NULL
+        console.log(`👛 POCKET SAFEGUARD: "${value}" matched pattern but not in schema - RETURNING NULL`);
+        return null;
       }
     }
 
@@ -469,6 +473,10 @@ export class AttributeProcessor {
             return correctOption.shortForm;
           }
         }
+        
+        // CRITICAL: If neck matched but not in schema - RETURN NULL
+        console.log(`NECK SAFEGUARD: "${value}" matched pattern but not in schema - RETURNING NULL`);
+        return null;
       }
     }
 
@@ -515,6 +523,10 @@ export class AttributeProcessor {
               return correctOption.shortForm;
             }
           }
+          
+          // CRITICAL: If macro_mvgr matched but not in schema - RETURN NULL
+          console.log(`🏷️ MACRO_MVGR SAFEGUARD: "${value}" matched pattern but not in schema - RETURNING NULL`);
+          return null;
         }
       }
     }
@@ -554,6 +566,10 @@ export class AttributeProcessor {
               return correctOption.shortForm;
             }
           }
+          
+          // CRITICAL: If micro_mvgr matched but not in schema - RETURN NULL
+          console.log(`🏷️ MICRO_MVGR SAFEGUARD: "${value}" matched pattern but not in schema - RETURNING NULL`);
+          return null;
         }
       }
     }
@@ -572,7 +588,9 @@ export class AttributeProcessor {
         { pattern: /cut.*sew|cut.*n.*sew|panel/i, correctMatch: 'C&S', fallback: '2_C&S' },
         { pattern: /2.*cut.*sew|two.*cut.*sew/i, correctMatch: '2_C&S', fallback: 'C&S' },
         { pattern: /3.*cut.*sew|three.*cut.*sew/i, correctMatch: '3_C&S', fallback: '2_C&S' },
-        { pattern: /basic|plain|simple|solid/i, correctMatch: 'BSC', fallback: null },
+        
+        // SOLID/PLAIN/BASIC - Return null if not in schema (don't guess!)
+        { pattern: /^solid$|^plain$|^simple$|^basic$/i, correctMatch: 'BSC', fallback: null, blockIfNotFound: true },
         
         // Specific Style Patterns  
         { pattern: /asymmetric|asymmetrical|uneven/i, correctMatch: 'ASYM', fallback: 'BSC' },
@@ -610,6 +628,11 @@ export class AttributeProcessor {
               return correctOption.shortForm;
             }
           }
+          
+          // CRITICAL: If pattern matched but neither correctMatch nor fallback found in schema
+          // Return null to prevent wrong guessing
+          console.log(`📐 PATTERN SAFEGUARD: "${value}" matched pattern but not in schema - RETURNING NULL`);
+          return null;
         }
       }
     }
@@ -676,6 +699,10 @@ export class AttributeProcessor {
               return correctOption.shortForm;
             }
           }
+          
+          // CRITICAL: If embroidery matched but not in schema - RETURN NULL
+          console.log(`🧵 EMBROIDERY SAFEGUARD: "${value}" matched pattern but not in schema - RETURNING NULL`);
+          return null;
         }
       }
     }
@@ -759,6 +786,10 @@ export class AttributeProcessor {
               return correctOption.shortForm;
             }
           }
+          
+          // CRITICAL: If composition matched but not in schema - RETURN NULL
+          console.log(`🧬 COMPOSITION SAFEGUARD: "${value}" matched pattern but not in schema - RETURNING NULL`);
+          return null;
         }
       }
     }
@@ -819,10 +850,12 @@ export class AttributeProcessor {
     if (bestMatch) {
       console.log(`✅ SEMANTIC MATCH: "${value}" → "${bestMatch}" (confidence: ${highestSemanticScore.toFixed(2)})`);
     } else {
-      console.log(`❌ NO SEMANTIC MATCH: "${value}" - will use raw value`);
+      console.log(`❌ NO SEMANTIC MATCH: "${value}" - RETURNING NULL (value not in allowed schema)`);
     }
     
-    return bestMatch;
+    // CRITICAL: Return null if no match found - DO NOT guess or use raw value
+    // This prevents showing invalid values like "SOLID" mapped to "E_STP"
+    return bestMatch; // Will be null if no match found
   }
 
   /**
