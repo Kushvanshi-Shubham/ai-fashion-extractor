@@ -30,18 +30,22 @@ export const LargeUploadArea: React.FC<LargeUploadAreaProps> = ({
     return true;
   };
 
-  const handleUpload = async (file: RcFile, fileList: RcFile[]) => {
+  const handleUpload = async (file: RcFile, fileList: RcFile[]): Promise<boolean> => {
     // Validate all files first
     const validFiles = fileList.filter(validateFile);
     if (validFiles.length === 0) return false;
 
     try {
       const files = validFiles.map(f => f as File);
-      await onUpload(file as File, files);
-      return false; // Prevent default upload
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    } catch (error) {
-      message.error('Upload failed');
+      const result = await onUpload(file as File, files);
+      // If the onUpload handler explicitly returns true, allow the Upload component to proceed;
+      // otherwise prevent the default upload behavior.
+      return result === true;
+    } catch (error: unknown) {
+      // Provide a readable error message and log the full error for debugging
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      console.error('Upload failed', error);
+      message.error(`Upload failed: ${errorMessage}`);
       return false;
     }
   };

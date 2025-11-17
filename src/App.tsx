@@ -133,9 +133,9 @@ const App: React.FC = () => {
 
   const handleBulkEdit = useCallback(
     (attributeKey: string, value: string | number | null) => {
-      selectedRowKeys.forEach((rowId) => {
+      for (const rowId of selectedRowKeys) {
         updateRowAttribute(String(rowId), attributeKey, value);
-      });
+      }
     },
     [selectedRowKeys, updateRowAttribute]
   );
