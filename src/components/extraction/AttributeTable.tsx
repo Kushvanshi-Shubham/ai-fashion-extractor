@@ -41,7 +41,7 @@ export const AttributeTable: React.FC<AttributeTableProps> = ({
       {
         title: 'Image',
         key: 'image',
-        width: 100,
+        width: 80,
         fixed: 'left', // Always visible on left
         render: (_, record) => (
           <div style={{ textAlign: 'center' }}>
@@ -49,14 +49,14 @@ export const AttributeTable: React.FC<AttributeTableProps> = ({
             <Image
               src={record.imagePreviewUrl}
               alt={record.originalFileName}
-              width={60}
-              height={60}
-              style={{ objectFit: 'cover', borderRadius: 6, cursor: 'pointer' }}
+              width={50}
+              height={50}
+              style={{ objectFit: 'cover', borderRadius: 4, cursor: 'pointer' }}
               onClick={() => onImageClick(record.imagePreviewUrl, record.originalFileName)}
               preview={false}
             />
             {/* Show file size below image */}
-            <div style={{ fontSize: 10, color: '#666', marginTop: 4 }}>
+            <div style={{ fontSize: 9, color: '#666', marginTop: 2 }}>
               {formatFileSize(record.file.size)}
             </div>
           </div>
@@ -67,7 +67,7 @@ export const AttributeTable: React.FC<AttributeTableProps> = ({
       {
         title: 'Status',
         key: 'status',
-        width: 120,
+        width: 100,
         fixed: 'left', // Always visible on left
         render: (_, record) => (
           <div>
@@ -76,7 +76,7 @@ export const AttributeTable: React.FC<AttributeTableProps> = ({
             
             {/* Show how long extraction took */}
             {record.extractionTime && (
-              <div style={{ fontSize: 10, color: '#666', marginTop: 4 }}>
+              <div style={{ fontSize: 9, color: '#666', marginTop: 2 }}>
                 {formatDuration(record.extractionTime)}
               </div>
             )}
@@ -84,8 +84,8 @@ export const AttributeTable: React.FC<AttributeTableProps> = ({
             {/* Show error message if extraction failed */}
             {record.error && (
               <Tooltip title={record.error} trigger="hover">
-                <div style={{ fontSize: 10, color: '#f5222d', marginTop: 4, cursor: 'help' }}>
-                  ⚠️ Error details
+                <div style={{ fontSize: 9, color: '#f5222d', marginTop: 2, cursor: 'help' }}>
+                  ⚠️ Error
                 </div>
               </Tooltip>
             )}
@@ -100,13 +100,13 @@ export const AttributeTable: React.FC<AttributeTableProps> = ({
       title: (
         <div>
           {/* Column header shows attribute name */}
-          <div>{schemaItem.label}</div>
+          <div style={{ fontSize: 12 }}>{schemaItem.label}</div>
           {/* Show "Required" tag if mandatory */}
-          {schemaItem.required && <Tag  color="red">Required</Tag>}
+          {schemaItem.required && <Tag color="red" style={{ fontSize: 10, padding: '0 4px', marginTop: 2 }}>Required</Tag>}
         </div>
       ),
       key: schemaItem.key,
-      width: 180, // 📏 Updated width for better mobile experience
+      width: 150, // 📏 Reduced width for more columns visible
       render: (_, record) => (
         // This is where AttributeCell component shows the actual value
         <AttributeCell
@@ -189,15 +189,16 @@ export const AttributeTable: React.FC<AttributeTableProps> = ({
       // 📱 RESPONSIVE SCROLLING
       scroll={{
         x: 'max-content', // Horizontal scroll for many columns
-        y: 'calc(100vh - 400px)' // Vertical scroll, responsive height
+        y: 'calc(100vh - 280px)' // Maximized vertical scroll height for more visible data
       }}
       
       // 📄 PAGINATION
       pagination={{
-        pageSize: 50, // Show 50 rows per page
+        pageSize: 100, // Show 100 rows per page for less scrolling
         showSizeChanger: true, // Let user change page size
+        pageSizeOptions: ['50', '100', '200', '500'],
         showQuickJumper: true, // Jump to specific page
-        showTotal: (total, range) => // Show "1-50 of 200 items"
+        showTotal: (total, range) => // Show "1-100 of 200 items"
           `${range[0]}-${range[1]} of ${total} items`,
       }}
       

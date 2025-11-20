@@ -394,10 +394,17 @@ export const AttributeManager = () => {
             rules={[
               { required: true, message: 'Please enter attribute key' },
               { max: 100, message: 'Key must be less than 100 characters' },
-              { pattern: /^[a-z0-9_]+$/, message: 'Only lowercase letters, numbers, and underscores' },
+              { pattern: /^[A-Z0-9_]+$/, message: 'Only uppercase letters, numbers, and underscores' },
             ]}
           >
-            <Input placeholder="e.g., fab_composition, color" />
+            <Input 
+              placeholder="e.g., FAB_COMPOSITION, COLOR" 
+              onChange={(e) => {
+                // Auto-convert to uppercase
+                const uppercaseValue = e.target.value.toUpperCase();
+                attrForm.setFieldValue('key', uppercaseValue);
+              }}
+            />
           </Form.Item>
 
           <Form.Item

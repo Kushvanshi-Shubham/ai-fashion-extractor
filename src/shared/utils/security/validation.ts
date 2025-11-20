@@ -92,7 +92,7 @@ export const masterAttributeSchema = z.object({
   key: z.string()
     .min(1, 'Key is required')
     .max(100, 'Key must be 100 characters or less')
-    .regex(/^[a-z0-9_]+$/, 'Key must contain only lowercase letters, numbers, and underscores'),
+    .regex(/^[A-Z0-9_]+$/, 'Key must contain only uppercase letters, numbers, and underscores'),
   label: z.string()
     .min(1, 'Label is required')
     .max(200, 'Label must be 200 characters or less')

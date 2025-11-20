@@ -207,9 +207,10 @@ const ExtractionPage = () => {
     <Layout className="app-layout">
       <Content className="app-content">
         <div className="content-wrapper">
-          {/* Step Indicator */}
-          <Card className="steps-card" style={{ marginBottom: 24 }}>
+          {/* Step Indicator - Compact */}
+          <Card size="small" className="steps-card" style={{ marginBottom: 12, padding: '8px 12px' }}>
             <Steps
+              size="small"
               current={
                 currentStep === 'category' ? 0 : 
                 currentStep === 'upload' ? 1 : 2
@@ -218,30 +219,28 @@ const ExtractionPage = () => {
                 {
                   title: 'Select Category',
                   icon: <AppstoreOutlined />,
-                  description: 'Choose fashion category'
                 },
                 {
                   title: 'Upload Images',
                   icon: <UploadOutlined />,
-                  description: 'Add product images'
                 },
                 {
                   title: 'AI Extraction',
                   icon: <RobotOutlined />,
-                  description: 'Extract attributes'
                 }
               ]}
             />
           </Card>
           
           {showAnalytics && (
-            <Card className="stats-card animate-slide-up" style={{ marginBottom: 24 }}>
-              <Row gutter={[24, 24]}>
+            <Card size="small" className="stats-card animate-slide-up" style={{ marginBottom: 12, padding: '12px' }}>
+              <Row gutter={[12, 12]}>
                 <Col xs={24} sm={12} lg={6}>
                   <Statistic 
                     title="Total Extractions"
                     value={analytics.totalExtractions}
                     prefix={<CheckCircleOutlined style={{ color: '#52c41a' }} />}
+                    valueStyle={{ fontSize: '20px' }}
                   />
                 </Col>
                 <Col xs={24} sm={12} lg={6}>
@@ -249,6 +248,7 @@ const ExtractionPage = () => {
                     title="Tokens Used"
                     value={analytics.totalTokens}
                     prefix={<RobotOutlined style={{ color: '#1890ff' }} />}
+                    valueStyle={{ fontSize: '20px' }}
                   />
                 </Col>
                 <Col xs={24} sm={12} lg={6}>
@@ -257,6 +257,7 @@ const ExtractionPage = () => {
                     value={(analytics.totalTime / 1000).toFixed(1)}
                     suffix="s"
                     prefix={<DashboardOutlined style={{ color: '#fa8c16' }} />}
+                    valueStyle={{ fontSize: '20px' }}
                   />
                 </Col>
                 <Col xs={24} sm={12} lg={6}>
@@ -265,6 +266,7 @@ const ExtractionPage = () => {
                     value={(analytics.averageAccuracy * 100).toFixed(1)}
                     suffix="%"
                     prefix={<CheckCircleOutlined style={{ color: '#722ed1' }} />}
+                    valueStyle={{ fontSize: '20px' }}
                   />
                 </Col>
               </Row>
@@ -277,13 +279,14 @@ const ExtractionPage = () => {
               {currentStep === 'category' && (
                 <Card className="step-card" style={{ 
                   border: '2px solid #1890ff',
-                  boxShadow: '0 8px 32px rgba(24, 144, 255, 0.1)' 
+                  boxShadow: '0 8px 32px rgba(24, 144, 255, 0.1)',
+                  padding: '16px'
                 }}>
-                  <div style={{ textAlign: 'center', marginBottom: 24 }}>
-                    <Title level={3} style={{ color: '#1890ff', marginBottom: 8 }}>
+                  <div style={{ textAlign: 'center', marginBottom: 16 }}>
+                    <Title level={4} style={{ color: '#1890ff', marginBottom: 4 }}>
                       Step 1: Select Fashion Category
                     </Title>
-                    <Text type="secondary">Choose the category that matches your images</Text>
+                    <Text type="secondary" style={{ fontSize: '13px' }}>Choose the category that matches your images</Text>
                   </div>
                   <CategorySelector 
                     selectedCategory={selectedCategory}
@@ -296,22 +299,24 @@ const ExtractionPage = () => {
               {currentStep === 'upload' && (
                 <Card className="step-card" style={{ 
                   border: '2px solid #52c41a',
-                  boxShadow: '0 8px 32px rgba(82, 196, 26, 0.1)' 
+                  boxShadow: '0 8px 32px rgba(82, 196, 26, 0.1)',
+                  padding: '16px'
                 }}>
-                  <div style={{ textAlign: 'center', marginBottom: 24 }}>
-                    <Title level={3} style={{ color: '#52c41a', marginBottom: 8 }}>
+                  <div style={{ textAlign: 'center', marginBottom: 16 }}>
+                    <Title level={4} style={{ color: '#52c41a', marginBottom: 4 }}>
                       📸 Step 2: Upload Images
                     </Title>
-                    <Text type="secondary">
+                    <Text type="secondary" style={{ fontSize: '13px' }}>
                       Selected: <strong>{selectedCategory?.displayName}</strong> | 
                       Upload your fashion images for AI analysis
                     </Text>
                   </div>
                   
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
                     <Button 
                       onClick={() => setCurrentStep('category')}
                       type="link"
+                      size="small"
                       style={{ paddingLeft: 0 }}
                     >
                       ← Back to Category Selection
@@ -349,85 +354,42 @@ const ExtractionPage = () => {
               {currentStep === 'extraction' && extractedRows.length > 0 && (
                 <Card className="step-card" style={{ 
                   border: '2px solid #722ed1',
-                  boxShadow: '0 8px 32px rgba(114, 46, 209, 0.1)' 
+                  boxShadow: '0 8px 32px rgba(114, 46, 209, 0.1)',
+                  padding: '12px 16px'
                 }}>
-                  <div style={{ textAlign: 'center', marginBottom: 24 }}>
-                    <Title level={3} style={{ color: '#722ed1', marginBottom: 8 }}>
-                       Step 3: AI Extraction Results
-                    </Title>
-                    <Text type="secondary">
-                      Category: <strong>{selectedCategory?.displayName}</strong> | 
-                      {extractedRows.length} images processed
-                    </Text>
+                  {/* Compact Header with Inline Stats */}
+                  <div style={{ marginBottom: 12 }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                      <div>
+                        <Title level={5} style={{ color: '#722ed1', margin: 0, display: 'inline-block', marginRight: 12 }}>
+                           Step 3: AI Extraction Results
+                        </Title>
+                        <Text type="secondary" style={{ fontSize: '12px' }}>
+                          {selectedCategory?.displayName} | {extractedRows.length} images
+                        </Text>
+                      </div>
+                      {stats && (
+                        <Space size="middle">
+                          <Text style={{ fontSize: '12px' }}>
+                            <span style={{ color: '#52c41a', fontWeight: 'bold' }}>{stats.done}</span> Done
+                          </Text>
+                          <Text style={{ fontSize: '12px' }}>
+                            <span style={{ color: '#fa8c16', fontWeight: 'bold' }}>{stats.pending}</span> Pending
+                          </Text>
+                          <Text style={{ fontSize: '12px' }}>
+                            <span style={{ color: '#722ed1', fontWeight: 'bold' }}>{Math.round(stats.successRate)}%</span> Success
+                          </Text>
+                        </Space>
+                      )}
+                    </div>
                   </div>
 
-                  {/* Stats Dashboard */}
-                  {stats && (
-                    <Card className="extraction-stats-card" style={{ marginBottom: 24, background: '#fafafa' }}>
-                      <Row gutter={[16, 16]}>
-                        <Col xs={12} sm={6}>
-                          <Statistic 
-                            title="Total Images"
-                            value={stats.total}
-                            valueStyle={{ color: '#1890ff' }}
-                          />
-                        </Col>
-                        <Col xs={12} sm={6}>
-                          <Statistic 
-                            title="Completed"
-                            value={stats.done}
-                            valueStyle={{ color: '#52c41a' }}
-                            prefix={<CheckCircleOutlined />}
-                          />
-                        </Col>
-                        <Col xs={12} sm={6}>
-                          <Statistic 
-                            title="Pending"
-                            value={stats.pending}
-                            valueStyle={{ color: '#fa8c16' }}
-                          />
-                        </Col>
-                        <Col xs={12} sm={6}>
-                          <Statistic 
-                            title="Success Rate"
-                            value={Math.round(stats.successRate)}
-                            suffix="%"
-                            valueStyle={{ color: '#722ed1' }}
-                          />
-                        </Col>
-                      </Row>
-
-                      {/* Token Usage */}
-                      {totalTokensUsed > 0 && (
-                        <div style={{ marginTop: 16, textAlign: 'center' }}>
-                          <Text type="secondary">
-                             Total Tokens Used: <strong>{totalTokensUsed.toLocaleString()}</strong>
-                          </Text>
-                        </div>
-                      )}
-                    </Card>
-                  )}
-
-                  {/* Processing Status Section */}
+                  {/* Processing Status Section - Compact */}
                   {extractedRows.length > 0 && (
-                    <Card 
-                      title={
-                        <Space>
-                          <RobotOutlined style={{ color: '#722ed1' }} />
-                          <span>Processing Status</span>
-                        </Space>
-                      }
-                      style={{ marginBottom: 24 }}
-                    >
+                    <div style={{ marginBottom: 12 }}>
                       {/* Overall Progress Bar */}
                       {(isExtracting || stats.done > 0) && (
-                        <div style={{ marginBottom: 24 }}>
-                          <div style={{ marginBottom: 8, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                            <Text strong>Overall Progress</Text>
-                            <Text type="secondary">
-                              {stats.done + stats.error} / {stats.total} items
-                            </Text>
-                          </div>
+                        <div style={{ marginBottom: 12 }}>
                           <Progress
                             percent={Math.round(progress)}
                             status={
@@ -439,25 +401,26 @@ const ExtractionPage = () => {
                               from: '#722ed1',
                               to: '#eb2f96'
                             }}
+                            size="small"
                           />
                           
                           {/* Live Processing Info */}
                           {isExtracting && (
-                            <div style={{ marginTop: 12 }}>
-                              <Space size="large" wrap>
+                            <div style={{ marginTop: 8 }}>
+                              <Space size="middle" wrap>
                                 {stats.extracting > 0 && (
-                                  <Text type="secondary">
-                                    🔄 Currently processing: <strong>{stats.extracting}</strong>
+                                  <Text type="secondary" style={{ fontSize: '12px' }}>
+                                    🔄 Processing: <strong>{stats.extracting}</strong>
                                   </Text>
                                 )}
                                 {totalTokensUsed > 0 && (
-                                  <Text type="secondary">
+                                  <Text type="secondary" style={{ fontSize: '12px' }}>
                                      Tokens: <strong>{totalTokensUsed.toLocaleString()}</strong>
                                   </Text>
                                 )}
                                 {estimatedTimeRemaining > 0 && (
-                                  <Text type="secondary">
-                                    ⏱️ Est. remaining: <strong>{Math.round(estimatedTimeRemaining)}s</strong>
+                                  <Text type="secondary" style={{ fontSize: '12px' }}>
+                                    ⏱️ ETA: <strong>{Math.round(estimatedTimeRemaining)}s</strong>
                                   </Text>
                                 )}
                               </Space>
@@ -473,7 +436,7 @@ const ExtractionPage = () => {
                           description="Click Resume to continue processing, or Stop to cancel."
                           type="warning"
                           showIcon
-                          style={{ marginBottom: 16 }}
+                          style={{ marginBottom: 12 }}
                         />
                       )}
 
@@ -491,19 +454,18 @@ const ExtractionPage = () => {
                           }
                           type={stats.error === 0 ? 'success' : 'warning'}
                           showIcon
-                          style={{ marginBottom: 16 }}
+                          style={{ marginBottom: 12 }}
                         />
                       )}
 
                       {/* Action Controls */}
-                      <div style={{ marginTop: 16 }}>
-                        <Space wrap size="middle">
+                      <div style={{ marginTop: 12, marginBottom: 12 }}>
+                        <Space wrap size="small">
                           {/* Start/Pause/Resume/Stop */}
                           {!isExtracting && stats.pending > 0 && (
                             <Button
                               type="primary"
                               icon={<RobotOutlined />}
-                              size="large"
                               onClick={() => extractAllPending && extractAllPending(
                                 schema, 
                                 selectedCategory?.displayName,
@@ -522,7 +484,6 @@ const ExtractionPage = () => {
                           {isExtracting && !isPaused && (
                             <Button
                               icon={<ClockCircleOutlined />}
-                              size="large"
                               onClick={pauseExtraction}
                             >
                               Pause
@@ -533,7 +494,6 @@ const ExtractionPage = () => {
                             <Button
                               type="primary"
                               icon={<RobotOutlined />}
-                              size="large"
                               onClick={resumeExtraction}
                             >
                               Resume
@@ -544,7 +504,6 @@ const ExtractionPage = () => {
                             <Button
                               danger
                               icon={<ClearOutlined />}
-                              size="large"
                               onClick={cancelExtraction}
                             >
                               Stop
@@ -571,14 +530,15 @@ const ExtractionPage = () => {
                           )}
                         </Space>
                       </div>
-                    </Card>
+                    </div>
                   )}
                   
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
-                    <Space>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8, marginTop: 8 }}>
+                    <Space size="small">
                       <Button 
                         onClick={() => setCurrentStep('upload')}
                         type="link"
+                        size="small"
                         style={{ paddingLeft: 0 }}
                       >
                         ← Back to Upload
@@ -586,6 +546,7 @@ const ExtractionPage = () => {
                       <Button 
                         onClick={() => setCurrentStep('category')}
                         type="link"
+                        size="small"
                       >
                         ← Change Category
                       </Button>
